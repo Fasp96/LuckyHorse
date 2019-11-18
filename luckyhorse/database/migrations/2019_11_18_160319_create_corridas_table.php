@@ -13,8 +13,14 @@ class CreateCorridasTable extends Migration
      */
     public function up()
     {
-        Schema::create('corridas', function (Blueprint $table) {
+        Schema::create('races', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->date('date');
+            $table->string('local');
+
+            $table->unsignedBigInteger('tournament_id');
+            $table->foreign('tournament_id')->references('id')->on('tournaments');
+
             $table->timestamps();
         });
     }
@@ -26,6 +32,6 @@ class CreateCorridasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('corridas');
+        Schema::dropIfExists('races');
     }
 }

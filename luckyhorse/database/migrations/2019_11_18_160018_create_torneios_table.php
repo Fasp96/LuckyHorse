@@ -13,8 +13,9 @@ class CreateTorneiosTable extends Migration
      */
     public function up()
     {
-        Schema::create('torneios', function (Blueprint $table) {
+        Schema::create('tournaments', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('name');
             $table->timestamps();
         });
     }
@@ -26,6 +27,6 @@ class CreateTorneiosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('torneios');
+        Schema::dropIfExists('tournaments');
     }
 }

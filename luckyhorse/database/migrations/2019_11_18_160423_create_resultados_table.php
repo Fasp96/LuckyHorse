@@ -13,8 +13,17 @@ class CreateResultadosTable extends Migration
      */
     public function up()
     {
-        Schema::create('resultados', function (Blueprint $table) {
+        Schema::create('results', function (Blueprint $table) {
             $table->bigIncrements('id');
+            
+            $table->unsignedBigInteger('race_id');
+            $table->foreign('race_id')->references('id')->on('races');
+
+            $table->time('time');
+            
+            //$table->unsignedBigInteger('horse_id');
+            //$table->foreign('horse_id')->references('id')->on('horses');
+
             $table->timestamps();
         });
     }
@@ -26,6 +35,6 @@ class CreateResultadosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('resultados');
+        Schema::dropIfExists('results');
     }
 }

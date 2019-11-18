@@ -13,8 +13,19 @@ class CreateApostasTable extends Migration
      */
     public function up()
     {
-        Schema::create('apostas', function (Blueprint $table) {
+        Schema::create('bets', function (Blueprint $table) {
             $table->bigIncrements('id');
+
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
+
+            $table->unsignedBigInteger('race_id');
+            $table->foreign('race_id')->references('id')->on('races');
+
+            $table->unsignedBigInteger('horse_id');
+            $table->foreign('horse_id')->references('id')->on('horses');
+
+            $table->float('value');
             $table->timestamps();
         });
     }
@@ -26,6 +37,6 @@ class CreateApostasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('apostas');
+        Schema::dropIfExists('bets');
     }
 }

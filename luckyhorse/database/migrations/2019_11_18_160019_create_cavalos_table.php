@@ -13,8 +13,14 @@ class CreateCavalosTable extends Migration
      */
     public function up()
     {
-        Schema::create('cavalos', function (Blueprint $table) {
+        Schema::create('horses', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('name');
+            $table->string('breed');
+            $table->integer('number');
+            $table->integer('age');
+            $table->integer('num_races');
+            $table->integer('num_victories');
             $table->timestamps();
         });
     }
@@ -26,6 +32,6 @@ class CreateCavalosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cavalos');
+        Schema::dropIfExists('horses');
     }
 }
