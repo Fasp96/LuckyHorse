@@ -18,11 +18,9 @@ class CreateResultadosTable extends Migration
             
             $table->unsignedBigInteger('race_id');
             $table->foreign('race_id')->references('id')->on('races');
-
-            $table->time('time');
             
-            //$table->unsignedBigInteger('horse_id');
-            //$table->foreign('horse_id')->references('id')->on('horses');
+            $table->unsignedBigInteger('horse_id');
+            $table->foreign('horse_id')->references('id')->on('horses');
 
             $table->timestamps();
         });
