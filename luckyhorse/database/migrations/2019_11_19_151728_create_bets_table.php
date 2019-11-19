@@ -19,8 +19,11 @@ class CreateBetsTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
 
-            $table->unsignedBigInteger('race_id');
+            $table->unsignedBigInteger('race_id')->nullable();
             $table->foreign('race_id')->references('id')->on('races');
+
+            $table->unsignedBigInteger('tournament_id')->nullable();
+            $table->foreign('tournament_id')->references('id')->on('tournaments');
 
             $table->unsignedBigInteger('horse_id');
             $table->foreign('horse_id')->references('id')->on('horses');
