@@ -22,6 +22,7 @@ class CreateResultsTable extends Migration
             $table->unsignedBigInteger('horse_id');
             $table->foreign('horse_id')->references('id')->on('horses');
 
+            $table->time('time')->nullable();
             $table->timestamps();
         });
     }
