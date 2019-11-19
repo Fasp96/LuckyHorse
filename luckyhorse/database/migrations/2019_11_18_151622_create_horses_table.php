@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCorridasTable extends Migration
+class CreateHorsesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,14 @@ class CreateCorridasTable extends Migration
      */
     public function up()
     {
-        Schema::create('races', function (Blueprint $table) {
+        Schema::create('horses', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->date('date');
-            $table->string('local');
-
-            $table->unsignedBigInteger('tournament_id');
-            $table->foreign('tournament_id')->references('id')->on('tournaments');
-
+            $table->string('name');
+            $table->string('breed');
+            $table->integer('number');
+            $table->integer('age');
+            $table->integer('num_races');
+            $table->integer('num_victories');
             $table->timestamps();
         });
     }
@@ -32,6 +32,6 @@ class CreateCorridasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('races');
+        Schema::dropIfExists('horses');
     }
 }
