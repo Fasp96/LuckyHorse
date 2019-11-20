@@ -17,7 +17,7 @@ class CreateHorsesTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('breed');
-            $table->integer('number');
+            //$table->integer('number');
             $table->integer('age');
             $table->integer('num_races');
             $table->integer('num_victories');
