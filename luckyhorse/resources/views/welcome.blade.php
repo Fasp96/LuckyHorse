@@ -113,6 +113,7 @@
                         
                         
                         
+                        <a href="{{ url('/horses') }}">Add Horse</a>
                     @else
                         <a href="#news">NEWS</a>
                         <a href="#tournaments">TOURNAMENTS</a>
