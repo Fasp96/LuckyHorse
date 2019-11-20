@@ -72,7 +72,10 @@
             }
 
 
-
+            footer{
+                background-color: black;
+                color: #fff;
+            }
 
 
             a {
@@ -88,6 +91,11 @@
                 
             }
 
+            #myBtn {
+                background-color:black;
+                color:white;
+                border:none;
+            }
 
         </style>
     </head>
@@ -140,9 +148,16 @@
 
         <footer>
 
-                <p>Made by: André</p>
-                <p>Made by: Fábio</p>
-                <p>Made by: Márcio</p>
+                <p>Posted by: André, Fábio e Márcio | Contacts | termos e condições |
+                <button onclick="topFunction()" id="myBtn" title="Go to top">Top
+                    <script>
+                        function topFunction() {
+                             document.body.scrollTop = 0;
+                             document.documentElement.scrollTop = 0;
+                        }
+                    </script>
+                </button>
+                </p>
 
         </footer>
     </body>
