@@ -25,7 +25,8 @@ class HorsesController extends Controller
             $horse = new Horse;
             $horse->name = $request->name;
             $horse->breed = $request->breed;
-            $horse->age = $request->age;
+            $horse->birth_date = $request->birth_date;
+            $horse->gender = $request->gender;
             $horse->num_races = $request->num_races;
             $horse->num_victories = $request->num_victories;
 

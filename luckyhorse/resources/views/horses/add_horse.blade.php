@@ -35,14 +35,16 @@
                         <input type="text" class="form-control" name="name"><br>
                         Breed
                         <input type="text" class="form-control" name="breed"><br>
-                        Age
-                        <input type="text" class="form-control" name="age"><br>
+                        Birth Date
+                        <input type="date" class="form-control" name="birth_date"><br>
+                        Gender<br>
+                        <input type="radio" name="gender" value="male"> Male<br>
+                        <input type="radio" name="gender" value="female"> Female<br><br>
                         Number of Races
-                        <input type="text" class="form-control" name="num_races"><br>
+                        <input type="number" class="form-control" name="num_races"><br>
                         Number of Victories
-                        <input type="text" class="form-control" name="num_victories"><br>
-                        <br>
-                        Horse Photo <br>
+                        <input type="number" class="form-control" name="num_victories"><br>
+                        Horse Photo <br><br>
                         <input type="file" name="horse_photo" accept="image/*"><br>
                         <br>
                         <button type="submit" class="btn btn-primary">Add Horse</button>
