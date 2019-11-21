@@ -35,7 +35,7 @@
                         Age
                         <input type="text" class="form-control" name="age"><br>
                         Racing Horse
-                        <input type="text" class="form-control" name="num_races"><br>
+                        <input type="text" class="form-control" name="horse_id"><br>
                         Number of Races
                         <input type="text" class="form-control" name="num_races"><br>
                         Number of Victories
@@ -44,7 +44,7 @@
                         Jockey Photo <br>
                         <input type="file" name="horse_photo" accept="image/*"><br>
                         <br>
-                        <button type="submit" class="btn btn-primary">Add Horse</button>
+                        <button type="submit" class="btn btn-primary">Add Jockey</button>
                     </form>
 
                 </div>
