@@ -67,9 +67,23 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'gender' => $data['gender'],
+            'birth_date' => $data['birth_date'],
             'phone_number' => $data['phone_number'],
+            'iban' => $data['iban'],
             'balance' => 0,
-            'iban' => $data['iban']
+            'file_path' => $data['name'] . '.png'
+            /*
+            $file = $data->file('user_photo');
+            $filename = $data['name'] . ".png";
+            
+            $file = $file->move('images/user_photos/', $filename);
+            $user->file_path = $filename;
+            
+
+            $horse->file_path = $request->name . ".png";
+            'file_path' => $data['file_path'];
+            */
         ]);
     }
 }

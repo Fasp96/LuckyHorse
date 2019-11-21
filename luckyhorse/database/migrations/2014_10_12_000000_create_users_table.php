@@ -20,10 +20,12 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
 
-            
+            $table->date('birth_date');
+            $table->string('gender');
             $table->integer('phone_number');
             $table->float('balance');
-            $table->integer('iban');         
+            $table->integer('iban');
+            $table->string('file_path');         
 
             $table->rememberToken();
             $table->timestamps();
