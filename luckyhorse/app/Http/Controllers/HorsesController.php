@@ -28,6 +28,17 @@ class HorsesController extends Controller
             $horse->age = $request->age;
             $horse->num_races = $request->num_races;
             $horse->num_victories = $request->num_victories;
+
+            
+            $file = $request->file('horse_photo');
+            $filename = $request->name . ".png";
+            /*
+            $file = $file->move('images/horse_photos/', $filename);
+            $horse->file_path = $filename;
+            */
+
+            $horse->file_path = $request->name . ".png";
+
             $horse->save();
             return redirect('/horses');
         }else{
