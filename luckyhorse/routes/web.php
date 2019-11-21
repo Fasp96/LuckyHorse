@@ -37,3 +37,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/horses', 'HorsesController@index');
 Route::post('/horses', 'HorsesController@add');
+
+Route::get('/jockeys', 'JockeysController@index');
+Route::post('/jockeys', 'JockeysController@add');
