@@ -27,7 +27,6 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">Adicionar Cavalo</div>
-                <!-- Form para adicionar notas -->
                 <div class="card-body">
                     
                     <form method ="post" action="/horses">
@@ -42,6 +41,9 @@
                         <input type="text" class="form-control" name="num_races"><br>
                         Number of Victories
                         <input type="text" class="form-control" name="num_victories"><br>
+                        <br>
+                        Horse Photo <br>
+                        <input type="file" name="horse_photo" accept="image/*"><br>
                         <br>
                         <button type="submit" class="btn btn-primary">Add Horse</button>
                     </form>
