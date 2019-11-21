@@ -30,6 +30,15 @@ class JockeysController extends Controller
             $jockey->horse_id = $request->horse_id;
             $jockey->num_races = $request->num_races;
             $jockey->num_victories = $request->num_victories;
+            
+            $file = $request->file('jockey_photo');
+            $filename = $request->name . ".png";
+            /*
+            $file = $file->move('images/jockey_photos/', $filename);
+            $jockey->file_path = $filename;
+            */
+
+            $jockey->file_path = $request->name . ".png";
             $jockey->save();
             return redirect('/jockeys');
         }else{

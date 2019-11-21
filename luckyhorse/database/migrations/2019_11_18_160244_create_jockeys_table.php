@@ -25,6 +25,7 @@ class CreateJockeysTable extends Migration
             
             $table->integer('num_races');
             $table->integer('num_victories');
+            $table->string('file_path');
             $table->timestamps();
         });
     }

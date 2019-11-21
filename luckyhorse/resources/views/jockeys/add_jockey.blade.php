@@ -46,7 +46,7 @@
                         <input type="number" class="form-control" name="num_victories"><br>
                         <br>
                         Jockey Photo <br>
-                        <input type="file" name="horse_photo" accept="image/*"><br>
+                        <input type="file" name="jockey_photo" accept="image/*"><br>
                         <br>
                         <button type="submit" class="btn btn-primary">Add Jockey</button>
                     </form>
