@@ -16,7 +16,8 @@ class CreateJockeysTable extends Migration
         Schema::create('jockeys', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->integer('age');
+            $table->date('birth_date');
+            $table->string('gender');
 
             //$table->integer('horse_id')->unsigned()->index();
             $table->unsignedBigInteger('horse_id');

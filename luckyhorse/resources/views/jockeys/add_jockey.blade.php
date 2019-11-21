@@ -32,14 +32,18 @@
                         <input type="hidden" name="_token" value="{{csrf_token()}}">
                         Name
                         <input type="text" class="form-control" name="name"><br>
-                        Age
-                        <input type="text" class="form-control" name="age"><br>
+                        Birth Date
+                        <input type="date" class="form-control" name="birth_date"><br>
+                        Gender<br>
+                        <input type="radio" name="gender" value="male"> Male<br>
+                        <input type="radio" name="gender" value="female"> Female<br>
+                        <input type="radio" name="gender" value="other"> Other<br><br>
                         Racing Horse
-                        <input type="text" class="form-control" name="horse_id"><br>
+                        <input type="number" class="form-control" name="horse_id"><br>
                         Number of Races
-                        <input type="text" class="form-control" name="num_races"><br>
+                        <input type="number" class="form-control" name="num_races"><br>
                         Number of Victories
-                        <input type="text" class="form-control" name="num_victories"><br>
+                        <input type="number" class="form-control" name="num_victories"><br>
                         <br>
                         Jockey Photo <br>
                         <input type="file" name="horse_photo" accept="image/*"><br>

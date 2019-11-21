@@ -25,7 +25,8 @@ class JockeysController extends Controller
         if($user){
             $jockey = new Jockey;
             $jockey->name = $request->name;
-            $jockey->age = $request->age;
+            $jockey->birth_date = $request->birth_date;
+            $jockey->gender = $request->gender;
             $jockey->horse_id = $request->horse_id;
             $jockey->num_races = $request->num_races;
             $jockey->num_victories = $request->num_victories;
