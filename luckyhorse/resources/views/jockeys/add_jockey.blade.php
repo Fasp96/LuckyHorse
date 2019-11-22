@@ -2,6 +2,8 @@
 
 @section('content')
 
+<script src="{{asset('js/jockey_validator.js')}}" defer></script>
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -28,9 +30,9 @@
                 <div class="card-header">Adicionar Jockey</div>
                 <div class="card-body">
                     
-                    <form method ="post" action="/jockeys" enctype="multipart/form-data">
+                    <form id ="jockey_form" method ="post" action="" enctype="multipart/form-data">
                         
-                        <input type="hidden" name="_token" value="{{csrf_token()}}">
+                        <input type="hidden" id ="token" name="_token" value="{{csrf_token()}}">
                         Name
                         <input type="text" class="form-control" name="name"><br>
                         Birth Date
@@ -49,8 +51,8 @@
                         Jockey Photo <br>
                         <input type="file" name="jockey_photo" accept="image/*"><br>
                         <br>
-                        <button type="submit" class="btn btn-primary">Add Jockey</button>
                     </form>
+                    <button id="add_jockey_btn" class="btn btn-primary">Add Jockey</button>
 
                 </div>
             </div>
