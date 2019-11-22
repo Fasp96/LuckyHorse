@@ -29,8 +29,8 @@
                 <div class="card-header">Adicionar Cavalo</div>
                 <div class="card-body">
                     
-                    <form method ="post" action="/horses">
-                        <input type="hidden" name="_token" value="{{csrf_token()}}">
+                    <form method ="post" action="/horses" enctype="multipart/form-data">
+                        <input type="hidden" name="_token" value="{{csrf_token()}} ">
                         Name
                         <input type="text" class="form-control" name="name"><br>
                         Breed
