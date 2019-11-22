@@ -20,6 +20,7 @@ class HorsesController extends Controller
     }
 
     public function add(Request $request){
+        
         $user = Auth::user();
         if($user){
             $horse = new Horse;
@@ -40,7 +41,7 @@ class HorsesController extends Controller
             $horse->file_path = $file_path;
             $horse->save();
 
-            //fectches the id of the new horse, adds to the photo name and updates the file_path atribute
+            //fetches the id of the new horse, adds to the photo name and updates the file_path atribute
             $id = $horse->id;
             $new_file_path = $path . $id . '-' . $fileName;
             
@@ -52,10 +53,6 @@ class HorsesController extends Controller
             return redirect('/horses');
         }else{
             return redirect('home');
-        }
-        
-        
+        } 
     }
-
-
 }

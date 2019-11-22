@@ -2,6 +2,8 @@
 
 @section('content')
 
+<script src="{{asset('js/horse_validator.js')}}" defer></script>
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -29,8 +31,8 @@
                 <div class="card-header">Adicionar Cavalo</div>
                 <div class="card-body">
                     
-                    <form method ="post" action="/horses" enctype="multipart/form-data">
-                        <input type="hidden" name="_token" value="{{csrf_token()}} ">
+                    <form id="horse_form" method ="post" action="" enctype="multipart/form-data" >
+                        <input type="hidden" id='token' name="_token" value="{{csrf_token()}} ">
                         Name
                         <input type="text" class="form-control" name="name"><br>
                         Breed
@@ -47,8 +49,8 @@
                         Horse Photo <br><br>
                         <input type="file" name="horse_photo" accept="image/*"><br>
                         <br>
-                        <button type="submit" class="btn btn-primary">Add Horse</button>
                     </form>
+                    <button id="add_horse_btn" class="btn btn-primary">Add Horse</button>
 
                 </div>
             </div>
