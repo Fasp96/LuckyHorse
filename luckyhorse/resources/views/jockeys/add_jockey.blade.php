@@ -28,7 +28,8 @@
                 <div class="card-header">Adicionar Jockey</div>
                 <div class="card-body">
                     
-                    <form method ="post" action="/jockeys">
+                    <form method ="post" action="/jockeys" enctype="multipart/form-data">
+                        
                         <input type="hidden" name="_token" value="{{csrf_token()}}">
                         Name
                         <input type="text" class="form-control" name="name"><br>

@@ -23,6 +23,7 @@ class JockeysController extends Controller
     public function add(Request $request){
         $user = Auth::user();
         if($user){
+
             $jockey = new Jockey;
             $jockey->name = $request->name;
             $jockey->birth_date = $request->birth_date;
@@ -31,15 +32,23 @@ class JockeysController extends Controller
             $jockey->num_races = $request->num_races;
             $jockey->num_victories = $request->num_victories;
             
-            $file = $request->file('jockey_photo');
-            $filename = $request->name . ".png";
-            /*
-            $file = $file->move('images/jockey_photos/', $filename);
-            $jockey->file_path = $filename;
-            */
+            $photo = $request->file('jockey_photo');
+            $fileName = $request->name . '-' .$photo->getClientOriginalName();
+            $path = 'img/jockey_photo/';
+            $file = $photo->move($path, $fileName);
 
-            $jockey->file_path = $request->name . ".png";
+            $file_path = $path . $fileName;
+            $jockey->file_path = $file_path;
             $jockey->save();
+
+            //fectches the id of the new jockey, adds to the photo name and updates the file_path atribute
+            $id = $jockey->id;
+            $new_file_path = $path . $id . '-' . $fileName;
+            
+            rename($file_path, $new_file_path);
+            $jockey->file_path = $new_file_path;
+            $jockey->save();
+
             return redirect('/jockeys');
         }else{
             return redirect('home');
