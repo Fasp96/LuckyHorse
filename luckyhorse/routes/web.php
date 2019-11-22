@@ -40,3 +40,5 @@ Route::post('/horses', 'HorsesController@add');
 
 Route::get('/jockeys', 'JockeysController@index');
 Route::post('/jockeys', 'JockeysController@add');
+
+Route::get('/tournaments', 'TournamentsController@index');
