@@ -38,9 +38,11 @@
                         Birth Date
                         <input type="date" class="form-control" name="birth_date"><br>
                         Gender<br>
+                        <div id="gender_radio">
                         <input type="radio" name="gender" value="male"> Male<br>
                         <input type="radio" name="gender" value="female"> Female<br>
                         <input type="radio" name="gender" value="other"> Other<br><br>
+                        </div>
                         Racing Horse
                         <input type="number" class="form-control" name="horse_id"><br>
                         Number of Races

@@ -114,7 +114,7 @@ function validate_birth_date(content, element){
 
 function validate_gender(content, element){
     if(!content != 'male' && content != 'female'){
-        $(element).after("<p style=\"color:#ff5555\">* Please choose on of these fields before submitting again</p>");
+        $('#gender_radio').after("<p style=\"color:#ff5555\">* Please choose on of these fields before submitting again</p>");
         return false;
     }
     else{
@@ -147,7 +147,7 @@ function validate_num_victories(content, element){
 function validate_horse_photo(content, element){
     var file_type = content.substring(content.lastIndexOf('.') + 1).toLowerCase();
     
-    if((content != "png" || content != "jpeg" || content != "jpg") && content != '' ){
+    if(file_type != "png" && file_type != "jpeg" && file_type != "jpg" && file_type != '' ){
         $(element).after("<p style=\"color:#c2b100\">*Invalide file type. Please insert a .png, .jpeg or .jpg file</p>");
         return false;
     }

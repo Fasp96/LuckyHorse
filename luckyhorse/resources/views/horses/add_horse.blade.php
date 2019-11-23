@@ -40,8 +40,10 @@
                         Birth Date
                         <input type="date" class="form-control" name="birth_date"><br>
                         Gender<br>
+                        <div id="gender_radio">
                         <input type="radio" name="gender" value="male"> Male<br>
                         <input type="radio" name="gender" value="female"> Female<br><br>
+                        </div>
                         Number of Races
                         <input type="number" class="form-control" name="num_races"><br>
                         Number of Victories
