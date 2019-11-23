@@ -31,7 +31,6 @@ class JockeysController extends Controller
             $jockey->name = $request->name;
             $jockey->birth_date = $request->birth_date;
             $jockey->gender = $request->gender;
-            $jockey->horse_id = $request->horse_id;
             $jockey->num_races = $request->num_races;
             $jockey->num_victories = $request->num_victories;
             

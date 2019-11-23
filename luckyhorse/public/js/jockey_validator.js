@@ -145,8 +145,8 @@ function removeMessages(){
     $("#jockey_form").children().filter('p').remove();
 }
 
-function postEvent(name, birth_date, gender, horse_id, num_races, num_victories, jockey_photo){
-    var content = "_token="+$("#token").val() + "&name="+name+"&birth_date="+birth_date+"&gender="+gender+"&horse_id="+horse_id+"&num_races="+num_races+"&num_victories="+num_victories+"&jockey_photo="+jockey_photo;
+function postEvent(name, birth_date, gender, num_races, num_victories, jockey_photo){
+    var content = "_token="+$("#token").val() + "&name="+name+"&birth_date="+birth_date+"&gender="+gender+"&num_races="+num_races+"&num_victories="+num_victories+"&jockey_photo="+jockey_photo;
 
     console.log(content);
     $.post("http://localhost:8000/jockeys", {content});
