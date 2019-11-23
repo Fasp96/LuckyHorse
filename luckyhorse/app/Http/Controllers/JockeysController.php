@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Jockey;
+use App\Horse;
 use Auth;
 
 class JockeysController extends Controller
@@ -14,7 +15,9 @@ class JockeysController extends Controller
         $current_user = Auth::user();
         if($current_user){
              $jockeys = Jockey::all();
-             return view('jockeys.add_jockey',compact('jockeys'));
+             $horses = Horse::all();
+               
+             return view('jockeys.add_jockey',compact('jockeys', 'horses'));
         }else{
             return redirect('home');
         }
@@ -28,7 +31,6 @@ class JockeysController extends Controller
             $jockey->name = $request->name;
             $jockey->birth_date = $request->birth_date;
             $jockey->gender = $request->gender;
-            $jockey->horse_id = $request->horse_id;
             $jockey->num_races = $request->num_races;
             $jockey->num_victories = $request->num_victories;
             
@@ -41,7 +43,7 @@ class JockeysController extends Controller
             $jockey->file_path = $file_path;
             $jockey->save();
 
-            //fectches the id of the new jockey, adds to the photo name and updates the file_path atribute
+            //fetches the id of the new jockey, adds to the photo name and updates the file_path atribute
             $id = $jockey->id;
             $new_file_path = $path . $id . '-' . $fileName;
             
@@ -52,8 +54,6 @@ class JockeysController extends Controller
             return redirect('/jockeys');
         }else{
             return redirect('home');
-        }
-        
-        
+        }       
     }
 }

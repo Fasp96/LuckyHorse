@@ -2,6 +2,8 @@
 
 @section('content')
 
+<script src="{{asset('js/horse_validator.js')}}" defer></script>
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -26,11 +28,11 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Adicionar Cavalo</div>
+                <div class="card-header">Add New Horse</div>
                 <div class="card-body">
                     
-                    <form method ="post" action="horses_add">
-                        <input type="hidden" name="_token" value="{{csrf_token()}}">
+                    <form id="horse_form" method ="post" action="" enctype="multipart/form-data" >
+                        <input type="hidden" id='token' name="_token" value="{{csrf_token()}} ">
                         Name
                         <input type="text" class="form-control" name="name"><br>
                         Breed
@@ -38,8 +40,10 @@
                         Birth Date
                         <input type="date" class="form-control" name="birth_date"><br>
                         Gender<br>
+                        <div id="gender_radio">
                         <input type="radio" name="gender" value="male"> Male<br>
                         <input type="radio" name="gender" value="female"> Female<br><br>
+                        </div>
                         Number of Races
                         <input type="number" class="form-control" name="num_races"><br>
                         Number of Victories
@@ -47,8 +51,8 @@
                         Horse Photo <br><br>
                         <input type="file" name="horse_photo" accept="image/*"><br>
                         <br>
-                        <button type="submit" class="btn btn-primary">Add Horse</button>
                     </form>
+                    <button id="add_horse_btn" class="btn btn-primary">Add Horse</button>
 
                 </div>
             </div>
