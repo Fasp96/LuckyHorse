@@ -12,13 +12,11 @@
                 <div class="card-header">Races</div>
 
                 <div class="card-body">
-                    <ul>
                         
                             <p>data: {{$race->date}}</p> 
                             <p>local: {{$race->local}}</p>
                             <p>torneio: {{$race->tournament_id}}</p>                  
                        
-                    </ul>
                 </div>
             </div>
         </div>
