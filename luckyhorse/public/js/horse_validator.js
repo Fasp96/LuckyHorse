@@ -75,6 +75,7 @@ function validate_empty(content, element){
 
 function validate_name(content, element){
     if(!content.match((/^([A-Z][A-Za-zÀ-ÿ]* *)*$/))){
+
         $(element).css("background","#ebdf5e");
         $(element).after("<p style=\"color:#c2b100\">* A name has one or more words that always start with an uppercase followed by lowercases letters</p>");
         return false;
@@ -146,7 +147,6 @@ function validate_num_victories(content, element){
 
 function validate_horse_photo(content, element){
     var file_type = content.substring(content.lastIndexOf('.') + 1).toLowerCase();
-    
     if(file_type != "png" && file_type != "jpeg" && file_type != "jpg" && file_type != '' ){
         $(element).after("<p style=\"color:#c2b100\">*Invalide file type. Please insert a .png, .jpeg or .jpg file</p>");
         return false;
