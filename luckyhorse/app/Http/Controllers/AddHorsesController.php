@@ -19,7 +19,8 @@ class AddHorsesController extends Controller
         }
     }
 
-    public function add(Request $request){ 
+    public function add(Request $request){
+        
         $user = Auth::user();
         if($user){
             $horse = new Horse;
@@ -31,23 +32,27 @@ class AddHorsesController extends Controller
             $horse->num_victories = $request->num_victories;
 
             
-            $file = $request->file('horse_photo');
-            $filename = $request->name . ".png";
-            /*
-            $file = $file->move('images/horse_photos/', $filename);
-            $horse->file_path = $filename;
-            */
+            $photo = $request->file('horse_photo');
+            $fileName = $request->name . '-' .$photo->getClientOriginalName();
+            $path = 'img/horse_photo/';
+            $file = $photo->move($path, $fileName);
 
-            $horse->file_path = $request->name . ".png";
+            $file_path = $path . $fileName;
+            $horse->file_path = $file_path;
+            $horse->save();
+
+            //fetches the id of the new horse, adds to the photo name and updates the file_path atribute
+            $id = $horse->id;
+            $new_file_path = $path . $id . '-' . $fileName;
+            
+            rename($file_path, $new_file_path);
+            $horse->file_path = $new_file_path;
+            $horse->save();
 
             $horse->save();
             return redirect('/horses_add');
         }else{
             return redirect('home');
-        }
-        
-        
+        } 
     }
-
-
 }
