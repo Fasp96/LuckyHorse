@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Horse;
 use Auth;
 
-class HorsesController extends Controller
+class AddHorsesController extends Controller
 {
     public function index(){
         $current_user = Auth::user();
