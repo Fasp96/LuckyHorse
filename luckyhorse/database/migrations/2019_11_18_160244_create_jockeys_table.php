@@ -20,8 +20,8 @@ class CreateJockeysTable extends Migration
             $table->string('gender');
 
             //$table->integer('horse_id')->unsigned()->index();
-            $table->unsignedBigInteger('horse_id');
-            $table->foreign('horse_id')->references('id')->on('horses');
+            //$table->unsignedBigInteger('horse_id');
+            //$table->foreign('horse_id')->references('id')->on('horses');
             
             $table->integer('num_races');
             $table->integer('num_victories');
