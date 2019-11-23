@@ -49,7 +49,7 @@ function validate_input(){
 
     if(valid.reduce(and) && not_empty.reduce(and)){
         console.log("insert in database");
-        postEvent(name, birth_date, gender, horse_id, num_races, num_victories, jockey_photo);
+        postEvent(name, birth_date, gender, num_races, num_victories, jockey_photo);
     }
 }
 
@@ -96,7 +96,7 @@ function validate_birth_date(content, element){
 }
 
 function validate_gender(content, element){
-    if(!content != 'male' && content != 'female' && content != 'other'){
+    if(content != 'male' && content != 'female' && content != 'other'){
         $('#gender_radio').after("<p style=\"color:#ff5555\">* Please choose on of these fields before submitting again</p>");
         return false;
     }
