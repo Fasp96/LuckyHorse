@@ -29,7 +29,7 @@
                 <div class="card-header">Adicionar Cavalo</div>
                 <div class="card-body">
                     
-                    <form method ="post" action="/horses">
+                    <form method ="post" action="horses_add">
                         <input type="hidden" name="_token" value="{{csrf_token()}}">
                         Name
                         <input type="text" class="form-control" name="name"><br>
