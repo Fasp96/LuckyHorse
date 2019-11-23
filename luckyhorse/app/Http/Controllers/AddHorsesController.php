@@ -19,7 +19,7 @@ class AddHorsesController extends Controller
         }
     }
 
-    public function add(Request $request){
+    public function add(Request $request){ 
         $user = Auth::user();
         if($user){
             $horse = new Horse;
