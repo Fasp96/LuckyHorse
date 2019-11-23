@@ -43,8 +43,6 @@
                         <input type="radio" name="gender" value="female"> Female<br>
                         <input type="radio" name="gender" value="other"> Other<br><br>
                         </div>
-                        Racing Horse
-                        <input type="number" class="form-control" name="horse_id"><br>
                         Number of Races
                         <input type="number" class="form-control" name="num_races"><br>
                         Number of Victories

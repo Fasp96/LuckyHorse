@@ -8,14 +8,16 @@ use App\Jockey;
 use App\Horse;
 use Auth;
 
-class AddJockeysController extends Controller
+class JockeysController extends Controller
 {
     //
     public function index(){
         $current_user = Auth::user();
         if($current_user){
-             $jockeys = Jockey::all();  
-             return view('jockeys.add_jockey',compact('jockeys'));
+             $jockeys = Jockey::all();
+             $horses = Horse::all();
+               
+             return view('jockeys.add_jockey',compact('jockeys', 'horses'));
         }else{
             return redirect('home');
         }

@@ -35,8 +35,8 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/horses', 'AddHorsesController@index');
-Route::post('/horses', 'AddHorsesController@add');
+Route::get('/horses', 'HorsesController@index');
+Route::post('/horses', 'HorsesController@add');
 
-Route::get('/jockeys', 'AddJockeysController@index');
-Route::post('/jockeys', 'AddJockeysController@add');
+Route::get('/jockeys', 'JockeysController@index');
+Route::post('/jockeys', 'JockeysController@add');

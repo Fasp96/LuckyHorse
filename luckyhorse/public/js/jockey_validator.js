@@ -21,10 +21,6 @@ function validate_input(){
     contents.push(gender);
     elements.push(jockey_form.gender.value);
 
-    var horse_id = jockey_form.horse_id.value;
-    contents.push(horse_id);
-    elements.push(jockey_form.horse_id);
-
     var num_races = jockey_form.num_races.value;
     contents.push(num_races);
     elements.push(jockey_form.num_races);
@@ -42,7 +38,6 @@ function validate_input(){
     valid.push(validate_name(name,jockey_form.name));
     valid.push(validate_birth_date(birth_date,jockey_form.birth_date));
     valid.push(validate_gender(gender, jockey_form.gender));
-    valid.push(validate_horse_id(horse_id, jockey_form.horse_id));
     valid.push(validate_num_races(num_races, jockey_form.num_races));
     valid.push(validate_num_victories(num_victories, jockey_form.num_victories));
     valid.push(validate_jockey_photo(jockey_photo, jockey_form.jockey_photo));
@@ -103,17 +98,6 @@ function validate_birth_date(content, element){
 function validate_gender(content, element){
     if(!content != 'male' && content != 'female' && content != 'other'){
         $('#gender_radio').after("<p style=\"color:#ff5555\">* Please choose on of these fields before submitting again</p>");
-        return false;
-    }
-    else{
-        return true;
-    }
-}
-
-function validate_horse_id(content, element){
-    if(!content.match(/^([+]?[1-9]\d*|0)$/) && content != ''){
-        $(element).css("background","#ebdf5e");
-        $(element).after("<p style=\"color:#c2b100\">* Please insert a number equal or greater that 0</p>");
         return false;
     }
     else{
