@@ -110,6 +110,8 @@
                         <a href="{{ url('/home') }}">Home</a>
                         <a href="#news">NEWS</a>
                         <img src={{ asset('img/LOGO.PNG')}} alt="" id="logo" height="90" width="90">
+
+                        <a href="{{ url('/horses') }}">Horses</a>
                         
                         
                         

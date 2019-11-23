@@ -2,11 +2,6 @@
 
 @section('content')
 
-<style>
-#card-body{
-    background-color: lightblue;
-}
-</style>
 
 <h1 align="center">Horses</h1>
 @foreach($horses as $horse)
