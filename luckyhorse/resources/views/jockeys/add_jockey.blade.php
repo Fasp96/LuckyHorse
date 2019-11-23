@@ -27,7 +27,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Adicionar Jockey</div>
+                <div class="card-header">Add New Jockey</div>
                 <div class="card-body">
                     
                     <form id ="jockey_form" method ="post" action="" enctype="multipart/form-data">
@@ -47,8 +47,7 @@
                         <input type="number" class="form-control" name="num_races"><br>
                         Number of Victories
                         <input type="number" class="form-control" name="num_victories"><br>
-                        <br>
-                        Jockey Photo <br>
+                        Jockey Photo <br><br>
                         <input type="file" name="jockey_photo" accept="image/*"><br>
                         <br>
                     </form>
