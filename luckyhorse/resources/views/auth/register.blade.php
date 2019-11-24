@@ -68,9 +68,9 @@
                             <div class="col-md-6" >
 
 
-                                <input id ="male" type="radio" name="gender" value="male" class="form-control  @error('gender') is-invalid @enderror"> Male<br>
-                                <input id ="female" type="radio" name="gender" value="female" class="form-control  @error('gender') is-invalid @enderror"> Female<br>
-                                <input id ="other" type="radio" name="gender" value="other" class="form-control  @error('gender') is-invalid @enderror" > Other<br><br>
+                                <input id ="male" type="radio" name="gender" value="male" class="form-control  @error('gender') is-invalid @enderror" display="none" width="none"  > Male<br>
+                                <input id ="female" type="radio" name="gender" value="female"  class="form-control  @error('gender') is-invalid @enderror"> Female<br>
+                                <input id ="other" type="radio" name="gender" value="other" class="form-control  @error('gender') is-invalid @enderror"> Other<br><br>
                                 
                                 @error('gender')
                                 <span class="invalid-feedback" role="alert">

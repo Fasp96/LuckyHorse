@@ -54,7 +54,7 @@ class RegisterController extends Controller
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             
             'gender' => ['required', 'in:male,female,other'],
-            'birth_date' => ['required', 'before:today'],
+        'birth_date' => ['required', 'before:-18 years', 'after:-100 years'],
             'phone_number' => ['required', 'string', 'regex:/^([+]?[1-9]\d*|0)$/', 'size:9', 'unique:users'],
             'iban' => ['required', 'string', 'size:9', 'unique:users'],
             'user_photo' =>['required', 'mimes:jpeg,jpg,png,PNG,JPG,JPEG']
