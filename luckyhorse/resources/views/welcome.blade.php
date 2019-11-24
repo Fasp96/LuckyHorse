@@ -106,7 +106,7 @@
                     @auth
                         <a href="{{ url('/tournaments') }}">TOURNAMENTS</a>
                         <a href="{{ url('/races') }}">RACES</a>
-                        <a href="#jockeys">JOCKEIS</a>
+                        <a href="#jockeys">JOCKEYS</a>
                         <a href="{{ url('/home') }}">Home</a>
                         <a href="#news">NEWS</a>
                         <img src={{ asset('img/LOGO.PNG')}} alt="" id="logo" height="90" width="90">
