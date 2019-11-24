@@ -116,8 +116,8 @@
                         
                         
                         
-                        <a href="{{ url('/horses_add') }}">Add Horse</a>
-                        <a href="{{ url('/jockeys') }}">Add Jockey</a>
+                        <a href="{{ url('/add_horses') }}">Add Horse</a>
+                        <a href="{{ url('/add_jockeys') }}">Add Jockey</a>
                     @else
 
                         <a href="#news">NEWS</a>

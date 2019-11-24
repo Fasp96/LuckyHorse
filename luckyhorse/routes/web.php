@@ -35,11 +35,11 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/horses_add', 'AddHorsesController@index');
-Route::post('/horses_add', 'AddHorsesController@add');
+Route::get('/add_horses', 'AddHorsesController@index');
+Route::post('/add_horses', 'AddHorsesController@add');
 
-Route::get('/jockeys', 'JockeysController@index');
-Route::post('/jockeys', 'JockeysController@add');
+Route::get('/add_jockeys', 'AddJockeysController@index');
+Route::post('/add_jockeys', 'AddJockeysController@add');
 
 Route::get('/tournaments', 'TournamentsController@index');
 

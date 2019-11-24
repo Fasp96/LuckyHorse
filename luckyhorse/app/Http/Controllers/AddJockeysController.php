@@ -8,7 +8,7 @@ use App\Jockey;
 use App\Horse;
 use Auth;
 
-class JockeysController extends Controller
+class AddJockeysController extends Controller
 {
     //
     public function index(){
