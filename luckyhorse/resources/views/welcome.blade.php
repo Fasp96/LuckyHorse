@@ -63,8 +63,8 @@
 
             .links > a {
                 color: #fff;
-                padding: 25px;
-                font-size: 30px;
+                padding: 20px;
+                font-size: 25px;
                 font-weight: 600;
                 letter-spacing: .1rem;
                 text-decoration: none;
@@ -104,22 +104,27 @@
             @if (Route::has('login'))
                 <div class="top-left links">
                     @auth
-                        <a href="#tournaments">TOURNAMENTS</a>
-                        <a href="#races">RACES</a>
+                        <a href="{{ url('/tournaments') }}">TOURNAMENTS</a>
+                        <a href="{{ url('/races') }}">RACES</a>
                         <a href="#jockeys">JOCKEIS</a>
                         <a href="{{ url('/home') }}">Home</a>
                         <a href="#news">NEWS</a>
+                        <img src={{ asset('img/LOGO.PNG')}} alt="" id="logo" height="90" width="90">
+
+                        <a href="{{ url('/horses') }}">Horses</a>
                         
                         
                         
                         
-                        <a href="{{ url('/horses') }}">Add Horse</a>
+                        <a href="{{ url('/horses_add') }}">Add Horse</a>
                         <a href="{{ url('/jockeys') }}">Add Jockey</a>
                     @else
+
                         <a href="#news">NEWS</a>
-                        <a href="#tournaments">TOURNAMENTS</a>
-                        <a href="#races">RACES</a>
+                        <a href="{{ url('/tournaments') }}">TOURNAMENTS</a>
+                        <a href="{{ url('/races') }}">RACES</a>
                         <a href="#jockeys">JOCKEYS</a>
+                        <a href="{{ url('/horses') }}">Horses</a>
                         <a href="{{ route('login') }}">Login</a>
                         <img src={{ asset('img/LOGO.PNG')}} alt="" id="logo" height="90" width="90">
 

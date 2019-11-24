@@ -35,8 +35,14 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/horses', 'HorsesController@index');
-Route::post('/horses', 'HorsesController@add');
+Route::get('/horses_add', 'AddHorsesController@index');
+Route::post('/horses_add', 'AddHorsesController@add');
 
 Route::get('/jockeys', 'JockeysController@index');
 Route::post('/jockeys', 'JockeysController@add');
+
+Route::get('/tournaments', 'TournamentsController@index');
+
+Route::get('/races', 'RacesController@index');
+
+Route::get('/horses', 'HorsesController@index');

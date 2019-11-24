@@ -4,15 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Horse;
+use App\Race;
 use Auth;
 
-class HorsesController extends Controller
+class RacesController extends Controller
 {
     //
     public function index(){
         $current_user = Auth::user();
-             $horses = Horse::all();
-             return view('horses.horses',compact('horses'));   
+             $races = Race::all();
+             return view('races',compact('races'));   
     }
 }
