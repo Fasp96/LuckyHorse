@@ -74,7 +74,7 @@ function validate_empty(content, element){
 }
 
 function validate_name(content, element){
-    if(!content.match((/^([A-Z][A-Za-zÀ-ÿ]* *)*$/))){
+    if(!content.match((/^([A-ZÀ-Ÿ][a-zà-ÿ]* *)*$/))){
 
         $(element).css("background","#ebdf5e");
         $(element).after("<p style=\"color:#c2b100\">* A name has one or more words that always start with an uppercase followed by lowercases letters</p>");
