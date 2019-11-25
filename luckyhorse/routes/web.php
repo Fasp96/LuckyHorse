@@ -46,3 +46,5 @@ Route::get('/tournaments', 'TournamentsController@index');
 Route::get('/races', 'RacesController@index');
 
 Route::get('/horses', 'HorsesController@index');
+
+Route::get('/jockeys', 'JockeysController@index');
