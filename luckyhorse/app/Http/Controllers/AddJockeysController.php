@@ -51,7 +51,7 @@ class AddJockeysController extends Controller
             $jockey->file_path = $new_file_path;
             $jockey->save();
 
-            return redirect('/jockeys');
+            return redirect('/add_jockeys');
         }else{
             return redirect('home');
         }       

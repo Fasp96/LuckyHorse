@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\Storage;
 
 class RegisterController extends Controller
 {
@@ -54,10 +55,10 @@ class RegisterController extends Controller
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             
             'gender' => ['required', 'in:male,female,other'],
-        'birth_date' => ['required', 'before:-18 years', 'after:-100 years'],
+            'birth_date' => ['required', 'before:-18 years', 'after:-100 years'],
             'phone_number' => ['required', 'string', 'regex:/^([+]?[1-9]\d*|0)$/', 'size:9', 'unique:users'],
             'iban' => ['required', 'string', 'size:9', 'unique:users'],
-            'user_photo' =>['required', 'mimes:jpeg,jpg,png,PNG,JPG,JPEG']
+            //'user_photo' =>['required', 'mimes:jpeg,jpg,png,PNG,JPG,JPEG']
         ]);
     }
 
@@ -69,7 +70,8 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
@@ -78,18 +80,9 @@ class RegisterController extends Controller
             'phone_number' => $data['phone_number'],
             'iban' => $data['iban'],
             'balance' => 0,
-            'file_path' => $data['name'] . '.png'
-            /*
-            $file = $data->file('user_photo');
-            $filename = $data['name'] . ".png";
-            
-            $file = $file->move('images/user_photos/', $filename);
-            $user->file_path = $filename;
-            
-
-            $horse->file_path = $request->name . ".png";
-            'file_path' => $data['file_path'];
-            */
+            'file_path' => ''
         ]);
+
+        return $user;
     }
 }
