@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -8,7 +9,7 @@
                 <div class="card-header">{{ __('Register') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
+                    <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
                         @csrf
 
                         <div class="form-group row">
@@ -43,7 +44,7 @@
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 
                             <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password"  required autocomplete="new-password">
 
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
@@ -64,10 +65,18 @@
                         <div class="form-group row">
                             <label for="gender" class="col-md-4 col-form-label text-md-right">{{ __('Gender') }}</label>
 
-                            <div class="col-md-6">
-                                <input type="radio" name="gender" value="male"> Male<br>
-                                <input type="radio" name="gender" value="female"> Female<br>
-                                <input type="radio" name="gender" value="other"> Other<br><br>
+                            <div class="col-md-6" >
+
+
+                                <input id ="male" type="radio" name="gender" value="male" class="form-control  @error('gender') is-invalid @enderror" display="none" width="none"  > Male<br>
+                                <input id ="female" type="radio" name="gender" value="female"  class="form-control  @error('gender') is-invalid @enderror"> Female<br>
+                                <input id ="other" type="radio" name="gender" value="other" class="form-control  @error('gender') is-invalid @enderror"> Other<br><br>
+                                
+                                @error('gender')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
                             </div>
                         </div>
 
@@ -75,7 +84,13 @@
                             <label for="birth_date" class="col-md-4 col-form-label text-md-right">{{ __('Birth Date') }}</label>
 
                             <div class="col-md-6">
-                                <input id="birth_date" type="date" class="form-control" name="birth_date" >
+                                <input id="birth_date" type="date" class="form-control  @error('birth_date') is-invalid @enderror" name="birth_date" value="{{ old('birth_date') }}" required autocomplete="birth_date" autofocus>
+                            
+                                @error('birth_date')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror   
                             </div>
                         </div>
 
@@ -106,15 +121,21 @@
                                 @enderror
                             </div>
                         </div>
-
+                        <!--
                         <div class="form-group row">
-                            <label for="profile_photo" class="col-md-4 col-form-label text-md-right">{{ __('Profile Photo') }}</label>
+                            <label for="user_photo" class="col-md-4 col-form-label text-md-right">{{ __('User Photo') }}</label>
 
                             <div class="col-md-6">
-                                <input type="file" name="user_photo" accept="image/*"><br>
+                                <input id ="user_photo" type="file" class="form-control @error('user_photo') is-invalid @enderror" name="user_photo" value="{{ old('user_photo') }}"  required autocomplete="user_photo" autofocus accept="image/*"><br>
+                            
+                                @error('user_photo')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
                         </div>
-
+                        -->
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">

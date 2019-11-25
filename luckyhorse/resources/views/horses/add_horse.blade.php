@@ -28,7 +28,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Adicionar Cavalo</div>
+                <div class="card-header">Add New Horse</div>
                 <div class="card-body">
                     
                     <form id="horse_form" method ="post" action="" enctype="multipart/form-data" >

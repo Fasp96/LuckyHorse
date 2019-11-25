@@ -53,7 +53,7 @@ function validate_input(){
     }
 
     if(valid.reduce(and) && not_empty.reduce(and)){
-        console.log("insert in database");
+        console.log("postEvent");
         postEvent(name, breed, birth_date, gender, num_races, num_victories, horse_photo);
     }
 }
@@ -63,7 +63,6 @@ function and(a,b){
 }
 
 function validate_empty(content, element){
-    console.log(element);
     if(content == ''){
         $(element).css("backgroud", "#ffcccc");
         $(element).after("<p style=\"color:#ff5555\">* Please fill this field before submitting again</p>");
@@ -74,7 +73,7 @@ function validate_empty(content, element){
 }
 
 function validate_name(content, element){
-    if(!content.match((/^([A-Z][A-Za-zÀ-ÿ]* *)*$/))){
+    if(!content.match((/^([A-ZÀ-Ÿ][a-zà-ÿ]* *)*$/))){
 
         $(element).css("background","#ebdf5e");
         $(element).after("<p style=\"color:#c2b100\">* A name has one or more words that always start with an uppercase followed by lowercases letters</p>");
@@ -114,7 +113,7 @@ function validate_birth_date(content, element){
 }
 
 function validate_gender(content, element){
-    if(!content != 'male' && content != 'female'){
+    if(content != 'male' && content != 'female'){
         $('#gender_radio').after("<p style=\"color:#ff5555\">* Please choose on of these fields before submitting again</p>");
         return false;
     }
@@ -165,7 +164,13 @@ function postEvent(name, breed, birth_date, gender, num_races, num_victories, ho
     var content = "_token="+$("#token").val() + "&name="+name+"&breed="+breed+"&birth_date="+birth_date+"&gender="+gender+"&num_races="+num_races+"&num_victories="+num_victories+"&horse_photo="+horse_photo;
 
     console.log(content);
-    $.post("http://localhost:8000/horses", {content});
+    $.post("http://localhost:8000/add_horses", content, 
+    function(responseTxt,statuTxt,xhr){
+        
+        alert("posted");
+
+    }
+    );
 }
 
 //página carregou

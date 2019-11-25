@@ -8,7 +8,7 @@ use App\Jockey;
 use App\Horse;
 use Auth;
 
-class JockeysController extends Controller
+class AddJockeysController extends Controller
 {
     //
     public function index(){
@@ -51,7 +51,7 @@ class JockeysController extends Controller
             $jockey->file_path = $new_file_path;
             $jockey->save();
 
-            return redirect('/jockeys');
+            return redirect('/add_jockeys');
         }else{
             return redirect('home');
         }       
