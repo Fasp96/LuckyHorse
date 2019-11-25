@@ -24,14 +24,14 @@
                         @if (Route::has('login'))
                             <ul class="">
                                 <li><a href="#news">News</a></li>
-                                <li><a href="#tournaments">Tournaments</a></li>
-                                <li><a href="#races">Races</a></li>
-                                <li><a href="#horses">Horses</a></li>
+                                <li><a href="{{ url('/tournaments') }}">Tournaments</a></li>
+                                <li><a href="{{ url('/races') }}">Races</a></li>
+                                <li><a href="{{ url('/horses') }}">Horses</a></li>
                                 <li><a href="#jockeys">Jockeys</a></li>
                                 
                                 @auth                                
-                                <li><a href="{{ url('/horses') }}">Add Horse</a></li>
-                                <li><a href="{{ url('/jockeys') }}">Add Jockey</a></li>
+                                <li><a href="{{ url('/add_horses') }}">Add Horse</a></li>
+                                <li><a href="{{ url('/add_jockeys') }}">Add Jockey</a></li>
                                 <li><a href="{{ url('/home') }}">Home</a></li>
                                 @else
                                 <li><a href="{{ route('login') }}">Login</a></li>
