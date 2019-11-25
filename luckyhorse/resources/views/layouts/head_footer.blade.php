@@ -52,8 +52,8 @@
                 <button onclick="topFunction()" id="myBtn" title="Go to top">Top
                     <script>
                         function topFunction() {
-                                document.body.scrollTop = 0;
-                                document.documentElement.scrollTop = 0;
+                            document.body.scrollTop = 0;
+                            document.documentElement.scrollTop = 0;
                         }
                     </script>
                 </button>
