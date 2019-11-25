@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>Luckyhorse</title>
+
+        <!-- Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+
+        <!-- Styles -->
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    </head>
+    <body>
+        <div id="page-container">
+            <div id="content-wrap">
+                <div id='logo_nav_bar'>
+                    <a href="{{ url('') }}">
+                        <img id='logo' src={{ asset('img/LOGO.PNG')}} alt="" height="90" width="90">
+                    </a>
+                    <div id="nav_bar">
+                        @if (Route::has('login'))
+                            <ul class="">
+                                <li><a href="#news">News</a></li>
+                                <li><a href="#tournaments">Tournaments</a></li>
+                                <li><a href="#races">Races</a></li>
+                                <li><a href="#horses">Horses</a></li>
+                                <li><a href="#jockeys">Jockeys</a></li>
+                                
+                                @auth                                
+                                <li><a href="{{ url('/horses') }}">Add Horse</a></li>
+                                <li><a href="{{ url('/jockeys') }}">Add Jockey</a></li>
+                                <li><a href="{{ url('/home') }}">Home</a></li>
+                                @else
+                                <li><a href="{{ route('login') }}">Login</a></li>
+                                    @if (Route::has('register'))
+                                    <li><a href="{{ route('register') }}">Register</a></li>
+                                    @endif
+                                @endauth
+                            </ul>
+                        @endif
+                    </div>
+                </div>
+
+                @yield('content')
+                
+            </div>
+            <footer>
+                <p>Posted by: André, Fábio e Márcio | Contacts | termos e condições |
+                <button onclick="topFunction()" id="myBtn" title="Go to top">Top
+                    <script>
+                        function topFunction() {
+                                document.body.scrollTop = 0;
+                                document.documentElement.scrollTop = 0;
+                        }
+                    </script>
+                </button>
+                </p>
+            </footer>
+        </div>
+        
+    </body>
+</html>
