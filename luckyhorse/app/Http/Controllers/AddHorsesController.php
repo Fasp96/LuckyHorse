@@ -50,7 +50,7 @@ class AddHorsesController extends Controller
             $horse->save();
 
             $horse->save();
-            return redirect('/horses_add');
+            return redirect('/add_horses');
         }else{
             return redirect('home');
         } 
