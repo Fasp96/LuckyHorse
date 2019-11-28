@@ -49,7 +49,6 @@ class AddHorsesController extends Controller
             $horse->file_path = $new_file_path;
             $horse->save();
 
-            $horse->save();
             return redirect('/add_horses');
         }else{
             return redirect('home');
