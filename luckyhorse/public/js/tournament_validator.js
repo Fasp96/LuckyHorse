@@ -13,26 +13,31 @@ function validate_input(){
     contents.push(name);
     elements.push(tournament_form.name);
 
-    var date = tournament_form.date.value;
-    contents.push(date);
-    elements.push(horse_form.date);
+    var initial_date = tournament_form.initial_date.value;
+    contents.push(initial_date);
+    elements.push(tournament_form.initial_date);
+
+    var finish_date = tournament_form.finish_date.value;
+    contents.push(finish_date);
+    elements.push(tournament_form.finish_date);
 
     var description = tournament_form.description.value;
     contents.push(description);
-    elements.push(horse_form.description);
+    elements.push(tournament_form.description);
 
     var location = tournament_form.location.value;
     contents.push(location);
-    elements.push(horse_form.location);
+    elements.push(tournament_form.location);
 
     var tournament_photo = tournament_form.tournament_photo.value;
     contents.push(tournament_photo);
-    elements.push(horse_form.tournament_photo);
+    elements.push(tournament_form.tournament_photo);
 
     removeMessages();
 
     valid.push(validate_name(name,tournament_form.name));
-    valid.push(validate_date(date,tournament_form.date));
+    valid.push(validate_initial_date(initial_date, tournament_form.initial_date));
+    valid.push(validate_finish_date(initial_date, finish_date, tournament_form.finish_date));
     valid.push(validate_description(description, tournament_form.description));
     valid.push(validate_location(location, tournament_form.location));
     valid.push(validate_tournament_photo(tournament_photo, tournament_form.tournament_photo));
@@ -44,7 +49,7 @@ function validate_input(){
 
     if(valid.reduce(and) && not_empty.reduce(and)){
         console.log("postEvent");
-        postEvent(name, date, gender, description, location, tournament_photo);
+        postEvent(name, initial_date, gender, description, location, tournament_photo);
     }
 }
 
@@ -74,7 +79,7 @@ function validate_name(content, element){
     }
 }
 
-function validate_date(content, element){
+function validate_initial_date(content, element){
     if(!content.match(/^\d{4}-\d{2}-\d{2}$/) && content != ""){
         $(element).css("background","#ebdf5e");
         $(element).after("<p style=\"color:#c2b100\">* A date has the following format DD-MM-YYYY</p>");
@@ -84,6 +89,29 @@ function validate_date(content, element){
     else if(new Date() > new Date(content)){
         $(element).css("background","#ebdf5e");
         $(element).after("<p style=\"color:#c2b100\">* The Date must be before todays date</p>");
+        return false;
+    }
+    else{
+        return true;
+    }
+}
+
+function validate_finish_date(init_date,content, element){
+    if(!content.match(/^\d{4}-\d{2}-\d{2}$/) && content != ""){
+        $(element).css("background","#ebdf5e");
+        $(element).after("<p style=\"color:#c2b100\">* A date has the following format DD-MM-YYYY</p>");
+        return false;
+    }
+    
+    else if(new Date() > new Date(content)){
+        $(element).css("background","#ebdf5e");
+        $(element).after("<p style=\"color:#c2b100\">* The Date must be before todays date</p>");
+        return false;
+    }
+
+    else if(new Date(init_date) >= new Date(content)){
+        $(element).css("background","#ebdf5e");
+        $(element).after("<p style=\"color:#c2b100\">* The Date must be before the date " + init_date + "</p>");
         return false;
     }
     else{
@@ -111,8 +139,8 @@ function validate_tournament_photo(content, element){
 }
 
 function removeMessages(){
-    $("#horse_form").children().css("background-color","#FFFFFF");
-    $("#horse_form").children().filter('p').remove();
+    $("#tournament_form").children().css("background-color","#FFFFFF");
+    $("#tournament_form").children().filter('p').remove();
 }
 
 function postEvent(name, date, description, location, tournament_photo){

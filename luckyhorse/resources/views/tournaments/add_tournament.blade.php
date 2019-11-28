@@ -2,7 +2,7 @@
 
 @section('content')
 
-<script src="{{asset('js/jockey_validator.js')}}" defer></script>
+<script src="{{asset('js/tournament_validator.js')}}" defer></script>
 
 <div class="container">
     <div class="row justify-content-center">
@@ -43,7 +43,6 @@
                         <input type="checkbox" style="color:black;" name="Caminho Palheiro" value="Caminho Palheiro"> Caminho Palheiro 7/8/2020 <br>
                         <input type="checkbox" style="color:black;" name="Santo da Serra" value="Santo da Serra"> Santo da Serra 5/8/2020<br>
                         <input type="checkbox" style="color:black;" name="Porto Santo" value="Porto Santo"> Porto Santo 21/2/2020<br><br>
-
                         Description<br>
                         <textarea class="form-control" name="description" rows="5" cols="80"></textarea><br>
                         Location
