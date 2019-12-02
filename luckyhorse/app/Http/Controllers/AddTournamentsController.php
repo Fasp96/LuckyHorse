@@ -20,4 +20,37 @@ class AddTournamentsController extends Controller
             return redirect('home');
         }
     }
+
+    public function add(Request $request){
+        $user = Auth::user();
+        if($user){
+
+            $tournament = new Tournament;
+            $tournament->name = $request->name;
+            $tournament->date = $request->initial_date;
+            $tournament->description = $request->description;
+            $tournament->location = $request->location;
+            
+            $photo = $request->file('tournament_photo');
+            $fileName = $request->name . '-' .$photo->getClientOriginalName();
+            $path = 'img/tournament_photo/';
+            $file = $photo->move($path, $fileName);
+
+            $file_path = $path . $fileName;
+            $tournament->file_path = $file_path;
+            $tournament->save();
+
+            //fetches the id of the new tournament, adds to the photo name and updates the file_path atribute
+            $id = $tournament->id;
+            $new_file_path = $path . $id . '-' . $fileName;
+            
+            rename($file_path, $new_file_path);
+            $tournament->file_path = $new_file_path;
+            $tournament->save();
+
+            return redirect('/add_tournaments');
+        }else{
+            return redirect('home');
+        }       
+    }
 }

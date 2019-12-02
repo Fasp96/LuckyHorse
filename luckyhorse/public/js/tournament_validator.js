@@ -1,8 +1,10 @@
 function initPage(){
-    $("#add_tournament_btn").click(validate_input);
+    $("#add_tournament_btn").click(function(){
+        validate_input(true);
+    });
 }
 
-function validate_input(){
+function validate_input(clicked = false){
 
     var contents = [];
     var elements = [];
@@ -42,14 +44,15 @@ function validate_input(){
     valid.push(validate_location(location, tournament_form.location));
     valid.push(validate_tournament_photo(tournament_photo, tournament_form.tournament_photo));
 
-    console.log(contents);
-    for(var i = 0; i < contents.length; i++){
-        not_empty.push(validate_empty(contents[i],elements[i]));
+    if(contents[contents.length-1] != '' || clicked == true){
+        for(var i = 0; i < contents.length; i++){
+            not_empty.push(validate_empty(contents[i],elements[i]));
+        }
     }
 
     if(valid.reduce(and) && not_empty.reduce(and)){
-        console.log("postEvent");
-        postEvent(name, initial_date, gender, description, location, tournament_photo);
+        $("#add_tournament_btn").remove();
+        $("#tournament_photo").after("<br><br><button type=\"submit\" class=\"btn btn   primary\">Add Tournament</button>");
     }
 }
 
@@ -88,7 +91,7 @@ function validate_initial_date(content, element){
     
     else if(new Date() > new Date(content)){
         $(element).css("background","#ebdf5e");
-        $(element).after("<p style=\"color:#c2b100\">* The Date must be before todays date</p>");
+        $(element).after("<p style=\"color:#c2b100\">* The Date must be after todays date</p>");
         return false;
     }
     else{

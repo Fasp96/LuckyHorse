@@ -34,22 +34,22 @@
                         
                         <input type="hidden" id ="token" name="_token" value="{{csrf_token()}}">
                         Name
-                        <input type="text" class="form-control" name="name"><br>
+                        <input id="name" type="text" class="form-control" name="name" onchange="validate_input()"><br>
                         Initial Date
-                        <input type="date" class="form-control" name="initial_date"><br>
+                        <input id="initial_date" type="date" class="form-control" name="initial_date" onchange="validate_input()"><br>
                         Expected Finish Date
-                        <input type="date" class="form-control" name="finish_date"><br>
+                        <input id="finish_date" type="date" class="form-control" name="finish_date" onchange="validate_input()"><br>
                         Add Races<br>
                         <input type="checkbox" style="color:black;" name="Caminho Palheiro" value="Caminho Palheiro"> Caminho Palheiro 7/8/2020 <br>
                         <input type="checkbox" style="color:black;" name="Santo da Serra" value="Santo da Serra"> Santo da Serra 5/8/2020<br>
                         <input type="checkbox" style="color:black;" name="Porto Santo" value="Porto Santo"> Porto Santo 21/2/2020<br><br>
                         Description<br>
-                        <textarea class="form-control" name="description" rows="5" cols="80"></textarea><br>
+                        <textarea id="description" class="form-control" name="description" rows="5" cols="80" onchange="validate_input()"></textarea><br>
                         Location
-                        <input type="text" class="form-control" name="location"><br>
+                        <input id="location" type="text" class="form-control" name="location" onchange="validate_input()"><br>
 
                         Tournament Photo <br><br>
-                        <input type="file" name="tournament_photo" accept="image/*"><br>
+                        <input id="tournament_photo" type="file" name="tournament_photo" accept="image/*" onchange="validate_input()"><br>
                         <br>
                     </form>
                     <button id="add_tournament_btn" class="btn btn-primary">Add Tournament</button>
