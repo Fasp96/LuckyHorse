@@ -34,11 +34,13 @@ class AddHorsesController extends Controller
             
             $photo = $request->file('horse_photo');
             $fileName = $request->name . '-' .$photo->getClientOriginalName();
+            //$fileName = $request->name . '-' ;
             $path = 'img/horse_photo/';
             $file = $photo->move($path, $fileName);
 
             $file_path = $path . $fileName;
             $horse->file_path = $file_path;
+            
             $horse->save();
 
             //fetches the id of the new horse, adds to the photo name and updates the file_path atribute

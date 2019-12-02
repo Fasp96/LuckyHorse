@@ -1,8 +1,10 @@
 function initPage(){
-    $("#add_jockey_btn").click(validate_input);
+    $("#add_jockey_btn").click( function(){
+        validate_input(true);
+    });
 }
 
-function validate_input(){
+function validate_input(clicked=false){
 
     var contents = [];
     var elements = [];
@@ -37,19 +39,22 @@ function validate_input(){
 
     valid.push(validate_name(name,jockey_form.name));
     valid.push(validate_birth_date(birth_date,jockey_form.birth_date));
-    valid.push(validate_gender(gender, jockey_form.gender));
+    valid.push(validate_gender(gender, jockey_form.gender, contents[contents.length-1] != '' || clicked == true));
     valid.push(validate_num_races(num_races, jockey_form.num_races));
     valid.push(validate_num_victories(num_victories, jockey_form.num_victories));
     valid.push(validate_jockey_photo(jockey_photo, jockey_form.jockey_photo));
 
-    console.log(contents);
-    for(var i = 0; i < contents.length; i++){
-        not_empty.push(validate_empty(contents[i],elements[i]));
+    if(contents[contents.length-1] != '' || clicked == true){
+
+        for(var i = 0; i < contents.length; i++){
+            not_empty.push(validate_empty(contents[i],elements[i]));
+        }
     }
 
     if(valid.reduce(and) && not_empty.reduce(and)){
-        console.log("insert in database");
-        postEvent(name, birth_date, gender, num_races, num_victories, jockey_photo);
+        $("#add_jockey_btn").remove();
+        $("#jockey_photo").after("<br><br><button type=\"submit\" class=\"btn btn-primary\">Add Jockey</button>");
+
     }
 }
 
@@ -95,8 +100,8 @@ function validate_birth_date(content, element){
     }
 }
 
-function validate_gender(content, element){
-    if(content != 'male' && content != 'female' && content != 'other'){
+function validate_gender(content, element, show_message){
+    if(content != 'male' && content != 'female' && content != 'other'&& show_message ){
         $('#gender_radio').after("<p style=\"color:#ff5555\">* Please choose on of these fields before submitting again</p>");
         return false;
     }
@@ -138,18 +143,6 @@ function validate_jockey_photo(content, element){
     else{
         return true;
     }
-}
-
-function removeMessages(){
-    $("#jockey_form").children().css("background-color","#FFFFFF");
-    $("#jockey_form").children().filter('p').remove();
-}
-
-function postEvent(name, birth_date, gender, num_races, num_victories, jockey_photo){
-    var content = "_token="+$("#token").val() + "&name="+name+"&birth_date="+birth_date+"&gender="+gender+"&num_races="+num_races+"&num_victories="+num_victories+"&jockey_photo="+jockey_photo;
-
-    console.log(content);
-    $.post("http://localhost:8000/jockeys", {content});
 }
 
 //página carregou
