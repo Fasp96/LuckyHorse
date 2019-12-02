@@ -1,6 +1,6 @@
 function initPage(){
     $("#add_horse_btn").click(function(){
-        validate_input(true)
+        validate_input(true);
     });
 }
 
