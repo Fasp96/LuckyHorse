@@ -34,22 +34,22 @@
                     <form id="horse_form" method ="post" action="" enctype="multipart/form-data" >
                         <input type="hidden" id='token' name="_token" value="{{csrf_token()}} ">
                         Name
-                        <input type="text" class="form-control" name="name"><br>
+                        <input id="name" type="text" class="form-control" name="name" onchange="validate_input()"><br>
                         Breed
-                        <input type="text" class="form-control" name="breed"><br>
+                        <input id="breed" type="text" class="form-control" name="breed" onchange="validate_input()"><br>
                         Birth Date
-                        <input type="date" class="form-control" name="birth_date"><br>
+                        <input id="birth_date" type="date" class="form-control" name="birth_date" onchange="validate_input()"><br>
                         Gender<br>
                         <div id="gender_radio">
-                        <input type="radio" name="gender" value="male"> Male<br>
-                        <input type="radio" name="gender" value="female"> Female<br><br>
+                        <input id="gender" type="radio" name="gender" value="male" onchange="validate_input()"> Male<br>
+                        <input id="gender" type="radio" name="gender" value="female" onchange="validate_input()"> Female<br><br>
                         </div>
                         Number of Races
-                        <input type="number" class="form-control" name="num_races"><br>
+                        <input id="num_races" type="number" class="form-control" name="num_races" onchange="validate_input()"><br>
                         Number of Victories
-                        <input type="number" class="form-control" name="num_victories"><br>
+                        <input id="num_victories" type="number" class="form-control" name="num_victories" onchange="validate_input()"><br>
                         Horse Photo <br><br>
-                        <input type="file" name="horse_photo" accept="image/*"><br>
+                        <input id="horse_photo" type="file" name="horse_photo" accept="image/*" onchange="validate_input()"><br>
                         <br>
                     </form>
                     <button id="add_horse_btn" class="btn btn-primary">Add Horse</button>

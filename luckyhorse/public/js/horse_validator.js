@@ -1,8 +1,10 @@
 function initPage(){
-    $("#add_horse_btn").click(validate_input);
+    $("#add_horse_btn").click(function(){
+        validate_input(true)
+    });
 }
 
-function validate_input(){
+function validate_input(clicked = false){
 
     var contents = [];
     var elements = [];
@@ -42,19 +44,20 @@ function validate_input(){
     valid.push(validate_name(name,horse_form.name));
     valid.push(validate_breed(breed, horse_form.breed));
     valid.push(validate_birth_date(birth_date,horse_form.birth_date));
-    valid.push(validate_gender(gender, horse_form.gender));
+    valid.push(validate_gender(gender, horse_form.gender, contents[contents.length-1] != '' || clicked == true));
     valid.push(validate_num_races(num_races, horse_form.num_races));
     valid.push(validate_num_victories(num_victories, horse_form.num_victories));
     valid.push(validate_horse_photo(horse_photo, horse_form.horse_photo));
 
-    console.log(contents);
-    for(var i = 0; i < contents.length; i++){
-        not_empty.push(validate_empty(contents[i],elements[i]));
+    if(contents[contents.length-1] != '' || clicked == true){
+        for(var i = 0; i < contents.length; i++){
+            not_empty.push(validate_empty(contents[i],elements[i]));
+        }
     }
 
     if(valid.reduce(and) && not_empty.reduce(and)){
-        console.log("postEvent");
-        postEvent(name, breed, birth_date, gender, num_races, num_victories, horse_photo);
+        $("#add_horse_btn").remove();
+        $("#horse_photo").after("<br><br><button type=\"submit\" class=\"btn btn-primary\">Add Horse</button>");
     }
 }
 
@@ -64,7 +67,7 @@ function and(a,b){
 
 function validate_empty(content, element){
     if(content == ''){
-        $(element).css("backgroud", "#ffcccc");
+        $(element).css("background", "#ffcccc");
         $(element).after("<p style=\"color:#ff5555\">* Please fill this field before submitting again</p>");
         return false;
     }else{
@@ -74,7 +77,6 @@ function validate_empty(content, element){
 
 function validate_name(content, element){
     if(!content.match((/^([A-ZÀ-Ÿ][a-zà-ÿ]* *)*$/))){
-
         $(element).css("background","#ebdf5e");
         $(element).after("<p style=\"color:#c2b100\">* A name has one or more words that always start with an uppercase followed by lowercases letters</p>");
         return false;
@@ -112,8 +114,8 @@ function validate_birth_date(content, element){
     }
 }
 
-function validate_gender(content, element){
-    if(content != 'male' && content != 'female'){
+function validate_gender(content, element, show_message){
+    if(content != 'male' && content != 'female' && content != 'other' && show_message){
         $('#gender_radio').after("<p style=\"color:#ff5555\">* Please choose on of these fields before submitting again</p>");
         return false;
     }
@@ -147,7 +149,7 @@ function validate_num_victories(content, element){
 function validate_horse_photo(content, element){
     var file_type = content.substring(content.lastIndexOf('.') + 1).toLowerCase();
     if(file_type != "png" && file_type != "jpeg" && file_type != "jpg" && file_type != '' ){
-        $(element).after("<p style=\"color:#c2b100\">*Invalide file type. Please insert a .png, .jpeg or .jpg file</p>");
+        $(element).after("<p style=\"color:#c2b100\">*Invalid file type. Please insert a .png, .jpeg or .jpg file</p>");
         return false;
     }
     else{
@@ -160,18 +162,6 @@ function removeMessages(){
     $("#horse_form").children().filter('p').remove();
 }
 
-function postEvent(name, breed, birth_date, gender, num_races, num_victories, horse_photo){
-    var content = "_token="+$("#token").val() + "&name="+name+"&breed="+breed+"&birth_date="+birth_date+"&gender="+gender+"&num_races="+num_races+"&num_victories="+num_victories+"&horse_photo="+horse_photo;
-
-    console.log(content);
-    $.post("http://localhost:8000/add_horses", content, 
-    function(responseTxt,statuTxt,xhr){
-        
-        alert("posted");
-
-    }
-    );
-}
 
 //página carregou
 $(document).ready(initPage);

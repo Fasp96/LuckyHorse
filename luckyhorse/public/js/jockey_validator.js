@@ -64,7 +64,7 @@ function and(a,b){
 
 function validate_empty(content, element){
     if(content == ''){
-        $(element).css("backgroud", "#ffcccc");
+        $(element).css("background", "#ffcccc");
         $(element).after("<p style=\"color:#ff5555\">* Please fill this field before submitting again</p>");
         return false;
     }else{
@@ -84,6 +84,11 @@ function validate_name(content, element){
 }
 
 function validate_birth_date(content, element){
+    var max_birth_date = new Date(
+        new Date().getFullYear()-18,
+        new Date().getMonth(),
+        new Date().getDate());
+    
     if(!content.match(/^\d{4}-\d{2}-\d{2}$/) && content != ""){
         $(element).css("background","#ebdf5e");
         $(element).after("<p style=\"color:#c2b100\">* A date has the following format DD-MM-YYYY</p>");
@@ -93,6 +98,12 @@ function validate_birth_date(content, element){
     else if(new Date(content) > new Date()){
         $(element).css("background","#ebdf5e");
         $(element).after("<p style=\"color:#c2b100\">* The birth date must be before todays date</p>");
+        return false;
+    }
+
+    else if(new Date(content) > max_birth_date){
+        $(element).css("background","#ebdf5e");
+        $(element).after("<p style=\"color:#c2b100\">* The birth date must be older that 18 years</p>");
         return false;
     }
     else{
@@ -143,6 +154,11 @@ function validate_jockey_photo(content, element){
     else{
         return true;
     }
+}
+
+function removeMessages(){
+    $("#jockey_form").children().css("background-color","#FFFFFF");
+    $("#jockey_form").children().filter('p').remove();
 }
 
 //página carregou
