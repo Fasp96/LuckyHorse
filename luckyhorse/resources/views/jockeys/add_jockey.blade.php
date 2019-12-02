@@ -39,9 +39,9 @@
                         <input id="bitrh_date" type="date" class="form-control" name="birth_date" onchange="validate_input()"><br>
                         Gender<br>
                         <div id="gender_radio">
-                        <input id="gender" type="radio" name="gender" value="male" onchange="validate_input()"> Male<br>
-                        <input id="gender" type="radio" name="gender" value="female" onchange="validate_input()"> Female<br>
-                        <input id="gender" type="radio" name="gender" value="other" onchange="validate_input()"> Other<br><br>
+                        <input id="gender" type="radio" name="gender" value="male"> Male<br>
+                        <input id="gender" type="radio" name="gender" value="female"> Female<br>
+                        <input id="gender" type="radio" name="gender" value="other"> Other<br><br>
                         </div>
                         Number of Races
                         <input id="num_races" type="number" class="form-control" name="num_races" onchange="validate_input()"><br>
