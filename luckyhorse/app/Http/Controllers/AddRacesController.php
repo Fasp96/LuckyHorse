@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Race;
 use App\Horse;
+use App\Tournament;
 use Auth;
 
 class AddRacesController extends Controller
@@ -16,8 +17,9 @@ class AddRacesController extends Controller
         if($current_user){
              $races = Race::all();
              $horses = Horse::all();
+             $tournaments = Tournament::all();
                
-             return view('races.add_race',compact('races', 'horses'));
+             return view('races.add_race',compact('races', 'horses', 'tournaments'));
         }else{
             return redirect('home');
         }
