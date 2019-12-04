@@ -3,6 +3,7 @@
 @section('content')
 
 <script src="{{asset('js/race_validator.js')}}" defer></script>
+<script src="{{asset('js/race_add_jockey_horse.js')}}" defer></script>
 
 <div class="container">
     <div class="row justify-content-center">
@@ -39,9 +40,9 @@
                         <input id="date" type="date" class="form-control" name="date" onchange="validate_input()"><br>
                         Add to Tournament<br>
                         <?php if($tournaments == '[]'){?>
-                            <p style="color:black; padding-top:1%; padding-left:5%">No Horses<p>
+                            <h6 style="color:black; padding-top:1%; padding-left:5%">***No Horses***</h6>
                         <?php }else{?>
-                            <select id="add_tournament" name="add_tournament" class="form-control" onchange="validate_input()">
+                            <select id="add_tournament" name="add_tournament" class="form-control">
                                 <option value="">
                                 @foreach($tournaments as $tournament)
                                 <option value="{{$tournament->id}}"> {{$tournament->name}} - {{$tournament->date}}                   
@@ -50,15 +51,14 @@
                         <?php } ?>
                         <br>
                         
-                        Add Horse<br>
-                        <?php if($horses == '[]'){?>
-                            <p style="color:black; padding-top:1%; padding-left:5%">No Horses<p>
-                        <?php }else{?>
-                        @foreach($horses as $horse) 
-                        <input type="checkbox" style="color:black;" name="{{$horse->name}}" value="{{$horse->id}}" onchange="validate_input()"> {{$horse->name}} - {{$horse->breed}}<br>                    
-                        @endforeach
-                        <?php } ?>
-                        <br>
+                        Add Horse with Jockey<br>
+                        Number of Participants<input id="num_fields" type="number" class="form-control" name="num_fields" onchange="add_fields()"><br>
+
+                        <div id="fields">
+                            <!-- 
+                                the fields to create the teams wil be added inside this div
+                            -->
+                        </div>
                         Description<br>
                         <textarea id="description" class="form-control" name="description" rows="5" cols="80" onchange="validate_input()"></textarea><br>
                         Location
