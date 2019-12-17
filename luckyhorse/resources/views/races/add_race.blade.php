@@ -3,6 +3,7 @@
 @section('content')
 
 <script src="{{asset('js/race_validator.js')}}" defer></script>
+<script src="{{asset('js/race_add_jockey_horse.js')}}" defer></script>
 
 <div class="container">
     <div class="row justify-content-center">
@@ -38,13 +39,26 @@
                         Date
                         <input id="date" type="date" class="form-control" name="date" onchange="validate_input()"><br>
                         Add to Tournament<br>
-                        <input id="add_tournament" type="radio" name="add_tournament" value="1" onchange="validate_input()"> Tournament 1<br>
-                        <input id="add_tournament" type="radio" name="add_tournament" value="1" onchange="validate_input()"> Tournament 2<br>
-                        <input id="add_tournament" type="radio" name="add_tournament" value="1" onchange="validate_input()"> Tournament 3<br><br>
-                        Add Horse<br>
-                        <input type="checkbox" style="color:black;" name="Cavalo 1" value="Cavalo 1"> Cavalo 1<br>
-                        <input type="checkbox" style="color:black;" name="Cavalo 2" value="Cavalo 2"> Cavalo 2<br>
-                        <input type="checkbox" style="color:black;" name="Cavalo 3" value="Cavalo 3"> Cavalo 3<br><br>
+                        <?php if($tournaments == '[]'){?>
+                            <h6 style="color:black; padding-top:1%; padding-left:5%">***No Horses***</h6>
+                        <?php }else{?>
+                            <select id="add_tournament" name="add_tournament" class="form-control">
+                                <option value="">
+                                @foreach($tournaments as $tournament)
+                                <option value="{{$tournament->id}}"> {{$tournament->name}} - {{$tournament->date}}                   
+                                @endforeach
+                            </select>
+                        <?php } ?>
+                        <br>
+                        
+                        Add Horse with Jockey<br>
+                        Number of Participants<input id="num_fields" type="number" class="form-control" name="num_fields" onchange="add_fields(); validate_input();"><br>
+
+                        <div id="fields">
+                            <!-- 
+                                the fields to create the teams wil be added inside this div
+                            -->
+                        </div>
                         Description<br>
                         <textarea id="description" class="form-control" name="description" rows="5" cols="80" onchange="validate_input()"></textarea><br>
                         Location

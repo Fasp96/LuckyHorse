@@ -42,6 +42,8 @@
                                 @auth                                
                                 <li><a href="{{ url('/add_horses') }}">Add Horse</a></li>
                                 <li><a href="{{ url('/add_jockeys') }}">Add Jockey</a></li>
+                                <li><a href="{{ url('/add_races') }}">Add Race</a></li>
+                                <li><a href="{{ url('/add_tournaments') }}">Add Tournament</a></li>
                                 <li><a href="{{ url('/home') }}">Home</a></li>
                                 @else
                                 <li><a href="{{ route('login') }}">Login</a></li>

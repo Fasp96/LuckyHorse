@@ -54,4 +54,12 @@ class AddTournamentsController extends Controller
             return redirect('home');
         }       
     }
+
+    public function getRaces(){
+        $user = Auth::user();
+        if($user){
+            $races = Race::all();
+            return $races;
+        }
+    }
 }
