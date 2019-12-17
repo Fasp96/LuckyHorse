@@ -3,6 +3,7 @@
 @section('content')
 
 <script src="{{asset('js/tournament_validator.js')}}" defer></script>
+<script src="{{asset('js/tournament_add_race.js')}}" defer></script>
 
 <div class="container">
     <div class="row justify-content-center">

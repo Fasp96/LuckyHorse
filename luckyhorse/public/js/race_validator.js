@@ -1,5 +1,6 @@
 function initPage(){
     $("#add_race_btn").click(function(){
+        validate_fields_not_equals(race_form.num_fields.value);
         validate_input(true);
     });
 }
@@ -19,6 +20,10 @@ function validate_input(clicked = false){
     contents.push(date);
     elements.push(race_form.date);
 
+    var num_fields = race_form.num_fields.value;
+    contents.push(num_fields);
+    elements.push(race_form.num_fields);
+
     var description = race_form.description.value;
     contents.push(description);
     elements.push(race_form.description);
@@ -31,11 +36,12 @@ function validate_input(clicked = false){
     contents.push(race_photo);
     elements.push(race_form.race_photo);
 
-    removeMessages();
+    removeMessages();   
     console.log(contents);
 
     valid.push(validate_name(name,race_form.name));
     valid.push(validate_date(date, race_form.date));
+    valid.push(validate_num_fields(num_fields, race_form.num_fields));
     valid.push(validate_description(description, race_form.description));
     valid.push(validate_location(location, race_form.location));
     valid.push(validate_race_photo(race_photo, race_form.race_photo));
@@ -95,6 +101,17 @@ function validate_date(content, element){
     }
 }
 
+function validate_num_fields(content, element){
+    if(!content.match(/^([+]?[1-9]\d*|0)$/) && content != ''){
+        $(element).css("background","#ebdf5e");
+        $(element).after("<p style=\"color:#c2b100\">* Please insert a number equal or greater that 0</p>");
+        return false;
+    }
+    else{
+        return true;
+    }
+}
+
 function validate_description(content, element){
     return true;
 }
@@ -118,6 +135,54 @@ function removeMessages(){
     $("#race_form").children().css("background-color","#FFFFFF");
     $("#race_form").children().filter('p').remove();
 }
+
+function validate_fields_not_equals(num_fields){
+
+    for( var i = 1; i<= num_fields; i++){
+        $("#" + i).children().css("background-color","#FFFFFF");
+        $("#"+ i).children().filter('p').remove();
+
+        horse_i = document.getElementById("horse_" + i);
+        jockey_i = document.getElementById("jockey_" + i);
+
+        if(horse_i.value == ""){
+            $(horse_i).css("background", "#ffcccc");
+            $(horse_i).after("<p style=\"color:#ff5555\">*This field can't be empty choose a horse</p>");
+        }
+
+        if(jockey_i.value == ""){
+            $(jockey_i).css("background", "#ffcccc");
+            $(jockey_i).after("<p style=\"color:#ff5555\">*This field can't be empty choose a jockey</p>");
+        }
+    }
+
+    for (var i = 1; i <= num_fields; i++){
+        for (var j = i + 1; j <= num_fields; j++){
+
+            horse_i = document.getElementById("horse_" + i);
+            horse_j = document.getElementById("horse_" + j);
+
+            if(horse_i.value == horse_j.value && horse_i.value != "" && horse_j.value != ""){
+                $(horse_i).css("background", "#ffcccc");
+                $(horse_i).after("<p style=\"color:#ff5555\">*Invalid horse. Can't be the same horse as in Team " + j + "</p>");
+                $(horse_j).css("background", "#ffcccc");
+                $(horse_j).after("<p style=\"color:#ff5555\">*Invalid horse. Can't be the same horse as in Team " + i + "</p>");
+            }
+            
+            jockey_i = document.getElementById("jockey_" + i);
+            jockey_j = document.getElementById("jockey_" + j);
+
+            if(jockey_i.value == jockey_j.value && jockey_i.value != "" && jockey_j.value != ""){
+                $(jockey_i).css("background", "#ffcccc");
+                $(jockey_i).after("<p style=\"color:#ff5555\">*Invalid jockey. Can't be the same jockey as in Team " + j + "</p>");
+                $(jockey_j).css("background", "#ffcccc");
+                $(jockey_j).after("<p style=\"color:#ff5555\">*Invalid jockey. Can't be the same jockey as in Team " + i + "</p>");
+            }
+            
+        }
+    }
+}
+
 
 //página carregou
 $(document).ready(initPage);

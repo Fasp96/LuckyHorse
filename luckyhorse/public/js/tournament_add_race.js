@@ -1,30 +1,19 @@
 function initPage(){
-    
+    add_race_field();
 }
 
-//function to add the fields for the teams (horse, jokey) participating in the race
-function add_fields(){
+function add_race_field(){
+    $.get("http://localhost:8000/api/add_tournaments", function(data){
 
-    //clears everythong inside the div
-    document.getElementById("fields").innerHTML = "";
+        console.log(data);
 
-    var num_fields = race_form.num_fields.value;
-
-    for(var i = 1; i <= num_fields; i++){
-        add_race_field("fields", i);
-    }
-}
-//function that creates a field for a team given the div id to add the new field and  the field id
-function add_race_field(div_id, field_id){
-    $.get("http://localhost:8000/api/add_races", function(data){
-
-        var div = document.getElementById(div_id);
+        /*var div = document.getElementById(div_id);
 
         var field = document.createElement("div");
         field.id = field_id;
         div.appendChild(field);
 
-        var field_name = "Team " + field_id;
+        var field_name = field_id.charAt(0).toUpperCase() + field_id.slice(1,-1) + " " + field_id.charAt(field_id.length-1);
         field.appendChild(document.createTextNode(field_name));
         field.appendChild(document.createElement("br"));
 
@@ -35,7 +24,7 @@ function add_race_field(div_id, field_id){
         selectList.id = 'horse_' + field_id;
         selectList.name = 'horse_' + field_id;
         selectList.className = "form-control";
-        selectList.setAttribute("onchange", function validate(){validate_input();});
+        selectList.setAttribute("onchange", function(){validate_input();});
         field.appendChild(selectList);
 
         var option = document.createElement("option");
@@ -59,7 +48,7 @@ function add_race_field(div_id, field_id){
         selectList.id = 'jockey_' + field_id;
         selectList.name = 'jockey_' + field_id;
         selectList.className = "form-control";
-        selectList.setAttribute("onchange", function validate(){validate_input();});
+        selectList.setAttribute("onchange", function(){validate_input();});
         field.appendChild(selectList);
         
         var option = document.createElement("option");
@@ -75,10 +64,13 @@ function add_race_field(div_id, field_id){
             selectList.appendChild(option);
         }
 
+
         field.appendChild(document.createElement("br"));
-        field.appendChild(document.createElement("br"));
+        field.appendChild(document.createElement("br"));*/
     });
 }
+
+
 
 //página carregou
 $(document).ready(initPage);
