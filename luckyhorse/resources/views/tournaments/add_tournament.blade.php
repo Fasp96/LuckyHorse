@@ -41,6 +41,7 @@
                         Expected Finish Date
                         <input id="finish_date" type="date" class="form-control" name="finish_date" onchange="validate_input()"><br>
                         Add Races<br>
+                        <div id="race_fields"></div> 
                         <input type="checkbox" style="color:black;" name="Caminho Palheiro" value="Caminho Palheiro"> Caminho Palheiro 7/8/2020 <br>
                         <input type="checkbox" style="color:black;" name="Santo da Serra" value="Santo da Serra"> Santo da Serra 5/8/2020<br>
                         <input type="checkbox" style="color:black;" name="Porto Santo" value="Porto Santo"> Porto Santo 21/2/2020<br><br>
