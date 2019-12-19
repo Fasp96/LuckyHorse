@@ -37,14 +37,13 @@
                         Name
                         <input id="name" type="text" class="form-control" name="name" onchange="validate_input()"><br>
                         Initial Date
-                        <input id="initial_date" type="date" class="form-control" name="initial_date" onchange="validate_input()"><br>
+                        <input id="initial_date" type="date" class="form-control" name="initial_date" onchange="add_race_field(initial_date, finish_date); validate_input();"><br>
                         Expected Finish Date
-                        <input id="finish_date" type="date" class="form-control" name="finish_date" onchange="validate_input()"><br>
-                        Add Races<br>
-                        <div id="race_fields"></div> 
-                        <input type="checkbox" style="color:black;" name="Caminho Palheiro" value="Caminho Palheiro"> Caminho Palheiro 7/8/2020 <br>
-                        <input type="checkbox" style="color:black;" name="Santo da Serra" value="Santo da Serra"> Santo da Serra 5/8/2020<br>
-                        <input type="checkbox" style="color:black;" name="Porto Santo" value="Porto Santo"> Porto Santo 21/2/2020<br><br>
+                        <input id="finish_date" type="date" class="form-control" name="finish_date" onchange="add_race_field(initial_date, finish_date); validate_input();"><br>
+                        Add Races<br><br>
+                        <div id="race_fields">
+                            <p>Please insert initial date or expected finish date to show races</p>    
+                        </div><br>
                         Description<br>
                         <textarea id="description" class="form-control" name="description" rows="5" cols="80" onchange="validate_input()"></textarea><br>
                         Location

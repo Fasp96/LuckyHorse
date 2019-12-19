@@ -42,7 +42,7 @@ function validate_input(clicked = false){
     valid.push(validate_finish_date(initial_date, finish_date, tournament_form.finish_date));
     valid.push(validate_description(description, tournament_form.description));
     valid.push(validate_location(location, tournament_form.location));
-    valid.push(validate_tournament_photo(tournament_photo, tournament_form.tournament_photo));
+    valid.push(validate_tournament_photo(tournament_photo, tournament_form.tournament_photo));  
 
     if(contents[contents.length-1] != '' || clicked == true){
         for(var i = 0; i < contents.length; i++){
