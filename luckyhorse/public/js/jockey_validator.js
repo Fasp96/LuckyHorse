@@ -41,7 +41,7 @@ function validate_input(clicked=false){
     valid.push(validate_birth_date(birth_date,jockey_form.birth_date));
     valid.push(validate_gender(gender, jockey_form.gender, contents[contents.length-1] != '' || clicked == true));
     valid.push(validate_num_races(num_races, jockey_form.num_races));
-    valid.push(validate_num_victories(num_victories, jockey_form.num_victories));
+    valid.push(validate_num_victories(num_victories, num_races, jockey_form.num_victories));
     valid.push(validate_jockey_photo(jockey_photo, jockey_form.jockey_photo));
 
     if(contents[contents.length-1] != '' || clicked == true){
@@ -132,10 +132,15 @@ function validate_num_races(content, element){
     }
 }
 
-function validate_num_victories(content, element){
+function validate_num_victories(content, content_races, element){
     if(!content.match(/^([+]?[1-9]\d*|0)$/) && content != ''){
         $(element).css("background","#ebdf5e");
         $(element).after("<p style=\"color:#c2b100\">* Please insert a number equal or greater that 0</p>");
+        return false;
+    }
+    else if (content > content_races){
+        $(element).css("background","#ebdf5e");
+        $(element).after("<p style=\"color:#c2b100\">* Please insert a number lower or equal than " + content_races + "</p>");
         return false;
     }
     else{
