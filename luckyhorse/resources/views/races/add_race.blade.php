@@ -52,7 +52,7 @@
                         <br>
                         
                         Add Horse with Jockey<br>
-                        Number of Participants<input id="num_fields" type="number" class="form-control" name="num_fields" onchange="add_fields(); validate_input();"><br>
+                        Number of Participants<input id="num_fields" type="number" class="form-control" name="num_fields" value = "0" onchange="add_fields(); validate_input();"><br>
 
                         <div id="fields">
                             <!-- 
