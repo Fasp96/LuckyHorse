@@ -23,6 +23,7 @@ img {
                             date: {{$race->date}}<br>
                             description: {{$race->description}}<br>
                             local: {{$race->location}}<br>
+
                             @foreach($tournaments as $tournament)
 
                             <?php 
@@ -32,6 +33,36 @@ img {
                                 echo "no tournament to this race<br>";
                             }
                             ?>
+                            @endforeach
+                            
+                            @foreach($results as $result)
+                            <?php
+                                if($result->race_id == $race->id){
+                                    echo "best result: {$race->time}<br>"
+                            ?>
+
+                            @foreach($horses as $horse)
+                            <?php
+                                if($result->horse_id == $horse->id){
+                                    echo "by horse: {$horse->name}<br>";   
+                                }  
+                            ?>
+                            @endforeach
+                            foreach($jockeys as $jockey)
+                            <?php
+                                if($result->jockey_id == $jockey->id){
+                                    echo "by jockey: {$jockey->name}<br>";
+                                }
+                                
+           
+                            ?>
+                            
+                            <?php
+                                }else{
+                                    echo "no results";
+                                }
+                            ?>
+
                             @endforeach
                                            
                        
