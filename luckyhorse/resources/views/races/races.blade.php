@@ -13,9 +13,12 @@
 
                 <div class="card-body">
                         
-                            <p>data: {{$race->date}}</p> 
+                            <p>date: {{$race->date}}</p> 
                             <p>local: {{$race->local}}</p>
-                            <p>torneio: {{$race->tournament_id}}</p>                  
+                            <p>tournament: {{$race->tournament_id}}</p>  
+                            <!--     <p>tournament: {{$race->tournament_id}}</p>
+                           <p>horses: {{$horse_names}}</p>
+                            <p>jockeys: {{$jockey_names}}  </p>              -->                
                        
                 </div>
             </div>
