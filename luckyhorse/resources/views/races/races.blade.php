@@ -2,9 +2,9 @@
 
 @section('content')
 <style>
-img {
-  float: right;
-}
+    img {
+    float: right;
+    }
 </style>
 
 <h1 align="center">Races</h1>
