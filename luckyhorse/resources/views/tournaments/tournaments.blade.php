@@ -23,10 +23,10 @@
         <div class="col-md-8">
             <div class="card">
                 <!-- <div class="card-header">Tournaments</div> -->
-
+                <div class="card-header">{{$tournament->name}}</div>
                 <div class="card-body">
                     <img src="{{ $tournament->file_path}}" alt="tournament_img" style="width:40%;opacity:0.85;">
-                    name: {{$tournament->name}}<br>
+                    
                     date: {{$tournament->date}}<br>
                     description: {{$tournament->description}}<br>
                     location: {{$tournament->location}}<br><br>

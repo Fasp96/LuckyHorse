@@ -9,17 +9,21 @@
 
 <h1 align="center">Races</h1>
 
-@foreach($races as $race) 
+
+@foreach($races as $race)
+
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <!-- <div class="card-header">Races</div> -->
-
-                <div class="card-body">
+                   <div class="card-header"> {{$race->name}}</div>  
+             <!--   <button onclick="myFunction()">{{$race->name}}</button> -->
+                    <div id="body-card">
+                        <div class="card-body">
                             <img src="{{ $race->file_path}}" alt="race_img" style="width:40%;opacity:0.85;">
                             
-                            name: {{$race->name}}<br>
+                            
                             date: {{$race->date}}<br>
                             description: {{$race->description}}<br>
                             local: {{$race->location}}<br>
@@ -64,8 +68,8 @@
                             ?>
 
                             @endforeach
-                                           
-                       
+                            
+                    </div>
                 </div>
             </div>
         </div>
@@ -73,6 +77,8 @@
 </div>
 <br>
  @endforeach
+
+
 
 @endsection
 
