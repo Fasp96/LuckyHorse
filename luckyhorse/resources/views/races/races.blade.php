@@ -28,9 +28,9 @@
 
                             <?php 
                             if($race->tournament_id == $tournament->id){ 
-                                echo "tournament: {$tournament->name}<br>";  
+                                echo "tournament: {$tournament->name}<br><br>";  
                             }else{
-                                echo "no tournament to this race<br>";
+                                echo "no tournament to this race<br><br>";
                             }
                             ?>
                             @endforeach
@@ -71,6 +71,7 @@
         </div>
     </div>
 </div>
+<br>
  @endforeach
 
 @endsection
