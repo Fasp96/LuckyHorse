@@ -13,6 +13,6 @@ class RacesController extends Controller
     public function index(){
         $current_user = Auth::user();
              $races = Race::all();
-             return view('races',compact('races'));   
+             return view('races.races',compact('races'));   
     }
 }
