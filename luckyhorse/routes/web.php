@@ -10,9 +10,13 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+use App\Race;
+use App\Tournament;
 
 Route::get('/', function () {
-    return view('welcome');
+    $races = Race::where('date', '>', DB::raw('CURDATE()'))->orderByDesc('date')->get();
+    $tournaments = Tournament::where('date', '>', DB::raw('CURDATE()'))->orderByDesc('date')->get();
+    return view('welcome',compact('races','tournaments'));
 });
 
 /*
