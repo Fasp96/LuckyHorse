@@ -3,56 +3,74 @@
 @section('content')
 
 <style>
-    #Float_Table{
+    #float_tables{
         float:right;
         color: white;
+        width: 150px;
     }
-    #Float_Table [class="TB"]{
+    #float_tables [class="float_table"]{
         padding: 1px;
     }
-    #Float_Table [class="TB_Title"]{
+    #float_tables [class="tab_title"]{
         background-color: red;
         border: 1px solid black;
     }
-    #Float_Table [class="TB_Content"]{
+    #float_tables [class="tab_content"]{
         border: 1px solid black;
         max-height: 190px;
         overflow: auto;
     }
-    #Float_Table [class="Title"]{
+    #float_tables [class="title"]{
         background-color: #333;
     }
-    #Float_Table [class="Inf"]{
+    #float_tables [class="info"]{
         background-color: grey;
     }
+
+
+    #last_results_tables{
+        display: flex;
+        justify-content: space-evenly;
+        color: white;
+    }
+    #last_results_tables [class="result_table"]{
+        padding: 1px;
+    }
+    #last_results_tables [class="tab_title"]{
+        background-color: red;
+        border: 1px solid black;
+    }
+
 </style>
 
-<div id="Float_Table">
-    <div class="TB">
-        <div class="TB_Title">
+<div></div>
+
+<div id="float_tables">
+    <div class="float_table">
+        <div class="tab_title">
             Tournaments
         </div>
-        <div class="TB_Content">
+        <div class="tab_content">
         @foreach($tournaments as $tournament)
-            <div class="Title">
+            <div class="title">
                 date: {{$tournament->date}}<br>
             </div>
-            <div class="Inf">
+            <div class="info">
                 name: {{$tournament->name}}<br>
             </div>
         @endforeach
         </div>
     </div>
-    <div class="TB">
-        <div class="TB_Title">
+    <div class="float_table">
+        <div class="tab_title">
             Races
         </div>
-        <div class="TB_Content">
+        <div class="tab_content">
         @foreach($races as $race)
-            <div class="Title">
+            <div class="title">
                 {{$race->date}}<br>
             </div>
-            <div class="Inf">
+            <div class="info">
                 {{$race->name}}<br>
             </div>
         @endforeach
@@ -60,7 +78,31 @@
     </div>
 </div>
 
-
+<div id="last_results_tables">
+    @for ($i = 1; $i < 4; $i++)
+        <div class="result_table">
+            @foreach($last_races as $last_race)
+                <div>
+                    Race: {{$last_race->result->get()}}
+                </div>
+            @endforeach
+            @foreach(${'results_' . $i} as $result)
+                <div class="tab_title">
+                    race: {{$result->race_id}}
+                </div>
+                <div class="">
+                    horse id: {{$result->horse_id}}
+                </div>
+                <div class="">
+                    jockey id: {{$result->jockey_id}}
+                </div>
+                <div class="">
+                    time: {{$result->time}}
+                </div>
+            @endforeach
+        </div>
+    @endfor
+</div>
 
 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero, dolorem commodi! Quibusdam recusandae quidem atque aperiam eius quas laboriosam tenetur autem illo est. Sint itaque, quos quisquam rerum architecto omnis!</p>
 
