@@ -27,15 +27,6 @@ class WelcomeController extends Controller
         $count = 1;
         foreach($last_races as $race){
             $results = Result::where('race_id', $race->id)->get();
-            foreach($results as $result){
-                
-
-                //$horse_name = Horse::where('id', $result->horse_id)->select('name')->get();
-                //$jockey_name = Jockey::where('id', $result->jockey_id)->select('name')->get();
-                //$table_info = Arr::add($table_info,'horse_name',$horse_name,'jockey_name',$jockey_name,'time',$result->time);
-                //$table_info = $table_info->combine([$horse_name,$jockey_name,$result->time]);
-                //$table_info += $result->time;
-            }
             
             $table_info = Race::where('races.id','=',$race->id)
                     ->join('results','races.id','=','results.race_id')
@@ -45,14 +36,12 @@ class WelcomeController extends Controller
                         'races.date as date',
                         'horses.name as horse_name',
                         'jockeys.name as jockey_name',
-                        'results.time as time')->get();
-            
+                        'results.time as time')
+                    ->orderByDesc('time')->get();
 
             ${'results_'. $count} = $table_info;
-            //${'results_'. $count} = Result::where('race_id', $race->id)->get();
             $count += 1;
         }
-
 
         return view('welcome',compact('races','tournaments','last_races','results_1','results_2','results_3'));
     }

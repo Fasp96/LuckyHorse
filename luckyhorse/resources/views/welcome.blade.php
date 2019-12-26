@@ -16,15 +16,16 @@
         border: 1px solid black;
     }
     #float_tables [class="tab_content"]{
-        border: 1px solid black;
         max-height: 190px;
         overflow: auto;
     }
     #float_tables [class="title"]{
         background-color: #333;
+        border: 1px solid black;
     }
     #float_tables [class="info"]{
         background-color: grey;
+        border: 1px solid black;
     }
 
 
@@ -39,6 +40,27 @@
     #last_results_tables [class="tab_title"]{
         background-color: red;
         border: 1px solid black;
+    }
+    #last_results_tables [class="tab_tags"]{
+        background-color: #333;
+        border: 1px solid black;
+    }
+    #last_results_tables [class="tab_result"]{
+        background-color: grey;
+        border: 1px solid black;
+    }
+    caption {
+        caption-side: top;
+        color: white;
+        text-align: center;
+        padding: 0px;
+    }
+    table {
+        text-align: center;
+    }
+    .table_center_element{
+        border-left: 1px solid black;
+        border-right: 1px solid black;
     }
 
 </style>
@@ -80,22 +102,24 @@
 
 <div id="last_results_tables">
     @for ($i = 1; $i < 4; $i++)
-        <div class="result_table">
-            <div>
-                Race: {{$last_races[$i-1]->name}}
-            </div>
+        <table class="result_table">
+            <caption class="tab_title">
+                <div>{{$last_races[$i-1]->name}}</div>
+                <div>({{$last_races[$i-1]->date}})</div>
+            </caption>
+            <tr class="tab_tags">
+                <td>Horse</td>
+                <td class="table_center_element">Jockey</td>
+                <td>Time</td>
+            </tr>
             @foreach(${'results_' . $i} as $result)
-                <div class="">
-                    horse: {{$result->horse_name}}
-                </div>
-                <div class="">
-                    jockey: {{$result->jockey_name}}
-                </div>
-                <div class="">
-                    time: {{$result->time}}
-                </div>
+                <tr class="tab_result">
+                    <td>{{$result->horse_name}}</td>
+                    <td class="table_center_element">{{$result->jockey_name}}</td>
+                    <td>{{$result->time}}</td>
+                </tr>
             @endforeach
-        </div>
+        </table>
     @endfor
 </div>
 
