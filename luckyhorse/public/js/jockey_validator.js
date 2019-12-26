@@ -54,7 +54,6 @@ function validate_input(clicked=false){
     if(valid.reduce(and) && not_empty.reduce(and)){
         $("#add_jockey_btn").remove();
         $("#jockey_photo").after("<br><br><button type=\"submit\" class=\"btn btn-primary\">Add Jockey</button>");
-
     }
 }
 

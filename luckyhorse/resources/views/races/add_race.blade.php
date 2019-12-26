@@ -45,10 +45,10 @@
                             <select id="add_tournament" name="add_tournament" class="form-control">
                                 <option value="">
                                 @foreach($tournaments as $tournament)
-                                <option value="{{$tournament->id}}"> {{$tournament->name}} - {{$tournament->date}}                   
+                                    <option value="{{$tournament->id}}"> {{$tournament->name}} - {{$tournament->date}}                   
                                 @endforeach
                             </select>
-                        <?php } ?>
+                        <?php }?>
                         <br>
                         
                         Add Horse with Jockey<br>

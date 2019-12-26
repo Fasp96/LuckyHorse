@@ -12,7 +12,7 @@ function add_race_field(initial_date, finish_date){
         
         if(data == ""){
             
-            //clears everythong inside the div
+            //clears everything inside the div
             document.getElementById("race_fields").innerHTML = "";
 
             document.getElementById("race_fields").appendChild(document.createElement("br"));
