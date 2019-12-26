@@ -81,20 +81,15 @@
 <div id="last_results_tables">
     @for ($i = 1; $i < 4; $i++)
         <div class="result_table">
-            @foreach($last_races as $last_race)
-                <div>
-                    Race: {{$last_race->result->get()}}
-                </div>
-            @endforeach
+            <div>
+                Race: {{$last_races[$i-1]->name}}
+            </div>
             @foreach(${'results_' . $i} as $result)
-                <div class="tab_title">
-                    race: {{$result->race_id}}
+                <div class="">
+                    horse: {{$result->horse_name}}
                 </div>
                 <div class="">
-                    horse id: {{$result->horse_id}}
-                </div>
-                <div class="">
-                    jockey id: {{$result->jockey_id}}
+                    jockey: {{$result->jockey_name}}
                 </div>
                 <div class="">
                     time: {{$result->time}}
