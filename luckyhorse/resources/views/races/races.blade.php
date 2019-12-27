@@ -39,33 +39,33 @@
                             ?>
                             @endforeach
                             
+                            <h3>Horses in this race: </h3>
+                            
+                            <ul>  
+
                             @foreach($results as $result)
                             <?php
-                                if($result->race_id == $race->id){
-                                    echo "best result: {$race->time}<br>"
+                            if($result->race_id == $race->id){
+                                
+                                 //   echo "<li>{$race->time}</li>"
                             ?>
 
                             @foreach($horses as $horse)
                             <?php
                                 if($result->horse_id == $horse->id){
-                                    echo "by horse: {$horse->name}<br>";   
+                                    echo "<li> {$horse->name}</li>";   
                                 }  
                             ?>
                             @endforeach
-                            foreach($jockeys as $jockey)
-                            <?php
-                                if($result->jockey_id == $jockey->id){
-                                    echo "by jockey: {$jockey->name}<br>";
-                                }
-                                
-           
-                            ?>
+                            
+                            
                             
                             <?php
-                                }else{
-                                    echo "no results";
-                                }
+                            }else{
+                                echo "no results";
+                            }
                             ?>
+                            
 
                             @endforeach
                             
