@@ -11,7 +11,6 @@ use App\Horse;
 use App\Jockey;
 use Auth;
 use DB;
-use Arr;
 
 
 class WelcomeController extends Controller

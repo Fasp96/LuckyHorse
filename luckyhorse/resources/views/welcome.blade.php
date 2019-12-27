@@ -12,7 +12,7 @@
         padding: 1px;
     }
     #float_tables [class="tab_title"]{
-        background-color: red;
+        background-color: #fa8b1b;
         border: 1px solid black;
     }
     #float_tables [class="tab_content"]{
@@ -38,29 +38,35 @@
         padding: 1px;
     }
     #last_results_tables [class="tab_title"]{
-        background-color: red;
+        background-color: #fa8b1b;
         border: 1px solid black;
     }
     #last_results_tables [class="tab_tags"]{
         background-color: #333;
         border: 1px solid black;
+        font-weight: bold;
+        padding: 5px;
     }
     #last_results_tables [class="tab_result"]{
         background-color: grey;
         border: 1px solid black;
+    }
+    #last_results_tables [class="tab_position"]{
+        background-color: grey;
+        font-weight: bold;
     }
     caption {
         caption-side: top;
         color: white;
         text-align: center;
         padding: 0px;
+        font-weight: bold;
     }
     table {
         text-align: center;
     }
-    .table_center_element{
-        border-left: 1px solid black;
-        border-right: 1px solid black;
+    td{
+        padding: 3px;
     }
 
 </style>
@@ -108,15 +114,19 @@
                 <div>({{$last_races[$i-1]->date}})</div>
             </caption>
             <tr class="tab_tags">
+                <td></td>
                 <td>Horse</td>
                 <td class="table_center_element">Jockey</td>
                 <td>Time</td>
             </tr>
+            <?php $count = 1 ?>
             @foreach(${'results_' . $i} as $result)
                 <tr class="tab_result">
+                    <td class="tab_position">{{$count}}</td>
                     <td>{{$result->horse_name}}</td>
-                    <td class="table_center_element">{{$result->jockey_name}}</td>
+                    <td>{{$result->jockey_name}}</td>
                     <td>{{$result->time}}</td>
+                    <?php $count++ ?>
                 </tr>
             @endforeach
         </table>
