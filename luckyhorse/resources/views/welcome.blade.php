@@ -133,6 +133,17 @@
     @endfor
 </div>
 
+<br><br>
+<h1>News</h1>
+<div class="News">
+    <div class="news_image">
+        <div class="news_title">
+            
+        </div>
+    </div>
+</div>
+
+
 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero, dolorem commodi! Quibusdam recusandae quidem atque aperiam eius quas laboriosam tenetur autem illo est. Sint itaque, quos quisquam rerum architecto omnis!</p>
 
 @endsection
