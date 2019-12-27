@@ -3,6 +3,7 @@
 @section('content')
 
 <style>
+    /*Float Tables*/
     #float_tables{
         float:right;
         color: white;
@@ -28,7 +29,7 @@
         border: 1px solid black;
     }
 
-
+    /*Results Tables*/
     #last_results_tables{
         display: flex;
         justify-content: space-evenly;
@@ -69,7 +70,7 @@
         padding: 3px;
     }
 
-
+    /*News*/
     .news_image{
         background-position: center;
         background-size: cover;
@@ -85,12 +86,20 @@
 
 
     .block{
-        display: block ;
+        display: block !important;
+        padding-top: 70%;
+        margin: 0;
         position: relative;
         width: 100%;
+        box-sizing: border-box;
     }
     .entry_card_image{
-
+        display: block;
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        top: 0;
+        left: 0;
     }
     .entry_card_text{
         width: 100%;
@@ -98,9 +107,6 @@
         position: absolute;
         left: 0;
         bottom: 0;
-        display: inline-block;
-        overflow-wrap: break-word;
-        word-wrap: break-word;
     }
 
 
@@ -119,6 +125,28 @@
     }
     .css_image > img{
         height: 220px;
+    }
+
+    .overview {
+        display: flex;
+        justify-content: space-around;
+        height: auto;
+    }
+
+    .overview_content {
+        margin: 10px;
+        margin-right: 170px;
+        position: relative;
+        height: 300px;
+    }
+
+    .overview_content div {
+        position: absolute;
+        bottom: 0px;
+        background-color: rgba(0, 0, 0, 0.432);
+        color: white;
+        font-size: 1.8em;
+        width: 100%;
     }
 
 </style>
@@ -195,6 +223,7 @@
     </div>
     @endforeach
     -->
+    <!--
     @foreach($news as $new)
         <div class="block">
             <a class="entry_card_image" href="">
@@ -206,6 +235,7 @@
             
         </div>
     @endforeach
+    -->
     <!--
     @foreach($news as $new)
         <div class="css_image">
@@ -216,6 +246,11 @@
         </div>
     @endforeach
     -->
+    <div class="overview_content">
+        <img src="https://apollo-ireland.akamaized.net/v1/files/eyJmbiI6Ijk4aWtrNHFveW8xeDItU1REVlRMUFQiLCJ3IjpbeyJmbiI6IjZtZ2p3bHA3a2dkYjItU1REVlRMUFQiLCJzIjoiMTYiLCJwIjoiMTAsLTEwIiwiYSI6IjAifV19.qTQKIYNUtF6UjYisKBLIS1XdIvZxfdJUETYfn3dTwlY/image;s=1080x720;cars_;/112410906_;slot=1;filename=eyJmbiI6Ijk4aWtrNHFveW8xeDItU1REVlRMUFQiLCJ3IjpbeyJmbiI6IjZtZ2p3bHA3a2dkYjItU1REVlRMUFQiLCJzIjoiMTYiLCJwIjoiMTAsLTEwIiwiYSI6IjAifV19.qTQKIYNUtF6UjYisKBLIS1XdIvZxfdJUETYfn3dTwlY_rev001.jpg"
+            alt="" width="100%" height="100%">
+        <div>Mother of God: The Next Honda Civic Type R Looks Absolutely Insane</div>
+    </div>
 </div>
 
 
