@@ -11,9 +11,17 @@
 |
 */
 
+/*
+use App\Race;
+use App\Tournament;
+
 Route::get('/', function () {
-    return view('welcome');
+    $races = Race::where('date', '>', DB::raw('CURDATE()'))->orderByDesc('date')->get();
+    $last_races = Race::orderByDesc('date')->take(3)->get();
+    $tournaments = Tournament::where('date', '>', DB::raw('CURDATE()'))->orderByDesc('date')->get();
+    return view('welcome',compact('races','last_races','tournaments'));
 });
+*/
 
 /*
 // Authentication Routes...
@@ -32,6 +40,8 @@ $this->get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm
 $this->post('password/reset', 'Auth\ResetPasswordController@reset');
 */
 Auth::routes();
+
+Route::get('/', 'WelcomeController@index');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
