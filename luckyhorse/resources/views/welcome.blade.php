@@ -9,7 +9,7 @@
         width: 150px;
     }
     #float_tables [class="float_table"]{
-        padding: 1px;
+        margin: 10px;
     }
     #float_tables [class="tab_title"]{
         background-color: #fa8b1b;
@@ -69,10 +69,87 @@
         padding: 3px;
     }
 
+
+    .news_image{
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        height: 250px;
+        margin: 30px;
+        margin-right: 150px;
+    }
+    .news_title{
+        position: absolute;
+        bottom: 0;
+    }
+
+
+    .block{
+        display: block ;
+        position: relative;
+        width: 100%;
+    }
+    .entry_card_image{
+
+    }
+    .entry_card_text{
+        width: 100%;
+        padding: 0.75em;
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        display: inline-block;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+    }
+
+
+    .css_image{
+        position: relative;
+        box-sizing: border-box;
+        width: max-content;
+        margin-left: 20%;
+    }
+    .css_text{
+        position: absolute; 
+        bottom: 10%; 
+        left: 0; 
+        width: 100%;
+        word-wrap: break-word;
+    }
+    .css_image > img{
+        height: 220px;
+    }
+
 </style>
 
-<div></div>
-
+<div id="last_results_tables">
+    @foreach($table_infos as $table_info)
+        <table class="result_table">
+            <caption class="tab_title">
+                <div>{{$table_info[0]->race_name}}</div>
+                <div>({{$table_info[0]->date}})</div>
+            </caption>
+            <tr class="tab_tags">
+                <td></td>
+                <td>Horse</td>
+                <td class="table_center_element">Jockey</td>
+                <td>Time</td>
+            </tr>
+            <?php $count = 1 ?>
+            @foreach($table_info as $result)
+                <tr class="tab_result">
+                    <td class="tab_position">{{$count}}</td>
+                    <td>{{$result->horse_name}}</td>
+                    <td>{{$result->jockey_name}}</td>
+                    <td>{{$result->time}}</td>
+                    <?php $count++ ?>
+                </tr>
+            @endforeach
+        </table>
+    @endforeach
+</div>
+<hr>
 <div id="float_tables">
     <div class="float_table">
         <div class="tab_title">
@@ -105,42 +182,40 @@
         </div>
     </div>
 </div>
-
-<div id="last_results_tables">
-    @for ($i = 1; $i < 4; $i++)
-        <table class="result_table">
-            <caption class="tab_title">
-                <div>{{$last_races[$i-1]->name}}</div>
-                <div>({{$last_races[$i-1]->date}})</div>
-            </caption>
-            <tr class="tab_tags">
-                <td></td>
-                <td>Horse</td>
-                <td class="table_center_element">Jockey</td>
-                <td>Time</td>
-            </tr>
-            <?php $count = 1 ?>
-            @foreach(${'results_' . $i} as $result)
-                <tr class="tab_result">
-                    <td class="tab_position">{{$count}}</td>
-                    <td>{{$result->horse_name}}</td>
-                    <td>{{$result->jockey_name}}</td>
-                    <td>{{$result->time}}</td>
-                    <?php $count++ ?>
-                </tr>
-            @endforeach
-        </table>
-    @endfor
-</div>
-
-<br><br>
-<h1>News</h1>
 <div class="News">
-    <div class="news_image">
+    <!--
+    @foreach($news as $new)
+    <div>
+        <div class="news_image" style='background-image: url("{{$new->file_path}}");'>
+
+        </div>
         <div class="news_title">
-            
+            {{$new->titulo}}
         </div>
     </div>
+    @endforeach
+    -->
+    @foreach($news as $new)
+        <div class="block">
+            <a class="entry_card_image" href="">
+                <img src="{{$new->file_path}}" alt="">
+            </a>
+            <div class="entry_card_text">
+                {{$new->titulo}}
+            </div>
+            
+        </div>
+    @endforeach
+    <!--
+    @foreach($news as $new)
+        <div class="css_image">
+            <img src="{{$new->file_path}}" alt="">
+            <div class="css_text">
+                    {{$new->titulo}}
+            </div>
+        </div>
+    @endforeach
+    -->
 </div>
 
 
