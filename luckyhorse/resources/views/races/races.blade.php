@@ -64,7 +64,7 @@
                             
                             <?php
                             }else{
-                                echo "no results";
+                                
                             }
                             ?>
                             
@@ -86,9 +86,10 @@
                             ?>
 
                             @foreach($jockeys as $jockey)
+                            
                             <?php
                                 if($result->jockey_id == $jockey->id){
-                                    echo "<li> {$jockey->name}</li>";   
+                                    echo "<li> {$jockey->name} </li>";   
                                 }  
                             ?>
                             @endforeach
@@ -97,7 +98,7 @@
                             
                             <?php
                             }else{
-                                echo "no results";
+                               // echo "no results";
                             }
                             ?>
                             
