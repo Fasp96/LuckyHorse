@@ -7,7 +7,7 @@
     #float_tables{
         float:right;
         color: white;
-        width: 150px;
+        width: 30%;
     }
     #float_tables [class="float_table"]{
         margin: 10px;
@@ -15,6 +15,8 @@
     #float_tables [class="tab_title"]{
         background-color: #fa8b1b;
         border: 1px solid black;
+        padding-left: 5px;
+        padding-right: 2px;
     }
     #float_tables [class="tab_content"]{
         max-height: 190px;
@@ -23,13 +25,19 @@
     #float_tables [class="title"]{
         background-color: #333;
         border: 1px solid black;
+        padding-left: 5px;
+        padding-right: 2px;
     }
     #float_tables [class="info"]{
         background-color: grey;
         border: 1px solid black;
+        padding-left: 5px;
+        padding-right: 2px;
+        /*text-align: justify;
+        hyphens: auto;*/
     }
 
-    /*Results Tables*/
+    /*Last Results Tables*/
     #last_results_tables{
         display: flex;
         justify-content: space-evenly;
@@ -71,76 +79,17 @@
     }
 
     /*News*/
-    .news_image{
-        background-position: center;
-        background-size: cover;
-        background-repeat: no-repeat;
-        height: 250px;
-        margin: 30px;
-        margin-right: 150px;
-    }
-    .news_title{
-        position: absolute;
-        bottom: 0;
-    }
-
-
-    .block{
-        display: block !important;
-        padding-top: 70%;
-        margin: 0;
-        position: relative;
-        width: 100%;
-        box-sizing: border-box;
-    }
-    .entry_card_image{
-        display: block;
-        position: absolute;
-        height: 100%;
-        width: 100%;
-        top: 0;
-        left: 0;
-    }
-    .entry_card_text{
-        width: 100%;
-        padding: 0.75em;
-        position: absolute;
-        left: 0;
-        bottom: 0;
-    }
-
-
-    .css_image{
-        position: relative;
-        box-sizing: border-box;
-        width: max-content;
-        margin-left: 20%;
-    }
-    .css_text{
-        position: absolute; 
-        bottom: 10%; 
-        left: 0; 
-        width: 100%;
-        word-wrap: break-word;
-    }
-    .css_image > img{
-        height: 220px;
-    }
-
-    .overview {
-        display: flex;
-        justify-content: space-around;
-        height: auto;
-    }
-
-    .overview_content {
+    .news_img {
         margin: 10px;
-        margin-right: 170px;
+        margin-right: 32%;
         position: relative;
         height: 300px;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
     }
 
-    .overview_content div {
+    .news_img div {
         position: absolute;
         bottom: 0px;
         background-color: rgba(0, 0, 0, 0.432);
@@ -179,6 +128,7 @@
 </div>
 <hr>
 <div id="float_tables">
+    <!--Future Tournaments Table-->
     <div class="float_table">
         <div class="tab_title">
             Tournaments
@@ -186,14 +136,15 @@
         <div class="tab_content">
         @foreach($tournaments as $tournament)
             <div class="title">
-                date: {{$tournament->date}}<br>
+                {{$tournament->date}}<br>
             </div>
             <div class="info">
-                name: {{$tournament->name}}<br>
+                {{$tournament->name}} - {{$tournament->date}} - {{$tournament->location}}<br>
             </div>
         @endforeach
         </div>
     </div>
+    <!--Future Races Table-->
     <div class="float_table">
         <div class="tab_title">
             Races
@@ -209,51 +160,31 @@
         @endforeach
         </div>
     </div>
+    <!--Last Minutes News Table-->
+    <div class="float_table">
+        <div class="tab_title">
+            Last Minute News
+        </div>
+        <div class="tab_content">
+        @foreach($news as $new)
+            <div class="title">
+                {{$new->created_at->format('Y-m-d')}}<br>
+            </div>
+            <div class="info">
+                {{$new->minute_info}}<br>
+            </div>
+        @endforeach
+        </div>
+    </div>
 </div>
 <div class="News">
-    <!--
     @foreach($news as $new)
-    <div>
-        <div class="news_image" style='background-image: url("{{$new->file_path}}");'>
-
-        </div>
-        <div class="news_title">
-            {{$new->titulo}}
-        </div>
-    </div>
-    @endforeach
-    -->
-    <!--
-    @foreach($news as $new)
-        <div class="block">
-            <a class="entry_card_image" href="">
-                <img src="{{$new->file_path}}" alt="">
-            </a>
-            <div class="entry_card_text">
-                {{$new->titulo}}
-            </div>
-            
+        <div class="news_img" style='background-image: url("{{$new->file_path}}");'>
+            <!--<img src="https://apollo-ireland.akamaized.net/v1/files/eyJmbiI6Ijk4aWtrNHFveW8xeDItU1REVlRMUFQiLCJ3IjpbeyJmbiI6IjZtZ2p3bHA3a2dkYjItU1REVlRMUFQiLCJzIjoiMTYiLCJwIjoiMTAsLTEwIiwiYSI6IjAifV19.qTQKIYNUtF6UjYisKBLIS1XdIvZxfdJUETYfn3dTwlY/image;s=1080x720;cars_;/112410906_;slot=1;filename=eyJmbiI6Ijk4aWtrNHFveW8xeDItU1REVlRMUFQiLCJ3IjpbeyJmbiI6IjZtZ2p3bHA3a2dkYjItU1REVlRMUFQiLCJzIjoiMTYiLCJwIjoiMTAsLTEwIiwiYSI6IjAifV19.qTQKIYNUtF6UjYisKBLIS1XdIvZxfdJUETYfn3dTwlY_rev001.jpg"
+                alt="" width="100%" height="100%">-->
+            <div>{{$new->titulo}}</div>
         </div>
     @endforeach
-    -->
-    <!--
-    @foreach($news as $new)
-        <div class="css_image">
-            <img src="{{$new->file_path}}" alt="">
-            <div class="css_text">
-                    {{$new->titulo}}
-            </div>
-        </div>
-    @endforeach
-    -->
-    <div class="overview_content">
-        <img src="https://apollo-ireland.akamaized.net/v1/files/eyJmbiI6Ijk4aWtrNHFveW8xeDItU1REVlRMUFQiLCJ3IjpbeyJmbiI6IjZtZ2p3bHA3a2dkYjItU1REVlRMUFQiLCJzIjoiMTYiLCJwIjoiMTAsLTEwIiwiYSI6IjAifV19.qTQKIYNUtF6UjYisKBLIS1XdIvZxfdJUETYfn3dTwlY/image;s=1080x720;cars_;/112410906_;slot=1;filename=eyJmbiI6Ijk4aWtrNHFveW8xeDItU1REVlRMUFQiLCJ3IjpbeyJmbiI6IjZtZ2p3bHA3a2dkYjItU1REVlRMUFQiLCJzIjoiMTYiLCJwIjoiMTAsLTEwIiwiYSI6IjAifV19.qTQKIYNUtF6UjYisKBLIS1XdIvZxfdJUETYfn3dTwlY_rev001.jpg"
-            alt="" width="100%" height="100%">
-        <div>Mother of God: The Next Honda Civic Type R Looks Absolutely Insane</div>
-    </div>
 </div>
-
-
-<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero, dolorem commodi! Quibusdam recusandae quidem atque aperiam eius quas laboriosam tenetur autem illo est. Sint itaque, quos quisquam rerum architecto omnis!</p>
 
 @endsection
