@@ -5,6 +5,19 @@
     img {
     float: right;
     }
+
+    table, td {
+        border: 2px solid black;
+        border-collapse: collapse;
+        background-color: #FFE4C4;
+}
+
+    th{
+        color: white;
+        border: 2px solid black;
+        border-collapse: collapse;
+        background-color: grey;
+    }
 </style>
 
 <h1 align="center">Races</h1>
@@ -109,28 +122,88 @@
                             @endforeach
 
                             </ul>
+
+                            <!-- -------------------  devolve os resultados de cada corrida -------------------------- -->
+                            
+
+                            <h3>Results in this race: </h3>
+                             
+
+                            <table style="width:60%">
+                                <tr>
+                                    <th>Horse</th>
+                                    <th>Jockey</th> 
+                                    <th>Time</th>
+                                </tr>
+                                
+                                    
+                                
+                                
+                            
+                            @foreach($results as $result)
+                            <?php
+                            if($result->race_id == $race->id){
+                            
+                            if(($result->time) == null){
+                                echo " don't have results yet ";
+                                echo "<br>";
+                            }
+                                
+                            if(($result->time) != null){     //   echo "<li>{$race->time}</li>"
+                            ?>
+
+                               
+                            @foreach($horses as $horse)
+                            
+                                <?php
+                                    if($result->horse_id == $horse->id){
+                                        echo "  <tr><td>{$horse->name}</td>";   
+                                    }  
+                                ?>
+                            @endforeach 
+
+                            @foreach($jockeys as $jockey)
+                            
+                            <?php
+                                if($result->jockey_id == $jockey->id){
+                                    echo "<td>{$jockey->name}</td> ";
+                                
+                                    
+                                    
+                                }  
+                            ?>
+                            @endforeach
+                            
+
+                                            
+                            <?php
+                            
+                                    echo "<td>{$result->time}</td> ";
+                                    echo "</tr>";
+                                    }
+
+                            
+                            }else{
+                               // echo "no results";
+                            }
+                            
+                            ?>
+                            @endforeach
+
+                            </table>
                             
                             <!-- --------------------- devolve o vencedor de cada corrida ------------------------ -->
-                            
-                            {{$winners}}
+                     <!--       <br>
+                            {{$winners}} -->
 
                             <h3>Winner in this race: </h3>
                             
                             @foreach($winners as $winner)
                                 @if($winner[0]->race_id==$race->id)
-                                    {{$winner[0]->name}}
+                                <h4 align="center">    {{$winner[0]->name}} </h4>
                                 @endif
                             @endforeach
 
-                            
-                            <?php
-
-                            
-                           //foreach($winners as $winner){
-                                //if($race->id == $winner->race_id ){
-                                  // echo " {$winner->name} ";   
-                                 
-                            ?>
 
 
                             <?php
@@ -140,15 +213,7 @@
                       //    }
                             
                             ?>
-                            
-
-                           
-                            
-
-                         
-                            
-                            
-                            
+    
 
                     </div>
                 </div>
