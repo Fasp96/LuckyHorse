@@ -129,10 +129,7 @@
                             </ul>
 
                             <!-- -------------------  devolve os resultados de cada corrida -------------------------- -->
-                            
-
                             <h3>Results in this race: </h3>
-                             
 
                             <table style="width:60%">
                                 <tr>
@@ -140,17 +137,13 @@
                                     <th>Jockey</th> 
                                     <th>Time</th>
                                 </tr>
-                                
-                                    
-                                
-                                
-                            
+
                             @foreach($results as $result)
                             <?php
                             if($result->race_id == $race->id){
                             
                             if(($result->time) == null){
-                                echo " don't have results yet ";
+                                echo "<tr><td colspan='3'> This race don't have results yet </td></tr>";
                                 echo "<br>";
                             }
                                 
@@ -201,11 +194,11 @@
                           <br>
                        <!--       {{$winners}} -->
 
-                            <h3>Winner in this race: </h3>
                             
                             @foreach($winners as $winner)
                                 @if($winner[0]->race_id==$race->id)
                                     @if($winner[0]->time != null)
+                                        <h3>Winner in this race: </h3>
                                         <h4 align="center">    {{$winner[0]->name}} with a best time: {{$winner[0]->time}}</h4>
                                     @endif
                                 @endif
