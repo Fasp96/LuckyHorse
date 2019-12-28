@@ -112,12 +112,17 @@
                             
                             <!-- --------------------- devolve o vencedor de cada corrida ------------------------ -->
                             
-
+                            {{$winners}}
 
                             <h3>Winner in this race: </h3>
                             
-                            
+                            @foreach($winners as $winner)
+                                @if($winner[0]->race_id==$race->id)
+                                    {{$winner[0]->name}}
+                                @endif
+                            @endforeach
 
+                            
                             <?php
 
                             
