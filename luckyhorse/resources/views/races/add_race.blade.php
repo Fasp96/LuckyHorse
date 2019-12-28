@@ -5,6 +5,13 @@
 <script src="{{asset('js/race_validator.js')}}" defer></script>
 <script src="{{asset('js/race_add_jockey_horse.js')}}" defer></script>
 <script src="{{asset('js/race_add_tournament.js')}}" defer></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAmwtm8ckX1GoVVRHlXggCJMuw_80xiJgA&libraries=geometry,places"></script>
+<script> function initialize() {
+    var input = document.getElementById('location');
+    new google.maps.places.Autocomplete(input);
+  }
+  google.maps.event.addDomListener(window, 'load', initialize); 
+</script>
 
 <div class="container">
     <div class="row justify-content-center">

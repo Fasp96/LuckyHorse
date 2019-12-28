@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Tournament;
@@ -48,6 +47,14 @@ class AddTournamentsController extends Controller
             rename($file_path, $new_file_path);
             $tournament->file_path = $new_file_path;
             $tournament->save();
+
+            if(isset($request->races)){
+
+                for($i = 0; $i < sizeof($request->races); $i++){
+                    $race = Race::where('id', '=', $request->races[$i]);
+                    $race->update(['tournament_id' => $id]);
+                }
+            }
 
             return redirect('/add_tournaments');
         }else{
