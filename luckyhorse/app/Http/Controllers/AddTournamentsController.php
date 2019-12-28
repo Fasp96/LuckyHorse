@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Tournament;
@@ -52,8 +51,8 @@ class AddTournamentsController extends Controller
             if(isset($request->races)){
 
                 for($i = 0; $i < sizeof($request->races); $i++){
-                    Race::where('id', '=', $request->races[$i])
-                    ->save(['tournament_id' => $id]);
+                    $race = Race::where('id', '=', $request->races[$i]);
+                    $race->update(['tournament_id' => $id]);
                 }
             }
 
