@@ -8,6 +8,7 @@ use App\Race;
 use App\Horse;
 use App\Tournament;
 use App\Jockey;
+use App\Result;
 use Auth;
 
 class AddRacesController extends Controller
@@ -30,7 +31,6 @@ class AddRacesController extends Controller
     public function add(Request $request){
         $user = Auth::user();
         if($user){
-
             $race = new Race;
             $race->name = $request->name;
             $race->date = $request->date;
@@ -54,6 +54,14 @@ class AddRacesController extends Controller
             rename($file_path, $new_file_path);
             $race->file_path = $new_file_path;
             $race->save();
+
+            for($i = 1; $i <= $request->num_fields; $i++){
+                $result = new Result;
+                $result->race_id = $race->id;
+                $result->horse_id = $request->horse_ . $i;
+                $result->jockey_id = $request->jockey_ . $i;
+                $result->save();
+            }
 
             return redirect('/add_races');
         }else{
