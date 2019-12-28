@@ -3,6 +3,21 @@
 @section('content')
 
 <style>
+    h1{
+        padding-left: 2px;
+        margin-top: 25px;
+        margin-left: 10px;
+        margin-right: 32%;
+        background-color: #333;
+        border: 1px solid grey;
+        color: white;
+    }
+    #news_tables{
+        display: flex;
+        justify-content: space-evenly;
+        color: white;
+    }
+
     /*Float Tables*/
     #float_tables{
         float:right;
@@ -127,6 +142,7 @@
     @endforeach
 </div>
 <hr>
+
 <div id="float_tables">
     <!--Future Tournaments Table-->
     <div class="float_table">
@@ -177,6 +193,7 @@
         </div>
     </div>
 </div>
+    <h1>Last News</h1>
 <div class="News">
     @foreach($news as $new)
         <div class="news_img" style='background-image: url("{{$new->file_path}}");'>

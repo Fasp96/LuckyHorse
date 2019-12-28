@@ -28,21 +28,21 @@ class WelcomeController extends Controller
         $table_infos = collect();
         foreach($last_races as $race){
             $table_info = Race::where('races.id','=',$race->id)
-                    ->join('results','races.id','=','results.race_id')
-                    ->join('horses','results.horse_id','=','horses.id')
-                    ->join('jockeys','results.jockey_id','=','jockeys.id')
-                    ->select('races.name as race_name',
-                        'races.date as date',
-                        'horses.name as horse_name',
-                        'jockeys.name as jockey_name',
-                        'results.time as time')
-                    ->orderByDesc('time')->get();
+                ->join('results','races.id','=','results.race_id')
+                ->join('horses','results.horse_id','=','horses.id')
+                ->join('jockeys','results.jockey_id','=','jockeys.id')
+                ->select('races.name as race_name',
+                    'races.date as date',
+                    'horses.name as horse_name',
+                    'jockeys.name as jockey_name',
+                    'results.time as time')
+                ->orderByDesc('time')->get();
 
             $table_infos->push($table_info);
         }
 
         //News
-        $news = News::orderByDesc('created_at')->take(5)->get();
+        $news = News::orderByDesc('created_at')->take(10)->get();
 
         return view('welcome',compact('races','tournaments','last_races','table_infos','news'));
     }

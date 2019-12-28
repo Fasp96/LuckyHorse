@@ -33,7 +33,7 @@
                     <div id="nav_bar">
                         @if (Route::has('login'))
                             <ul class="">
-                                <li><a href="#news">News</a></li>
+                                <li><a href="{{ url('/news') }}">News</a></li>
                                 <li><a href="{{ url('/tournaments') }}">Tournaments</a></li>
                                 <li><a href="{{ url('/races') }}">Races</a></li>
                                 <li><a href="{{ url('/horses') }}">Horses</a></li>
