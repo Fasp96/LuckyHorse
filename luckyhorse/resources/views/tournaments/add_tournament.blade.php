@@ -4,6 +4,13 @@
 
 <script src="{{asset('js/tournament_validator.js')}}" defer></script>
 <script src="{{asset('js/tournament_add_race.js')}}" defer></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAmwtm8ckX1GoVVRHlXggCJMuw_80xiJgA&libraries=geometry,places"></script>
+<script> function initialize() {
+    var input = document.getElementById('location');
+    new google.maps.places.Autocomplete(input);
+  }
+  google.maps.event.addDomListener(window, 'load', initialize); 
+</script>
 
 <div class="container">
     <div class="row justify-content-center">
@@ -49,7 +56,7 @@
                         <textarea id="description" class="form-control" name="description" rows="5" cols="80" onchange="validate_input()"></textarea><br>
                         Location
                         <input id="location" type="text" class="form-control" name="location" onchange="validate_input()"><br>
-
+                        
                         Tournament Photo <br><br>
                         <input id="tournament_photo" type="file" name="tournament_photo" accept="image/*" onchange="validate_input()"><br>
                         <br>
