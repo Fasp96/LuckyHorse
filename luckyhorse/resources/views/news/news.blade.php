@@ -3,30 +3,44 @@
 @section('content')
 
 <style>
-  img{
-      float: right;
+  .card-body > img{
+    display: block;
+    margin: 0 auto;
+  }
+  .news-description{
+    hyphens: auto;
+    overflow-wrap: break-word;
+    text-align: justify;
+  }
+  .news-date{
+    text-align: right;
+    font-size: 0.7rem;
   }
 </style>
 
-<h1 align="center">News</h1>
-    @foreach($news as $new)
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-md-8">
-                    <div class="card">
-                        <div class="card-header"> {{$new->titulo}}</div> 
-                        <div class="card-body">
-                            <img src="{{$new->file_path}}" alt="news_img" style="width:50%;opacity:0.85;">
-                            
+@foreach($news as $new)
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">{{$new->titulo}}</div> 
+                    <div class="card-body">
+                        <img src="{{$new->file_path}}" alt="news_img" style="width:50%;opacity:0.85;">
+                        <br>
+                        <div class="news-description">
+                            {{$new->description}}
+                        </div>
+                        <br><br>
+                        <div class="news-date">
+                            Posted at {{$new->created_at->format('d-m-Y')}}
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    @endforeach
+    </div>
+    <br>
+@endforeach
 <br>
-    
-
-<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Provident, ipsam corrupti expedita quasi recusandae neque dolor consequuntur corporis nisi ullam iure maiores, dolore mollitia soluta impedit numquam odit libero. Ratione?</p>
 
 @endsection
