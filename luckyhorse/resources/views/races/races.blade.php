@@ -18,6 +18,11 @@
         border-collapse: collapse;
         background-color: grey;
     }
+
+    h4{
+        color: green;
+        font-weight:bold;
+    }
 </style>
 
 <h1 align="center">Races</h1>
@@ -124,10 +129,7 @@
                             </ul>
 
                             <!-- -------------------  devolve os resultados de cada corrida -------------------------- -->
-                            
-
                             <h3>Results in this race: </h3>
-                             
 
                             <table style="width:60%">
                                 <tr>
@@ -135,17 +137,13 @@
                                     <th>Jockey</th> 
                                     <th>Time</th>
                                 </tr>
-                                
-                                    
-                                
-                                
-                            
+
                             @foreach($results as $result)
                             <?php
                             if($result->race_id == $race->id){
                             
                             if(($result->time) == null){
-                                echo " don't have results yet ";
+                                echo "<tr><td colspan='3'> This race don't have results yet </td></tr>";
                                 echo "<br>";
                             }
                                 
@@ -193,14 +191,16 @@
                             </table>
                             
                             <!-- --------------------- devolve o vencedor de cada corrida ------------------------ -->
-                     <!--       <br>
-                            {{$winners}} -->
+                          <br>
+                       <!--       {{$winners}} -->
 
-                            <h3>Winner in this race: </h3>
                             
                             @foreach($winners as $winner)
                                 @if($winner[0]->race_id==$race->id)
-                                <h4 align="center">    {{$winner[0]->name}} </h4>
+                                    @if($winner[0]->time != null)
+                                        <h3>Winner in this race: </h3>
+                                        <h4 align="center">    {{$winner[0]->name}} with a best time: {{$winner[0]->time}}</h4>
+                                    @endif
                                 @endif
                             @endforeach
 
