@@ -33,7 +33,7 @@ class AddTournamentsController extends Controller
             
             $photo = $request->file('tournament_photo');
             $fileName = $request->name . '-' .$photo->getClientOriginalName();
-            $path = 'img/tournament_photo/';
+            $path = '/img/tournament_photo/';
             $file = $photo->move($path, $fileName);
 
             $file_path = $path . $fileName;
