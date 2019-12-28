@@ -9,6 +9,7 @@ use App\Tournament;
 use App\Result;
 use App\Horse;
 use App\Jockey;
+use App\News;
 use Auth;
 use DB;
 
@@ -17,16 +18,15 @@ class WelcomeController extends Controller
 {
     public function index(){
         $current_user = Auth::user();
+
         //Float Tables
         $races = Race::where('date', '>', DB::raw('CURDATE()'))->orderByDesc('date')->get();
         $tournaments = Tournament::where('date', '>', DB::raw('CURDATE()'))->orderByDesc('date')->get();
 
         //Last Result Tables
         $last_races = Race::where('date', '<', DB::raw('CURDATE()'))->orderByDesc('date')->take(3)->get();
-        $count = 1;
+        $table_infos = collect();
         foreach($last_races as $race){
-            $results = Result::where('race_id', $race->id)->get();
-            
             $table_info = Race::where('races.id','=',$race->id)
                     ->join('results','races.id','=','results.race_id')
                     ->join('horses','results.horse_id','=','horses.id')
@@ -38,11 +38,13 @@ class WelcomeController extends Controller
                         'results.time as time')
                     ->orderByDesc('time')->get();
 
-            ${'results_'. $count} = $table_info;
-            $count += 1;
+            $table_infos->push($table_info);
         }
 
-        return view('welcome',compact('races','tournaments','last_races','results_1','results_2','results_3'));
+        //News
+        $news = News::orderByDesc('created_at')->take(5)->get();
+
+        return view('welcome',compact('races','tournaments','last_races','table_infos','news'));
     }
     
 }
