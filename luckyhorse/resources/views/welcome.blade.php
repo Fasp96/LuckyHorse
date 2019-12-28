@@ -26,12 +26,14 @@
     }
     #float_tables [class="float_table"]{
         margin: 10px;
+        border-bottom: 1px solid black;
     }
     #float_tables [class="tab_title"]{
         background-color: #fa8b1b;
         border: 1px solid black;
         padding-left: 5px;
         padding-right: 2px;
+        font-weight: bold;
     }
     #float_tables [class="tab_content"]{
         max-height: 190px;
