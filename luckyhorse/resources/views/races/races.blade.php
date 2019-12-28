@@ -40,7 +40,7 @@
                             @endforeach
                             
 
-                            <!--   -----------------------------    -->
+                            <!--   -------------devolve os cavalos de cada corrida----------------    -->
                             <h3>Horses in this race: </h3>
                             
                             <ul>  
@@ -53,6 +53,7 @@
                             ?>
 
                             @foreach($horses as $horse)
+                            
                             <?php
                                 if($result->horse_id == $horse->id){
                                     echo "<li> {$horse->name}</li>";   
@@ -71,7 +72,7 @@
 
                             @endforeach
                             
-                            <!-- --------------------------------------------- -->
+                            <!-- -------------------  devolve os jockeys de cada corrida -------------------------- -->
                             </ul>
 
                             <h3>Jockeys in this race: </h3>
@@ -106,6 +107,40 @@
                             @endforeach
 
                             </ul>
+                            
+                            <!-- --------------------- devolve o vencedor de cada corrida ------------------------ -->
+                            
+
+
+                            <h3>Winner in this race: </h3>
+                            
+                            
+
+                            <?php
+                            
+                           //foreach($winners as $winner){
+                                //if($race->id == $winner->race_id ){
+                                  // echo " {$winner->name} ";   
+                                 
+                            ?>
+
+
+                            <?php
+                               //}else{
+                                //  echo "no results";
+                            //  }
+                      //    }
+                            
+                            ?>
+                            
+
+                           
+                            
+
+                       
+                            
+                            
+                            
 
                     </div>
                 </div>
@@ -114,8 +149,11 @@
     </div>
 </div>
 <br>
- @endforeach
 
+
+
+
+@endforeach
 
 
 @endsection
