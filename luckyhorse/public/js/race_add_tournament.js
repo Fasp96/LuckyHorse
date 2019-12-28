@@ -6,14 +6,9 @@ function initPage(){
 function add_tournaments(date){
 
     $.get("http://localhost:8000/api/add_races_tournaments", function(data){
-        console.log("inside");
-        console.log(new Date());
-        console.log(new Date(date.value));
-        console.log(new Date() < new Date(date.value));
 
         var div = document.getElementById("add");
         if(!date.value.match(/^\d{4}-\d{2}-\d{2}$/) || new Date() > new Date(date.value)){
-            console.log("primeiro");
             
             div.innerHTML = "";
             var h = document.createElement("H6");
@@ -23,7 +18,6 @@ function add_tournaments(date){
         }
         else
         {
-            console.log("segundo");
             var tournament = [];
             for (var j = 0; j < data.length; j++) {
                 console.log("data of " + j + " " + data[j].date);
@@ -32,7 +26,6 @@ function add_tournaments(date){
                 
                 if(data[j].date <= date.value){
                     tournament.push(data[j]);
-                    console.log(data[j]);
                 }   
             }
 
