@@ -10,6 +10,8 @@
 <h1 align="center">Races</h1>
 
 
+
+
 @foreach($races as $race)
 
 
@@ -85,7 +87,7 @@
                                 
                                  //   echo "<li>{$race->time}</li>"
                             ?>
-
+ 
                             @foreach($jockeys as $jockey)
                             
                             <?php
@@ -117,6 +119,7 @@
                             
 
                             <?php
+
                             
                            //foreach($winners as $winner){
                                 //if($race->id == $winner->race_id ){
