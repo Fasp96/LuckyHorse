@@ -35,13 +35,16 @@ class RacesController extends Controller
                     $winner = Race::where('races.id','=',$race->id)
                         ->join('results','races.id','=','results.race_id')
                         ->join('horses','results.horse_id','=','horses.id')
-                        ->orderByDesc('results.time')
                         ->select('horses.name','results.race_id')
                         ->take(1)->get();
 
                 $winners->push($winner);
                 }
                 /*
+
+                ->orderByDesc('results.time')
+
+
                 $winner = Race::where('races.id','=',$race->id)
                 ->join('results','races.id','=','results.race_id')
                 ->join('horses','results.horse_id','=','horses.id')
