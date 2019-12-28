@@ -4,6 +4,7 @@
 
 <script src="{{asset('js/race_validator.js')}}" defer></script>
 <script src="{{asset('js/race_add_jockey_horse.js')}}" defer></script>
+<script src="{{asset('js/race_add_tournament.js')}}" defer></script>
 
 <div class="container">
     <div class="row justify-content-center">
@@ -37,18 +38,12 @@
                         Name
                         <input id="name" type="text" class="form-control" name="name" onchange="validate_input()"><br>
                         Date
-                        <input id="date" type="date" class="form-control" name="date" onchange="validate_input()"><br>
+                        <input id="date" type="date" class="form-control" name="date" onchange="add_tournaments(date); validate_input();"><br>
                         Add to Tournament<br>
-                        <?php if($tournaments == '[]'){?>
-                            <h6 style="color:black; padding-top:1%; padding-left:5%">***No Horses***</h6>
-                        <?php }else{?>
-                            <select id="add_tournament" name="add_tournament" class="form-control">
-                                <option value="">
-                                @foreach($tournaments as $tournament)
-                                    <option value="{{$tournament->id}}"> {{$tournament->name}} - {{$tournament->date}}                   
-                                @endforeach
-                            </select>
-                        <?php }?>
+                        <div id="add">
+                            <h6 id="tournaments" style="color:black; padding-top:1%; padding-left:5%">***No Tournaments***</h6>
+                        </div>
+                            
                         <br>
                         
                         Add Horse with Jockey<br>

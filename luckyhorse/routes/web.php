@@ -48,6 +48,7 @@ Route::get('/api/add_tournaments', 'AddTournamentsController@getRaces');
 Route::get('/add_races', 'AddRacesController@index');
 Route::post('/add_races', 'AddRacesController@add');
 Route::get('/api/add_races', 'AddRacesController@getJockeysHorses');
+Route::get('/api/add_races_tournaments', 'AddRacesController@getTournaments');
 
 Route::get('/tournaments', 'TournamentsController@index');
 

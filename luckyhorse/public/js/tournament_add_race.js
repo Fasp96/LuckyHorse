@@ -3,7 +3,7 @@ function initPage(){
 }
 
 function add_race_field(initial_date, finish_date){
-    initial_date = initial_date.value
+    initial_date = initial_date.value;
     finish_date = finish_date.value;
     console.log(initial_date);
     console.log(finish_date);

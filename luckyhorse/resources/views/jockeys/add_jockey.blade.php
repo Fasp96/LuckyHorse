@@ -13,7 +13,7 @@
                 <div class="card-body">
                     <ul>
                         @foreach($jockeys as $jockey) 
-                            <li>{{$jockey->name}} - {{$jockey->age}}</li>                    
+                            <li>{{$jockey->name}} - {{$jockey->birth_date}}</li>                    
                         @endforeach
                     </ul>
                 </div>
