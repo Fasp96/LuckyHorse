@@ -4,16 +4,18 @@ function initPage(){
 
 //function that creates a field to add race to a tournament depending on the date
 function add_tournaments(date){
-/*
-    var date = race_form.date.value;
-    console.log(race_form.date.value);
-*/
+
     $.get("http://localhost:8000/api/add_races_tournaments", function(data){
+        console.log("inside");
+        console.log(new Date());
+        console.log(new Date(date.value));
+        console.log(new Date() < new Date(date.value));
 
         var div = document.getElementById("add");
-        if(!date.value.match(/^\d{4}-\d{2}-\d{2}$/) || new Date() < new Date(date.value)){
+        if(!date.value.match(/^\d{4}-\d{2}-\d{2}$/) || new Date() > new Date(date.value)){
+            console.log("primeiro");
+            
             div.innerHTML = "";
-
             var h = document.createElement("H6");
             var t = document.createTextNode("***No Tournaments***");
             h.appendChild(t);
@@ -21,6 +23,7 @@ function add_tournaments(date){
         }
         else
         {
+            console.log("segundo");
             var tournament = [];
             for (var j = 0; j < data.length; j++) {
                 console.log("data of " + j + " " + data[j].date);
@@ -28,15 +31,13 @@ function add_tournaments(date){
                 console.log(data[j].date <= date.value);
                 
                 if(data[j].date <= date.value){
-                    tournament.push(data[j].id);
-                    console.log("push");
+                    tournament.push(data[j]);
+                    console.log(data[j]);
                 }   
             }
 
-            console.log("Tournament = " + tournament[0]);
-
-            if(tournament == [])
-            {            
+            if(!tournament == [])
+            {
                 div.innerHTML = "";
                 var selectList = document.createElement("select");
                 selectList.id = "add_tournament";

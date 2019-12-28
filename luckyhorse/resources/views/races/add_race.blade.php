@@ -38,7 +38,7 @@
                         Name
                         <input id="name" type="text" class="form-control" name="name" onchange="validate_input()"><br>
                         Date
-                        <input id="date" type="date" class="form-control" name="date" onchange="add_tournaments(date); validate_input();"><br>
+                        <input id="date" type="date" class="form-control" name="date" onselect="add_tournaments(date); validate_input();" onchange="add_tournaments(date); validate_input();"><br>
                         Add to Tournament<br>
                         <div id="add">
                             <h6 id="tournaments" style="color:black; padding-top:1%; padding-left:5%">***No Tournaments***</h6>
