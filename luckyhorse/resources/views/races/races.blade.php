@@ -18,6 +18,11 @@
         border-collapse: collapse;
         background-color: grey;
     }
+
+    h4{
+        color: green;
+        font-weight:bold;
+    }
 </style>
 
 <h1 align="center">Races</h1>
@@ -193,14 +198,16 @@
                             </table>
                             
                             <!-- --------------------- devolve o vencedor de cada corrida ------------------------ -->
-                     <!--       <br>
-                            {{$winners}} -->
+                          <br>
+                       <!--       {{$winners}} -->
 
                             <h3>Winner in this race: </h3>
                             
                             @foreach($winners as $winner)
                                 @if($winner[0]->race_id==$race->id)
-                                <h4 align="center">    {{$winner[0]->name}} </h4>
+                                    @if($winner[0]->time != null)
+                                        <h4 align="center">    {{$winner[0]->name}} with a best time: {{$winner[0]->time}}</h4>
+                                    @endif
                                 @endif
                             @endforeach
 
