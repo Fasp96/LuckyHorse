@@ -3,7 +3,7 @@ function initPage(){
 }
 
 function add_race_field(initial_date, finish_date){
-    initial_date = initial_date.value
+    initial_date = initial_date.value;
     finish_date = finish_date.value;
     console.log(initial_date);
     console.log(finish_date);
@@ -12,7 +12,7 @@ function add_race_field(initial_date, finish_date){
         
         if(data == ""){
             
-            //clears everythong inside the div
+            //clears everything inside the div
             document.getElementById("race_fields").innerHTML = "";
 
             document.getElementById("race_fields").appendChild(document.createElement("br"));

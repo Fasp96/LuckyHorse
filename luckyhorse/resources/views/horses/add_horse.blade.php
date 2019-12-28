@@ -38,7 +38,7 @@
                         Breed
                         <input id="breed" type="text" class="form-control" name="breed" onchange="validate_input()"><br>
                         Birth Date
-                        <input id="birth_date" type="date" class="form-control" name="birth_date" onchange="validate_input()"><br>
+                        <input id="birth_date" type="date" class="form-control" name="birth_date" onselect="validate_input()" onchange="validate_input()"><br>
                         Gender<br>
                         <div id="gender_radio">
                         <input id="gender" type="radio" name="gender" value="male" onchange="validate_input()"> Male<br>

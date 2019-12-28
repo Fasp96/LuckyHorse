@@ -20,9 +20,8 @@ class CreateRacesTable extends Migration
             $table->string('description');
             $table->string('location');
             $table->string('file_path');
-            $table->unsignedBigInteger('tournament_id');
-            $table->foreign('tournament_id')->references('id')->on('tournaments');
-
+            $table->unsignedBigInteger('tournament_id')->nullable();
+            $table->foreign('tournament_id')->references('id')->on('tournaments')->nullable();      
             $table->timestamps();
         });
     }

@@ -69,4 +69,12 @@ class AddRacesController extends Controller
             return [$horses, $jockeys];
         }
     }
+
+    public function getTournaments(){
+        $user = Auth::user();
+        if($user){
+            $tournaments = Tournament::all();
+            return $tournaments;
+        }
+    }
 }
