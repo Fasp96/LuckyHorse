@@ -42,6 +42,7 @@
                         <input id="finish_date" type="date" class="form-control" name="finish_date" onselect="add_race_field(initial_date, finish_date); validate_input();" onchange="add_race_field(initial_date, finish_date); validate_input();"><br>
                         Add Races<br><br>
                         <div id="race_fields">
+                            <input type="hidden" id="races" name="races" value="">
                             <p>Please insert initial date or expected finish date to show races</p>    
                         </div><br>
                         Description<br>

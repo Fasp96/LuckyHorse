@@ -5,8 +5,6 @@ function initPage(){
 function add_race_field(initial_date, finish_date){
     initial_date = initial_date.value;
     finish_date = finish_date.value;
-    console.log(initial_date);
-    console.log(finish_date);
     
     $.get("http://localhost:8000/api/add_tournaments", function(data){
         
@@ -30,13 +28,14 @@ function add_race_field(initial_date, finish_date){
 
             //Create and append the checkbox
             for (var i = 0; i < data.length; i++) {
-
-                if(data[i].date >= initial_date){
+                console.log(data[i].tournament_id); 
+                if(data[i].date >= initial_date && data[i].tournament_id == null){
                     has_races = true;
                     var input = document.createElement("input");
                     input.type = "checkbox";
+                    input.name = "races[]";
                     input.value = data[i].id;
-                    input.name = data[i].name;
+                    input.className = "form-control";
                     var race_field = document.getElementById("race_fields");
                     race_field.appendChild(input);
                     race_field.appendChild(document.createTextNode(" " + data[i].name + " " + data[i].date));
@@ -66,12 +65,13 @@ function add_race_field(initial_date, finish_date){
             //Create and append the checkbox
             for (var i = 0; i < data.length; i++) {
 
-                if(data[i].date <= finish_date){
+                if(data[i].date <= finish_date && data[i].tournament_id == null){
                     has_races = true;
                     var input = document.createElement("input");
                     input.type = "checkbox";
+                    input.name = "races[]";
                     input.value = data[i].id;
-                    input.name = data[i].name;
+                    input.className = "form-control";
                     var race_field = document.getElementById("race_fields");
                     race_field.appendChild(input);
                     race_field.appendChild(document.createTextNode(" " + data[i].name + " " + data[i].date));
@@ -99,12 +99,13 @@ function add_race_field(initial_date, finish_date){
 
             //Create and append the checkbox
             for (var i = 0; i < data.length; i++) {
-                if(data[i].date >= initial_date && data[i].date <= finish_date){
+                if(data[i].date >= initial_date && data[i].date <= finish_date && data[i].tournament_id == null){
                     has_races = true;
                     var input = document.createElement("input");
                     input.type = "checkbox";
+                    input.name = "races[]";
                     input.value = data[i].id;
-                    input.name = data[i].name;
+                    input.className = "form-control";
                     var race_field = document.getElementById("race_fields");
                     race_field.appendChild(input);
                     race_field.appendChild(document.createTextNode(" " + data[i].name + " " + data[i].date));

@@ -49,6 +49,14 @@ class AddTournamentsController extends Controller
             $tournament->file_path = $new_file_path;
             $tournament->save();
 
+            if(isset($request->races)){
+
+                for($i = 0; $i < sizeof($request->races); $i++){
+                    Race::where('id', '=', $request->races[$i])
+                    ->save(['tournament_id' => $id]);
+                }
+            }
+
             return redirect('/add_tournaments');
         }else{
             return redirect('home');
