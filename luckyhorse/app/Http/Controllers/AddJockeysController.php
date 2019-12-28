@@ -36,7 +36,7 @@ class AddJockeysController extends Controller
             
             $photo = $request->file('jockey_photo');
             $fileName = $request->name . '-' .$photo->getClientOriginalName();
-            $path = 'img/jockey_photo/';
+            $path = '/img/jockey_photo/';
             $file = $photo->move($path, $fileName);
 
             $file_path = $path . $fileName;

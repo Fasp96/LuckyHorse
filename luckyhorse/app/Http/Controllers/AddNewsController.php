@@ -31,7 +31,7 @@ class AddNewsController extends Controller
             
             $photo = $request->file('news_photo');
             $fileName = $request->name . '-' .$photo->getClientOriginalName();
-            $path = 'img/news_photo/';
+            $path = '/img/news_photo/';
             $file = $photo->move($path, $fileName);
 
             $file_path = $path . $fileName;
