@@ -58,8 +58,10 @@ class AddRacesController extends Controller
             for($i = 1; $i <= $request->num_fields; $i++){
                 $result = new Result;
                 $result->race_id = $race->id;
-                $result->horse_id = $request->horse_ . $i;
-                $result->jockey_id = $request->jockey_ . $i;
+                $horse = "horse_" . $i;
+                $jockey = "jockey_" . $i;
+                $result->horse_id = $request->$horse;
+                $result->jockey_id = $request->$jockey;
                 $result->save();
             }
 
