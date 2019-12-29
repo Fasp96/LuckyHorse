@@ -1,9 +1,12 @@
 function initPage(){
+    //when the button is pressed
     $("#add_jockey_btn").click( function(){
+        //it will validate the inputs and pass the parameter clicked true
         validate_input(true);
     });
 }
 
+//function to validate inputs receives the parameter clicked that is by default to false
 function validate_input(clicked=false){
 
     var contents = [];
@@ -37,6 +40,7 @@ function validate_input(clicked=false){
 
     removeMessages();
 
+    //makes the validation of all the inputs
     valid.push(validate_name(name,jockey_form.name));
     valid.push(validate_birth_date(birth_date,jockey_form.birth_date));
     valid.push(validate_gender(gender, jockey_form.gender, contents[contents.length-1] != '' || clicked == true));
@@ -44,6 +48,7 @@ function validate_input(clicked=false){
     valid.push(validate_num_victories(num_victories, num_races, jockey_form.num_victories));
     valid.push(validate_jockey_photo(jockey_photo, jockey_form.jockey_photo));
 
+    //this condition is just to allow to verify if there are empty fields, only if the use has filled the last field or clicked the submit button 
     if(contents[contents.length-1] != '' || clicked == true){
 
         for(var i = 0; i < contents.length; i++){
@@ -51,6 +56,7 @@ function validate_input(clicked=false){
         }
     }
 
+    //if everything is filled and validated it will remove the existing button and add a button inside the <form> to use the post method
     if(valid.reduce(and) && not_empty.reduce(and)){
         $("#add_jockey_btn").remove();
         $("#jockey_photo").after("<br><br><button type=\"submit\" class=\"btn btn-primary\">Add Jockey</button>");
@@ -83,7 +89,8 @@ function validate_name(content, element){
 }
 
 function validate_birth_date(content, element){
-    var max_birth_date = new Date(
+    //gets the date the date 18 years ago
+    var min_birth_date = new Date(
         new Date().getFullYear()-18,
         new Date().getMonth(),
         new Date().getDate());
@@ -94,13 +101,15 @@ function validate_birth_date(content, element){
         return false;
     }
     
+    //needs to be before todays date
     else if(new Date(content) > new Date()){
         $(element).css("background","#ebdf5e");
         $(element).after("<p style=\"color:#c2b100\">* The birth date must be before todays date</p>");
         return false;
     }
 
-    else if(new Date(content) > max_birth_date){
+    //needs to be older that 18
+    else if(new Date(content) > min_birth_date){
         $(element).css("background","#ebdf5e");
         $(element).after("<p style=\"color:#c2b100\">* The birth date must be older that 18 years</p>");
         return false;
@@ -137,6 +146,7 @@ function validate_num_victories(content, content_races, element){
         $(element).after("<p style=\"color:#c2b100\">* Please insert a number equal or greater that 0</p>");
         return false;
     }
+    //number of victories needs to be less or equal to the number of races
     else if (content > content_races){
         $(element).css("background","#ebdf5e");
         $(element).after("<p style=\"color:#c2b100\">* Please insert a number lower or equal than " + content_races + "</p>");
@@ -148,9 +158,8 @@ function validate_num_victories(content, content_races, element){
 }
 
 function validate_jockey_photo(content, element){
+    //fecthes the type of file from the file name by getting the part after the last '.'
     var file_type = content.substring(content.lastIndexOf('.') + 1).toLowerCase();
-    console.log(file_type);
-    console.log(content);
     if(file_type != "png" && file_type != "jpeg" && file_type != "jpg" && file_type != ''){
         $(element).after("<p style=\"color:#c2b100\">*Invalide file type. Please insert a .png, .jpeg or .jpg file</p>");
         return false;

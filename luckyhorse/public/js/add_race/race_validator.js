@@ -1,9 +1,12 @@
 function initPage(){
+    //when the button is pressed
     $("#add_race_btn").click(function(){
+        //it will validate the inputs and pass the parameter clicked true
         validate_input(true);
     });
 }
 
+//function to validate inputs receives the parameter clicked that is by default to false
 function validate_input(clicked = false){
 
     var contents = [];
@@ -36,8 +39,8 @@ function validate_input(clicked = false){
     elements.push(race_form.race_photo);
 
     removeMessages();   
-    console.log(contents);
 
+    //makes the validation of all the inputs
     valid.push(validate_name(name,race_form.name));
     valid.push(validate_date(date, race_form.date));
     valid.push(validate_num_fields(num_fields, race_form.num_fields));
@@ -46,12 +49,14 @@ function validate_input(clicked = false){
     valid.push(validate_race_photo(race_photo, race_form.race_photo));
     valid.push(validate_fields_not_equals(race_form.num_fields.value));
 
+    //this condition is just to allow to verify if there are empty fields, only if the use has filled the last field or clicked the submit button 
     if(contents[contents.length-1] != '' || clicked == true){
         for(var i = 0; i < contents.length; i++){
             not_empty.push(validate_empty(contents[i],elements[i]));
         }
     }
 
+    //if everything is filled and validated it will remove the existing button and add a button inside the <form> to use the post method
     if(valid.reduce(and) && not_empty.reduce(and)){
         $("#add_race_btn").remove();
         $("#race_photo").after("<br><br><button type=\"submit\" class=\"btn btn-primary\">Add Race</button>");
@@ -90,7 +95,7 @@ function validate_date(content, element){
         $(element).after("<p style=\"color:#c2b100\">* A date has the following format DD-MM-YYYY</p>");
         return false;
     }
-    
+    //needs to be before todays date
     else if(new Date() > new Date(content)){
         $(element).css("background","#ebdf5e");
         $(element).after("<p style=\"color:#c2b100\">* The Date must be after todays date</p>");
@@ -121,6 +126,7 @@ function validate_location(content, element){
 }
 
 function validate_race_photo(content, element){
+    //fecthes the type of file from the file name by getting the part after the last '.'
     var file_type = content.substring(content.lastIndexOf('.') + 1).toLowerCase();
     if(file_type != "png" && file_type != "jpeg" && file_type != "jpg" && file_type != '' ){
         $(element).after("<p style=\"color:#c2b100\">*Invalid file type. Please insert a .png, .jpeg or .jpg file</p>");
@@ -136,18 +142,26 @@ function removeMessages(){
     $("#race_form").children().filter('p').remove();
 }
 
+//function to verify if there isn't the same horse or jockey in more that one field
 function validate_fields_not_equals(num_fields){
 
+    //variable that is initialize at true if there aren't equal elements or empty and change to false if is found two equal elements or an empty one
     var not_equals = true;
 
+    //only makes the verification if the number of fields is higher than 0
     if(num_fields > 0){
+
+        //first verifies if the elements are empty
         for( var i = 1; i<= num_fields; i++){
+            //removes all the 'p' and red bakgound-color of the fields if there is
             $("#" + i).children().css("background-color","#FFFFFF");
             $("#"+ i).children().filter('p').remove();
 
+            //gets the two elements from each field
             horse_i = document.getElementById("horse_" + i);
             jockey_i = document.getElementById("jockey_" + i);
 
+            //if the value is empty it will add a 'p' element and change the background to red
             if(horse_i.value == ""){
                 $(horse_i).css("background", "#ffcccc");
                 $(horse_i).after("<p style=\"color:#ff5555\">*This field can't be empty choose a horse</p>");
@@ -161,12 +175,20 @@ function validate_fields_not_equals(num_fields){
             }
         }
 
+        //compares each elements with the rest of the fields 
         for (var i = 1; i <= num_fields; i++){
+            
+            //gets the two elements from i field
+            horse_i = document.getElementById("horse_" + i);
+            jockey_i = document.getElementById("jockey_" + i);
+
             for (var j = i + 1; j <= num_fields; j++){
 
-                horse_i = document.getElementById("horse_" + i);
+                //gets the two elements from j field
                 horse_j = document.getElementById("horse_" + j);
+                jockey_j = document.getElementById("jockey_" + j);
 
+                //compares there value if they are equal
                 if(horse_i.value == horse_j.value && horse_i.value != "" && horse_j.value != ""){
                     $(horse_i).css("background", "#ffcccc");
                     $(horse_i).after("<p style=\"color:#ff5555\">*Invalid horse. Can't be the same horse as in Team " + j + "</p>");
@@ -174,10 +196,8 @@ function validate_fields_not_equals(num_fields){
                     $(horse_j).after("<p style=\"color:#ff5555\">*Invalid horse. Can't be the same horse as in Team " + i + "</p>");
                     not_equals = false;
                 }
-                
-                jockey_i = document.getElementById("jockey_" + i);
-                jockey_j = document.getElementById("jockey_" + j);
-
+                 
+                //compares there value if they are equal
                 if(jockey_i.value == jockey_j.value && jockey_i.value != "" && jockey_j.value != ""){
                     $(jockey_i).css("background", "#ffcccc");
                     $(jockey_i).after("<p style=\"color:#ff5555\">*Invalid jockey. Can't be the same jockey as in Team " + j + "</p>");

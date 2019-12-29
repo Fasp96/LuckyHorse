@@ -2,7 +2,7 @@
 
 @section('content')
 
-<script src="{{asset('js/news_validator.js')}}" defer></script>
+<script src="{{asset('js/add_news/news_validator.js')}}" defer></script>
 
 <div class="container">
     <div class="row justify-content-center">

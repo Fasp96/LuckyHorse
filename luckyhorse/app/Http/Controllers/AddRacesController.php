@@ -55,9 +55,12 @@ class AddRacesController extends Controller
             $race->file_path = $new_file_path;
             $race->save();
 
+            //for the teams fields it fetches the number of fields and creates a new Result
             for($i = 1; $i <= $request->num_fields; $i++){
                 $result = new Result;
+                //fecthes the race id
                 $result->race_id = $race->id;
+                //fetches the id of each horse and jockey that form a team
                 $horse = "horse_" . $i;
                 $jockey = "jockey_" . $i;
                 $result->horse_id = $request->$horse;

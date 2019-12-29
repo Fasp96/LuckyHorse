@@ -1,9 +1,12 @@
 function initPage(){
+    //when the button is pressed
     $("#add_horse_btn").click(function(){
+        //it will validate the inputs and pass the parameter clicked true
         validate_input(true);
     });
 }
 
+//function to validate inputs receives the parameter clicked that is by default to false   
 function validate_input(clicked = false){
 
     var contents = [];
@@ -41,6 +44,7 @@ function validate_input(clicked = false){
 
     removeMessages();
 
+    //makes the validation of all the inputs
     valid.push(validate_name(name,horse_form.name));
     valid.push(validate_breed(breed, horse_form.breed));
     valid.push(validate_birth_date(birth_date,horse_form.birth_date));
@@ -49,12 +53,14 @@ function validate_input(clicked = false){
     valid.push(validate_num_victories(num_victories, num_races, horse_form.num_victories));
     valid.push(validate_horse_photo(horse_photo, horse_form.horse_photo));
 
+    //this condition is just to allow to verify if there are empty fields, only if the use has filled the last field or clicked the submit button 
     if(contents[contents.length-1] != '' || clicked == true){
         for(var i = 0; i < contents.length; i++){
             not_empty.push(validate_empty(contents[i],elements[i]));
         }
     }
 
+    //if everything is filled and validated it will remove the existing button and add a button inside the <form> to use the post method
     if(valid.reduce(and) && not_empty.reduce(and)){
         $("#add_horse_btn").remove();
         $("#horse_photo").after("<br><br><button type=\"submit\" class=\"btn btn-primary\">Add Horse</button>");
@@ -103,7 +109,7 @@ function validate_birth_date(content, element){
         $(element).after("<p style=\"color:#c2b100\">* A date has the following format DD-MM-YYYY</p>");
         return false;
     }
-    
+    //needs to be before todays date
     else if(new Date(content) > new Date()){
         $(element).css("background","#ebdf5e");
         $(element).after("<p style=\"color:#c2b100\">* The birth date must be before todays date</p>");
@@ -141,6 +147,7 @@ function validate_num_victories(content, content_races, element){
         $(element).after("<p style=\"color:#c2b100\">* Please insert a number equal or greater than 0</p>");
         return false;
     }
+    //number of victories needs to be less or equal to the number of races
     else if (content > content_races){
         $(element).css("background","#ebdf5e");
         $(element).after("<p style=\"color:#c2b100\">* Please insert a number lower or equal than " + content_races + "</p>");
@@ -152,6 +159,7 @@ function validate_num_victories(content, content_races, element){
 }
 
 function validate_horse_photo(content, element){
+    //fecthes the type of file from the file name by getting the part after the last '.'
     var file_type = content.substring(content.lastIndexOf('.') + 1).toLowerCase();
     if(file_type != "png" && file_type != "jpeg" && file_type != "jpg" && file_type != '' ){
         $(element).after("<p style=\"color:#c2b100\">*Invalid file type. Please insert a .png, .jpeg or .jpg file</p>");
