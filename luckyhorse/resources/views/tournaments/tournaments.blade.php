@@ -9,6 +9,11 @@
         
     }
 
+    h2{
+        color:red;
+        font-weight:bold;
+    }
+
     h5{
         margin-left: 2em;
     }
@@ -23,13 +28,13 @@
         <div class="col-md-8">
             <div class="card">
                 <!-- <div class="card-header">Tournaments</div> -->
-                <div class="card-header">{{$tournament->name}}</div>
+                <div class="card-header"><h2>{{$tournament->name}}</h2></div>
                 <div class="card-body">
                     <img src="{{ $tournament->file_path}}" alt="tournament_img" style="width:40%;opacity:0.85;">
                     
-                    date: {{$tournament->date}}<br>
-                    description: {{$tournament->description}}<br>
-                    location: {{$tournament->location}}<br><br>
+                    Date: {{$tournament->date}}<br>
+                    Description: {{$tournament->description}}<br>
+                    Location: {{$tournament->location}}<br><br>
                     
                     <h3>Races in this tournament:</h3>
                     <ul> 
