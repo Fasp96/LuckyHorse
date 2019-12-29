@@ -14,7 +14,7 @@ class AddTournamentsController extends Controller
         $current_user = Auth::user();
         if($current_user){
              $tournaments = Tournament::all();
-               
+
              return view('tournaments.add_tournament',compact('tournaments'));
         }else{
             return redirect('home');
@@ -48,8 +48,10 @@ class AddTournamentsController extends Controller
             $tournament->file_path = $new_file_path;
             $tournament->save();
 
+            //if isset races
             if(isset($request->races)){
 
+                //for each race it will update the value of the atribute tournament_id with the id of the tournament
                 for($i = 0; $i < sizeof($request->races); $i++){
                     $race = Race::where('id', '=', $request->races[$i]);
                     $race->update(['tournament_id' => $id]);
