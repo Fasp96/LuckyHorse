@@ -2,9 +2,16 @@
 
 @section('content')
 <style>
+
 img {
   float: right;
 }
+
+h2{
+        color: red;
+        font-weight:bold; 
+    }
+
 </style>
 
 <h1 align="center">Jockeys</h1>
@@ -14,15 +21,14 @@ img {
         <div class="col-md-8">
             <div class="card">
                <!-- <div class="card-header">Jockeys</div> -->
-
+                <div class="card-header"> <h2>{{$jockey->name}}</h2></div>
                 <div class="card-body">
                             <img src="{{ $jockey->file_path}}" alt="jockey_img" style="width:40%;opacity:0.85;">
                         
-                            name: {{$jockey->name}}<br>
-                            birth date: {{$jockey->birth_date}}<br>
-                            gender: {{$jockey->gender}}<br> 
-                            number of races: {{$jockey->num_races}}<br>
-                            number of victories: {{$jockey->num_victories}}<br>                
+                            Birth Date: {{$jockey->birth_date}}<br>
+                            Gender: {{$jockey->gender}}<br> 
+                            Number of Races: {{$jockey->num_races}}<br>
+                            Number of Rictories: {{$jockey->num_victories}}<br>                
                        
                 </div>
             </div>
