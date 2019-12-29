@@ -17,6 +17,23 @@ h2{
         font-weight:bold; 
     }
 
+.button {
+  background-color: #F0E68C;
+  border: none;
+  color: black;
+  padding: 15px 30px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  width: 50%;
+  height: 50px;
+
+margin-left: 350px;
+}
+
 </style>
 
 </head>
@@ -25,49 +42,23 @@ h2{
 
 <h1 align="center">Horses</h1>
 @foreach($horses as $horse)
+                    
     <div class="button-container">
-        <button> {{$horse->id}}</button>
-    </div>
+        <button class = "button" id="{{$horse->id}}"><h2>{{$horse->name}}</h2></button>
+     </div>
 
-
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    
-
-                    
-                    <div class="card-header"> <h2>{{$horse->name}}</h2></div>
-
-
-                    <div class="card-body">
-                        
-                            <img src="{{ $horse->file_path}}" alt="horse_img" style="width:50%;opacity:0.85;">
-                            
-                                Breed: {{$horse->breed}}<br>
-                                Birth Date: {{$horse->birth_date}}<br>
-                                Gender: {{$horse->gender}}<br>
-                                Number of Races: {{$horse->num_races}}<br>
-                                Number of Victories: {{$horse->num_victories}}<br>
-
-                            
-                            
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 <br>
 
 @endforeach
 
 <script>
         $("body").on( "click", ".button-container button",function(){
-        //alert( "triggered by "+ $(this).text() );
-        //var hello = $(this).text();
-        location.replace("http://localhost:8000/horses/" +$(this).text() );
+        //var y = $(this).text();
+        var x = $(this).attr('id');
+        
+        location.replace("http://localhost:8000/horses/" + x);   
     });
+
 </script>
 
 </body>

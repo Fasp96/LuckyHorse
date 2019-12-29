@@ -17,9 +17,9 @@ class HorsesController extends Controller
 
     public function getHorse($id){
         //$current_user = Auth::user();
-        $horses = [Horse::find($id)];
+        $horses = Horse::find($id);
         if($horses)
-            return view('horses.horses',compact('horses'));
+            return view('horses.horses_info',compact('horses'));
         else
             return redirect('/horses');
     }
