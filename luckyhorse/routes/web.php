@@ -68,4 +68,5 @@ Route::get('/news/{id}', 'NewsController@showNews');
 Route::get('/tournaments', 'TournamentsController@index');
 Route::get('/races', 'RacesController@index');
 Route::get('/horses', 'HorsesController@index');
+Route::get('/horses/{id}', 'HorsesController@showHorses');
 Route::get('/jockeys', 'JockeysController@index');

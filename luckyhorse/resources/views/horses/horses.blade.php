@@ -1,8 +1,11 @@
 
-
 @extends('layouts.head_footer')
 
 @section('content')
+
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
 
 <style>
 img {
@@ -16,13 +19,24 @@ h2{
 
 </style>
 
+</head>
+
+<body>
+
 <h1 align="center">Horses</h1>
 @foreach($horses as $horse)
+    <div class="button-container">
+        <button> {{$horse->id}}</button>
+    </div>
+
 
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
+                    
+
+                    
                     <div class="card-header"> <h2>{{$horse->name}}</h2></div>
 
 
@@ -45,7 +59,17 @@ h2{
         </div>
     </div>
 <br>
-    
+
 @endforeach
+
+<script>
+        $("body").on( "click", ".button-container button",function(){
+        //alert( "triggered by "+ $(this).text() );
+        //var hello = $(this).text();
+        location.replace("http://localhost:8000/horses/" +$(this).text() );
+    });
+</script>
+
+</body>
 @endsection
 
