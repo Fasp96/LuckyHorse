@@ -9,7 +9,6 @@ use Auth;
 
 class HorsesController extends Controller
 {
-    //
     public function index(){
         $current_user = Auth::user();
              $horses = Horse::all();

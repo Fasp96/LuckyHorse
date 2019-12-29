@@ -4,7 +4,6 @@ function initPage(){
 
 //function to add the fields for the teams (horse, jokey) participating in the race
 function add_fields(){
-
     //clears everythong inside the div
     document.getElementById("fields").innerHTML = "";
 

@@ -23,6 +23,11 @@ function validate_input(clicked = false){
     contents.push(finish_date);
     elements.push(tournament_form.finish_date);
 
+    /*var races = tournament_form.races.value;
+    console.log(races);
+    contents.push(races);
+    elements.push(tournament_form.races);*/
+
     var description = tournament_form.description.value;
     contents.push(description);
     elements.push(tournament_form.description);
@@ -35,6 +40,7 @@ function validate_input(clicked = false){
     contents.push(tournament_photo);
     elements.push(tournament_form.tournament_photo);
 
+    console.log(contents);
     removeMessages();
 
     valid.push(validate_name(name,tournament_form.name));
@@ -144,19 +150,6 @@ function validate_tournament_photo(content, element){
 function removeMessages(){
     $("#tournament_form").children().css("background-color","#FFFFFF");
     $("#tournament_form").children().filter('p').remove();
-}
-
-function postEvent(name, date, description, location, tournament_photo){
-    var content = "_token="+$("#token").val() + "&name="+name+"&date="+date+"&description="+description+"&location="+location+"&tournament_photo="+tournament_photo;
-
-    console.log(content);
-    $.post("http://localhost:8000/add_tournaments", content, 
-    function(responseTxt,statuTxt,xhr){
-        
-        alert("posted");
-
-    }
-    );
 }
 
 //página carregou

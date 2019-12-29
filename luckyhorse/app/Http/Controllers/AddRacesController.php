@@ -8,6 +8,7 @@ use App\Race;
 use App\Horse;
 use App\Tournament;
 use App\Jockey;
+use App\Result;
 use Auth;
 
 class AddRacesController extends Controller
@@ -30,7 +31,6 @@ class AddRacesController extends Controller
     public function add(Request $request){
         $user = Auth::user();
         if($user){
-
             $race = new Race;
             $race->name = $request->name;
             $race->date = $request->date;
@@ -39,7 +39,7 @@ class AddRacesController extends Controller
             
             $photo = $request->file('race_photo');
             $fileName = $request->name . '-' .$photo->getClientOriginalName();
-            $path = 'img/race_photo/';
+            $path = '/img/race_photo/';
             $file = $photo->move($path, $fileName);
 
             $file_path = $path . $fileName;
@@ -55,6 +55,16 @@ class AddRacesController extends Controller
             $race->file_path = $new_file_path;
             $race->save();
 
+            for($i = 1; $i <= $request->num_fields; $i++){
+                $result = new Result;
+                $result->race_id = $race->id;
+                $horse = "horse_" . $i;
+                $jockey = "jockey_" . $i;
+                $result->horse_id = $request->$horse;
+                $result->jockey_id = $request->$jockey;
+                $result->save();
+            }
+
             return redirect('/add_races');
         }else{
             return redirect('home');
@@ -67,6 +77,14 @@ class AddRacesController extends Controller
             $jockeys = Jockey::all();
             $horses = Horse::all();
             return [$horses, $jockeys];
+        }
+    }
+
+    public function getTournaments(){
+        $user = Auth::user();
+        if($user){
+            $tournaments = Tournament::all();
+            return $tournaments;
         }
     }
 }

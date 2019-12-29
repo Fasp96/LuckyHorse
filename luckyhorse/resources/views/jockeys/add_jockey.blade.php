@@ -13,7 +13,7 @@
                 <div class="card-body">
                     <ul>
                         @foreach($jockeys as $jockey) 
-                            <li>{{$jockey->name}} - {{$jockey->age}}</li>                    
+                            <li>{{$jockey->name}} - {{$jockey->birth_date}}</li>                    
                         @endforeach
                     </ul>
                 </div>
@@ -36,7 +36,7 @@
                         Name
                         <input id="name" type="text" class="form-control" name="name" onchange="validate_input()"><br>
                         Birth Date
-                        <input id="bitrh_date" type="date" class="form-control" name="birth_date" onchange="validate_input()"><br>
+                        <input id="bitrh_date" type="date" class="form-control" name="birth_date" onselect="validate_input()" onchange="validate_input()"><br>
                         Gender<br>
                         <div id="gender_radio">
                         <input id="gender" type="radio" name="gender" value="male"> Male<br>

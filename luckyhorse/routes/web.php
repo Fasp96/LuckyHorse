@@ -58,11 +58,14 @@ Route::get('/api/add_tournaments', 'AddTournamentsController@getRaces');
 Route::get('/add_races', 'AddRacesController@index');
 Route::post('/add_races', 'AddRacesController@add');
 Route::get('/api/add_races', 'AddRacesController@getJockeysHorses');
+Route::get('/api/add_races_tournaments', 'AddRacesController@getTournaments');
 
+Route::get('/add_news', 'AddNewsController@index');
+Route::post('/add_news', 'AddNewsController@add');
+
+Route::get('/news', 'NewsController@index');
+Route::get('/news/{id}', 'NewsController@showNews');
 Route::get('/tournaments', 'TournamentsController@index');
-
 Route::get('/races', 'RacesController@index');
-
 Route::get('/horses', 'HorsesController@index');
-
 Route::get('/jockeys', 'JockeysController@index');
