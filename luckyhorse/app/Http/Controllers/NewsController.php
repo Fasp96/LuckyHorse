@@ -12,14 +12,17 @@ class NewsController extends Controller
     public function index(){
         //$current_user = Auth::user();
         $news = News::orderByDesc('created_at')->take(10)->get();
-        return view('news.news',compact('news')); 
+        if($news)
+            return view('news.news',compact('news'));
+        else   
+            return redirect('/news');
     }
 
-    public function showNews($id){
+    public function getNews($id){
         //$current_user = Auth::user();
-        $news = News::find($id);
+        $news = [News::find($id)];
         if($news)
-            return view('news.news_info',compact('news'));
+            return view('news.news',compact('news'));
         else   
             return redirect('/news');
     }

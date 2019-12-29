@@ -101,7 +101,7 @@
                             </ul>
 
                             <h3>Jockeys in this race: </h3>
-                            
+                                
                             <ul>  
 
                             @foreach($results as $result)
@@ -148,7 +148,7 @@
                             if($result->race_id == $race->id){
                             
                             if(($result->time) == null){
-                                echo "<tr><td colspan='3'> This race don't have results yet </td></tr>";
+                                echo "<tr><td colspan='3'> This race doesn't have results yet </td></tr>";
                                 echo "<br>";
                             }
                                 
@@ -197,7 +197,6 @@
                             
                             <!-- --------------------- devolve o vencedor de cada corrida ------------------------ -->
                           <br>
-                       <!--       {{$winners}} -->
 
                             
                             @foreach($winners as $winner)

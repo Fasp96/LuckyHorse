@@ -37,7 +37,7 @@
                     Location: {{$tournament->location}}<br><br>
                     
                     <h3>Races in this tournament:</h3>
-                    <ul> 
+                    <ul>
                     @foreach($races as $race)
                     <?php
                         if($tournament->id == $race->tournament_id){
