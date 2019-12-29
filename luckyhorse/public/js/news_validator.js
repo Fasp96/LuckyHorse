@@ -1,9 +1,12 @@
 function initPage(){
+    //when the button is pressed
     $("#add_news_btn").click( function(){
+        //it will validate the inputs and pass the parameter clicked true
         validate_input(true);
     });
 }
 
+//function to validate inputs receives the parameter clicked that is by default to false
 function validate_input(clicked=false){
 
     var contents = [];
@@ -29,11 +32,13 @@ function validate_input(clicked=false){
 
     removeMessages();
 
+    //makes the validation of all the inputs
     valid.push(validate_title(title,news_form.title));
     valid.push(validate_abstract(abstract, news_form.abstract));
     valid.push(validate_description(description, news_form.description));
     valid.push(validate_news_photo(news_photo, news_form.news_photo));
 
+    //this condition is just to allow to verify if there are empty fields, only if the use has filled the last field or clicked the submit button 
     if(contents[contents.length-1] != '' || clicked == true){
 
         for(var i = 0; i < contents.length; i++){
@@ -41,6 +46,7 @@ function validate_input(clicked=false){
         }
     }
 
+    //if everything is filled and validated it will remove the existing button and add a button inside the <form> to use the post method
     if(valid.reduce(and) && not_empty.reduce(and)){
         $("#add_news_btn").remove();
         $("#news_photo").after("<br><br><button type=\"submit\" class=\"btn btn-primary\">Add News</button>");
@@ -81,6 +87,7 @@ function validate_description(content, element){
 }
 
 function validate_news_photo(content, element){
+    //fecthes the type of file from the file name by getting the part after the last '.'
     var file_type = content.substring(content.lastIndexOf('.') + 1).toLowerCase();
     console.log(file_type);
     console.log(content);
