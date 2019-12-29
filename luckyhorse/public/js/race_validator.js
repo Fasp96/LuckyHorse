@@ -1,6 +1,5 @@
 function initPage(){
     $("#add_race_btn").click(function(){
-        validate_fields_not_equals(race_form.num_fields.value);
         validate_input(true);
     });
 }
@@ -45,6 +44,7 @@ function validate_input(clicked = false){
     valid.push(validate_description(description, race_form.description));
     valid.push(validate_location(location, race_form.location));
     valid.push(validate_race_photo(race_photo, race_form.race_photo));
+    valid.push(validate_fields_not_equals(race_form.num_fields.value));
 
     if(contents[contents.length-1] != '' || clicked == true){
         for(var i = 0; i < contents.length; i++){
@@ -138,49 +138,57 @@ function removeMessages(){
 
 function validate_fields_not_equals(num_fields){
 
-    for( var i = 1; i<= num_fields; i++){
-        $("#" + i).children().css("background-color","#FFFFFF");
-        $("#"+ i).children().filter('p').remove();
+    var not_equals = true;
 
-        horse_i = document.getElementById("horse_" + i);
-        jockey_i = document.getElementById("jockey_" + i);
-
-        if(horse_i.value == ""){
-            $(horse_i).css("background", "#ffcccc");
-            $(horse_i).after("<p style=\"color:#ff5555\">*This field can't be empty choose a horse</p>");
-        }
-
-        if(jockey_i.value == ""){
-            $(jockey_i).css("background", "#ffcccc");
-            $(jockey_i).after("<p style=\"color:#ff5555\">*This field can't be empty choose a jockey</p>");
-        }
-    }
-
-    for (var i = 1; i <= num_fields; i++){
-        for (var j = i + 1; j <= num_fields; j++){
+    if(num_fields > 0){
+        for( var i = 1; i<= num_fields; i++){
+            $("#" + i).children().css("background-color","#FFFFFF");
+            $("#"+ i).children().filter('p').remove();
 
             horse_i = document.getElementById("horse_" + i);
-            horse_j = document.getElementById("horse_" + j);
-
-            if(horse_i.value == horse_j.value && horse_i.value != "" && horse_j.value != ""){
-                $(horse_i).css("background", "#ffcccc");
-                $(horse_i).after("<p style=\"color:#ff5555\">*Invalid horse. Can't be the same horse as in Team " + j + "</p>");
-                $(horse_j).css("background", "#ffcccc");
-                $(horse_j).after("<p style=\"color:#ff5555\">*Invalid horse. Can't be the same horse as in Team " + i + "</p>");
-            }
-            
             jockey_i = document.getElementById("jockey_" + i);
-            jockey_j = document.getElementById("jockey_" + j);
 
-            if(jockey_i.value == jockey_j.value && jockey_i.value != "" && jockey_j.value != ""){
-                $(jockey_i).css("background", "#ffcccc");
-                $(jockey_i).after("<p style=\"color:#ff5555\">*Invalid jockey. Can't be the same jockey as in Team " + j + "</p>");
-                $(jockey_j).css("background", "#ffcccc");
-                $(jockey_j).after("<p style=\"color:#ff5555\">*Invalid jockey. Can't be the same jockey as in Team " + i + "</p>");
+            if(horse_i.value == ""){
+                $(horse_i).css("background", "#ffcccc");
+                $(horse_i).after("<p style=\"color:#ff5555\">*This field can't be empty choose a horse</p>");
+                not_equals = false;
             }
-            
+
+            if(jockey_i.value == ""){
+                $(jockey_i).css("background", "#ffcccc");
+                $(jockey_i).after("<p style=\"color:#ff5555\">*This field can't be empty choose a jockey</p>");
+                not_equals = false;
+            }
         }
+
+        for (var i = 1; i <= num_fields; i++){
+            for (var j = i + 1; j <= num_fields; j++){
+
+                horse_i = document.getElementById("horse_" + i);
+                horse_j = document.getElementById("horse_" + j);
+
+                if(horse_i.value == horse_j.value && horse_i.value != "" && horse_j.value != ""){
+                    $(horse_i).css("background", "#ffcccc");
+                    $(horse_i).after("<p style=\"color:#ff5555\">*Invalid horse. Can't be the same horse as in Team " + j + "</p>");
+                    $(horse_j).css("background", "#ffcccc");
+                    $(horse_j).after("<p style=\"color:#ff5555\">*Invalid horse. Can't be the same horse as in Team " + i + "</p>");
+                    not_equals = false;
+                }
+                
+                jockey_i = document.getElementById("jockey_" + i);
+                jockey_j = document.getElementById("jockey_" + j);
+
+                if(jockey_i.value == jockey_j.value && jockey_i.value != "" && jockey_j.value != ""){
+                    $(jockey_i).css("background", "#ffcccc");
+                    $(jockey_i).after("<p style=\"color:#ff5555\">*Invalid jockey. Can't be the same jockey as in Team " + j + "</p>");
+                    $(jockey_j).css("background", "#ffcccc");
+                    $(jockey_j).after("<p style=\"color:#ff5555\">*Invalid jockey. Can't be the same jockey as in Team " + i + "</p>");
+                    not_equals = false;
+                }
+            }
+        }   
     }
+    return not_equals;
 }
 
 
