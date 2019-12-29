@@ -23,6 +23,11 @@
         color: green;
         font-weight:bold;
     }
+
+    h2{
+        color: red;
+        font-weight:bold; 
+    }
 </style>
 
 <h1 align="center">Races</h1>
@@ -37,22 +42,22 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                   <div class="card-header"> {{$race->name}}</div>  
+                   <div class="card-header"> <h2>{{$race->name}}</h2></div>  
              <!--   <button onclick="myFunction()">{{$race->name}}</button> -->
                     <div id="body-card">
                         <div class="card-body">
                             <img src="{{ $race->file_path}}" alt="race_img" style="width:40%;opacity:0.85;">
                             
                             
-                            date: {{$race->date}}<br>
-                            description: {{$race->description}}<br>
-                            local: {{$race->location}}<br>
+                            Date: {{$race->date}}<br>
+                            Description: {{$race->description}}<br>
+                            Local: {{$race->location}}<br>
 
                             @foreach($tournaments as $tournament)
 
                             <?php 
                             if($race->tournament_id == $tournament->id){ 
-                                echo "tournament: {$tournament->name}<br><br>";  
+                                echo "Tournament: {$tournament->name}<br><br>";  
                             }else{
                                 echo "no tournament to this race<br><br>";
                             }

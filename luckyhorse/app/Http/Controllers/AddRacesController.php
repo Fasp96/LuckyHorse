@@ -39,7 +39,7 @@ class AddRacesController extends Controller
             
             $photo = $request->file('race_photo');
             $fileName = $request->name . '-' .$photo->getClientOriginalName();
-            $path = 'img/race_photo/';
+            $path = '/img/race_photo/';
             $file = $photo->move($path, $fileName);
 
             $file_path = $path . $fileName;
