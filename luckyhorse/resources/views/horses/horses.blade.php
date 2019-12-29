@@ -8,6 +8,12 @@
 img {
   float: right;
 }
+
+h2{
+        color: red;
+        font-weight:bold; 
+    }
+
 </style>
 
 <h1 align="center">Horses</h1>
@@ -17,16 +23,18 @@ img {
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
+                    <div class="card-header"> <h2>{{$horse->name}}</h2></div>
+
+
                     <div class="card-body">
                         
                             <img src="{{ $horse->file_path}}" alt="horse_img" style="width:50%;opacity:0.85;">
                             
-                                name: {{$horse->name}}<br>
-                                breed: {{$horse->breed}}<br>
-                                birth_date: {{$horse->birth_date}}<br>
-                                gender: {{$horse->gender}}<br>
-                                number of races: {{$horse->num_races}}<br>
-                                number of victories: {{$horse->num_victories}}<br>
+                                Breed: {{$horse->breed}}<br>
+                                Birth Date: {{$horse->birth_date}}<br>
+                                Gender: {{$horse->gender}}<br>
+                                Number of Races: {{$horse->num_races}}<br>
+                                Number of Victories: {{$horse->num_victories}}<br>
 
                             
                             
