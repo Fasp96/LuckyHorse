@@ -17,6 +17,7 @@
     font-size: 0.7rem;
   }
 
+  /*News*/
   .center {
     text-align: center;
   }
@@ -43,6 +44,7 @@
   }
 </style>
 
+<!--News-->
 @foreach($news as $new)
     <div class="container">
         <div class="row justify-content-center">
@@ -67,6 +69,8 @@
     <br>
 @endforeach
 <br>
+
+<!--Pagination-->
 <div class="center">
   <div class="pagination">
     @if($page_number==1)
