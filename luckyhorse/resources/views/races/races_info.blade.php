@@ -140,7 +140,35 @@
                             if($result->race_id == $races->id){
                             
                             if(($result->time) == null){
-                                echo "<tr><td colspan='3'> This race don't have results yet </td></tr>";
+
+                                ?>
+                                @foreach($horses as $horse)
+                            
+                                <?php
+                                    if($result->horse_id == $horse->id){
+                                        echo "  <tr><td>{$horse->name}</td>";   
+                                    }  
+                                ?>
+                            @endforeach 
+
+                            @foreach($jockeys as $jockey)
+                            
+                            <?php
+                                if($result->jockey_id == $jockey->id){
+                                    echo "<td>{$jockey->name}</td> ";
+                                
+                                    
+                                    
+                                }  
+                            ?>
+                            @endforeach
+                                <?php
+                                echo "<td>00:00:00</td> ";
+                                echo "</tr>";
+                                //echo "<tr><td colspan='3'> This race don't have results yet </td></tr>";
+                                ?>
+
+                             <?php  
                             }
                                 
                             //se a corrida já tiver resultados
