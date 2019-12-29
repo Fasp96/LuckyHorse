@@ -33,11 +33,11 @@ class AddTournamentsController extends Controller
             
             $photo = $request->file('tournament_photo');
             $fileName = $request->name . '-' .$photo->getClientOriginalName();
-            $path = '/img/tournament_photo/';
+            $path = 'img/tournament_photo/';
             $file = $photo->move($path, $fileName);
 
             $file_path = $path . $fileName;
-            $tournament->file_path = $file_path;
+            $tournament->file_path = '/' . $file_path;
             $tournament->save();
 
             //fetches the id of the new tournament, adds to the photo name and updates the file_path atribute
@@ -45,7 +45,7 @@ class AddTournamentsController extends Controller
             $new_file_path = $path . $id . '-' . $fileName;
             
             rename($file_path, $new_file_path);
-            $tournament->file_path = $new_file_path;
+            $tournament->file_path = '/' . $new_file_path;
             $tournament->save();
 
             //if isset races
