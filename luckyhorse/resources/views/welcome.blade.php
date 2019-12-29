@@ -12,9 +12,7 @@
         border: 1px solid grey;
         color: white;
     }
-    #news_tables{
-        display: flex;
-        justify-content: space-evenly;
+    a{
         color: white;
     }
 
@@ -121,7 +119,7 @@
     @foreach($table_infos as $table_info)
         <table class="result_table">
             <caption class="tab_title">
-                <div>{{$table_info[0]->race_name}}</div>
+                <div><a href="/races/{{$table_info[0]->race_id}}">{{$table_info[0]->race_name}}</a></div>
                 <div>({{$table_info[0]->date}})</div>
             </caption>
             <tr class="tab_tags">
@@ -134,8 +132,8 @@
             @foreach($table_info as $result)
                 <tr class="tab_result">
                     <td class="tab_position">{{$count}}</td>
-                    <td>{{$result->horse_name}}</td>
-                    <td>{{$result->jockey_name}}</td>
+                    <td><a href="/horses/{{$result->race_id}}">{{$result->horse_name}}</a></td>
+                    <td><a href="/jockeys/{{$result->jockey_id}}">{{$result->jockey_name}}</a></td>
                     <td>{{$result->time}}</td>
                     <?php $count++ ?>
                 </tr>
@@ -157,7 +155,9 @@
                 {{$tournament->date}}<br>
             </div>
             <div class="info">
-                {{$tournament->name}} - {{$tournament->date}} - {{$tournament->location}}<br>
+                <a href="/tournaments/{{$tournament->id}}">{{$tournament->name}}</a>
+            - {{$tournament->date}} 
+            - {{$tournament->location}}<br>
             </div>
         @endforeach
         </div>
@@ -173,7 +173,7 @@
                 {{$race->date}}<br>
             </div>
             <div class="info">
-                {{$race->name}}<br>
+                <a href="/races/{{$race->id}}">{{$race->name}}</a><br>
             </div>
         @endforeach
         </div>
@@ -189,7 +189,7 @@
                 {{$new->created_at->format('Y-m-d')}}<br>
             </div>
             <div class="info">
-                {{$new->minute_info}}<br>
+                <a href="/news/{{$new->id}}">{{$new->minute_info}}</a><br>
             </div>
         @endforeach
         </div>
@@ -200,11 +200,9 @@
     @foreach($news as $new)
         <a href="/news/{{$new->id}}">
             <div class="news_img" style='background-image: url("{{$new->file_path}}");'>
-                
                 <!--<img src="https://apollo-ireland.akamaized.net/v1/files/eyJmbiI6Ijk4aWtrNHFveW8xeDItU1REVlRMUFQiLCJ3IjpbeyJmbiI6IjZtZ2p3bHA3a2dkYjItU1REVlRMUFQiLCJzIjoiMTYiLCJwIjoiMTAsLTEwIiwiYSI6IjAifV19.qTQKIYNUtF6UjYisKBLIS1XdIvZxfdJUETYfn3dTwlY/image;s=1080x720;cars_;/112410906_;slot=1;filename=eyJmbiI6Ijk4aWtrNHFveW8xeDItU1REVlRMUFQiLCJ3IjpbeyJmbiI6IjZtZ2p3bHA3a2dkYjItU1REVlRMUFQiLCJzIjoiMTYiLCJwIjoiMTAsLTEwIiwiYSI6IjAifV19.qTQKIYNUtF6UjYisKBLIS1XdIvZxfdJUETYfn3dTwlY_rev001.jpg"
                     alt="" width="100%" height="100%">-->
                 <div>{{$new->titulo}}</div>
-
             </div>
         </a> 
     @endforeach

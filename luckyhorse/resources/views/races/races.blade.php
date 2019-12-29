@@ -101,7 +101,7 @@
                             </ul>
 
                             <h3>Jockeys in this race: </h3>
-                            
+                                
                             <ul>  
 
                             @foreach($results as $result)
@@ -197,7 +197,6 @@
                             
                             <!-- --------------------- devolve o vencedor de cada corrida ------------------------ -->
                           <br>
-                       <!--       {{$winners}} -->
 
                             
                             @foreach($winners as $winner)

@@ -64,9 +64,16 @@ Route::get('/add_news', 'AddNewsController@index');
 Route::post('/add_news', 'AddNewsController@add');
 
 Route::get('/news', 'NewsController@index');
-Route::get('/news/{id}', 'NewsController@showNews');
+Route::get('/news/{id}', 'NewsController@getNews');
+
 Route::get('/tournaments', 'TournamentsController@index');
+Route::get('/tournaments/{id}', 'TournamentsController@getTournament');
+
 Route::get('/races', 'RacesController@index');
+Route::get('/races/{id}', 'RacesController@getRace');
+
 Route::get('/horses', 'HorsesController@index');
-Route::get('/horses/{id}', 'HorsesController@showHorses');
+Route::get('/horses/{id}', 'HorsesController@getHorse');
+
 Route::get('/jockeys', 'JockeysController@index');
+Route::get('/jockeys/{id}', 'JockeysController@getJockey');
