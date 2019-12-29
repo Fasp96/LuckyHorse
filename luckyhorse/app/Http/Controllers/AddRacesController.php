@@ -39,11 +39,11 @@ class AddRacesController extends Controller
             
             $photo = $request->file('race_photo');
             $fileName = $request->name . '-' .$photo->getClientOriginalName();
-            $path = '/img/race_photo/';
+            $path = 'img/race_photo/';
             $file = $photo->move($path, $fileName);
 
             $file_path = $path . $fileName;
-            $race->file_path = $file_path;
+            $race->file_path = '/' . $file_path;
             $race->tournament_id = $request->add_tournament;
             $race->save();
 
@@ -52,12 +52,15 @@ class AddRacesController extends Controller
             $new_file_path = $path . $id . '-' . $fileName;
             
             rename($file_path, $new_file_path);
-            $race->file_path = $new_file_path;
+            $race->file_path = '/' . $new_file_path;
             $race->save();
 
+            //for the teams fields it fetches the number of fields and creates a new Result
             for($i = 1; $i <= $request->num_fields; $i++){
                 $result = new Result;
+                //fecthes the race id
                 $result->race_id = $race->id;
+                //fetches the id of each horse and jockey that form a team
                 $horse = "horse_" . $i;
                 $jockey = "jockey_" . $i;
                 $result->horse_id = $request->$horse;

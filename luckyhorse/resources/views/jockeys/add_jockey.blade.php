@@ -2,7 +2,7 @@
 
 @section('content')
 
-<script src="{{asset('js/jockey_validator.js')}}" defer></script>
+<script src="{{asset('js/add_jockey/jockey_validator.js')}}" defer></script>
 
 <div class="container">
     <div class="row justify-content-center">

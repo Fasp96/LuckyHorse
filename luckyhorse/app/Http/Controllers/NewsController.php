@@ -9,11 +9,20 @@ use Auth;
 
 class NewsController extends Controller
 {
-    public function index(){
+    public function index($page_number=1){
         //$current_user = Auth::user();
-        $news = News::orderByDesc('created_at')->take(10)->get();
+        $news_per_page = 4;
+        $news_number = News::count();
+        $pages_total = round($news_number/$news_per_page);
+        if($page_number == 1){
+            $news = News::orderByDesc('created_at')->take($news_per_page)->get();
+        }else{
+            $news = News::orderByDesc('created_at')
+                ->skip(($page_number-1)*$news_per_page)
+                ->take($news_per_page)->get();
+        }
         if($news)
-            return view('news.news',compact('news'));
+            return view('news.news',compact('news','page_number','pages_total'));
         else   
             return redirect('/news');
     }

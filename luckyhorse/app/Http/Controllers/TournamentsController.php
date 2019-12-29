@@ -14,12 +14,29 @@ use Auth;
 
 class TournamentsController extends Controller
 {
-    public function index(){
-        $current_user = Auth::user();
-            $tournaments = Tournament::all();
-            $races = Race::all();
+    public function index($page_number=1){
+        //$current_user = Auth::user();
+        $tournaments_per_page = 4;
+        $tournaments_number = Tournament::count();
+        $pages_total = round($tournaments_number/$tournaments_per_page);
+        $races = Race::all();
 
-            return view('tournaments.tournaments',compact('tournaments','races'));   
+        if($page_number == 1){
+            $tournaments = Tournament::orderByDesc('date')->take($tournaments_per_page)->get();
+            $races = Race::orderByDesc('date')->take($tournaments_per_page)->get();
+        }else{
+            $tournaments = Tournament::orderByDesc('date')
+                ->skip(($page_number-1)*$tournaments_per_page)
+                ->take($tournaments_per_page)->get();
+            $races = Race::orderByDesc('date')
+                ->skip(($page_number-1)*$tournaments_per_page)
+                ->take($tournaments_per_page)->get();
+        }
+        if($tournaments)
+            return view('tournaments.tournaments',compact('tournaments','races','page_number','pages_total'));   
+        else   
+            return redirect('/tournaments');
+        
     }
 
     public function getTournament($id){

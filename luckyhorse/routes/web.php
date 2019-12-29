@@ -64,16 +64,21 @@ Route::get('/add_news', 'AddNewsController@index');
 Route::post('/add_news', 'AddNewsController@add');
 
 Route::get('/news', 'NewsController@index');
+Route::get('/news_page={page_number}', 'NewsController@index');
 Route::get('/news/{id}', 'NewsController@getNews');
 
 Route::get('/tournaments', 'TournamentsController@index');
+Route::get('/tournaments_page={page_number}', 'TournamentsController@index');
 Route::get('/tournaments/{id}', 'TournamentsController@getTournament');
 
 Route::get('/races', 'RacesController@index');
+Route::get('/races_page={page_number}', 'RacesController@index');
 Route::get('/races/{id}', 'RacesController@getRace');
 
 Route::get('/horses', 'HorsesController@index');
+Route::get('/horses_page={page_number}', 'HorsesController@index');
 Route::get('/horses/{id}', 'HorsesController@getHorse');
 
 Route::get('/jockeys', 'JockeysController@index');
+Route::get('/jockeys_page={page_number}', 'JockeysController@index');
 Route::get('/jockeys/{id}', 'JockeysController@getJockey');
