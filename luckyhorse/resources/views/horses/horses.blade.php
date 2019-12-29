@@ -12,15 +12,19 @@ img {
   float: right;
 }
 
-h2{
-        color: red;
+h1{
+        color: green;
         font-weight:bold; 
     }
 
+h3{
+        color: white;
+         
+    }
+
 .button {
-  background-color: #F0E68C;
+  background-color:#323232;
   border: none;
-  color: black;
   padding: 15px 30px;
   text-align: center;
   text-decoration: none;
@@ -30,8 +34,12 @@ h2{
   cursor: pointer;
   width: 50%;
   height: 50px;
+  margin-left: 350px;
+}
 
-margin-left: 350px;
+.button:hover {
+  background-color: orange;
+  color: white;
 }
 
 </style>
@@ -44,7 +52,7 @@ margin-left: 350px;
 @foreach($horses as $horse)
                     
     <div class="button-container">
-        <button class = "button" id="{{$horse->id}}"><h2>{{$horse->name}}</h2></button>
+        <button class = "button" id="{{$horse->id}}"><h3>{{$horse->name}}</h3></button>
      </div>
 
 <br>
