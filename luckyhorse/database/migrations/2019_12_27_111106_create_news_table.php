@@ -18,7 +18,7 @@ class CreateNewsTable extends Migration
             $table->string('title');
             $table->text('description');
             $table->string('file_path');
-            $table->string('minute_info');
+            $table->string('minute_info')->nullable();
 
             $table->timestamps();
         });
