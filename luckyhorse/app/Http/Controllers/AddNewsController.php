@@ -31,11 +31,11 @@ class AddNewsController extends Controller
             
             $photo = $request->file('news_photo');
             $fileName = $request->name . '-' .$photo->getClientOriginalName();
-            $path = '/img/news_photo/';
+            $path = 'img/news_photo/';
             $file = $photo->move($path, $fileName);
 
             $file_path = $path . $fileName;
-            $news->file_path = $file_path;
+            $news->file_path = '/' . $file_path;
             $news->save();
 
             //fetches the id of the new news, adds to the photo name and updates the file_path atribute
@@ -43,7 +43,7 @@ class AddNewsController extends Controller
             $new_file_path = $path . $id . '-' . $fileName;
             
             rename($file_path, $new_file_path);
-            $news->file_path = $new_file_path;
+            $news->file_path = '/' . $new_file_path;
             $news->save();
 
             return redirect('/add_news');

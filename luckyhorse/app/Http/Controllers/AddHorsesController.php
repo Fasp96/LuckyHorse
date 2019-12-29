@@ -34,11 +34,11 @@ class AddHorsesController extends Controller
             
             $photo = $request->file('horse_photo');
             $fileName = $request->name . '-' .$photo->getClientOriginalName();
-            $path = '/img/horse_photo/';
+            $path = 'img/horse_photo/';
             $file = $photo->move($path, $fileName);
 
             $file_path = $path . $fileName;
-            $horse->file_path = $file_path;
+            $horse->file_path = '/' . $file_path;
             
             $horse->save();
 
@@ -47,7 +47,7 @@ class AddHorsesController extends Controller
             $new_file_path = $path . $id . '-' . $fileName;
             
             rename($file_path, $new_file_path);
-            $horse->file_path = $new_file_path;
+            $horse->file_path = '/' . $new_file_path;
             $horse->save();
 
             return redirect('/add_horses');

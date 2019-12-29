@@ -36,11 +36,11 @@ class AddJockeysController extends Controller
             
             $photo = $request->file('jockey_photo');
             $fileName = $request->name . '-' .$photo->getClientOriginalName();
-            $path = '/img/jockey_photo/';
+            $path = 'img/jockey_photo/';
             $file = $photo->move($path, $fileName);
 
             $file_path = $path . $fileName;
-            $jockey->file_path = $file_path;
+            $jockey->file_path = '/' . $file_path;
             $jockey->save();
 
             //fetches the id of the new jockey, adds to the photo name and updates the file_path atribute
@@ -48,7 +48,7 @@ class AddJockeysController extends Controller
             $new_file_path = $path . $id . '-' . $fileName;
             
             rename($file_path, $new_file_path);
-            $jockey->file_path = $new_file_path;
+            $jockey->file_path = '/' . $new_file_path;
             $jockey->save();
 
             return redirect('/add_jockeys');

@@ -10,6 +10,11 @@
         color: red;
         font-weight:bold; 
     }
+    
+h1{
+    color: green;
+    font-weight:bold; 
+}
 
     /*Pagination*/
     .center {
@@ -48,12 +53,12 @@
                <!-- <div class="card-header">Jockeys</div> -->
                 <div class="card-header"> <h2>{{$jockey->name}}</h2></div>
                 <div class="card-body">
-                            <img src="{{ $jockey->file_path}}" alt="jockey_img" style="width:40%;opacity:0.85;">
+                            <img src="{{ $jockey->file_path}}" alt="jockey_img" style="width:20%;opacity:0.85;">
                         
                             Birth Date: {{$jockey->birth_date}}<br>
                             Gender: {{$jockey->gender}}<br> 
                             Number of Races: {{$jockey->num_races}}<br>
-                            Number of Rictories: {{$jockey->num_victories}}<br>                
+                            Number of Victories: {{$jockey->num_victories}}<br>                
                        
                 </div>
             </div>
