@@ -149,10 +149,10 @@
                             
                             if(($result->time) == null){
                                 echo "<tr><td colspan='3'> This race don't have results yet </td></tr>";
-                                echo "<br>";
                             }
                                 
-                            if(($result->time) != null){     //   echo "<li>{$race->time}</li>"
+                            //se a corrida já tiver resultados
+                            if(($result->time) != null){ 
                             ?>
 
                                
@@ -208,16 +208,6 @@
                                     @endif
                                 @endif
                             @endforeach
-
-
-
-                            <?php
-                               //}else{
-                                //  echo "no results";
-                            //  }
-                      //    }
-                            
-                            ?>
     
 
                     </div>
