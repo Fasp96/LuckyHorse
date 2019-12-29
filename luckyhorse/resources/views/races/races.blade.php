@@ -27,6 +27,11 @@
         color: green;
         font-weight:bold;
     }
+    
+    h1{
+        color: green;
+        font-weight:bold; 
+    }
 
     h2{
         color: red;

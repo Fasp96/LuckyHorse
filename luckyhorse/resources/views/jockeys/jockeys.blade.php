@@ -11,6 +11,11 @@ h2{
         color: red;
         font-weight:bold; 
     }
+    
+h1{
+    color: green;
+    font-weight:bold; 
+}
 
 </style>
 
