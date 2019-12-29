@@ -8,9 +8,9 @@ img {
 }
 
 h2{
-        color: red;
-        font-weight:bold; 
-    }
+    color: red;
+    font-weight:bold; 
+}
     
 h1{
     color: green;
