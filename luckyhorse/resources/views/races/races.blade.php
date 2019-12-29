@@ -85,7 +85,7 @@
                     </div>
 
                         <div class="card-body">
-                            <img src="{{ $race->file_path}}" alt="race_img" style="width:40%;opacity:0.85;">
+                            <img src="{{ $race->file_path}}" alt="race_img" style="width:30%;opacity:0.85;">
                             
                             
                             Date: {{$race->date}}<br>
