@@ -33,7 +33,7 @@ h1{
                             Birth Date: {{$jockey->birth_date}}<br>
                             Gender: {{$jockey->gender}}<br> 
                             Number of Races: {{$jockey->num_races}}<br>
-                            Number of Rictories: {{$jockey->num_victories}}<br>                
+                            Number of Victories: {{$jockey->num_victories}}<br>                
                        
                 </div>
             </div>
