@@ -23,15 +23,13 @@ class TournamentsController extends Controller
 
         if($page_number == 1){
             $tournaments = Tournament::orderByDesc('date')->take($tournaments_per_page)->get();
-            $races = Race::orderByDesc('date')->take($tournaments_per_page)->get();
         }else{
             $tournaments = Tournament::orderByDesc('date')
                 ->skip(($page_number-1)*$tournaments_per_page)
                 ->take($tournaments_per_page)->get();
-            $races = Race::orderByDesc('date')
-                ->skip(($page_number-1)*$tournaments_per_page)
-                ->take($tournaments_per_page)->get();
         }
+        $races = Race::orderByDesc('date')->take($tournaments_per_page)->get();
+        
         if($tournaments)
             return view('tournaments.tournaments',compact('tournaments','races','page_number','pages_total'));   
         else   

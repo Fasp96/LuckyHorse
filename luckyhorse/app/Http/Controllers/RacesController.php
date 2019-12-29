@@ -17,36 +17,40 @@ use Auth;
 class RacesController extends Controller
 {
     //
-    public function index(){
-        $current_user = Auth::user();
-             $races = Race::all();
-             $tournaments= Tournament::all();
+    public function index($page_number=1){
+        //$current_user = Auth::user();
+        $races_per_page = 2;
+        $races_number = Race::count();
+        $pages_total = round($races_number/$races_per_page);
+        
+        if($page_number == 1){
+            $races = Race::orderByDesc('date')->take($races_per_page)->get();
+        }else{
+            $races = Race::orderByDesc('date')
+                ->skip(($page_number-1)*$races_per_page)
+                ->take($races_per_page)->get();
+        }
 
-             $jockeys = Jockey::all();
-             $results = Result::orderBy('time')->get();
-             $horses = Horse::all();
-
-             
-                $winners = collect();
-                foreach($races as $race){
-                    $winner = Race::where('races.id','=',$race->id)
-                        ->join('results','races.id','=','results.race_id')
-                        ->join('horses','results.horse_id','=','horses.id')
-                        ->select('horses.name','results.race_id','results.time')
-                        ->orderBy('results.time')
-                        ->take(1)->get();
-
-                $winners->push($winner);
-                }
-               
-
-                
-             // ->orderByDesc('results.time')
-             
+        $tournaments= Tournament::all();
+        $jockeys = Jockey::all();
+        $results = Result::orderBy('time')->get();
+        $horses = Horse::all();
             
-             
-            
-            return view('races.races',compact('races','tournaments','results','horses','jockeys','winners'));   
+        $winners = collect();
+        foreach($races as $race){
+            $winner = Race::where('races.id','=',$race->id)
+                ->join('results','races.id','=','results.race_id')
+                ->join('horses','results.horse_id','=','horses.id')
+                ->select('horses.name','results.race_id','results.time')
+                ->orderBy('results.time')
+                ->take(1)->get();
+            $winners->push($winner);
+        }
+
+        if($races)
+            return view('races.races',compact('races','tournaments','results','horses','jockeys','winners','page_number','pages_total'));
+        else   
+            return redirect('/races');
     }
 
     public function getRace($id){

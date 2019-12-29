@@ -18,7 +18,7 @@
         margin-left: 2em;
     }
 
-    /*News*/
+    /*Pagination*/
     .center {
         text-align: center;
     }
