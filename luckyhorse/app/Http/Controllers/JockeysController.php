@@ -15,4 +15,13 @@ class JockeysController extends Controller
              $jockeys = Jockey::all();
              return view('jockeys.jockeys',compact('jockeys'));   
     }
+
+    public function getJockey($id){
+        //$current_user = Auth::user();
+        $jockeys = [Jockey::find($id)];
+        if($jockeys)
+            return view('jockeys.jockeys',compact('jockeys'));
+        else
+            return redirect('/jockeys');
+    }
 }

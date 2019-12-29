@@ -30,9 +30,12 @@ class WelcomeController extends Controller
                 ->join('results','races.id','=','results.race_id')
                 ->join('horses','results.horse_id','=','horses.id')
                 ->join('jockeys','results.jockey_id','=','jockeys.id')
-                ->select('races.name as race_name',
+                ->select('races.id as race_id',
+                    'races.name as race_name',
                     'races.date as date',
+                    'horses.id as horse_id',
                     'horses.name as horse_name',
+                    'jockeys.id as jockey_id',
                     'jockeys.name as jockey_name',
                     'results.time as time')
                 ->orderByDesc('time')->get();
