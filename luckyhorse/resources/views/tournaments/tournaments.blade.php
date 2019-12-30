@@ -62,7 +62,8 @@
                 <div class="card-body">
                     <img src="{{ $tournament->file_path}}" alt="tournament_img" style="width:40%;opacity:0.85;">
                     
-                    Date: {{$tournament->date}}<br>
+                    Date: {{date('d-m-Y', strtotime($tournament->date))}}<br>
+                    Time: {{date('H:i:s', strtotime($tournament->date))}}<br>
                     Description: {{$tournament->description}}<br>
                     Location: {{$tournament->location}}<br><br>
                     
@@ -71,7 +72,7 @@
                     @foreach($races as $race)
                     <?php
                         if($tournament->id == $race->tournament_id){
-                            echo "<li> {$race->name} in {$race->location} </li>";
+                            echo "<li><a href='http://localhost:8000/races/{$race->id}'> {$race->name} in {$race->location} </a></li>";
                             
                         }
                         else{

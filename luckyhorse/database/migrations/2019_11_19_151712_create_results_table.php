@@ -28,6 +28,7 @@ class CreateResultsTable extends Migration
             $table->time('time')->nullable();
             $table->timestamps();
         });
+        
     }
 
     /**

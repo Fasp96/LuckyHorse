@@ -39,7 +39,8 @@
                                 <li><a href="{{ url('/horses') }}">Horses</a></li>
                                 <li><a href="{{ url('/jockeys') }}">Jockeys</a></li>
                                 
-                            @auth                                
+                            @auth
+                                <li><a href="{{ url('/bets') }}">Bets</a></li>                               
                                 <li><a href="{{ url('/add_horses') }}">Add Horse</a></li>
                                 <li><a href="{{ url('/add_jockeys') }}">Add Jockey</a></li>
                                 <li><a href="{{ url('/add_races') }}">Add Race</a></li>

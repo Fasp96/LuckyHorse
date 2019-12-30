@@ -56,6 +56,8 @@ class RacesController extends Controller
     public function getRace($id){
         //$current_user = Auth::user();
         $races = Race::find($id);
+        $page_number = 1;
+        $pages_total = 1;
         $tournaments= Tournament::where('id',$races->id)->get();
         $results = Result::where('race_id',$races->id)->orderBy('time')->get();
         $jockeys = Jockey::all();
@@ -68,7 +70,7 @@ class RacesController extends Controller
                         ->take(1)->get()];
 
         if($races)
-            return view('races.races_info',compact('races','tournaments','results','horses','jockeys','winners'));
+            return view('races.races_info',compact('races','tournaments','results','horses','jockeys','winners','page_number','pages_total'));
         else
             return redirect('/races');
     }
