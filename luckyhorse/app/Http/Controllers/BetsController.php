@@ -23,7 +23,19 @@ class BetsController extends Controller
              $jockeys = Jockey::all();
              $tournaments = Tournament::all();
 
-             return view('bets.bets',compact('bets','races','horses','jockeys','tournaments'));
+
+             $major_values = collect();
+             //foreach($bets as $bet){
+                 $major_value = Bet::orderByDesc('bets.value')
+                     ->limit(2)
+                     ->get();
+                 //where('bets.id','=',$bet->id)
+                     //->select('bets.value')
+                     
+                 $major_values->push($major_value);
+             //}
+
+             return view('bets.bets',compact('bets','races','horses','jockeys','tournaments','major_values'));
         }else{
             return redirect('home');
         }

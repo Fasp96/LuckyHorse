@@ -52,7 +52,7 @@
 </style>
 
 <h1 align="center">Bets</h1>
-
+{{$major_values}}
 
 <div id="last_results_tables">
     <table class="result_table">
@@ -73,46 +73,50 @@
                 if(date('Y-m-d') < $race->date){
                     //echo "{$race->name}";
                     ?>
-                    @foreach ($bets as $bet)
-                        @if ($bet->race_id == $race->id)
+                     
+
+                   
+                            @foreach($major_values as $major)
+                                <!--                               -->
+                                @if($major[0]->race_id==$race->id)
+                                    
 
                                         <tr class="tab_result">
                                       <!--     <td class="tab_position">{{$race->id}}</td> -->
                                             <td><a href="/races/{{$race->id}}">{{$race->name}}</a></td>
 
                                             @foreach($tournaments as $tournament)
-                                               @if( $bet->tournament_id == $tournament->id )  
-                                                   <td><a href="/tournaments/{{$bet->tournament_id}}"> {{$tournament->name}} </a></td>
+                                               @if( $major[0]->tournament_id == $tournament->id )  
+                                                   <td><a href="/tournaments/{{$major[0]->tournament_id}}"> {{$tournament->name}} </a></td>
                                                @endif 
                                             @endforeach
 
 
                                             @foreach($horses as $horse)
-                                                @if( $bet->horse_id == $horse->id ) 
-                                                    <td><a href="/horses/{{$bet->horse_id}}">{{$horse->name}}</a></td>
+                                                @if( $major[0]->horse_id == $horse->id ) 
+                                                    <td><a href="/horses/{{$major[0]->horse_id}}">{{$horse->name}}</a></td>
                                                 @endif 
                                             @endforeach
 
-                                            <td>{{$bet->value}}</td>
+                                            <td>{{$major[0]->value}}</td>
                                             
                                         </tr>
                                 
-                
+               
                         </div>
                         
-                        
-                    @endif
-                    
-                    @endforeach
-            
-               
+                        @endif
+                       
+                     @endforeach
             <?php  }else{
                         //date('Y-m-d') > $race->date
                 }
                 ?>
+               
+           
            
         @endforeach
-        
+
     </table>
 
 
