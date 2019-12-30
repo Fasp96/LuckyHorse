@@ -71,7 +71,7 @@
                     @foreach($races as $race)
                     <?php
                         if($tournament->id == $race->tournament_id){
-                            echo "<li> {$race->name} in {$race->location} </li>";
+                            echo "<li><a href='http://localhost:8000/races/{$race->id}'> {$race->name} in {$race->location} </a></li>";
                             
                         }
                         else{
