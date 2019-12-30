@@ -170,7 +170,8 @@
         <div class="tab_content">
         @foreach($races as $race)
             <div class="title">
-                {{$race->date->format('d-m-Y')}}<br>
+                {{date('d-m-Y', strtotime($race->date))}}<br>
+         <!--        -->
             </div>
             <div class="info">
                 <a href="/races/{{$race->id}}">{{$race->name}}
