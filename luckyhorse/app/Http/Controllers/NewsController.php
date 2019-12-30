@@ -11,6 +11,7 @@ class NewsController extends Controller
 {
     public function index($page_number=1){
         //$current_user = Auth::user();
+        $page_name = "news";
         $news_per_page = 4;
         $news_number = News::count();
         $pages_total = ceil($news_number/$news_per_page);
@@ -22,7 +23,8 @@ class NewsController extends Controller
                 ->take($news_per_page)->get();
         }
         if($news)
-            return view('news.news',compact('news','page_number','pages_total'));
+            return view('news.news',
+                compact('news','page_number','pages_total', 'page_name'));
         else   
             return redirect('/news');
     }

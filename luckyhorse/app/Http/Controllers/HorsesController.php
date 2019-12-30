@@ -11,6 +11,7 @@ class HorsesController extends Controller
 {
     public function index($page_number=1){
         //$current_user = Auth::user();
+        $page_name = "horses";
         $horses_per_page = 4;
         $horse_number = Horse::count();
         $pages_total = ceil($horse_number/$horses_per_page);
@@ -22,7 +23,8 @@ class HorsesController extends Controller
                 ->take($horses_per_page)->get();
         }
         if($horses)
-            return view('horses.horses',compact('horses','page_number','pages_total'));
+            return view('horses.horses',
+                compact('horses','page_number','pages_total', 'page_name'));
         else   
             return redirect('/horses');
     }

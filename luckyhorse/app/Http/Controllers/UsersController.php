@@ -12,6 +12,7 @@ class UsersController extends Controller
     public function index($page_number=1){
         $current_user = Auth::user();
         if($current_user){
+            $page_name = "users";
             $users_per_page = 10;
             $users_number = User::count();
             $pages_total = ceil($users_number/$users_per_page);
@@ -24,7 +25,7 @@ class UsersController extends Controller
                     ->take($users_per_page)->get();
             }
             if($users)
-                return view('users.users',compact('users','page_number','pages_total'));
+                return view('users.users',compact('users','page_number','pages_total', 'page_name'));
             else   
                 return redirect('/');
         }else{
