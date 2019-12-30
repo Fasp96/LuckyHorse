@@ -120,7 +120,7 @@
         <table class="result_table">
             <caption class="tab_title">
                 <div><a href="/races/{{$table_info[0]->race_id}}">{{$table_info[0]->race_name}}</a></div>
-                <div>({{$table_info[0]->date}})</div>
+                <div>({{date('d-m-Y', strtotime($table_info[0]->date))}})</div>
             </caption>
             <tr class="tab_tags">
                 <td></td>
@@ -152,11 +152,11 @@
         <div class="tab_content">
         @foreach($tournaments as $tournament)
             <div class="title">
-                {{$tournament->date}}<br>
+                {{date('d-m-Y', strtotime($tournament->date))}} <br>
             </div>
             <div class="info">
                 <a href="/tournaments/{{$tournament->id}}">{{$tournament->name}}</a>
-            - {{$tournament->date}} 
+            - {{date('H:i:s', strtotime($tournament->date))}} 
             - {{$tournament->location}}<br>
             </div>
         @endforeach
@@ -170,10 +170,12 @@
         <div class="tab_content">
         @foreach($races as $race)
             <div class="title">
-                {{$race->date}}<br>
+                {{$race->date->format('d-m-Y')}}<br>
             </div>
             <div class="info">
-                <a href="/races/{{$race->id}}">{{$race->name}}</a><br>
+                <a href="/races/{{$race->id}}">{{$race->name}}
+                - {{date('H:i:s', strtotime($race->date))}}
+                - {{$race->location}}</a><br>
             </div>
         @endforeach
         </div>
@@ -186,7 +188,7 @@
         <div class="tab_content">
         @foreach($news as $new)
             <div class="title">
-                {{$new->created_at->format('Y-m-d')}}<br>
+                {{$new->created_at->format('d-m-Y')}}<br>
             </div>
             <div class="info">
                 <a href="/news/{{$new->id}}">{{$new->minute_info}}</a><br>
@@ -202,7 +204,7 @@
             <div class="news_img" style='background-image: url("{{$new->file_path}}");'>
                 <!--<img src="https://apollo-ireland.akamaized.net/v1/files/eyJmbiI6Ijk4aWtrNHFveW8xeDItU1REVlRMUFQiLCJ3IjpbeyJmbiI6IjZtZ2p3bHA3a2dkYjItU1REVlRMUFQiLCJzIjoiMTYiLCJwIjoiMTAsLTEwIiwiYSI6IjAifV19.qTQKIYNUtF6UjYisKBLIS1XdIvZxfdJUETYfn3dTwlY/image;s=1080x720;cars_;/112410906_;slot=1;filename=eyJmbiI6Ijk4aWtrNHFveW8xeDItU1REVlRMUFQiLCJ3IjpbeyJmbiI6IjZtZ2p3bHA3a2dkYjItU1REVlRMUFQiLCJzIjoiMTYiLCJwIjoiMTAsLTEwIiwiYSI6IjAifV19.qTQKIYNUtF6UjYisKBLIS1XdIvZxfdJUETYfn3dTwlY_rev001.jpg"
                     alt="" width="100%" height="100%">-->
-                <div>{{$new->titulo}}</div>
+                <div>{{$new->title}}</div>
             </div>
         </a> 
     @endforeach

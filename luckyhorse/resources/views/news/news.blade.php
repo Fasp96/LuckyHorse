@@ -50,7 +50,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">{{$new->titulo}}</div> 
+                    <div class="card-header">{{$new->title}}</div> 
                     <div class="card-body">
                         <img src="/{{$new->file_path}}" alt="news_img" style="width:50%;opacity:0.85;">
                         <br>
