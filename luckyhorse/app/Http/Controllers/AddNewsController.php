@@ -25,7 +25,7 @@ class AddNewsController extends Controller
         if($user){
 
             $news = new News;
-            $news->titulo = $request->title;
+            $news->title = $request->title;
             $news->minute_info = $request->abstract;
             $news->description = $request->description;
             

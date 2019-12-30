@@ -52,7 +52,7 @@
                 <div class="card">
                     <div class="card-header">{{$new->title}}</div> 
                     <div class="card-body">
-                        <img src="/{{$new->file_path}}" alt="news_img" style="width:50%;opacity:0.85;">
+                        <img src="{{$new->file_path}}" alt="news_img" style="width:50%;opacity:0.85;">
                         <br>
                         <div class="news-description">
                             {{$new->description}}
