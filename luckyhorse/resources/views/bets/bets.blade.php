@@ -52,7 +52,7 @@
 </style>
 
 <h1 align="center">Bets</h1>
-{{$major_values}}
+
 
 <div id="last_results_tables">
     <table class="result_table">
@@ -73,11 +73,10 @@
                 if(date('Y-m-d') < $race->date){
                     //echo "{$race->name}";
                     ?>
-                     
+                    
 
-                   
+
                             @foreach($major_values as $major)
-                                <!--                               -->
                                 @if($major[0]->race_id==$race->id)
                                     
 
@@ -101,20 +100,20 @@
                                             <td>{{$major[0]->value}}</td>
                                             
                                         </tr>
-                                
-               
-                        </div>
+                                 </div> 
+                                @endif
+                            @endforeach
                         
-                        @endif
+                        
                        
-                     @endforeach
+                    
+            
+               
             <?php  }else{
                         //date('Y-m-d') > $race->date
                 }
                 ?>
-               
-           
-           
+          
         @endforeach
 
     </table>
