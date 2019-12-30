@@ -21,7 +21,7 @@ class RacesController extends Controller
         //$current_user = Auth::user();
         $races_per_page = 2;
         $races_number = Race::count();
-        $pages_total = round($races_number/$races_per_page);
+        $pages_total = ceil($races_number/$races_per_page);
         
         if($page_number == 1){
             $races = Race::orderByDesc('date')->take($races_per_page)->get();

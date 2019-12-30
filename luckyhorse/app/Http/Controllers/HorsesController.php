@@ -13,7 +13,7 @@ class HorsesController extends Controller
         //$current_user = Auth::user();
         $horses_per_page = 4;
         $horse_number = Horse::count();
-        $pages_total = round($horse_number/$horses_per_page);
+        $pages_total = ceil($horse_number/$horses_per_page);
         if($page_number == 1){
             $horses = Horse::orderBy('name')->take($horses_per_page)->get();
         }else{

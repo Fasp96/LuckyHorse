@@ -46,6 +46,7 @@
                                 <li><a href="{{ url('/add_races') }}">Add Race</a></li>
                                 <li><a href="{{ url('/add_tournaments') }}">Add Tournament</a></li>
                                 <li><a href="{{ url('/add_news') }}">Add News</a></li>
+                                <li><a href="{{ url('/users') }}">Manage Users</a></li>
                                 <li><a href="{{ url('/home') }}">Home</a></li>
                         @else
                                 <li><a href="{{ route('login') }}">Login</a></li>
@@ -62,7 +63,7 @@
                 
             </div>
             <footer>
-                <p>Posted by: André, Fábio e Márcio | Contacts | termos e condições |
+                <p>Posted by: André, Fábio e Márcio | Contacts | Terms and conditions |
                 <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
                 </p>
             </footer>

@@ -18,7 +18,7 @@ class TournamentsController extends Controller
         //$current_user = Auth::user();
         $tournaments_per_page = 4;
         $tournaments_number = Tournament::count();
-        $pages_total = round($tournaments_number/$tournaments_per_page);
+        $pages_total = ceil($tournaments_number/$tournaments_per_page);
         $races = Race::all();
 
         if($page_number == 1){

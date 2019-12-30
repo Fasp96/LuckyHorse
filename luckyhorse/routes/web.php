@@ -63,6 +63,10 @@ Route::get('/api/add_races_tournaments', 'AddRacesController@getTournaments');
 Route::get('/add_news', 'AddNewsController@index');
 Route::post('/add_news', 'AddNewsController@add');
 
+Route::get('/users','UsersController@index');
+Route::get('/users_page={page_number}', 'UsersController@index');
+Route::get('/users/{id}','UsersController@getUser');
+
 Route::get('/news', 'NewsController@index');
 Route::get('/news_page={page_number}', 'NewsController@index');
 Route::get('/news/{id}', 'NewsController@getNews');

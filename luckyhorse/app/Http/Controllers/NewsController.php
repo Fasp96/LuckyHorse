@@ -13,7 +13,7 @@ class NewsController extends Controller
         //$current_user = Auth::user();
         $news_per_page = 4;
         $news_number = News::count();
-        $pages_total = round($news_number/$news_per_page);
+        $pages_total = ceil($news_number/$news_per_page);
         if($page_number == 1){
             $news = News::orderByDesc('created_at')->take($news_per_page)->get();
         }else{
