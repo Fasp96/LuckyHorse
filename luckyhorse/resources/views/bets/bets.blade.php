@@ -74,6 +74,8 @@
                     //echo "{$race->name}";
                     ?>
                     @foreach ($bets as $bet)
+                        @if ($bet->race_id == $race->id)
+
                                         <tr class="tab_result">
                                       <!--     <td class="tab_position">{{$race->id}}</td> -->
                                             <td><a href="/races/{{$race->id}}">{{$race->name}}</a></td>
@@ -95,16 +97,24 @@
                                             
                                         </tr>
                                 
-
-                        </div>
-
                 
-
-                @endforeach
-            </table>
+                        </div>
+                        
+                        
+                    @endif
+                    
+                    @endforeach
+            
                
-            <?php  }?>
+            <?php  }else{
+                        //date('Y-m-d') > $race->date
+                }
+                ?>
            
         @endforeach
+        
+    </table>
+
+
 
 @endsection
