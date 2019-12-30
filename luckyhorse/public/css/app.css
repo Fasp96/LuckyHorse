@@ -11154,6 +11154,8 @@ body {
   border-top: 1px solid grey;
   border-bottom: 1px solid grey;
   background-color: #333;
+  -webkit-transition: background-color 0.3s;
+  transition: background-color 0.3s;
 }
 
 #nav_bar > ul > li > a {

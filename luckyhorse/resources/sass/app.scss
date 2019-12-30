@@ -55,6 +55,7 @@ html, body {
     border-top: 1px solid $grey;
     border-bottom: 1px solid $grey;
     background-color: $dark_grey;
+    transition: background-color .3s;
 }
 
 #nav_bar > ul > li > a {

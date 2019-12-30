@@ -19,9 +19,10 @@ class RacesController extends Controller
     //
     public function index($page_number=1){
         //$current_user = Auth::user();
+        $page_name = "races";
         $races_per_page = 2;
         $races_number = Race::count();
-        $pages_total = round($races_number/$races_per_page);
+        $pages_total = ceil($races_number/$races_per_page);
         
         if($page_number == 1){
             $races = Race::orderByDesc('date')->take($races_per_page)->get();
@@ -48,7 +49,9 @@ class RacesController extends Controller
         }
 
         if($races)
-            return view('races.races',compact('races','tournaments','results','horses','jockeys','winners','page_number','pages_total'));
+            return view('races.races',
+                compact('races','tournaments','results','horses','jockeys',
+                    'winners','page_number','pages_total','page_name'));
         else   
             return redirect('/races');
     }

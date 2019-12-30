@@ -171,7 +171,6 @@
         @foreach($races as $race)
             <div class="title">
                 {{date('d-m-Y', strtotime($race->date))}}<br>
-         <!--        -->
             </div>
             <div class="info">
                 <a href="/races/{{$race->id}}">{{$race->name}}

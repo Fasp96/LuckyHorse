@@ -16,9 +16,10 @@ class TournamentsController extends Controller
 {
     public function index($page_number=1){
         //$current_user = Auth::user();
+        $page_name = "tournaments";
         $tournaments_per_page = 4;
         $tournaments_number = Tournament::count();
-        $pages_total = round($tournaments_number/$tournaments_per_page);
+        $pages_total = ceil($tournaments_number/$tournaments_per_page);
         $races = Race::all();
 
         if($page_number == 1){
@@ -31,7 +32,8 @@ class TournamentsController extends Controller
         $races = Race::orderByDesc('date')->take($tournaments_per_page)->get();
         
         if($tournaments)
-            return view('tournaments.tournaments',compact('tournaments','races','page_number','pages_total'));   
+            return view('tournaments.tournaments',
+                compact('tournaments','races','page_number','pages_total','page_name'));   
         else   
             return redirect('/tournaments');
         
