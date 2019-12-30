@@ -40,8 +40,8 @@
                         <div class="card-body">
                             <img src="{{ $races->file_path}}" alt="race_img" style="width:40%;opacity:0.85;">
                             
-                            
-                            Date: {{$races->date}}<br>
+                            Date: {{date('d-m-Y', strtotime($races->date))}}<br>
+                            Time: {{date('H:i:s', strtotime($races->date))}}<br>
                             Description: {{$races->description}}<br>
                             Local: {{$races->location}}<br>
 
