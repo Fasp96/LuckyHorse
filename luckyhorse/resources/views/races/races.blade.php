@@ -113,7 +113,7 @@
                             <img src="{{ $race->file_path}}" alt="race_img" style="width:30%;opacity:0.85;">
                             
                             
-                            Date: {{$race->date}}<br>
+                            Date: {{date('d-m-Y', strtotime($race->date))}}<br>
                             Description: {{$race->description}}<br>
                             Local: {{$race->location}}<br>
 
