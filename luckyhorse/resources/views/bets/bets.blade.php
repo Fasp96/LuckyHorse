@@ -74,13 +74,24 @@
                     //echo "{$race->name}";
                     ?>
                     @foreach ($bets as $bet)
-
                                         <tr class="tab_result">
                                       <!--     <td class="tab_position">{{$race->id}}</td> -->
                                             <td><a href="/races/{{$race->id}}">{{$race->name}}</a></td>
-                                            <td><a href="/tournaments/{{$bet->tournament_id}}">tournament</a></td>
-                                            <td><a href="/jockeys/result->jockey_id">horse</a></td>
-                                            <td>value</td>
+
+                                            @foreach($tournaments as $tournament)
+                                               @if( $bet->tournament_id == $tournament->id )  
+                                                   <td><a href="/tournaments/{{$bet->tournament_id}}"> {{$tournament->name}} </a></td>
+                                               @endif 
+                                            @endforeach
+
+
+                                            @foreach($horses as $horse)
+                                                @if( $bet->horse_id == $horse->id ) 
+                                                    <td><a href="/horses/{{$bet->horse_id}}">{{$horse->name}}</a></td>
+                                                @endif 
+                                            @endforeach
+
+                                            <td>{{$bet->value}}</td>
                                             
                                         </tr>
                                 
