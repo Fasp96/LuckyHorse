@@ -62,7 +62,8 @@
                 <div class="card-body">
                     <img src="{{ $tournament->file_path}}" alt="tournament_img" style="width:40%;opacity:0.85;">
                     
-                    Date: {{$tournament->date}}<br>
+                    Date: {{date('d-m-Y', strtotime($tournament->date))}}<br>
+                    Time: {{date('H:i:s', strtotime($tournament->date))}}<br>
                     Description: {{$tournament->description}}<br>
                     Location: {{$tournament->location}}<br><br>
                     
