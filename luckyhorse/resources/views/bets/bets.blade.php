@@ -76,8 +76,8 @@
                     
 
 
-                            @foreach($major_values as $major)
-                                @if($major[0]->race_id==$race->id)
+                            @foreach($bets as $bet)
+                                @if($bet->race_id==$race->id)
                                     
 
                                         <tr class="tab_result">
@@ -85,26 +85,26 @@
                                             <td><a href="/races/{{$race->id}}">{{$race->name}}</a></td>
 
                                             @foreach($tournaments as $tournament)
-                                               @if( $major[0]->tournament_id == $tournament->id )  
-                                                   <td><a href="/tournaments/{{$major[0]->tournament_id}}"> {{$tournament->name}} </a></td>
+                                               @if( $bet->tournament_id == $tournament->id )  
+                                                   <td><a href="/tournaments/{{$bet->tournament_id}}"> {{$tournament->name}} </a></td>
                                                @endif 
                                             @endforeach
 
 
                                             @foreach($horses as $horse)
-                                                @if( $major[0]->horse_id == $horse->id ) 
-                                                    <td><a href="/horses/{{$major[0]->horse_id}}">{{$horse->name}}</a></td>
+                                                @if( $bet->horse_id == $horse->id ) 
+                                                    <td><a href="/horses/{{$bet->horse_id}}">{{$horse->name}}</a></td>
                                                 @endif 
                                             @endforeach
 
-                                            <td>{{$major[0]->value}}</td>
+                                            <td>{{$bet->value}}</td>
                                             
                                         </tr>
-                                 </div> 
+                                
                                 @endif
                             @endforeach
                         
-                        
+                         </div> 
                        
                     
             

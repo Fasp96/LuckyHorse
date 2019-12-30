@@ -24,15 +24,15 @@ class BetsController extends Controller
              $tournaments = Tournament::all();
 
 
-             $major_values = collect();
+             $bets = collect();
              //foreach($bets as $bet){
-                 $major_value = Bet::orderByDesc('bets.value')
+                 $bets = Bet::orderByDesc('bets.value')
                      ->limit(2)
                      ->get();
                  //where('bets.id','=',$bet->id)
                      //->select('bets.value')
                      
-                 $major_values->push($major_value);
+                 //$major_values->push($major_value);
              //}
 
              return view('bets.bets',compact('bets','races','horses','jockeys','tournaments','major_values'));
