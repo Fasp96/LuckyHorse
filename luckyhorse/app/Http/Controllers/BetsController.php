@@ -27,7 +27,7 @@ class BetsController extends Controller
              $bets = collect();
              //foreach($bets as $bet){
                  $bets = Bet::orderByDesc('bets.value')
-                     ->limit(2)
+                     ->limit(10)
                      ->get();
                  //where('bets.id','=',$bet->id)
                      //->select('bets.value')

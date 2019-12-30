@@ -48,6 +48,10 @@
     a{
         color: white;
     }
+    h1{
+        color: green;
+        font-weight:bold; 
+    }
     
 </style>
 
