@@ -37,8 +37,8 @@ function add_race_field(initial_date, finish_date){
             //Create and append the checkbox
             for (var i = 0; i < data.length; i++) { 
                 
-                //if the race date is after that initial tournament date and the race isn't associated with a tounament
-                if(data[i].date >= initial_date && data[i].tournament_id == null){
+                //if the race date is after that initial tournament date
+                if(data[i].date >= initial_date){
                     
                     //changes the variable to true 
                     has_races = true;
@@ -80,8 +80,8 @@ function add_race_field(initial_date, finish_date){
             
             //Create and append the checkbox
             for (var i = 0; i < data.length; i++) {
-                //if the race date is before that finish tournament date and the race isn't associated with a tounament
-                if(data[i].date <= finish_date && data[i].tournament_id == null){
+                //if the race date is before that finish tournament date
+                if(data[i].date <= finish_date){
                     //changes the variable to true 
                     has_races = true;
 
@@ -122,8 +122,8 @@ function add_race_field(initial_date, finish_date){
 
             //Create and append the checkbox
             for (var i = 0; i < data.length; i++) {
-                //if the race date is after that initial date and before that finish tournament date and the race isn't associated with a tounament
-                if(data[i].date >= initial_date && data[i].date <= finish_date && data[i].tournament_id == null){
+                //if the race date is after that initial date and before that finish tournament date
+                if(data[i].date >= initial_date && data[i].date <= finish_date){
                     
                     //changes the variable to true
                     has_races = true;
