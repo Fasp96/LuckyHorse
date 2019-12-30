@@ -33,7 +33,7 @@
     }
     caption {
         caption-side: top;
-        color: white;
+        color: green;
         text-align: center;
         padding: 0px;
         font-weight: bold;
@@ -48,14 +48,10 @@
     a{
         color: white;
     }
-    h1{
-        color: green;
-        font-weight:bold; 
-    }
+
     
 </style>
 
-<h1 align="center">Bets</h1>
 
 
 <div id="last_results_tables">
