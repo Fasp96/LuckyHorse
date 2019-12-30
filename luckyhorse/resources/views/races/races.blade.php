@@ -7,7 +7,7 @@
 
 <style>
     img {
-        
+        float:right;
     }
     table, td {
         border: 2px solid black;

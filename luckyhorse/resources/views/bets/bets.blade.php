@@ -33,7 +33,7 @@
     }
     caption {
         caption-side: top;
-        color: white;
+        color: green;
         text-align: center;
         padding: 0px;
         font-weight: bold;
@@ -48,10 +48,10 @@
     a{
         color: white;
     }
+
     
 </style>
 
-<h1 align="center">Bets</h1>
 
 
 <div id="last_results_tables">
@@ -73,8 +73,12 @@
                 if(date('Y-m-d') < $race->date){
                     //echo "{$race->name}";
                     ?>
-                    @foreach ($bets as $bet)
-                        @if ($bet->race_id == $race->id)
+                    
+
+
+                            @foreach($bets as $bet)
+                                @if($bet->race_id==$race->id)
+                                    
 
                                         <tr class="tab_result">
                                       <!--     <td class="tab_position">{{$race->id}}</td> -->
@@ -97,22 +101,21 @@
                                             
                                         </tr>
                                 
-                
-                        </div>
+                                @endif
+                            @endforeach
                         
-                        
-                    @endif
+                         </div> 
+                       
                     
-                    @endforeach
             
                
             <?php  }else{
                         //date('Y-m-d') > $race->date
                 }
                 ?>
-           
+          
         @endforeach
-        
+
     </table>
 
 
