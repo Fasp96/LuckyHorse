@@ -17,7 +17,7 @@
     font-size: 0.7rem;
   }
 
-  /*News*/
+  /*Pagination*/
   .center {
     text-align: center;
   }

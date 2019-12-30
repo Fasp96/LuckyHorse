@@ -16,7 +16,7 @@ h1{
     font-weight:bold; 
 }
 
-    /*News*/
+    /*Pagination*/
     .center {
         text-align: center;
     }
