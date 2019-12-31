@@ -140,7 +140,7 @@
                             }
                             ?>
                             @endforeach
-
+                            <br>
                             <div>
                                 <div class="bet_button">
                                     <a href="/add_bet_race={{$race->id}}">Bet</a>
