@@ -5,9 +5,11 @@
 <style>
     h2{
         font-weight:bold; 
+        color: #333;
     }
     h1{
         font-weight:bold; 
+        color: #333;
     }
 </style>
 

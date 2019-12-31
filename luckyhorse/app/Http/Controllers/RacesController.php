@@ -57,23 +57,39 @@ class RacesController extends Controller
     }
 
     public function getRace($id){
+        
         //$current_user = Auth::user();
         $races = Race::find($id);
         $page_number = 1;
         $pages_total = 1;
         $tournaments= Tournament::where('id',$races->tournament_id)->get();
-        $results = Result::where('race_id',$races->id)->orderBy('time')->get();
+        $results = Result::where('race_id', $id)
+            ->join('races','results.race_id','=','races.id')
+            ->join('horses','results.horse_id','=','horses.id')
+            ->join('jockeys','results.jockey_id','=','jockeys.id')
+            ->leftJoin('tournaments','races.tournament_id','=','tournaments.id')
+            ->select('races.id','races.name','races.date','races.description','races.location',
+                'races.tournament_id as tournament_id',
+                'tournaments.name as tournament_name',
+                'horses.id as horse_id','horses.name as horse_name',
+                'jockeys.id as jockey_id','jockeys.name as jockey_name',
+                'results.time as time')
+            ->orderBy('time')->get();
         $jockeys = Jockey::all();
         $horses = Horse::all();
 
-        $winners = [Race::where('races.id','=',$races->id)
+        $winner = Race::where('races.id','=',$races->id)
                         ->join('results','races.id','=','results.race_id')
                         ->join('horses','results.horse_id','=','horses.id')
-                        ->select('horses.name','results.race_id','results.time')
-                        ->take(1)->get()];
+                        ->join('jockeys','results.jockey_id','=','jockeys.id')
+                        ->select('horses.name as horse_name',
+                            'jockeys.name as jockey_name',
+                            'results.time as time')
+                        ->orderBy('time')
+                        ->take(1)->get();
 
         if($races)
-            return view('races.races_info',compact('races','tournaments','results','horses','jockeys','winners','page_number','pages_total'));
+            return view('races.races_info',compact('races','tournaments','results','horses','jockeys','winner','page_number','pages_total'));
         else
             return redirect('/races');
     }
