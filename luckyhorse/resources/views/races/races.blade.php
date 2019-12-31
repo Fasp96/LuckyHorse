@@ -38,7 +38,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        padding: 5px;
+        
     }
     .modify_button > a {
         color: white;
@@ -48,11 +48,11 @@
         transition: background-color .3s;
         border: 1px solid #333;
         border-radius: 11px;
-        margin: 0 1px;
+        
         background-color: #333;
         display: inline-block;
         font-size: 16px;
-        margin: 4px 2px;
+        
         cursor: pointer;
         width: 100%;
         height: 50px;
