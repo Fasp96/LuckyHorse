@@ -24,6 +24,7 @@
                     Tournament Name: {{$tournament_bet->tournament_name}}<br>
                     Date: {{date('d-m-Y', strtotime($tournament_bet->date))}}<br>
                     Horse Name: {{$tournament_bet->horse_name}}<br>
+                    Jockey Name: {{$tournament_bet->jockey_name}}<br>
 
                     Value: {{$tournament_bet->value}}<br>                
 
@@ -33,6 +34,7 @@
         </div>
     </div>
 </div>
+<br>
 @endforeach
 
 @foreach($race_bets as $race_bet) 
@@ -46,6 +48,7 @@
                     Race Name: {{$race_bet->race_name}}<br>
                     Date: {{date('d-m-Y', strtotime($race_bet->date))}}<br>
                     Horse Name: {{$race_bet->horse_name}}<br>
+                    Jockey Name: {{$race_bet->jockey_name}}<br>
                     
                     Value: {{$race_bet->value}}<br>                
                        
@@ -54,6 +57,7 @@
         </div>
     </div>
 </div>
+<br>
 @endforeach
 
 
