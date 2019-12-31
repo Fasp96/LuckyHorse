@@ -41,12 +41,12 @@ class TournamentsController extends Controller
 
     public function getTournament($id){
         //$current_user = Auth::user();
-        $tournaments = [Tournament::find($id)];
+        $tournaments = Tournament::find($id);
         $page_number = 1;
         $pages_total = 1;
-        $races = Race::where('races.tournament_id',$tournaments[0]->id)->get();
+        $races = Race::where('races.tournament_id',$tournaments->id)->get();
         if($tournaments)
-            return view('tournaments.tournaments',compact('tournaments','races','page_number','pages_total'));
+            return view('tournaments.tournaments_info',compact('tournaments','races','page_number','pages_total'));
         else
             return redirect('/tournament');
     }
