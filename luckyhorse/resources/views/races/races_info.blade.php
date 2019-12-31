@@ -63,7 +63,8 @@
                             
                             <?php
                                 if($result->horse_id == $horse->id){
-                                    echo "<li> {$horse->name}</li>";   
+                                    
+                                    echo "<li><a href='/horses/{$horse->id}'>{$horse->name}</a></li>";   
                                 }  
                             ?>
                             @endforeach
@@ -97,7 +98,7 @@
                             
                             <?php
                                 if($result->jockey_id == $jockey->id){
-                                    echo "<li> {$jockey->name} </li>";   
+                                    echo "<li><a href='/jockeys/{$jockey->id}'>{$jockey->name}</a></li>";  
                                 }  
                             ?>
                             @endforeach
