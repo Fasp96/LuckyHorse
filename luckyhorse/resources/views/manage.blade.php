@@ -75,6 +75,11 @@
         <a href="{{ url('/add_news') }}"><h3>Add News</h3></a>
     </div>
 </div>
+<div class="center">
+    <div class="choice">
+        <a href="{{ url('/users') }}"><h3>Manage Users</h3></a>
+    </div>
+</div>
 
 
 

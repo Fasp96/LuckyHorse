@@ -16,7 +16,6 @@ class BetsController extends Controller
 {
     public function index(){
         $current_user = Auth::user();
-        $ble=null;
         if($current_user){
 
             /*
@@ -75,6 +74,15 @@ class BetsController extends Controller
              */
 
              return view('bets.bets',compact('race_bets','tournament_bets'));
+        }else{
+            return redirect('/');
+        }
+    }
+
+    public function add_bet(){
+        $current_user = Auth::user();
+        if($current_user){
+            return view('bets.add_bet');
         }else{
             return redirect('/');
         }
