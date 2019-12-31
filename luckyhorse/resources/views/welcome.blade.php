@@ -114,7 +114,7 @@
     }
 
 </style>
-
+<!--Last Results Tables-->
 <div id="last_results_tables">
     @foreach($table_infos as $table_info)
         <table class="result_table">
@@ -142,7 +142,7 @@
     @endforeach
 </div>
 <hr>
-
+<!--Tables floating at the right-->
 <div id="float_tables">
     <!--Future Tournaments Table-->
     <div class="float_table">
@@ -202,8 +202,6 @@
     @foreach($news as $new)
         <a href="/news/{{$new->id}}">
             <div class="news_img" style='background-image: url("{{$new->file_path}}");'>
-                <!--<img src="https://apollo-ireland.akamaized.net/v1/files/eyJmbiI6Ijk4aWtrNHFveW8xeDItU1REVlRMUFQiLCJ3IjpbeyJmbiI6IjZtZ2p3bHA3a2dkYjItU1REVlRMUFQiLCJzIjoiMTYiLCJwIjoiMTAsLTEwIiwiYSI6IjAifV19.qTQKIYNUtF6UjYisKBLIS1XdIvZxfdJUETYfn3dTwlY/image;s=1080x720;cars_;/112410906_;slot=1;filename=eyJmbiI6Ijk4aWtrNHFveW8xeDItU1REVlRMUFQiLCJ3IjpbeyJmbiI6IjZtZ2p3bHA3a2dkYjItU1REVlRMUFQiLCJzIjoiMTYiLCJwIjoiMTAsLTEwIiwiYSI6IjAifV19.qTQKIYNUtF6UjYisKBLIS1XdIvZxfdJUETYfn3dTwlY_rev001.jpg"
-                    alt="" width="100%" height="100%">-->
                 <div>{{$new->title}}</div>
             </div>
         </a> 
