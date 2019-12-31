@@ -52,7 +52,6 @@
         background-color: #333;
         display: inline-block;
         font-size: 16px;
-        
         cursor: pointer;
         width: 100%;
         height: 50px;
@@ -112,12 +111,9 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <!--   <div class="card-header"> <h2>{{$race->name}}</h2></div>  -->
 
-                
                     <div id="body-card">
 
-                   
                         <div class="modify_button">
                           <a href="/races/{{$race->id}}"><h3>{{$race->name}}</h3></a>
                         </div>
