@@ -38,15 +38,17 @@
                                 <li><a href="{{ url('/races') }}">Races</a></li>
                                 <li><a href="{{ url('/horses') }}">Horses</a></li>
                                 <li><a href="{{ url('/jockeys') }}">Jockeys</a></li>
-                                
                             @auth
-                                <li><a href="{{ url('/bets') }}">Bets</a></li>                               
+                                <li><a href="{{ url('/bets') }}">Bets</a></li>
+                                <!--                               
                                 <li><a href="{{ url('/add_horses') }}">Add Horse</a></li>
                                 <li><a href="{{ url('/add_jockeys') }}">Add Jockey</a></li>
                                 <li><a href="{{ url('/add_races') }}">Add Race</a></li>
                                 <li><a href="{{ url('/add_tournaments') }}">Add Tournament</a></li>
                                 <li><a href="{{ url('/add_news') }}">Add News</a></li>
                                 <li><a href="{{ url('/users') }}">Manage Users</a></li>
+                                -->
+                                <li><a href="{{ url('/manage') }}">Options</a></li>
                                 <li><a href="{{ url('/home') }}">Home</a></li>
                         @else
                                 <li><a href="{{ route('login') }}">Login</a></li>

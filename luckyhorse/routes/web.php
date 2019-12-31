@@ -45,6 +45,8 @@ Route::get('/', 'WelcomeController@index');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('/manage', 'ManageController@index');
+
 Route::get('/add_horses', 'AddHorsesController@index');
 Route::post('/add_horses', 'AddHorsesController@add');
 
