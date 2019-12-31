@@ -31,11 +31,11 @@ class NewsController extends Controller
 
     public function getNews($id){
         //$current_user = Auth::user();
-        $news = [News::find($id)];
+        $news = News::find($id);
         $page_number = 1;
         $pages_total = 1;
         if($news)
-            return view('news.news',compact('news', 'page_number','pages_total'));
+            return view('news.news_info',compact('news', 'page_number','pages_total'));
         else   
             return redirect('/news');
     }
