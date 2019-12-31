@@ -22,6 +22,27 @@
     h5{
         margin-left: 2em;
     }
+
+}
+    .modify_button{
+        float: right;
+        padding: 5px;
+    }
+    .modify_button > a {
+        color: white;
+        float: left;
+        padding: 4px 8px;
+        text-decoration: none;
+        transition: background-color .3s;
+        border: 1px solid #333;
+        border-radius: 11px;
+        margin: 0 1px;
+        background-color: #333;
+    }
+    .modify_button a:hover {
+        background-color: #fa8b1b;
+    }
+
 </style>
 
 <h1 align="center">Tournaments</h1>
@@ -38,24 +59,12 @@
                     
                     Date: {{date('d-m-Y', strtotime($tournament->date))}}<br>
                     Time: {{date('H:i:s', strtotime($tournament->date))}}<br>
-                    Description: {{$tournament->description}}<br>
                     Location: {{$tournament->location}}<br><br>
-                    
-                    <h3>Races in this tournament:</h3>
-                    <ul>
-                    @foreach($races as $race)
-                    <?php
-                        if($tournament->id == $race->tournament_id){
-                            echo "<li><a href='http://localhost:8000/races/{$race->id}'> {$race->name} in {$race->location} </a></li>";
-                            
-                        }
-                        else{
-                            echo "no races to this tournament <br>";
-                        }
-                    
-                    ?>
-                    @endforeach
-                    </ul>    
+
+                    <div class="modify_button">
+                        <a href="/tournaments/{{$tournament->id}}">View Details</a>
+                    </div>
+                       
                 </div>
             </div>
         </div>

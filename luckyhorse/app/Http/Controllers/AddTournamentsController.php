@@ -67,7 +67,8 @@ class AddTournamentsController extends Controller
     public function getRaces(){
         $user = Auth::user();
         if($user){
-            $races = Race::all();
+            //gets the races that don't have a tournament associated with
+            $races = Race::whereNull('tournament_id')->get();
             return $races;
         }
     }
