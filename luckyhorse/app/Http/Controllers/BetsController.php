@@ -37,19 +37,23 @@ class BetsController extends Controller
                 $race_bets= Bet::where('bets.user_id',$current_user->id)
                     ->join('races','races.id','=','bets.race_id')
                     ->join('horses','bets.horse_id','=','horses.id')
+                    ->join('jockeys','bets.jockey_id','=','jockeys.id')
                     ->select('bets.id as bet_id',
                     'races.name as race_name',
                     'races.date as date',
                     'horses.name as horse_name',
+                    'jockeys.name as jockey_name',
                     'bets.value as value')->get();
 
                 $tournament_bets= Bet::where('bets.user_id',$current_user->id)
                 ->join('tournaments','tournaments.id','=','bets.tournament_id')
                 ->join('horses','bets.horse_id','=','horses.id')
+                ->join('jockeys','bets.jockey_id','=','jockeys.id')
                 ->select('bets.id as bet_id',
                 'tournaments.name as tournament_name',
                 'tournaments.date as date',
                 'horses.name as horse_name',
+                'jockeys.name as jockey_name',
                 'bets.value as value')->get();
                 
 
@@ -79,12 +83,26 @@ class BetsController extends Controller
         }
     }
 
+    public function add_bet_tournament($id){
+        $current_user = Auth::user();
+        if($current_user){
+            $tournament = Tournament::find($id);
+            if($tournament){
+                return view('bets.add_bet_tournament',compact('tournament'));
+            }else{
+                return redirect('/');
+            }
+        }else{
+            return redirect('/');
+        }
+    }
+
     public function add_bet_race($id){
         $current_user = Auth::user();
         if($current_user){
             $race = Race::find($id);
             if($race){
-                return view('bets.add_bet',compact('race'));
+                return view('bets.add_bet_race',compact('race'));
             }else{
                 return redirect('/');
             }

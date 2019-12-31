@@ -8,16 +8,11 @@
 <style>
     img{
         float:right;
-        
-        
     }
-    
-
     h2{
         color:red;
         font-weight:bold;
     }
-
     h5{
         margin-left: 2em;
     }
