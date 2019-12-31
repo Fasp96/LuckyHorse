@@ -61,7 +61,7 @@ class RacesController extends Controller
         $races = Race::find($id);
         $page_number = 1;
         $pages_total = 1;
-        $tournaments= Tournament::where('id',$races->id)->get();
+        $tournaments= Tournament::where('id',$races->tournament_id)->get();
         $results = Result::where('race_id',$races->id)->orderBy('time')->get();
         $jockeys = Jockey::all();
         $horses = Horse::all();

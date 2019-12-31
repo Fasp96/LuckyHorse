@@ -35,7 +35,7 @@
         <div class="col-md-8">
             <div class="card">
                    <div class="card-header"> <h2>{{$races->name}}</h2></div>  
-             <!--   <button onclick="myFunction()">{{$races->name}}</button> -->
+
                     <div id="body-card">
                         <div class="card-body">
                             <img src="{{ $races->file_path}}" alt="race_img" style="width:40%;opacity:0.85;">
@@ -44,19 +44,9 @@
                             Time: {{date('H:i:s', strtotime($races->date))}}<br>
                             Description: {{$races->description}}<br>
                             Local: {{$races->location}}<br>
-
-                            @foreach($tournaments as $tournament)
-
-                            <?php 
-                            if($races->tournament_id == $tournament->id){ 
-                                echo "Tournament: {$tournament->name}<br><br>";  
-                            }else{
-                                echo "no tournament to this race<br><br>";
-                            }
-                            ?>
-                            @endforeach
+                            Tournament:{{$tournaments[0]->name}}<br><br>
                             
-
+                            
                             <!--   -------------devolve os cavalos de cada corrida----------------    -->
                             <h3>Horses in this race: </h3>
                             
