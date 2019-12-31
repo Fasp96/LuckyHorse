@@ -16,6 +16,10 @@
     text-align: right;
     font-size: 0.7rem;
   }
+  h2{
+    color: red;
+    font-weight:bold; 
+    }
 </style>
 
 <!--News-->
@@ -24,7 +28,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">{{$news->title}}</div> 
+                    <div class="card-header"><h2>{{$news->title}}</h2></div> 
                     <div class="card-body">
                         <img src="{{$news->file_path}}" alt="news_img" style="width:50%;opacity:0.85;">
                         <br>
