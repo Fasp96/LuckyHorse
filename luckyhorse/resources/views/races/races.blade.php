@@ -38,7 +38,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        padding: 5px;
+        
     }
     .modify_button > a {
         color: white;
@@ -48,11 +48,10 @@
         transition: background-color .3s;
         border: 1px solid #333;
         border-radius: 11px;
-        margin: 0 1px;
+        
         background-color: #333;
         display: inline-block;
         font-size: 16px;
-        margin: 4px 2px;
         cursor: pointer;
         width: 100%;
         height: 50px;
@@ -112,12 +111,9 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <!--   <div class="card-header"> <h2>{{$race->name}}</h2></div>  -->
 
-                
                     <div id="body-card">
 
-                   
                         <div class="modify_button">
                           <a href="/races/{{$race->id}}"><h3>{{$race->name}}</h3></a>
                         </div>
