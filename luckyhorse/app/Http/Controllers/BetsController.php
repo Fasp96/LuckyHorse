@@ -79,10 +79,15 @@ class BetsController extends Controller
         }
     }
 
-    public function add_bet(){
+    public function add_bet_race($id){
         $current_user = Auth::user();
         if($current_user){
-            return view('bets.add_bet');
+            $race = Race::find($id);
+            if($race){
+                return view('bets.add_bet',compact('race'));
+            }else{
+                return redirect('/');
+            }
         }else{
             return redirect('/');
         }
