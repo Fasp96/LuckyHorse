@@ -78,6 +78,25 @@
         background-color: orange;
         color: white;
     }
+
+    .bet_button{
+        float: right;
+        padding: 5px;
+    }
+    .bet_button > a {
+        color: white;
+        float: left;
+        padding: 4px 12px;
+        text-decoration: none;
+        transition: background-color .3s;
+        border: 1px solid #333;
+        border-radius: 11px;
+        margin: 0 1px;
+        background-color: #333;
+    }
+    .bet_button a:hover {
+        background-color: #fa8b1b;
+    }
 </style>
     
 
@@ -121,7 +140,12 @@
                             }
                             ?>
                             @endforeach
-                            
+
+                            <div>
+                                <div class="bet_button">
+                                    <a href="/add_bet">Bet</a>
+                                </div>
+                            </div>
                     </div>
                 </div>
             </div>

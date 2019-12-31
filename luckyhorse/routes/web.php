@@ -90,3 +90,5 @@ Route::get('/jockeys_page={page_number}', 'JockeysController@index');
 Route::get('/jockeys/{id}', 'JockeysController@getJockey');
 
 Route::get('/bets', 'BetsController@index');
+Route::get('/add_bet', 'BetsController@add_bet');
+
