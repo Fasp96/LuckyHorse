@@ -20,7 +20,7 @@
                <!-- <div class="card-header">Jockeys</div> -->
                 <div class="card-header"> <h2>{{$jockeys->name}}</h2></div>
                 <div class="card-body">
-                            <img src="{{ $jockeys->file_path}}" alt="jockey_img" style="width:20%;opacity:0.85;">
+                            <img src="{{ $jockeys->file_path}}" alt="jockey_img" style="width:50%;opacity:0.85;">
                         
                             Birth Date: {{$jockeys->birth_date}}<br>
                             Gender: {{$jockeys->gender}}<br> 
