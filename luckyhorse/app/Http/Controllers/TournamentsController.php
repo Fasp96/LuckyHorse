@@ -44,7 +44,6 @@ class TournamentsController extends Controller
         $tournaments = Tournament::find($id);
         $page_number = 1;
         $pages_total = 1;
-        //$races = Race::all();
         $races = Race::where('races.tournament_id',$tournaments->id)->get();
         if($tournaments)
             return view('tournaments.tournaments_info',compact('tournaments','races','page_number','pages_total'));
