@@ -91,7 +91,7 @@
                             if($race->tournament_id == $tournament->id){ 
                                 echo "Tournament: {$tournament->name}<br><br>";  
                             }else{
-                                echo "no tournament to this race<br><br>";
+                                //echo "no tournament to this race<br><br>";
                             }
                             ?>
                             @endforeach
