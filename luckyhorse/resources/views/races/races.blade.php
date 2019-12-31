@@ -3,8 +3,6 @@
 @section('content')
 
 <head>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
 <style>
     img {
         float:right;
@@ -35,6 +33,33 @@
     h3{
         color: white;
          
+    }
+    .modify_button{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 5px;
+    }
+    .modify_button > a {
+        color: white;
+        float: left;
+        padding: 4px 8px;
+        text-decoration: none;
+        transition: background-color .3s;
+        border: 1px solid #333;
+        border-radius: 11px;
+        margin: 0 1px;
+        background-color: #333;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        width: 100%;
+        height: 50px;
+        text-align: center;
+    }
+    .modify_button a:hover {
+        background-color: #fa8b1b;
     }
     .button {
         background-color:#323232;
@@ -92,9 +117,10 @@
                 
                     <div id="body-card">
 
-                    <div class="button-container">
-                        <button class="button" id="{{$race->id}}"><h3>{{$race->name}}</h3></button> 
-                    </div>
+                   
+                        <div class="modify_button">
+                          <a href="/races/{{$race->id}}"><h3>{{$race->name}}</h3></a>
+                        </div>
 
                         <div class="card-body">
                             <img src="{{ $race->file_path}}" alt="race_img" style="width:30%;opacity:0.85;">
@@ -132,16 +158,5 @@
 
 @include('layouts.pagination')
 
-<script>
-        $("body").on( "click", ".button-container button",function(){
-        //var y = $(this).text();
-        var x = $(this).attr('id');
-        
-        location.replace("http://localhost:8000/races/" + x);   
-    });
-
-</script>
-
-</body>
 @endsection
 
