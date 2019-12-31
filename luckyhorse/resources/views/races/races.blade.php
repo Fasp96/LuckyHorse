@@ -143,7 +143,7 @@
 
                             <div>
                                 <div class="bet_button">
-                                    <a href="/add_bet">Bet</a>
+                                    <a href="/add_bet_race={{$race->id}}">Bet</a>
                                 </div>
                             </div>
                     </div>
