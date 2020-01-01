@@ -82,5 +82,5 @@ function add_race_field(div_id, field_id){
     });
 }
 
-//Page loaded
+//página carregou
 $(document).ready(initPage);

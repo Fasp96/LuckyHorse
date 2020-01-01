@@ -2,8 +2,8 @@
 
 @section('content')
 
-<script src="{{asset('js/add_tournament/tournament_validator.js')}}" defer></script>
-<script src="{{asset('js/add_tournament/tournament_add_race.js')}}" defer></script>
+<script src="{{asset('js/edit_tournament/tournament_validator.js')}}" defer></script>
+<script src="{{asset('js/edit_tournament/tournament_add_race.js')}}" defer></script>
 <script src="{{asset('js/location_googleAPI/location_api.js')}}" defer></script>
 <script src="{{asset('js/edit_tournament/get_tournament.js')}}" defer></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAmwtm8ckX1GoVVRHlXggCJMuw_80xiJgA&libraries=geometry,places"></script>
@@ -12,27 +12,9 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Tournaments</div>
-
-                <div class="card-body">
-                    <ul>
-                        @foreach($tournaments as $tournaments) 
-                            <li>{{$tournaments->name}}</li>                    
-                        @endforeach
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-                   
-<br><br>
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Add New Tournament</div>
+                <div class="card-header">Add Tournament {{$id}}</div>
                 <div class="card-body">                    
+                    <input id="id_tournament" value="{{$id}}" type="hidden">
                     
                     <form id ="tournament_form" method ="post" action="" enctype="multipart/form-data">
                         <input type="hidden" id ="token" name="_token" value="{{csrf_token()}}">
@@ -56,7 +38,7 @@
                         <input id="tournament_photo" type="file" name="tournament_photo" accept="image/*" onchange="validate_input()"><br>
                         <br>
                     </form>
-                    <button id="add_tournament_btn" class="btn btn-primary">Add Tournament</button>
+                    <button id="update_tournament_btn" class="btn btn-primary">Update Tournament</button>
 
                 </div>
             </div>

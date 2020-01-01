@@ -1,10 +1,11 @@
 function initPage(){
-
+    add_tournaments(date);
 }
 
 //function that creates a field to add race to a tournament depending on the date
 function add_tournaments(date){
-    
+    var id_race = document.getElementById("id_race");
+    var id = id_race.value;
     //get method to get all tournaments from the database
     $.get("http://localhost:8000/api/add_races_tournaments", function(data){
         
@@ -32,7 +33,7 @@ function add_tournaments(date){
                 }   
             }
 
-            //executes this part only if the array isn't empty
+            //executes this part only if thre array isn't empty
             if(!tournament == [])
             {
                 //deletes everthing inside the div
@@ -54,6 +55,9 @@ function add_tournaments(date){
                     option = document.createElement("option");
                     option.value = tournament[j].id;
                     option.text = tournament[j].name + " - " + tournament[j].date;
+                    if(tournament[j].id == id){
+                        console.log('tem');    
+                    }
                     selectList.appendChild(option);
                 }   
             }
@@ -61,5 +65,5 @@ function add_tournaments(date){
     });
 }
 
-//Page loaded
+//página carregou
 $(document).ready(initPage);
