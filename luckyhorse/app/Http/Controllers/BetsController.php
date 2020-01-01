@@ -34,48 +34,28 @@ class BetsController extends Controller
                 ->orderByDesc('bets.created_at')->get();
             */
 
-                $race_bets= Bet::where('bets.user_id',$current_user->id)
-                    ->join('races','races.id','=','bets.race_id')
-                    ->join('horses','bets.horse_id','=','horses.id')
-                    ->join('jockeys','bets.jockey_id','=','jockeys.id')
-                    ->select('bets.id as bet_id',
-                    'races.name as race_name',
-                    'races.date as date',
-                    'horses.name as horse_name',
-                    'jockeys.name as jockey_name',
-                    'bets.value as value')->get();
-
-                $tournament_bets= Bet::where('bets.user_id',$current_user->id)
-                ->join('tournaments','tournaments.id','=','bets.tournament_id')
+            $race_bets= Bet::where('bets.user_id',$current_user->id)
+                ->join('races','races.id','=','bets.race_id')
                 ->join('horses','bets.horse_id','=','horses.id')
                 ->join('jockeys','bets.jockey_id','=','jockeys.id')
                 ->select('bets.id as bet_id',
-                'tournaments.name as tournament_name',
-                'tournaments.date as date',
+                'races.name as race_name',
+                'races.date as date',
                 'horses.name as horse_name',
                 'jockeys.name as jockey_name',
                 'bets.value as value')->get();
+
+            $tournament_bets= Bet::where('bets.user_id',$current_user->id)
+            ->join('tournaments','tournaments.id','=','bets.tournament_id')
+            ->join('horses','bets.horse_id','=','horses.id')
+            ->join('jockeys','bets.jockey_id','=','jockeys.id')
+            ->select('bets.id as bet_id',
+            'tournaments.name as tournament_name',
+            'tournaments.date as date',
+            'horses.name as horse_name',
+            'jockeys.name as jockey_name',
+            'bets.value as value')->get();
                 
-
-            /*
-             $bets = Bet::all();
-             $races = Race::all();
-             $horses = Horse::all();
-             $jockeys = Jockey::all();
-             $tournaments = Tournament::all();
-
-
-             $bets = collect();
-             //foreach($bets as $bet){
-                 $bets = Bet::orderByDesc('bets.value')
-                     ->limit(10)
-                     ->get();
-                 //where('bets.id','=',$bet->id)
-                     //->select('bets.value')
-                     
-                 //$major_values->push($major_value);
-             //}
-             */
 
              return view('bets.bets',compact('race_bets','tournament_bets'));
         }else{
@@ -83,34 +63,15 @@ class BetsController extends Controller
         }
     }
 
-    public function add_bet_tournament($id){
-        $current_user = Auth::user();
-        if($current_user){
-            $tournament = Tournament::find($id);
-            if($tournament){
-                return view('bets.add_bet_tournament',compact('tournament'));
-            }else{
-                return redirect('/');
-            }
-        }else{
-            return redirect('/');
-        }
-    }
 
-    public function add_bet_race($id){
-        $current_user = Auth::user();
-        if($current_user){
-            $race = Race::find($id);
-            if($race){
-                return view('bets.add_bet_race',compact('race'));
-            }else{
-                return redirect('/');
-            }
-        }else{
-            return redirect('/');
-        }
-    }
 
+
+
+
+
+
+
+    
     private function race_winner($race_id){
         $winning_result_id = Race::where('races.id',$race_id)
             ->join('results','results.race_id','=','races.id')
