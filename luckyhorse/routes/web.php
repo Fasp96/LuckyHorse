@@ -90,6 +90,10 @@ Route::get('/jockeys_page={page_number}', 'JockeysController@index');
 Route::get('/jockeys/{id}', 'JockeysController@getJockey');
 
 Route::get('/bets', 'BetsController@index');
-Route::get('/add_bet_race={id}', 'BetsController@add_bet_race');
-Route::get('/add_bet_tournament={id}', 'BetsController@add_bet_tournament');
+
+Route::get('/add_bet_race={id}', 'AddBetsController@index_bet_race');
+Route::post('/add_bet_race={id}', 'AddBetsController@add_bet_race');
+
+Route::get('/add_bet_tournament={id}', 'AddBetsController@index_bet_tournament');
+Route::post('/add_bet_tournament={id}', 'AddBetsController@add_bet_tournament');
 

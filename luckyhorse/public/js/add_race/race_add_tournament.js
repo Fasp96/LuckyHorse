@@ -31,7 +31,7 @@ function add_tournaments(date){
                 }   
             }
 
-            //executes this part only if thre array isn't empty
+            //executes this part only if the array isn't empty
             if(!tournament == [])
             {
                 //deletes everthing inside the div
@@ -60,5 +60,5 @@ function add_tournaments(date){
     });
 }
 
-//página carregou
+//Page loaded
 $(document).ready(initPage);

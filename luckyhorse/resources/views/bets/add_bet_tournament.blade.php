@@ -2,25 +2,36 @@
 
 @section('content')
 
+<script src="{{asset('js/add_bet/bet_validator.js')}}" defer></script>
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Create New Bet</div>
+                <div class="card-header">Place New Bet</div>
                 <div class="card-body">
                     
-                    <form id="horse_form" method ="post" action="" enctype="multipart/form-data" >
+                    <form id="bet_form" method ="post" action="" enctype="multipart/form-data" >
+
                         <input type="hidden" id='token' name="_token" value="{{csrf_token()}} ">
                         Tournament Name<br>
-                        {{$tournament->name}}
-                        <input id="name" type="text" class="form-control" name="name" onchange="validate_input()" value="{{$tournament->name}}"><br>
+                        <input id="name" type="text" class="form-control" name="name" value="{{$tournament->name}}" disabled><br>
                         Date<br>
-                        {{$tournament->date}}
-                        <input id="date" type="date" class="form-control" name="date" onselect="validate_input()" onchange="validate_input()" value="{{$tournament->date}}"><br>
+                        <input id="date" type="date" class="form-control" name="date" value="{{date('Y-m-d', strtotime($tournament->date))}}" disabled><br>
                         Horse
-                        <input id="horse_name" type="text" class="form-control" name="horse_name" onchange="validate_input()"><br>
+                        <select id="horse" name="horse" class="form-control">
+                            @foreach($horses as $horse)
+                                <option value="{{$horse->horse_id}}">{{$horse->horse_name}}</option>
+                            @endforeach
+                        </select>
+                        <br>
                         Jockey
-                        <input id="jockey_name" type="text" class="form-control" name="jockey_name" onchange="validate_input()"><br>
+                        <select id="jockey" name="jockey" class="form-control">
+                            @foreach($jockeys as $jockey)
+                                <option value="{{$jockey->jockey_id}}">{{$jockey->jockey_name}}</option>
+                            @endforeach
+                        </select>
+                        <br>
                         Value
                         <input id="value" type="number" class="form-control" name="value" onchange="validate_input()"><br>
                         <br>

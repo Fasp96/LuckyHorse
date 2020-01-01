@@ -176,5 +176,5 @@ function removeMessages(){
 }
 
 
-//página carregou
+//Page loaded
 $(document).ready(initPage);
