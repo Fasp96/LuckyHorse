@@ -86,7 +86,7 @@
                             <h3>Results: </h3>
                             <table style="width:60%">
                                 <tr>
-                                    <th>Win Prob(%)</th>
+                                    <th>Win Prob</th>
                                     <th>Horse</th>
                                     <th>Jockey</th> 
                                     <th>Time</th>
@@ -95,7 +95,7 @@
                                     <tr>
                                         @foreach($scores as $score)
                                             @if($score->horse_id==$result->horse_id)
-                                                <td>{{($score->wr)*100}}</td>
+                                                <td>{{($score->wr/$win_total)}}</td>
                                             @endif
                                         @endforeach
                                         <td>{{$result->horse_name}}</td>
