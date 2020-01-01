@@ -5,30 +5,21 @@
 <style>
     img{
         float:right;
-        
-        
     }
-    
     h1{
-    color: green;
-    font-weight:bold; 
+        color: green;
+        font-weight:bold; 
     }
-
     h2{
         color:red;
         font-weight:bold;
     }
-
     h5{
         margin-left: 2em;
     }
 
-}
-    .modify_button{
-        float: right;
-        padding: 5px;
-    }
-    .modify_button > a {
+
+    .details_button > a {
         color: white;
         float: left;
         padding: 4px 8px;
@@ -39,25 +30,11 @@
         margin: 0 1px;
         background-color: #333;
     }
-    .modify_button a:hover {
+    .details_button a:hover {
         background-color: #fa8b1b;
     }
     .bet_button{
         float: right;
-    }
-    .bet_button > a {
-        color: white;
-        float: left;
-        padding: 4px 12px;
-        text-decoration: none;
-        transition: background-color .3s;
-        border: 1px solid #333;
-        border-radius: 11px;
-        margin: 0 1px;
-        background-color: #333;
-    }
-    .bet_button a:hover {
-        background-color: #fa8b1b;
     }
 
 </style>
@@ -78,12 +55,14 @@
                     Time: {{date('H:i:s', strtotime($tournament->date))}}<br>
                     Location: {{$tournament->location}}<br><br>
 
-                    <div class="modify_button">
+                    <div class="details_button">
                         <a href="/tournaments/{{$tournament->id}}">View Details</a>
                     </div>
-                    <div class="bet_button">
-                        <a href="/add_bet_tournament={{$tournament->id}}">Bet</a>
-                    </div>
+                    @auth
+                        <div class="details_button bet_button">
+                            <a href="/add_bet_tournament={{$tournament->id}}">Bet</a>
+                        </div>
+                    @endauth
                        
                 </div>
             </div>
