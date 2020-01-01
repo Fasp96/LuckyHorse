@@ -28,7 +28,7 @@ class RacesController extends Controller
         if($page_number == 1){
             $races = Race::orderByDesc('date')->take($races_per_page)
                 ->leftJoin('tournaments','races.tournament_id','=','tournaments.id')
-                ->select('races.name','races.date','races.description','races.location', 'races.file_path',
+                ->select('races.id','races.name','races.date','races.description','races.location', 'races.file_path',
                 'races.tournament_id as tournament_id',
                 'tournaments.name as tournament_name')->get();
         }else{
