@@ -18,7 +18,7 @@
   }
   
   h2{
-    color: red;
+    color: #333;
     font-weight:bold; 
   }
 

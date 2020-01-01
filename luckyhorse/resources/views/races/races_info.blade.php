@@ -25,7 +25,7 @@
     }
 
     h2{
-        color: red;
+        color: #333;
         font-weight:bold; 
     }
     .edit_button > a {
@@ -51,8 +51,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                   <div class="card-header"> <h2>{{$results[0]->name}}</h2></div>  
-
+                   <div class="card-header"> <h2>{{$results[0]->name}}</h2></div>
                     <div id="body-card">
                         <div class="card-body">
                             <img src="{{ $results[0]->file_path}}" alt="race_img" style="width:40%;opacity:0.85;">
@@ -109,9 +108,9 @@
                             </table>
                             <br>
                             <!-- --------------------- devolve o vencedor de cada corrida ------------------------ -->
-                            @isset($winner[0]->time)
-                                <h4 align="center">{{$winner[0]->jockey_name}} and {{$winner[0]->horse_name}} with a best time: 
-                                {{$winner[0]->time}}</h4>
+                            @isset($winner->time)
+                                <h4 align="center">{{$winner->horse_name}} and {{$winner->jockey_name}} with a best time: 
+                                {{$winner->time}}</h4>
                             @endif
 
                             <div>
