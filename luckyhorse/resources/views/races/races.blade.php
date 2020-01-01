@@ -69,16 +69,15 @@
             <div class="card">
                 <div class="card-header"><h2>{{$race->name}}</h2></div>
                     <div class="card-body">
-                        <img src="{{ $race->file_path}}" alt="race_img" style="width:30%;opacity:0.85;">
+                        <img src="{{ $race->file_path}}" alt="race_img" style="width:25%;opacity:0.85;">
                         
                         Date: {{date('d-m-Y', strtotime($race->date))}}<br>
-                        Description: {{$race->description}}<br>
                         Local: {{$race->location}}<br>
                         @isset($race->tournament_name)
                             Tournament: {{$race->tournament_name}}<br>
                         @endif
 
-                        <br>
+                        <br><br>
                         <div class="details_button">
                             <a href="/races/{{$race->id}}">View Details</a>
                         </div>

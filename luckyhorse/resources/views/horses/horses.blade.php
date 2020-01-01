@@ -22,6 +22,21 @@
     font-weight:bold; 
   }
 
+  .details_button > a {
+        color: white;
+        float: left;
+        padding: 4px 8px;
+        text-decoration: none;
+        transition: background-color .3s;
+        border: 1px solid #333;
+        border-radius: 11px;
+        margin: 0 1px;
+        background-color: #333;
+    }
+    .details_button a:hover {
+        background-color: #fa8b1b;
+    }
+
 </style>
 
 
@@ -38,14 +53,14 @@
                <!-- <div class="card-header">Jockeys</div> -->
                <div class="card-header"> <h2>{{$horse->name}}</h2></div>
                 <div class="card-body">
-                          <img src="{{ $horse->file_path}}" alt="horse_img" style="width:30%;opacity:0.85;">
+                          <img src="{{ $horse->file_path}}" alt="horse_img" style="width:25%;opacity:0.85;">
                             
-                            Breed: {{$horse->breed}}<br>
                             Birth Date: {{$horse->birth_date}}<br>
-                            Gender: {{$horse->gender}}<br>
-                            Number of Races: {{$horse->num_races}}<br>
-                            Number of Victories: {{$horse->num_victories}}<br>               
-                            Win Rate: {{($horse->num_victories/$horse->num_races)*100}}%<br>  
+                            Gender: {{$horse->gender}}<br><br>
+                            <div class="details_button">
+                              <a href="/horses/{{$horse->id}}">View More Details</a>
+                            </div>
+                            
                 </div>
             </div>
         </div>

@@ -24,7 +24,8 @@
           Birth Date: {{$jockeys->birth_date}}<br>
           Gender: {{$jockeys->gender}}<br> 
           Number of Races: {{$jockeys->num_races}}<br>
-          Number of Victories: {{$jockeys->num_victories}}<br>                
+          Number of Victories: {{$jockeys->num_victories}}<br>
+          Win Rate: {{($jockeys->num_victories/$jockeys->num_races)*100}}%<br>               
                   
         </div>
       </div>
