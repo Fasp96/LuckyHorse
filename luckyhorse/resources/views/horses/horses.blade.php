@@ -45,7 +45,7 @@
                             Gender: {{$horse->gender}}<br>
                             Number of Races: {{$horse->num_races}}<br>
                             Number of Victories: {{$horse->num_victories}}<br>               
-                       
+                            Win Rate: {{($horse->num_victories/$horse->num_races)*100}}%<br>  
                 </div>
             </div>
         </div>

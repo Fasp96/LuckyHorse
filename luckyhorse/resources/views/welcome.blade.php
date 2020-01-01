@@ -94,9 +94,12 @@
     }
 
     /*News*/
+    .news_container{
+        margin-right: 32%;
+    }
     .news_img {
         margin: 10px;
-        margin-right: 32%;
+        margin-right: 0px;
         position: relative;
         height: 300px;
         background-position: center;
@@ -200,11 +203,13 @@
 <h1>Last News</h1>
 <div class="News">
     @foreach($news as $new)
-        <a href="/news/{{$new->id}}">
-            <div class="news_img" style='background-image: url("{{$new->file_path}}");'>
-                <div>{{$new->title}}</div>
-            </div>
-        </a> 
+        <div class="news_container">
+            <a href="/news/{{$new->id}}">
+                <div class="news_img" style='background-image: url("{{$new->file_path}}");'>
+                    <div>{{$new->title}}</div>
+                </div>
+            </a> 
+        </div>
     @endforeach
 </div>
 

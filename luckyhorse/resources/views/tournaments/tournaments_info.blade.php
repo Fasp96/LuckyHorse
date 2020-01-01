@@ -8,18 +8,31 @@
 <style>
     img{
         float:right;
-        
-        
     }
-    
-
     h2{
         color:red;
         font-weight:bold;
     }
-
     h5{
         margin-left: 2em;
+    }
+
+    .edit_button > a {
+        color: white;
+        float: left;
+        padding: 4px 8px;
+        text-decoration: none;
+        transition: background-color .3s;
+        border: 1px solid #333;
+        border-radius: 11px;
+        margin: 0 1px;
+        background-color: #333;
+    }
+    .edit_button a:hover {
+        background-color: #fa8b1b;
+    }
+    .bet_button{
+        float: right;
     }
 </style>
 
@@ -40,19 +53,25 @@
                     
                     <h3>Races in this tournament:</h3>
                     <ul>
-                    @foreach($races as $race)
-                    <?php
-                        if($tournaments->id == $race->tournament_id){
-                            echo "<li><a href='http://localhost:8000/races/{$race->id}'> {$race->name} in {$race->location} </a></li>";
-                            
-                        }
-                        else{
-                            echo "no races to this tournament <br>";
-                        }
-                    
-                    ?>
-                    @endforeach
-                    </ul>    
+                    @if($races->count() > 0)
+                        @foreach($races as $race)
+                            <li><a href='http://localhost:8000/races/{$race->id}'> {{$race->name}} in {{$race->location}} </a></li>
+                        @endforeach
+                    @else
+                        No races for this tournament <br>
+                    @endif
+                    </ul>  
+                    @if(Auth::user()->role=='admin')
+                        <div class="edit_button">
+                            <a href="/edit_tournament={{$tournaments->id}}">Edit</a>
+                        </div>
+                    @endif  
+                    @auth
+                        <div class="bet_button edit_button">
+                            <a href="/add_bet_tournament={{$tournaments->id}}">Bet</a>
+                        </div>
+                    @endauth
+
                 </div>
             </div>
         </div>
