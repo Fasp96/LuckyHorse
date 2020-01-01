@@ -93,3 +93,13 @@ Route::get('/bets', 'BetsController@index');
 Route::get('/add_bet_race={id}', 'BetsController@add_bet_race');
 Route::get('/add_bet_tournament={id}', 'BetsController@add_bet_tournament');
 
+
+Route::get('/edit_tournament={id}', 'EditTournamentsController@editTournament');
+Route::post('/edit_tournament={id}', 'EditTournamentsController@updateTournament');
+Route::get('/api/edit_tournament={id}', 'EditTournamentsController@getTournament');
+Route::get('/api/add_tournaments={id}', 'EditTournamentsController@getRaces');
+
+Route::get('/edit_race={id}', "EditRacesController@editRace");
+Route::post('/edit_race={id}', "EditRacesController@updateRace");
+Route::get('/api/edit_race={id}', "EditRacesController@getRace");
+Route::get('/api/add_races_tournaments={id}', "EditRacesController@getTournaments");
