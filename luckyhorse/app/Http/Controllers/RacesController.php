@@ -13,6 +13,7 @@ use App\Result;
 use App\Tournament;
 
 use Auth;
+use Arr;
 
 class RacesController extends Controller
 {
@@ -57,28 +58,44 @@ class RacesController extends Controller
     }
 
     public function getRace($id){
-        
         //$current_user = Auth::user();
-        $races = Race::find($id);
         $page_number = 1;
         $pages_total = 1;
-        $tournaments= Tournament::where('id',$races->tournament_id)->get();
+
+        $scores = Result::where('race_id', $id)
+            ->join('horses','results.horse_id','=','horses.id')
+            ->join('jockeys','results.jockey_id','=','jockeys.id')
+            ->select('horses.id as horse_id',
+                'horses.num_victories as horse_wins','horses.num_races as horse_num_races',
+                'jockeys.num_victories as jockey_wins','jockeys.num_races as jockey_num_races')
+            ->orderBy('time')->get();
+
+        $win_total = 0;
+        foreach($scores as $score){
+            $wr_horse = $score->horse_wins/$score->horse_num_races;
+            $wr_jockey = $score->jockey_wins/$score->jockey_num_races;
+            $wr_both = (($wr_jockey)+($wr_horse))/2;
+            $score_position = $scores->search(function ($value, $key) use($score) {
+                return $value->horse_id == $score->horse_id ;
+            });
+            Arr::add($scores[$score_position], 'wr', $wr_both);
+            $win_total += $wr_both;
+        }
+
         $results = Result::where('race_id', $id)
             ->join('races','results.race_id','=','races.id')
             ->join('horses','results.horse_id','=','horses.id')
             ->join('jockeys','results.jockey_id','=','jockeys.id')
             ->leftJoin('tournaments','races.tournament_id','=','tournaments.id')
-            ->select('races.id','races.name','races.date','races.description','races.location',
+            ->select('races.id','races.name','races.date','races.description','races.location', 'races.file_path',
                 'races.tournament_id as tournament_id',
                 'tournaments.name as tournament_name',
                 'horses.id as horse_id','horses.name as horse_name',
                 'jockeys.id as jockey_id','jockeys.name as jockey_name',
                 'results.time as time')
             ->orderBy('time')->get();
-        $jockeys = Jockey::all();
-        $horses = Horse::all();
 
-        $winner = Race::where('races.id','=',$races->id)
+        $winner = Race::where('races.id','=',$id)
                         ->join('results','races.id','=','results.race_id')
                         ->join('horses','results.horse_id','=','horses.id')
                         ->join('jockeys','results.jockey_id','=','jockeys.id')
@@ -88,8 +105,8 @@ class RacesController extends Controller
                         ->orderBy('time')
                         ->take(1)->get();
 
-        if($races)
-            return view('races.races_info',compact('races','tournaments','results','horses','jockeys','winner','page_number','pages_total'));
+        if($results)
+            return view('races.races_info',compact('scores','win_total','results','winner','page_number','pages_total'));
         else
             return redirect('/races');
     }
