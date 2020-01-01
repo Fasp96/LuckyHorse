@@ -76,17 +76,23 @@
                         @isset($race->tournament_name)
                             Tournament: {{$race->tournament_name}}<br>
                         @endif
-
+                        @foreach($winners as $winner)
+                            @if($winner[0]->race_id==$race->id && $winner[0]->time>'00:00:00')
+                                Winners: {{$winner[0]->horse_name}} and {{$winner[0]->jockey_name}}
+                            @endif
+                        @endforeach
                         <br><br>
                         <div class="details_button">
                             <a href="/races/{{$race->id}}">View Details</a>
                         </div>
                         @auth
-                            <div>
-                                <div class="details_button bet_button">
-                                    <a href="/add_bet_race={{$race->id}}">Bet</a>
+                            @if($race->date < date("Y-m-d h:i:ss"))
+                                <div>
+                                    <div class="details_button bet_button">
+                                        <a href="/add_bet_race={{$race->id}}">Bet</a>
+                                    </div>
                                 </div>
-                            </div>
+                            @endif
                         @endauth
                 </div>
             </div>

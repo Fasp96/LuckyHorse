@@ -120,10 +120,11 @@
                                             <a href="/edit_race={{$results[0]->id}}">Edit</a>
                                         </div>
                                     @endif  
-                                
+                                    @if(!isset($winner->time))
                                     <div class="edit_button bet_button">
                                         <a href="/add_bet_race={{$results[0]->id}}">Bet</a>
                                     </div>
+                                    @endif
                                 @endauth
                             </div>
                             <br>
