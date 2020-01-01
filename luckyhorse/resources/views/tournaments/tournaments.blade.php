@@ -55,6 +55,7 @@
                     Time: {{date('H:i:s', strtotime($tournament->date))}}<br>
                     Location: {{$tournament->location}}<br><br>
 
+                    <br><br><br><br>
                     <div class="details_button">
                         <a href="/tournaments/{{$tournament->id}}">View Details</a>
                     </div>
