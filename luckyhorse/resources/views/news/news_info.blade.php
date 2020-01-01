@@ -17,7 +17,7 @@
         font-size: 0.7rem;
     }
     h2{
-        color: red;
+        color: #333;
         font-weight:bold; 
     }
     .edit_button{
@@ -43,32 +43,32 @@
 
 <!--News-->
 
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header"><h2>{{$news->title}}</h2></div> 
-                    <div class="card-body">
-                        <img src="{{$news->file_path}}" alt="news_img" style="width:50%;opacity:0.85;">
-                        <br>
-                        <div class="news-description">
-                            {{$news->description}}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header"><h2>{{$news->title}}</h2></div> 
+                <div class="card-body">
+                    <img src="{{$news->file_path}}" alt="news_img" style="width:50%;opacity:0.85;">
+                    <br>
+                    <div class="news-description">
+                        {{$news->description}}
+                    </div>
+                    <br><br>
+                    @if(Auth::user()->role=='admin')
+                        <div class="edit_button">
+                        <a href="/news/{{$news->id}}">Edit</a>
                         </div>
-                        <br><br>
-                        @if(Auth::user()->role=='admin')
-                            <div class="edit_button">
-                            <a href="/news/{{$news->id}}">Edit</a>
-                            </div>
-                        @endif
-                        <div class="news-date">
-                            Posted at {{$news->created_at->format('d-m-Y')}}
-                        </div>
+                    @endif
+                    <div class="news-date">
+                        Posted at {{$news->created_at->format('d-m-Y')}}
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <br>
+</div>
+<br>
 
 <br>
 
