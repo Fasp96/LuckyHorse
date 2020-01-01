@@ -115,12 +115,13 @@
                             @endif
 
                             <div>
-                                @if(Auth::user()->role=='admin')
-                                    <div class="edit_button">
-                                        <a href="/edit_race={{$results[0]->id}}">Edit</a>
-                                    </div>
-                                @endif  
                                 @auth
+                                    @if(Auth::user()->role=='admin')
+                                        <div class="edit_button">
+                                            <a href="/edit_race={{$results[0]->id}}">Edit</a>
+                                        </div>
+                                    @endif  
+                                
                                     <div class="edit_button bet_button">
                                         <a href="/add_bet_race={{$results[0]->id}}">Bet</a>
                                     </div>
