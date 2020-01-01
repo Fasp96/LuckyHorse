@@ -16,30 +16,30 @@
     text-align: right;
     font-size: 0.7rem;
   }
-  .modify_button{
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 5px;
-    }
-  .modify_button > a {
-        color: white;
-        float: left;
-        padding: 4px 8px;
-        text-decoration: none;
-        transition: background-color .3s;
-        border: 1px solid #333;
-        border-radius: 11px;
-        margin: 0 1px;
-        background-color: #333;
-    }
-  .modify_button a:hover {
-        background-color: #fa8b1b;
-    }
-    h2{
+  .details_button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+  }
+  .details_button > a {
+    color: white;
+    float: left;
+    padding: 4px 8px;
+    text-decoration: none;
+    transition: background-color .3s;
+    border: 1px solid #333;
+    border-radius: 11px;
+    margin: 0 1px;
+    background-color: #333;
+  }
+  .details_button a:hover {
+    background-color: #fa8b1b;
+  }
+  h2{
     color: green;
     font-weight:bold; 
-    }
+  }
 </style>
 
 <!--News-->
@@ -53,7 +53,7 @@
                         <img src="{{$new->file_path}}" alt="news_img" style="width:50%;opacity:0.85;">
                         <br>
                         
-                        <div class="modify_button">
+                        <div class="details_button">
                           <a href="/news/{{$new->id}}">Read More</a>
                         </div>
 

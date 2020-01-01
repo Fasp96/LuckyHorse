@@ -28,14 +28,10 @@
         color: red;
         font-weight:bold; 
     }
-    .bet_button{
-        float: right;
-        padding: 5px;
-    }
-    .bet_button > a {
+    .edit_button > a {
         color: white;
         float: left;
-        padding: 4px 12px;
+        padding: 4px 8px;
         text-decoration: none;
         transition: background-color .3s;
         border: 1px solid #333;
@@ -43,8 +39,11 @@
         margin: 0 1px;
         background-color: #333;
     }
-    .bet_button a:hover {
+    .edit_button a:hover {
         background-color: #fa8b1b;
+    }
+    .bet_button{
+        float: right;
     }
 </style>
 
@@ -116,10 +115,18 @@
                             @endif
 
                             <div>
-                                <div class="bet_button">
-                                    <a href="/add_bet_race={{$results[0]->id}}">Bet</a>
-                                </div>
+                                @if(Auth::user()->role=='admin')
+                                    <div class="edit_button">
+                                        <a href="/edit_race={{$results[0]->id}}">Edit</a>
+                                    </div>
+                                @endif  
+                                @auth
+                                    <div class="edit_button bet_button">
+                                        <a href="/add_bet_race={{$results[0]->id}}">Bet</a>
+                                    </div>
+                                @endauth
                             </div>
+                            <br>
                     </div>
                 </div>
             </div>

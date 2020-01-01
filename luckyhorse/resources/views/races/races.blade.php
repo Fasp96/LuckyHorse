@@ -137,11 +137,13 @@
                             ?>
                             @endforeach
                             <br>
-                            <div>
-                                <div class="bet_button">
-                                    <a href="/add_bet_race={{$race->id}}">Bet</a>
+                            @auth
+                                <div>
+                                    <div class="bet_button">
+                                        <a href="/add_bet_race={{$race->id}}">Bet</a>
+                                    </div>
                                 </div>
-                            </div>
+                            @endauth
                     </div>
                 </div>
             </div>
