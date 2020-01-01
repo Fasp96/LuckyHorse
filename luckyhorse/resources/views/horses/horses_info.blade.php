@@ -24,8 +24,8 @@
                         Birth Date: {{$horses->birth_date}}<br>
                         Gender: {{$horses->gender}}<br>
                         Number of Races: {{$horses->num_races}}<br>
-                        Number of Victories: {{$horses->num_victories}}<br>
-                        
+                        Number of Victories: {{$horses->num_victories}}<br>              
+                        Win Rate: {{($horses->num_victories/$horses->num_races)*100}}%<br> 
                     </div>
                 </div>
             </div>

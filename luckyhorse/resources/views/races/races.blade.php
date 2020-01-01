@@ -78,7 +78,7 @@
                             Tournament: {{$race->tournament_name}}<br>
                         @endif
 
-                        <br>
+                        <br><br>
                         <div class="details_button">
                             <a href="/races/{{$race->id}}">View Details</a>
                         </div>
