@@ -54,7 +54,7 @@
                    <div class="card-header"> <h2>{{$results[0]->name}}</h2></div>
                     <div id="body-card">
                         <div class="card-body">
-                            <img src="{{ $results[0]->file_path}}" alt="race_img" style="width:40%;opacity:0.85;">
+                            <img src="{{ $results[0]->file_path}}" alt="race_img" style="width:50%;opacity:0.85;">
                             
                             Date: {{date('d-m-Y', strtotime($results[0]->date))}}<br>
                             Time: {{date('H:i:s', strtotime($results[0]->date))}}<br>

@@ -49,13 +49,13 @@
                 <!-- <div class="card-header">Tournaments</div> -->
                 <div class="card-header"><h2>{{$tournament->name}}</h2></div>
                 <div class="card-body">
-                    <img src="{{ $tournament->file_path}}" alt="tournament_img" style="width:40%;opacity:0.85;">
+                    <img src="{{ $tournament->file_path}}" alt="tournament_img" style="width:25%;opacity:0.85;">
                     
                     Date: {{date('d-m-Y', strtotime($tournament->date))}}<br>
                     Time: {{date('H:i:s', strtotime($tournament->date))}}<br>
                     Location: {{$tournament->location}}<br><br>
 
-                    <br><br><br><br>
+                    <br>
                     <div class="details_button">
                         <a href="/tournaments/{{$tournament->id}}">View Details</a>
                     </div>
