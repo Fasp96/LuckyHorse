@@ -92,6 +92,7 @@ Route::get('/jockeys/{id}', 'JockeysController@getJockey');
 
 Route::get('/bets', 'BetsController@index');
 Route::get('/bets_page={page_number}', 'BetsController@index');
+Route::post('/bets', 'BetsController@claim');
 
 Route::get('/add_bet_race={id}', 'AddBetsController@index_bet_race');
 Route::post('/add_bet_race={id}', 'AddBetsController@add_bet_race');
@@ -127,3 +128,6 @@ Route::post('/edit_user={id}', 'EditUserController@updateUser');
 
 Route::get('/edit_results={id}', 'EditResultsController@editResult');
 Route::post('/edit_results={id}', 'EditResultsController@updateResult');
+
+Route::get('/claim={id}', 'ClaimController@claim');
+Route::post('/claim={id}', 'ClaimController@claimBet');

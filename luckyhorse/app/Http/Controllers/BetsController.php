@@ -17,6 +17,7 @@ class BetsController extends Controller
     public function index($page_number = 1){
         $current_user = Auth::user();
         if($current_user){
+            $races = Race::all();
             $page_name = "bets";
             $bets_per_page = 4; //Sum of race and tournament bets (Always Odd number!)
             //$bets_number = Bet::count();
@@ -31,6 +32,7 @@ class BetsController extends Controller
                 ->join('jockeys','bets.jockey_id','=','jockeys.id')
                 ->select('bets.id as bet_id',
                 'races.name as race_name',
+                'races.id as race_id',
                 'races.date as date',
                 'horses.name as horse_name',
                 'jockeys.name as jockey_name',
@@ -58,10 +60,31 @@ class BetsController extends Controller
                 ->take($bets_per_page/2)->get();
             }
 
-             return view('bets.bets',compact('race_bets','tournament_bets','page_number','pages_total', 'page_name'));
+            $winners = collect();
+            foreach($races as $race){
+            $winner = Race::where('races.id','=',$race->id)
+                ->join('results','races.id','=','results.race_id')
+                ->join('horses','results.horse_id','=','horses.id')
+                ->join('jockeys','results.jockey_id','=','jockeys.id')
+                ->select('horses.name as horse_name',
+                    'jockeys.name as jockey_name',
+                    'results.race_id as race_id',
+                    'results.time as time')
+                ->orderBy('results.time')
+                ->take(1)->get();
+
+            $winners->push($winner);
+        }
+
+             return view('bets.bets',compact('race_bets','tournament_bets','winners','page_number','pages_total', 'page_name'));
         }else{
             return redirect('/');
         }
+    }
+
+    public function claim(){
+        
+
     }
 
 
