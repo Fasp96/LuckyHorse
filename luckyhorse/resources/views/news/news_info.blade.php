@@ -55,11 +55,13 @@
                         {{$news->description}}
                     </div>
                     <br><br>
-                    @if(Auth::user()->role=='admin')
-                        <div class="edit_button">
-                        <a href="/edit_news={{$news->id}}">Edit</a>
-                        </div>
-                    @endif
+                    @auth
+                        @if(Auth::user()->role=='admin')
+                            <div class="edit_button">
+                                <a href="/edit_news={{$news->id}}">Edit</a>
+                            </div>
+                        @endif
+                    @endauth
                     <div class="news-date">
                         Posted at {{$news->created_at->format('d-m-Y')}}
                     </div>
