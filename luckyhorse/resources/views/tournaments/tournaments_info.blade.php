@@ -49,13 +49,15 @@
                     Date: {{date('d-m-Y', strtotime($tournaments->date))}}<br>
                     Time: {{date('H:i:s', strtotime($tournaments->date))}}<br>
                     Description: {{$tournaments->description}}<br>
-                    Location: {{$tournaments->location}}<br><br>
-                    
+                    @if($winner[0]->count() > 2)
+                        Winners: {{$winner[0]->horse_name}} and {{$winner[0]->jockey_name}} <br>
+                    @endif
+                    <br>
                     <h3>Races in this tournament:</h3>
                     <ul>
                     @if($races->count() > 0)
                         @foreach($races as $race)
-                            <li><a href='http://localhost:8000/races/{$race->id}'> {{$race->name}} in {{$race->location}} </a></li>
+                            <li><a href='http://localhost:8000/races/{{$race->id}}'> {{$race->name}} in {{$race->location}} </a></li>
                         @endforeach
                     @else
                         No races for this tournament <br>
@@ -67,9 +69,11 @@
                         </div>
                     @endif  
                     @auth
-                        <div class="bet_button edit_button">
-                            <a href="/add_bet_tournament={{$tournaments->id}}">Bet</a>
-                        </div>
+                        @if($winner[0]->count() == 2)
+                            <div class="bet_button edit_button">
+                                <a href="/add_bet_tournament={{$tournaments->id}}">Bet</a>
+                            </div>
+                        @endif
                     @endauth
 
                 </div>

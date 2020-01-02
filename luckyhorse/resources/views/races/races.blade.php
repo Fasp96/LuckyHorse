@@ -77,7 +77,7 @@
                             Tournament: {{$race->tournament_name}}<br>
                         @endif
                         @foreach($winners as $winner)
-                            @if($winner[0]->race_id==$race->id && $winner[0]->time>'00:00:00')
+                            @if($winner->count() > 0 && $winner[0]->race_id==$race->id && $winner[0]->time>'00:00:00')
                                 Winners: {{$winner[0]->horse_name}} and {{$winner[0]->jockey_name}}
                             @endif
                         @endforeach

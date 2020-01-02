@@ -50,7 +50,7 @@ class RacesController extends Controller
                     'results.time as time')
                 ->orderBy('results.time')
                 ->take(1)->get();
-                
+
             $winners->push($winner);
         }
 
@@ -64,7 +64,7 @@ class RacesController extends Controller
         //$current_user = Auth::user();
 
         //Get Every Pair win rate and the sum of all win rates
-        $scores = Result::where('race_id', $id)
+        $scores = Result::where('results.race_id', $id)
             ->join('horses','results.horse_id','=','horses.id')
             ->join('jockeys','results.jockey_id','=','jockeys.id')
             ->select('horses.id as horse_id',

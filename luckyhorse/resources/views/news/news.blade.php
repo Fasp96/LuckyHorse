@@ -37,7 +37,7 @@
     background-color: #fa8b1b;
   }
   h2{
-    color: green;
+    color: #333;
     font-weight:bold; 
   }
 </style>
