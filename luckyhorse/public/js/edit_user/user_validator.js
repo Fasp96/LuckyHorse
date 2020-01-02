@@ -55,7 +55,7 @@ function validate_input(clicked = false){
     valid.push(validate_birth_date(birth_date,user_form.birth_date));
     valid.push(validate_gender(gender, user_form.gender, contents[contents.length-1] != '' || clicked == true));
     valid.push(validate_phone_number(phone_number, user_form.phone_number));
-    valid.push(validate_balance(balance, num_races, user_form.balance));
+    valid.push(validate_balance(balance, user_form.balance));
     valid.push(validate_iban(iban, user_form.iban));
 
     //this condition is just to allow to verify if there are empty fields, only if the use has filled the last field or clicked the submit button
