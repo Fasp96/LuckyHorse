@@ -109,3 +109,8 @@ Route::get('/edit_race={id}', "EditRacesController@editRace");
 Route::post('/edit_race={id}', "EditRacesController@updateRace");
 Route::get('/api/edit_race={id}', "EditRacesController@getRace");
 Route::get('/api/add_races_tournaments={id}', "EditRacesController@getTournaments");
+
+Route::get('/edit_horse={id}', "EditHorsesController@editHorse");
+Route::post('/edit_horse={id}', "EditHorsesController@updateHorse");
+Route::get('/api/edit_horse={id}', "EditHorsesController@getHorse");
+//Route::get('/api/add_races_tournaments={id}', "EditRacesController@getTournaments");
