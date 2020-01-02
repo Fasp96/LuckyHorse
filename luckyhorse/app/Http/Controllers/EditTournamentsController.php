@@ -13,10 +13,12 @@ class EditTournamentsController extends Controller
     public function editTournament($id){
         $current_user = Auth::user();
         if($current_user){
-
             $tournament = Tournament::find($id);
-
-            return view('tournaments.edit_tournament',compact('id'));
+            if($tournament){
+                return view('tournaments.edit_tournament',compact('id'));
+            }else{
+                return redirect('/');
+            }
         }
     }
 
@@ -45,35 +47,39 @@ class EditTournamentsController extends Controller
         if($user){
 
             $tournament = Tournament::find($id);
-            $tournament->name = $request->name;
-            $tournament->date = $request->initial_date . ' ' . $request->initial_time;
-            $tournament->description = $request->description;
-            $tournament->location = $request->location;
-            
-            if($request->file('tournament_photo') != null){
-                $photo = $request->file('tournament_photo');
-                $fileName = $id . '-' . $request->name . '-' .$photo->getClientOriginalName();
-                $path = 'img/tournament_photo/';
-                $file = $photo->move($path, $fileName);
-                $file_path = $path . $fileName;
-                $tournament->file_path = '/' . $file_path;
-            }
-            $tournament->save();
-
-            $races = Race::where('tournament_id', '=', $id);
-            $races->update(['tournament_id' => NULL]);
-            
-            //if isset races
-            if(isset($request->races)){
-
-                //for each race it will update the value of the atribute tournament_id with the id of the tournament
-                for($i = 0; $i < sizeof($request->races); $i++){
-                    $race = Race::where('id', '=', $request->races[$i]);
-                    $race->update(['tournament_id' => $id]);
+            if($tournament){
+                $tournament->name = $request->name;
+                $tournament->date = $request->initial_date . ' ' . $request->initial_time;
+                $tournament->description = $request->description;
+                $tournament->location = $request->location;
+                
+                if($request->file('tournament_photo') != null){
+                    $photo = $request->file('tournament_photo');
+                    $fileName = $id . '-' . $request->name . '-' .$photo->getClientOriginalName();
+                    $path = 'img/tournament_photo/';
+                    $file = $photo->move($path, $fileName);
+                    $file_path = $path . $fileName;
+                    $tournament->file_path = '/' . $file_path;
                 }
-            }
+                $tournament->save();
 
-            return redirect('/tournaments/'. $id);
+                $races = Race::where('tournament_id', '=', $id);
+                $races->update(['tournament_id' => NULL]);
+                
+                //if isset races
+                if(isset($request->races)){
+
+                    //for each race it will update the value of the atribute tournament_id with the id of the tournament
+                    for($i = 0; $i < sizeof($request->races); $i++){
+                        $race = Race::where('id', '=', $request->races[$i]);
+                        $race->update(['tournament_id' => $id]);
+                    }
+                }
+
+                return redirect('/tournaments/'. $id);
+            }else{
+                return redirect('/');
+            }
         }else{
             return redirect('home');
         }       

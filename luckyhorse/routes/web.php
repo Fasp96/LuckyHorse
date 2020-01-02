@@ -120,3 +120,7 @@ Route::post('/edit_horse={id}', 'EditHorsesController@updateHorse');
 Route::get('/edit_news={id}', 'EditNewsController@editNews');
 Route::get('/api/edit_news={id}', 'EditNewsController@getNews');
 Route::post('/edit_news={id}', 'EditNewsController@updateNews');
+
+Route::get('/edit_user={id}', 'EditUserController@editUser');
+Route::get('/api/edit_user={id}', 'EditUserController@getUser');
+Route::post('/edit_user={id}', 'EditUserController@updateUser');
