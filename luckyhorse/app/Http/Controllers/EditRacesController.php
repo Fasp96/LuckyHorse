@@ -46,7 +46,7 @@ class EditRacesController extends Controller
         if($user){
             $race = Race::find($id);
             $race->name = $request->name;
-            $race->date = $request->date;
+            $race->date = $request->date . ' ' . $request->race_time;
             $race->description = $request->description;
             $race->location = $request->location;
             $race->tournament_id = $request->add_tournament;            

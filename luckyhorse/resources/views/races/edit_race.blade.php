@@ -23,8 +23,9 @@
                         <input type="hidden" id ="token" name="_token" value="{{csrf_token()}}">
                         Name
                         <input id="name" type="text" class="form-control" name="name" onchange="validate_input()"><br>
-                        Date
-                        <input id="date" type="date" class="form-control" name="date" onselect="add_tournaments(date); validate_input();" onchange="add_tournaments(date); validate_input();"><br>
+                        Date and time
+                        <input id="date" type="date" class="form-control" name="date" onselect="add_tournaments(date, race_time); validate_input();" onchange="add_tournaments(date, race_time); validate_input();"><br>
+                        <input id="race_time" type="time" class="form-control" name="race_time" value = '00:00' onselect="add_tournaments(date, race_time); validate_input();" onchange="add_tournaments(date, race_time); validate_input();"><br>
                         Add to Tournament<br>
                         <div id="add">
                             <h6 id="tournaments" style="color:black; padding-top:1%; padding-left:5%">***No Tournaments***</h6>
