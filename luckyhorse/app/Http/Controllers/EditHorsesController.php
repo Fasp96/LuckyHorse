@@ -69,7 +69,7 @@ class EditHorsesController extends Controller
                 $result->save();
             }
 */
-            return redirect('/races');
+            return redirect('/horses');
         }else{
             return redirect('home');
         }       
