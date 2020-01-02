@@ -14,6 +14,7 @@
                     <form id="bet_form" method ="post" action="" enctype="multipart/form-data" >
 
                         <input type="hidden" id='token' name="_token" value="{{csrf_token()}} ">
+                        <input type="hidden" id='user_balance' name="user_balance" value="{{Auth::user()->balance}} ">
 
                         @yield('bet_type')
 
@@ -32,10 +33,10 @@
                         </select>
                         <br>
                         Value
-                        <input id="value" type="number" class="form-control" name="value" onchange="validate_input()"><br>
+                        <input id="bet_value" type="number" class="form-control" name="bet_value" onchange="validate_input()"><br>
                         <br>
                     </form>
-                    <button id="add_bet_btn" class="btn btn-primary">Bet</button>
+                    <button id="add_bet_btn" class="btn btn-primary" disabled>Bet</button>
 
                 </div>
             </div>

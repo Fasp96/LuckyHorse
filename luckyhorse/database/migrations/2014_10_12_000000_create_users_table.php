@@ -25,8 +25,7 @@ class CreateUsersTable extends Migration
             $table->string('gender');
             $table->integer('phone_number');
             $table->float('balance');
-            $table->integer('iban');
-            $table->string('file_path');         
+            $table->integer('iban');     
 
             $table->rememberToken();
             $table->timestamps();
