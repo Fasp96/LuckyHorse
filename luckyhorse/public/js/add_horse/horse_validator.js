@@ -148,7 +148,7 @@ function validate_num_victories(content, content_races, element){
         return false;
     }
     //number of victories needs to be less or equal to the number of races
-    else if (content > content_races){
+    else if (parseInt(content) > parseInt(content_races)){
         $(element).css("background","#ebdf5e");
         $(element).after("<p style=\"color:#c2b100\">* Please insert a number lower or equal than " + content_races + "</p>");
         return false;
