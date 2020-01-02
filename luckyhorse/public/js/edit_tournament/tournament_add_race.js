@@ -1,16 +1,16 @@
 function initPage(){
-    add_race_field(initial_date, initial_time, finish_date, finish_time);
+    add_race_field(initial_date, initial_time);
 }
 
 //function that creates a field to add race to a tournament depending on the initial date and finish date 
-function add_race_field(initial_date, initial_time, finish_date, finish_time){
+/*function add_race_field(initial_date, initial_time){
     //gets the initial and finish date value
     initial_date = initial_date.value;
-    finish_date = finish_date.value;
+
 
     //gets the initial and finish time value
     initial_time = initial_time.value;
-    finish_time = finish_time.value;
+
     
     var id_tournament = document.getElementById("id_tournament");
     var id = id_tournament.value;
@@ -22,7 +22,7 @@ function add_race_field(initial_date, initial_time, finish_date, finish_time){
         if(data == ""){
             
             //clears everything inside the div
-            document.getElementById("race_fields").innerHTML = "";
+            //document.getElementById("race_fields").innerHTML = "";
 
             //adds a 'p' element saying no races to add 
             document.getElementById("race_fields").appendChild(document.createElement("br"));
@@ -33,10 +33,10 @@ function add_race_field(initial_date, initial_time, finish_date, finish_time){
         }
 
         //if it only has initial date
-        else if(initial_date != "" && finish_date == ""){
+        else if(initial_date != ""){
             
             //clears everything inside the div
-            document.getElementById("race_fields").innerHTML = "";
+            //document.getElementById("race_fields").innerHTML = "";
 
             //variable initalize at false and changes to true if there are races that can be added
             var has_races = false;
@@ -72,7 +72,7 @@ function add_race_field(initial_date, initial_time, finish_date, finish_time){
             if(has_races == false){
                 
                 //adds a 'p' element saying no races to add after that initial date
-                document.getElementById("race_fields").appendChild(document.createElement("br"));
+                //document.getElementById("race_fields").appendChild(document.createElement("br"));
                 var p = document.createElement("P");
                 var t = document.createTextNode("No races to add after " + initial_date);
                 p.appendChild(t);
@@ -81,7 +81,7 @@ function add_race_field(initial_date, initial_time, finish_date, finish_time){
         }
 
         //if initial date is empty but finish date isn't
-        else if(initial_date == "" && finish_date != ""){
+        else if(initial_date == ""){
             
             //clears everything inside the div
             document.getElementById("race_fields").innerHTML = "";
@@ -138,7 +138,7 @@ function add_race_field(initial_date, initial_time, finish_date, finish_time){
             for (var i = 0; i < data.length; i++) {
 
                 initial_date = initial_date + ' ' + initial_time;
-                finish_date = finish_date + ' ' + finish_time;
+                
 
                 //if the race date is after that initial date and before that finish tournament date
                 if(data[i].date >= initial_date && data[i].date <= finish_date){
@@ -173,6 +173,6 @@ function add_race_field(initial_date, initial_time, finish_date, finish_time){
         }
     });
 }
-
+*/
 //página carregou
 $(document).ready(initPage);
