@@ -33,6 +33,7 @@
                         Jockey Photo <br><br>
                         <input id="jockey_photo" type="file" name="jockey_photo" accept="image/*" onchange="validate_input()"><br>
                         <br>
+                        <div id="form_end"></div>
                     </form>
                     <button id="update_jockey_btn" class="btn btn-primary">Update Jockey</button>
 
