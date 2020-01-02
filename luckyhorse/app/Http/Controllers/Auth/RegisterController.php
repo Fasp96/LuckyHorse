@@ -80,8 +80,7 @@ class RegisterController extends Controller
             'birth_date' => $data['birth_date'],
             'phone_number' => $data['phone_number'],
             'iban' => $data['iban'],
-            'balance' => 0,
-            'file_path' => ''
+            'balance' => 0
         ]);
 
         return $user;

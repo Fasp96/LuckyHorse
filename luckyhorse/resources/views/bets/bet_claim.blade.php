@@ -27,8 +27,7 @@
 </style>
 
 
-<h1 align='center'>You claimed</h1>
-{{$user}}
+<h1 align='center'>You claimed {{$bet->value}}€!</h1>
 
 
 
