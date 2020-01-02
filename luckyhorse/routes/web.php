@@ -109,10 +109,13 @@ Route::get('/api/edit_race={id}', 'EditRacesController@getRace');
 Route::get('/api/add_races_tournaments={id}', 'EditRacesController@getTournaments');
 
 Route::get('/edit_jockey={id}', 'EditJockeysController@editJockey');
+Route::get('/api/edit_jockey={id}', 'EditJockeysController@getJockey');
 Route::post('/edit_jockey={id}', 'EditJockeysController@updateJockey');
 
 Route::get('/edit_horse={id}', 'EditHorsesController@editHorse');
+Route::get('/api/edit_horse={id}', 'EditHorsesController@getHorse');
 Route::post('/edit_horse={id}', 'EditHorsesController@updateHorse');
 
-Route::get('/edit_news={id}', 'EditHorsesController@editNews');
-Route::post('/edit_news={id}', 'EditHorsesController@updateNews');
+Route::get('/edit_news={id}', 'EditNewsController@editNews');
+Route::get('/api/edit_news={id}', 'EditNewsController@getNews');
+Route::post('/edit_news={id}', 'EditNewsController@updateNews');

@@ -1,6 +1,6 @@
 function initPage(){
     //when the button is pressed
-    $("#add_news_btn").click( function(){
+    $("#update_news_btn").click( function(){
         //it will validate the inputs and pass the parameter clicked true
         validate_input(true);
     });
@@ -41,15 +41,15 @@ function validate_input(clicked=false){
     //this condition is just to allow to verify if there are empty fields, only if the use has filled the last field or clicked the submit button 
     if(contents[contents.length-1] != '' || clicked == true){
 
-        for(var i = 0; i < contents.length; i++){
+        for(var i = 0; i < contents.length - 1; i++){
             not_empty.push(validate_empty(contents[i],elements[i]));
         }
     }
 
     //if everything is filled and validated it will remove the existing button and add a button inside the <form> to use the post method
     if(valid.reduce(and) && not_empty.reduce(and)){
-        $("#add_news_btn").remove();
-        $("#news_photo").after("<br><br><button type=\"submit\" class=\"btn btn-primary\">Add News</button>");
+        $("#update_news_btn").remove();
+        $("#news_photo").after("<br><br><button type=\"submit\" class=\"btn btn-primary\">Update News</button>");
     }
 }
 
