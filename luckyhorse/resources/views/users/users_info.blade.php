@@ -13,11 +13,11 @@
     table{
         width: 100%;
     }
-    .modify_button{
+    .edit_button{
         float: right;
         padding: 5px;
     }
-    .modify_button > a {
+    .edit_button > a {
         color: white;
         float: left;
         padding: 4px 8px;
@@ -28,7 +28,7 @@
         margin: 0 1px;
         background-color: #333;
     }
-    .modify_button a:hover {
+    .edit_button a:hover {
         background-color: #fa8b1b;
     }
     
@@ -53,11 +53,15 @@
                     Balance: {{number_format($user->balance, 2, '.', ',')}}<br>
                     
                 </div>
-                <div>
-                    <div class="modify_button">
-                        <a href="/manage_users/{{$user->id}}">Modify</a>
-                    </div>
-                </div>
+                @auth
+                    @if(Auth::user()->role=='admin')
+                        <div>
+                            <div class="edit_button">
+                                <a href="/manage_users/{{$user->id}}">Edit</a>
+                            </div>
+                        </div>
+                    @endif
+                @endauth
             </div>
         </div>
     </div>
