@@ -17,7 +17,7 @@ class AddRacesController extends Controller
     public function index(){
         $current_user = Auth::user();
         if($current_user){
-             $races = Race::all();
+             $races = Race::orderByDesc('created_at')->take(10)->get();
              $horses = Horse::all();
              $jockeys = Jockey::all();
              $tournaments = Tournament::all();

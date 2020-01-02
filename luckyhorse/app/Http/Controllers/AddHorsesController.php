@@ -12,7 +12,7 @@ class AddHorsesController extends Controller
     public function index(){
         $current_user = Auth::user();
         if($current_user){
-             $horses = Horse::all();
+             $horses = Horse::orderByDesc('created_at')->take(10)->get();
              return view('horses.add_horse',compact('horses'));
         }else{
             return redirect('home');

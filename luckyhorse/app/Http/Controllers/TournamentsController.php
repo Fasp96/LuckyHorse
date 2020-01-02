@@ -38,6 +38,7 @@ class TournamentsController extends Controller
 
             $winners->push($winner);
         }
+        //dd($winners);
 
         $races = Race::orderByDesc('date')->take($tournaments_per_page)->get();
         
@@ -65,6 +66,9 @@ class TournamentsController extends Controller
     }
 
     private function race_winner($last_race,$tournament_id){
+        //if($tournament_id=='2')
+            //dd($last_race);
+
         if($last_race->count()>0){
             $winner = Race::where('races.id',$last_race[0]->race_id)
                 ->join('results','results.race_id','=','races.id')
@@ -72,15 +76,21 @@ class TournamentsController extends Controller
                 ->join('jockeys','results.jockey_id','=','jockeys.id')
                 ->join('tournaments','races.tournament_id','=','tournaments.id')
                 ->orderByDesc('results.time')
+                ->whereTime('results.time','>=','00:00:01')
+                ->whereNotNull('results.time')
                 ->select('races.id as race_id',
                     'tournaments.id as tournament_id',
                     'horses.name as horse_name',
                     'jockeys.name as jockey_name')
                 ->take(1)->get();
-            
+
+            if($winner->count() == 0){
+                $winner = Tournament::where('tournaments.id',$tournament_id)->get();
+            }
         }else{
             $winner = Tournament::where('tournaments.id',$tournament_id)->get();
         }
+        
 
         return $winner;
     }
@@ -93,7 +103,13 @@ class TournamentsController extends Controller
                 ->select('races.id as race_id')
                 ->take(1)->get();
 
+        //if($tournament_id=='2')
+            //dd($last_race);
+
         $winner = $this->race_winner($last_race,$tournament_id);
+
+        //if($tournament_id=='2')
+            //dd($winner);
 
         return $winner;
     }
