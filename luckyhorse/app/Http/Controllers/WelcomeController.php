@@ -38,7 +38,7 @@ class WelcomeController extends Controller
                     'jockeys.id as jockey_id',
                     'jockeys.name as jockey_name',
                     'results.time as time')
-                ->orderByDesc('time')->get();
+                ->orderBy('time')->get();
 
             $table_infos->push($table_info);
         }

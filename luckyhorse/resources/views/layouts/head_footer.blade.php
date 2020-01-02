@@ -43,7 +43,7 @@
                                 @if(Auth::user()->role=='admin')
                                     <li><a href="{{ url('/manage') }}">Options</a></li>
                                 @endif
-                                <li><a href="{{ url('/home') }}">Home</a></li>
+                                <li><a href="/users/{{Auth::user()->id}}"">Profile</a></li>
                                 <li><a href="{{ route('logout') }}" 
                                     onclick="event.preventDefault();document.getElementById('logout-form').submit();">Logout</a></li>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
