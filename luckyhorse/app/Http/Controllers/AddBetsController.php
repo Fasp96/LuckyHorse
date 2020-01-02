@@ -85,7 +85,7 @@ class AddBetsController extends Controller
         }
     }
 
-    public function add_bet_race($id){
+    public function add_bet_race(Request $request){
         $current_user = Auth::user();
         if($current_user){
             $bet = new Bet;
