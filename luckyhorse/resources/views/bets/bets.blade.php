@@ -9,7 +9,7 @@
     }
     h1{
         font-weight:bold; 
-        color: #333;
+        color: green;
     }
     .edit_button > a {
         color: white;
@@ -26,6 +26,10 @@
         background-color: #fa8b1b;
     }
 </style>
+
+@if($tournament_bets->count() == 0 && $race_bets->count() == 0)
+    <h1 align="center">No Bets Currently</h1><br>
+@endif
 
 @if($tournament_bets->count()>0)
     <h1 align="center">Tournament Bets</h1>
@@ -57,8 +61,6 @@
 @if($race_bets->count()>0)
     <h1 align="center">Race Bets</h1>
 @endif
-
-
 @foreach($race_bets as $race_bet) 
 <div class="container">
     <div class="row justify-content-center">
