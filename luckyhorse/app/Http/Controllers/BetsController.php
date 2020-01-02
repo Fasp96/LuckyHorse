@@ -17,12 +17,13 @@ class BetsController extends Controller
     public function index($page_number = 1){
         $current_user = Auth::user();
         if($current_user){
-            $races = Race::all();
             $page_name = "bets";
             $bets_per_page = 4; //Sum of race and tournament bets (Always Odd number!)
             //$bets_number = Bet::count();
-            $race_bets_number = Bet::whereNotNull('race_id')->count();
-            $tournament_bets_number = Bet::whereNotNull('tournament_id')->count();
+            $race_bets_number = Bet::whereNotNull('race_id')
+                ->where('user_id',$current_user->id)->count();
+            $tournament_bets_number = Bet::whereNotNull('tournament_id')
+                ->where('user_id',$current_user->id)->count();
             $bets_number = max($race_bets_number, $tournament_bets_number);
             $pages_total = ceil($bets_number/($bets_per_page/2));
 
@@ -60,6 +61,7 @@ class BetsController extends Controller
                 ->take($bets_per_page/2)->get();
             }
 
+            $races = Race::all();
             $winners = collect();
             foreach($races as $race){
             $winner = Race::where('races.id','=',$race->id)
