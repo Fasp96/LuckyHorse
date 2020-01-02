@@ -1,6 +1,6 @@
 function initPage(){
     //when the button is pressed
-    $("#update_jockey_btn").click(function(){
+    $("#update_jockey_btn").click( function(){
         //it will validate the inputs and pass the parameter clicked true
         validate_input(true);
     });
@@ -51,7 +51,7 @@ function validate_input(clicked=false){
     //this condition is just to allow to verify if there are empty fields, only if the use has filled the last field or clicked the submit button 
     if(contents[contents.length-1] != '' || clicked == true){
 
-        for(var i = 0; i < contents.length; i++){
+        for(var i = 0; i < contents.length - 1; i++){
             not_empty.push(validate_empty(contents[i],elements[i]));
         }
     }
@@ -174,5 +174,5 @@ function removeMessages(){
     $("#jockey_form").children().filter('p').remove();
 }
 
-//Page loaded
+//página carregou
 $(document).ready(initPage);

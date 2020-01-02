@@ -34,10 +34,14 @@ function validate_input(clicked = false){
     contents.push(jockey);
     elements.push(bet_form.jockey);
 
+    var bet_value = bet_form.bet_value.value;
+    contents.push(bet_value);
+    elements.push(bet_form.bet_value);
+
     removeMessages();   
 
     //makes the validation of all the inputs
-    valid.push(validate_value(value,bet_form.value));
+    valid.push(validate_value(bet_value,bet_form.bet_value));
 
     //this condition is just to allow to verify if there are empty fields, only if the use has filled the last field or clicked the submit button 
     if(contents[contents.length-1] != '' || clicked == true){
@@ -49,7 +53,10 @@ function validate_input(clicked = false){
     //if everything is filled and validated it will remove the existing button and add a button inside the <form> to use the post method
     if(valid.reduce(and) && not_empty.reduce(and)){
         $("#add_bet_btn").remove();
-        $("#value").after("<br><br><button type=\"submit\" class=\"btn btn-primary\">Bet</button>");
+        $("#bet_value").after("<br><br><button id='add_bet_btn' type=\"submit\" class=\"btn btn-primary\">Bet</button>");
+    }else{
+        $("#add_bet_btn").remove();
+        $("#bet_form").after("<br><br><button id='add_bet_btn' class=\"btn btn-primary\" disabled>Bet</button>");
     }
 }
 
@@ -68,12 +75,18 @@ function validate_empty(content, element){
 }
 
 function validate_value(content, element){
-    if(!isNaN(content) && content < 0 && content != ''){
-        $(element).css("background","#ebdf5e");
-        $(element).after("<p style=\"color:#c2b100\">* Please insert a value equal or greater that 0</p>");
-        return false;
-    }
-    else{
+    if(!isNaN(content)  && content != '' && 
+        (parseFloat(content) > parseFloat(bet_form.user_balance.value)  || content <= 0)){
+            $(element).css("background", "#ebdf5e");
+            if(parseFloat(content) > parseFloat(bet_form.user_balance.value)){
+                console.log("content:" +content);
+                console.log("validate value:" +bet_form.user_balance.value);
+                $(element).after("<p style=\"color:#c2b100\">* Please insert a value no greater than your balance</p>");
+            }else{
+                $(element).after("<p style=\"color:#c2b100\">* Please insert a value equal or greater than 0</p>");
+            }
+            return false;
+    }else{
         return true;
     }
 }

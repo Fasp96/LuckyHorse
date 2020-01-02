@@ -6,7 +6,7 @@ function initPage(){
     });
 }
 
-//function to validate inputs receives the parameter clicked that is by default to false   
+//function to validate inputs receives the parameter clicked that is by default to false
 function validate_input(clicked = false){
 
     var contents = [];
@@ -53,9 +53,9 @@ function validate_input(clicked = false){
     valid.push(validate_num_victories(num_victories, num_races, horse_form.num_victories));
     valid.push(validate_horse_photo(horse_photo, horse_form.horse_photo));
 
-    //this condition is just to allow to verify if there are empty fields, only if the use has filled the last field or clicked the submit button 
+    //this condition is just to allow to verify if there are empty fields, only if the use has filled the last field or clicked the submit button
     if(contents[contents.length-1] != '' || clicked == true){
-        for(var i = 0; i < contents.length -1; i++){
+        for(var i = 0; i < contents.length - 1; i++){
             not_empty.push(validate_empty(contents[i],elements[i]));
         }
     }

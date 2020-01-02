@@ -3,7 +3,7 @@ function initPage(){
 }
 
 //function that creates a field to add race to a tournament depending on the date
-function add_tournaments(date){
+function add_tournaments(date, race_time){
     
     //get method to get all tournaments from the database
     $.get("http://localhost:8000/api/add_races_tournaments", function(data){
@@ -26,8 +26,13 @@ function add_tournaments(date){
         {
             //gets all the tournaments that that are before the date inserted and adds it to the array
             var tournament = [];
-            for (var j = 0; j < data.length; j++) {        
-                if(data[j].date <= date.value){
+            for (var j = 0; j < data.length; j++) {
+                race_time = document.getElementById("race_time"); 
+                race_time = race_time.value;
+                date = date.value;
+                date= date + ' ' + race_time;
+
+                if(data[j].date <= date){
                     tournament.push(data[j]);
                 }   
             }

@@ -73,10 +73,10 @@ class AddBetsController extends Controller
             $bet->tournament_id = $request->id;
             $bet->horse_id = $request->horse;
             $bet->jockey_id = $request->jockey;
-            $bet->value = $request->value;
+            $bet->value = $request->bet_value;
             $bet->save();
 
-            $current_user->balance = ($current_user->balance)-($request->value);
+            $current_user->balance = ($current_user->balance)-($request->bet_value);
             $current_user->save();
 
             return redirect('/bets');;
@@ -94,10 +94,10 @@ class AddBetsController extends Controller
             $bet->race_id = $request->id;
             $bet->horse_id = $request->horse;
             $bet->jockey_id = $request->jockey;
-            $bet->value = $request->value;
+            $bet->value = $request->bet_value;
             $bet->save();
 
-            $current_user->balance = ($current_user->balance)-($request->value);
+            $current_user->balance = ($current_user->balance)-($request->bet_value);
             $current_user->save();
 
             return redirect('/bets');;

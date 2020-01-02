@@ -9,12 +9,12 @@ use Auth;
 
 class EditJockeysController extends Controller
 {
-    //{
     //
     public function editJockey($id){
         $current_user = Auth::user();
         if($current_user){
-            $Jockey = Jockey::find($id);
+
+            $jockey = Jockey::find($id);
 
             return view('jockeys.edit_jockey',compact('id'));
         }
@@ -24,15 +24,13 @@ class EditJockeysController extends Controller
         $user = Auth::user();
         if($user){
             $jockey = Jockey::find($id);
-            $jockeys = $jockey;
-            //$teams = Result::where('race_id', '=', $id)->get();
-            
-            return [$jockey,$jockeys];
+
+            return $jockey;
         }
     }
-    
 
     public function updateJockey(Request $request, $id){
+        
         $user = Auth::user();
         if($user){
             $jockey = Jockey::find($id);
@@ -41,21 +39,20 @@ class EditJockeysController extends Controller
             $jockey->gender = $request->gender;
             $jockey->num_races = $request->num_races;
             $jockey->num_victories = $request->num_victories;
-            
-            $photo = $request->file('jockey_photo');
-            $fileName = $request->name . '-' .$photo->getClientOriginalName();
-            $path = 'img/jockey_photo/';
-            $file = $photo->move($path, $fileName);
 
-            $file_path = $path . $fileName;
-            $jockey->file_path = '/' . $file_path;
-            
+            if($request->file('jockey_photo') != null){
+                $photo = $request->file('jockey_photo');
+                $fileName = $id . '-' . $request->name . '-' .$photo->getClientOriginalName();
+                $path = 'img/jockeys_photo/';
+                $file = $photo->move($path, $fileName);
+                $file_path = $path . $fileName;
+                $jockey->file_path = '/' . $file_path;
+            }
             $jockey->save();
 
             return redirect('/jockeys');
         }else{
             return redirect('home');
-        }       
+        } 
     }
 }
-

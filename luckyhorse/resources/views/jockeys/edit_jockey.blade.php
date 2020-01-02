@@ -3,7 +3,7 @@
 @section('content')
 
 <script src="{{asset('js/edit_jockey/jockey_validator.js')}}" defer></script>
-<script src="{{asset('js/jockey/get_jockey.js')}}" defer></script>
+<script src="{{asset('js/edit_jockey/get_jockey.js')}}" defer></script>
 
 <div class="container">
     <div class="row justify-content-center">
@@ -11,19 +11,20 @@
             <div class="card">
                 <div class="card-header">Edit Jockey {{$id}}</div>
                 <div class="card-body">
-                    
+                    <input id="id_jockey" type="hidden" value="{{$id}}">
+
                     <form id ="jockey_form" method ="post" action="" enctype="multipart/form-data">
                         
                         <input type="hidden" id ="token" name="_token" value="{{csrf_token()}}">
                         Name
                         <input id="name" type="text" class="form-control" name="name" onchange="validate_input()"><br>
                         Birth Date
-                        <input id="bitrh_date" type="date" class="form-control" name="birth_date" onselect="validate_input()" onchange="validate_input()"><br>
+                        <input id="birth_date" type="date" class="form-control" name="birth_date" onselect="validate_input()" onchange="validate_input()"><br>
                         Gender<br>
                         <div id="gender_radio">
-                        <input id="gender" type="radio" name="gender" value="male"> Male<br>
-                        <input id="gender" type="radio" name="gender" value="female"> Female<br>
-                        <input id="gender" type="radio" name="gender" value="other"> Other<br><br>
+                        <input id="male" type="radio" name="gender" value="male"> Male<br>
+                        <input id="female" type="radio" name="gender" value="female"> Female<br>
+                        <input id="other" type="radio" name="gender" value="other"> Other<br><br>
                         </div>
                         Number of Races
                         <input id="num_races" type="number" class="form-control" name="num_races" onchange="validate_input()"><br>
