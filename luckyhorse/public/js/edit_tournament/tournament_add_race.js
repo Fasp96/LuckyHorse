@@ -1,12 +1,16 @@
 function initPage(){
-    add_race_field(initial_date, finish_date);
+    add_race_field(initial_date, initial_time, finish_date, finish_time);
 }
 
 //function that creates a field to add race to a tournament depending on the initial date and finish date 
-function add_race_field(initial_date, finish_date){
+function add_race_field(initial_date, initial_time, finish_date, finish_time){
     //gets the initial and finish date value
     initial_date = initial_date.value;
     finish_date = finish_date.value;
+
+    //gets the initial and finish time value
+    initial_time = initial_time.value;
+    finish_time = finish_time.value;
     
     var id_tournament = document.getElementById("id_tournament");
     var id = id_tournament.value;
@@ -38,7 +42,9 @@ function add_race_field(initial_date, finish_date){
             var has_races = false;
 
             //Create and append the checkbox
-            for (var i = 0; i < data.length; i++) { 
+            for (var i = 0; i < data.length; i++) {
+                
+                initial_date = initial_date + ' ' + initial_time;
                 
                 //if the race date is after that initial tournament date
                 if(data[i].date >= initial_date){
@@ -85,6 +91,9 @@ function add_race_field(initial_date, finish_date){
             
             //Create and append the checkbox
             for (var i = 0; i < data.length; i++) {
+
+                finish_date = finish_date + ' ' + finish_time;
+
                 //if the race date is before that finish tournament date
                 if(data[i].date <= finish_date){
                     //changes the variable to true 
@@ -127,6 +136,10 @@ function add_race_field(initial_date, finish_date){
 
             //Create and append the checkbox
             for (var i = 0; i < data.length; i++) {
+
+                initial_date = initial_date + ' ' + initial_time;
+                finish_date = finish_date + ' ' + finish_time;
+
                 //if the race date is after that initial date and before that finish tournament date
                 if(data[i].date >= initial_date && data[i].date <= finish_date){
                     
