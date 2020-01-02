@@ -27,7 +27,7 @@ class AddTournamentsController extends Controller
 
             $tournament = new Tournament;
             $tournament->name = $request->name;
-            $tournament->date = $request->initial_date;
+            $tournament->date = $request->initial_date . ' ' . $request->initial_time;
             $tournament->description = $request->description;
             $tournament->location = $request->location;
             

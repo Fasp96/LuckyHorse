@@ -46,7 +46,7 @@ class EditTournamentsController extends Controller
 
             $tournament = Tournament::find($id);
             $tournament->name = $request->name;
-            $tournament->date = $request->initial_date;
+            $tournament->date = $request->initial_date . ' ' . $request->initial_time;
             $tournament->description = $request->description;
             $tournament->location = $request->location;
             

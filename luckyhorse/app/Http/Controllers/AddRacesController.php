@@ -33,7 +33,7 @@ class AddRacesController extends Controller
         if($user){
             $race = new Race;
             $race->name = $request->name;
-            $race->date = $request->date;
+            $race->date = $request->date . ' ' . $request->race_time;
             $race->description = $request->description;
             $race->location = $request->location;
             

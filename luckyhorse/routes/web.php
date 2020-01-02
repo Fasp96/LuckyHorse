@@ -99,18 +99,24 @@ Route::post('/add_bet_race={id}', 'AddBetsController@add_bet_race');
 Route::get('/add_bet_tournament={id}', 'AddBetsController@index_bet_tournament');
 Route::post('/add_bet_tournament={id}', 'AddBetsController@add_bet_tournament');
 
-
 Route::get('/edit_tournament={id}', 'EditTournamentsController@editTournament');
 Route::post('/edit_tournament={id}', 'EditTournamentsController@updateTournament');
 Route::get('/api/edit_tournament={id}', 'EditTournamentsController@getTournament');
 Route::get('/api/add_tournaments={id}', 'EditTournamentsController@getRaces');
 
-Route::get('/edit_race={id}', "EditRacesController@editRace");
-Route::post('/edit_race={id}', "EditRacesController@updateRace");
-Route::get('/api/edit_race={id}', "EditRacesController@getRace");
-Route::get('/api/add_races_tournaments={id}', "EditRacesController@getTournaments");
+Route::get('/edit_race={id}', 'EditRacesController@editRace');
+Route::post('/edit_race={id}', 'EditRacesController@updateRace');
+Route::get('/api/edit_race={id}', 'EditRacesController@getRace');
+Route::get('/api/add_races_tournaments={id}', 'EditRacesController@getTournaments');
 
-Route::get('/edit_horse={id}', "EditHorsesController@editHorse");
-Route::post('/edit_horse={id}', "EditHorsesController@updateHorse");
-Route::get('/api/edit_horse={id}', "EditHorsesController@getHorse");
-//Route::get('/api/add_races_tournaments={id}', "EditRacesController@getTournaments");
+Route::get('/edit_jockey={id}', 'EditJockeysController@editJockey');
+Route::get('/api/edit_jockey={id}', 'EditJockeysController@getJockey');
+Route::post('/edit_jockey={id}', 'EditJockeysController@updateJockey');
+
+Route::get('/edit_horse={id}', 'EditHorsesController@editHorse');
+Route::get('/api/edit_horse={id}', 'EditHorsesController@getHorse');
+Route::post('/edit_horse={id}', 'EditHorsesController@updateHorse');
+
+Route::get('/edit_news={id}', 'EditNewsController@editNews');
+Route::get('/api/edit_news={id}', 'EditNewsController@getNews');
+Route::post('/edit_news={id}', 'EditNewsController@updateNews');
