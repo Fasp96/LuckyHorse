@@ -48,7 +48,7 @@ class EditNewsController extends Controller
             }
             $news->save();
 
-            return redirect('/news');
+            return redirect('/news/' . $id);
         }else{
             return redirect('home');
         } 
