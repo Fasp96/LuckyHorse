@@ -62,13 +62,14 @@
                     @else
                         No races for this tournament <br>
                     @endif
-                    </ul>  
+                    </ul> 
+                    @auth 
                     @if(Auth::user()->role=='admin')
                         <div class="edit_button">
                             <a href="/edit_tournament={{$tournaments->id}}">Edit</a>
                         </div>
                     @endif  
-                    @auth
+                    
                         @if($winner[0]->count() == 2)
                             <div class="bet_button edit_button">
                                 <a href="/add_bet_tournament={{$tournaments->id}}">Bet</a>
