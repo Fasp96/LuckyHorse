@@ -88,13 +88,19 @@ class AddBetsController extends Controller
     public function add_bet_race($id){
         $current_user = Auth::user();
         if($current_user){
-            $race = Race::find($id);
-            if($race){
+            $bet = new Bet;
+            $bet->user_id = $current_user->id;
+            $bet->tournament_id = null;
+            $bet->race_id = $request->id;
+            $bet->horse_id = $request->horse;
+            $bet->jockey_id = $request->jockey;
+            $bet->value = $request->value;
+            $bet->save();
 
-                return view('bets.add_bet_race',compact('race','horses','jockeys'));
-            }else{
-                return redirect('/');
-            }
+            $current_user->balance = ($current_user->balance)-($request->value);
+            $current_user->save();
+
+            return redirect('/bets');;
         }else{
             return redirect('/');
         }

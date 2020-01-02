@@ -45,7 +45,8 @@ class BetsController extends Controller
             'tournaments.date as date',
             'horses.name as horse_name',
             'jockeys.name as jockey_name',
-            'bets.value as value');
+            'bets.value as value')
+            ->orderByDesc('bets.created_at');
 
             if($page_number == 1){
                 $race_bets = $race_bets_q->take($bets_per_page/2)->get();
