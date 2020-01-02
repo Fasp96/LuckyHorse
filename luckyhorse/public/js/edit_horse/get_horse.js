@@ -12,7 +12,7 @@ function get_horse(){
         document.getElementById(data['gender']).checked = true;
         document.getElementById('num_races').value = data['num_races'];
         document.getElementById('num_victories').value = data['num_victories'];
-        document.getElementById('horse_photo').value = '';        
+        document.getElementById('horse_photo').value = '';
     });
 }
 

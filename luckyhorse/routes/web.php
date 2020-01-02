@@ -39,6 +39,7 @@ $this->post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail'
 $this->get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm');
 $this->post('password/reset', 'Auth\ResetPasswordController@reset');
 */
+
 Auth::routes();
 
 Route::get('/', 'WelcomeController@index');

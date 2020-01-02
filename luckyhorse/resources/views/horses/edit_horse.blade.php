@@ -12,7 +12,7 @@
                 <div class="card-header">Edit Horse {{$id}}</div>
                 <div class="card-body">
                     <input id="id_horse" type="hidden" value="{{$id}}">
-                    
+
                     <form id="horse_form" method ="post" action="" enctype="multipart/form-data" >
                         <input type="hidden" id='token' name="_token" value="{{csrf_token()}} ">
                         Name

@@ -13,8 +13,8 @@ class EditHorsesController extends Controller
     public function editHorse($id){
         $current_user = Auth::user();
         if($current_user){
-
             $horse = Horse::find($id);
+
 
             return view('horses.edit_horse',compact('id'));
         }
@@ -31,6 +31,7 @@ class EditHorsesController extends Controller
 
     public function updateHorse(Request $request, $id){
         
+
         $user = Auth::user();
         if($user){
             $horse = Horse::find($id);
