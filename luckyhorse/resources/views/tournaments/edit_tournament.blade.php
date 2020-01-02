@@ -3,7 +3,7 @@
 @section('content')
 
 <script src="{{asset('js/edit_tournament/tournament_validator.js')}}" defer></script>
-<script src="{{asset('js/edit_tournament/tournament_add_race.js')}}" defer></script>
+<!-- <script src="{{asset('js/edit_tournament/tournament_add_race.js')}}" defer></script> -->
 <script src="{{asset('js/location_googleAPI/location_api.js')}}" defer></script>
 <script src="{{asset('js/edit_tournament/get_tournament.js')}}" defer></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAmwtm8ckX1GoVVRHlXggCJMuw_80xiJgA&libraries=geometry,places"></script>
@@ -12,7 +12,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Add Tournament {{$id}}</div>
+                <div class="card-header">Edit Tournament {{$id}}</div>
                 <div class="card-body">                    
                     <input id="id_tournament" value="{{$id}}" type="hidden">
                     
@@ -21,16 +21,9 @@
                         Name
                         <input id="name" type="text" class="form-control" name="name" onchange="validate_input()"><br>
                         Initial Date and Time
-                        <input id="initial_date" type="date" class="form-control" name="initial_date" onselect="add_race_field(initial_date, initial_time, finish_date, finish_time); validate_input();" onchange="add_race_field(initial_date, initial_time, finish_date, finish_time); validate_input();"><br>
-                        <input id="initial_time" type="time" class="form-control" name="initial_time" value = '00:00' onselect="add_race_field(initial_date, initial_time, finish_date, finish_time); validate_input();" onchange="add_race_field(initial_date, initial_time, finish_date, finish_time); validate_input();"><br>
-                        Expected Finish Date
-                        <input id="finish_date" type="date" class="form-control" name="finish_date" onselect="add_race_field(initial_date, initial_time, finish_date, finish_time); validate_input();" onchange="add_race_field(initial_date, initial_time, finish_date, finish_time); validate_input();"><br>
-                        <input id="finish_time" type="time" class="form-control" name="finish_time" value = '00:00' onselect=" add_race_field(initial_date, initial_time, finish_date, finish_time); validate_input();" onchange="add_race_field(initial_date, initial_time, finish_date, finish_time); validate_input();"><br>
-                        Add Races<br><br>
-                        <div id="race_fields">
-                            <input type="hidden" id="races" name="races">
-                            <p>Please insert initial date or expected finish date to show races</p>    
-                        </div><br>
+                        <input id="initial_date" type="date" class="form-control" name="initial_date" onchange="validate_input();"><br>
+                        <input id="initial_time" type="time" class="form-control" name="initial_time" value = '00:00' onchange="validate_input();"><br>
+                        
                         Description<br>
                         <textarea id="description" class="form-control" name="description" rows="5" cols="80" onchange="validate_input()"></textarea><br>
                         Location

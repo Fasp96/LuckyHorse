@@ -34,16 +34,12 @@ function validate_input(clicked = false){
     contents.push(tournament_photo);
     elements.push(tournament_form.tournament_photo);
 
-    var finish_date = tournament_form.finish_date.value;
-    contents.push(finish_date);
-    elements.push(tournament_form.finish_date);
-
+ 
     removeMessages();
 
     //makes the validation of all the inputs
     valid.push(validate_name(name,tournament_form.name));
     valid.push(validate_initial_date(initial_date, tournament_form.initial_date));
-    valid.push(validate_finish_date(initial_date, finish_date, tournament_form.finish_date));
     valid.push(validate_description(description, tournament_form.description));
     valid.push(validate_location(location, tournament_form.location));
     valid.push(validate_tournament_photo(tournament_photo, tournament_form.tournament_photo));  
@@ -55,12 +51,12 @@ function validate_input(clicked = false){
             not_empty.push(validate_empty(contents[i],elements[i]));
         }
     }
-
+    // if(valid.reduce(and) && not_empty.reduce(and)){
     //if everything is filled and validated it will remove the existing button and add a button inside the <form> to use the post method
-    if(valid.reduce(and) && not_empty.reduce(and)){
+    // if(valid.reduce(){
         $("#update_tournament_btn").remove();
         $("#form_end").after("<button id='update_tournament_btn' type=\"submit\" class=\"btn btn-primary\">Update Tournament</button>"); 
-    }
+   // }
 }
 
 function and(a,b){
@@ -106,30 +102,6 @@ function validate_initial_date(content, element){
     }
 }
 
-function validate_finish_date(init_date,content, element){
-    if(!content.match(/^\d{4}-\d{2}-\d{2}$/) && content != ""){
-        $(element).css("background","#ebdf5e");
-        $(element).after("<p style=\"color:#c2b100\">* A date has the following format DD-MM-YYYY</p>");
-        return false;
-    }
-    
-    //needs to be before todays date
-    else if(new Date() > new Date(content)){
-        $(element).css("background","#ebdf5e");
-        $(element).after("<p style=\"color:#c2b100\">* The Date must be before todays date</p>");
-        return false;
-    }
-
-    //needs to be before inital date
-    else if(new Date(init_date) >= new Date(content)){
-        $(element).css("background","#ebdf5e");
-        $(element).after("<p style=\"color:#c2b100\">* The Date must be before the date " + init_date + "</p>");
-        return false;
-    }
-    else{
-        return true;
-    }
-}
 
 function validate_description(content, element){
     return true;
