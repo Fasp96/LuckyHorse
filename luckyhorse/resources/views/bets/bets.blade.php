@@ -11,6 +11,20 @@
         font-weight:bold; 
         color: #333;
     }
+    .edit_button > a {
+        color: white;
+        float: left;
+        padding: 4px 8px;
+        text-decoration: none;
+        transition: background-color .3s;
+        border: 1px solid #333;
+        border-radius: 11px;
+        margin: 0 1px;
+        background-color: #333;
+    }
+    .edit_button a:hover {
+        background-color: #fa8b1b;
+    }
 </style>
 
 @if($tournament_bets->count()>0)
@@ -43,6 +57,8 @@
 @if($race_bets->count()>0)
     <h1 align="center">Race Bets</h1>
 @endif
+
+
 @foreach($race_bets as $race_bet) 
 <div class="container">
     <div class="row justify-content-center">
@@ -56,7 +72,19 @@
                     Horse Name: {{$race_bet->horse_name}}<br>
                     Jockey Name: {{$race_bet->jockey_name}}<br>
                     
-                    Value: {{$race_bet->value}}<br>                
+                    Value: {{$race_bet->value}}<br> 
+                    
+                    @foreach($winners as $win)
+                        @if($win[0]->race_id == $race_bet->race_id)
+                            @if($win[0]->time !=null)
+                                @if($win[0]->jockey_name == $race_bet->jockey_name && $win[0]->horse_name == $race_bet->horse_name)
+                                    <div class="edit_button">
+                                        <a href="/claim={{$race_bet->bet_id}}">Claim Money</a>
+                                    </div>
+                                    @endif
+                            @endif
+                        @endif
+                    @endforeach
                        
                 </div>
             </div>
