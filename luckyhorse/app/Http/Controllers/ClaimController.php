@@ -13,42 +13,17 @@ class ClaimController extends Controller
     public function claim($id){
         $current_user = Auth::user();
         if($current_user){
-
             $bet = Bet::find($id);
-            $user = User::find($bet->user_id);
-            if($user){
+            if($bet){
+                $balance = ($current_user->balance) + ($bet->value);
+                $current_user->balance = $balance;
+                $current_user->save();
 
-                $balance = ($user->balance) + ($bet->value);
-                $user->balance = $balance;
-                               
+                $bet->delete();
             }
-
-            return view('bets.bet_claim',compact('id','bet','user'));
-        }
-    }
-
-
-    public function updateResult(Request $request, $id){
-        
-        $current_user = Auth::user();
-        if($current_user){
-            
-            $bet = Bet::find($id);
-
-            
-            //$bet = Bet::where('id', '=', $id)->delete();
-            //$bet->save();
-
-            $user = User::find($bet->user_id);
-            if($user){
-
-                $balance = ($user->balance) + ($bet->value);
-                $user->balance = $balance;
-                $user->save();                 
-            }
-            return redirect('/bets/');
+            return view('bets.bet_claim',compact('bet'));
         }else{
-            return redirect('home');
-        } 
+            return redirect('/');
+        }
     }
 }
