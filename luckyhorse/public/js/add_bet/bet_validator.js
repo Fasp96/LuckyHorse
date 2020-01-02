@@ -53,10 +53,10 @@ function validate_input(clicked = false){
     //if everything is filled and validated it will remove the existing button and add a button inside the <form> to use the post method
     if(valid.reduce(and) && not_empty.reduce(and)){
         $("#add_bet_btn").remove();
-        $("#bet_value").after("<br><br><button id='add_bet_btn' type=\"submit\" class=\"btn btn-primary\">Bet</button>");
+        $("#form_end").after("<button id='add_bet_btn' type=\"submit\" class=\"btn btn-primary\">Bet</button>");
     }else{
         $("#add_bet_btn").remove();
-        $("#bet_form").after("<br><br><button id='add_bet_btn' class=\"btn btn-primary\" disabled>Bet</button>");
+        $("#bet_form").after("<button id='add_bet_btn' class=\"btn btn-primary\" disabled>Bet</button>");
     }
 }
 
@@ -75,6 +75,7 @@ function validate_empty(content, element){
 }
 
 function validate_value(content, element){
+    console.log("element:" +toString(element));
     if(!isNaN(content)  && content != '' && 
         (parseFloat(content) > parseFloat(bet_form.user_balance.value)  || content <= 0)){
             $(element).css("background", "#ebdf5e");
@@ -92,7 +93,7 @@ function validate_value(content, element){
 }
 
 function removeMessages(){
-    $("#bet_form").children().css("background-color","#FFFFFF");
+    $("#bet_value").css("background-color","#FFFFFF");
     $("#bet_form").children().filter('p').remove();
 }
 

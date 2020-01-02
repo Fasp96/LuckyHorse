@@ -13,7 +13,7 @@ class AddNewsController extends Controller
     public function index(){
         $current_user = Auth::user();
         if($current_user){
-             $news = News::all();
+             $news = News::orderByDesc('created_at')->take(10)->get();
              return view('news.add_news',compact('news'));
         }else{
             return redirect('home');
