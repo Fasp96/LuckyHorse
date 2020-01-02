@@ -63,7 +63,7 @@ function validate_input(clicked = false){
     //if everything is filled and validated it will remove the existing button and add a button inside the <form> to use the post method
     if(valid.reduce(and) && not_empty.reduce(and)){
         $("#add_horse_btn").remove();
-        $("#horse_photo").after("<br><br><button type=\"submit\" class=\"btn btn-primary\">Add Horse</button>");
+        $("#form_end").after("<button id='add_horse_btn' type=\"submit\" class=\"btn btn-primary\">Add Horse</button>");   
     }
 }
 
@@ -148,7 +148,7 @@ function validate_num_victories(content, content_races, element){
         return false;
     }
     //number of victories needs to be less or equal to the number of races
-    else if (content > content_races){
+    else if (parseInt(content) > parseInt(content_races)){
         $(element).css("background","#ebdf5e");
         $(element).after("<p style=\"color:#c2b100\">* Please insert a number lower or equal than " + content_races + "</p>");
         return false;

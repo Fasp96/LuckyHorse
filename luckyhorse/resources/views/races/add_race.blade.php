@@ -64,6 +64,7 @@
                         Race Photo <br><br>
                         <input id="race_photo" type="file" name="race_photo" accept="image/*" onchange="validate_input()"><br>
                         <br>
+                        <div id="form_end"></div>
                     </form>
                     <button id="add_race_btn" class="btn btn-primary">Add Race</button>
 

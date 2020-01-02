@@ -51,6 +51,7 @@
                         Horse Photo <br><br>
                         <input id="horse_photo" type="file" name="horse_photo" accept="image/*" onchange="validate_input()"><br>
                         <br>
+                        <div id="form_end"></div>
                     </form>
                     <button id="add_horse_btn" class="btn btn-primary">Add Horse</button>
 

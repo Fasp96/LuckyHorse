@@ -49,7 +49,7 @@ function validate_input(clicked=false){
     //if everything is filled and validated it will remove the existing button and add a button inside the <form> to use the post method
     if(valid.reduce(and) && not_empty.reduce(and)){
         $("#update_news_btn").remove();
-        $("#news_photo").after("<br><br><button type=\"submit\" class=\"btn btn-primary\">Update News</button>");
+        $("#form_end").after("<button id='update_news_btn' type=\"submit\" class=\"btn btn-primary\">Update News</button>"); 
     }
 }
 
