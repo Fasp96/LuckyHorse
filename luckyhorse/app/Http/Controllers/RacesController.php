@@ -89,7 +89,7 @@ class RacesController extends Controller
             ->join('horses','results.horse_id','=','horses.id')
             ->join('jockeys','results.jockey_id','=','jockeys.id')
             ->leftJoin('tournaments','races.tournament_id','=','tournaments.id')
-            ->select('races.id','races.name','races.date','races.description','races.location', 'races.file_path',
+            ->select('results.id','races.id as race_id','races.name','races.date','races.description','races.location', 'races.file_path',
                 'races.tournament_id as tournament_id',
                 'tournaments.name as tournament_name',
                 'horses.id as horse_id','horses.name as horse_name',

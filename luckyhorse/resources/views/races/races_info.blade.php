@@ -88,8 +88,18 @@
                                     <th>Horse</th>
                                     <th>Jockey</th> 
                                     <th>Time</th>
-                                </tr>
+                                    @auth
+                                        @if(Auth::user()->role=='admin')
+                                       
+                                            <th> </th>
+                                        @endif
+                                    @endauth
+
+                                 </tr>
                                 @foreach($results as $result)
+                                
+                                   
+                                
                                     <tr>
                                         @foreach($scores as $score)
                                             @if($score->horse_id==$result->horse_id)
@@ -102,7 +112,23 @@
                                             <td>{{$result->time}}</td>
                                         @else
                                             <td>00:00:00</td>
+                                        @endif 
+
+                                        @auth
+                                        @if(Auth::user()->role=='admin')
+                                       
+                                        <td>
+                                       
+
+                                    
+                                    
+
+                                            <div class="edit_button">
+                                                <a href="/edit_results={{$result->id}}">Edit Result</a>
+                                            </div>
+                                        </td>
                                         @endif
+                                        @endauth
                                     </tr>
                                 @endforeach
                             </table>
@@ -117,12 +143,16 @@
                                 @auth
                                     @if(Auth::user()->role=='admin')
                                         <div class="edit_button">
-                                            <a href="/edit_race={{$results[0]->id}}">Edit</a>
+                                            <a href="/edit_race={{$results[0]->race_id}}">Edit Race</a>
                                         </div>
+                                        
+                                        
+                                        
                                     @endif  
                                     @if(!isset($winner->time))
                                     <div class="edit_button bet_button">
-                                        <a href="/add_bet_race={{$results[0]->id}}">Bet</a>
+                                        <a href="/add_bet_race={{$results[0]->race_id}}">Bet</a>
+                                            
                                     </div>
                                     @endif
                                 @endauth
