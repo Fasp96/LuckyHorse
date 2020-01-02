@@ -58,11 +58,14 @@
                         
                         Date: {{date('d-m-Y', strtotime($results[0]->date))}}<br>
                         Time: {{date('H:i:s', strtotime($results[0]->date))}}<br>
-                        Description: {{$results[0]->description}}<br>
-                        Local: {{$results[0]->location}}<br>
+                        Location: {{$results[0]->location}}<br>
                         @isset($results[0]->tournament_name)
                             Tournament: {{$results[0]->tournament_name}}<br>
                         @endif
+                        <br>
+                        Description: {{$results[0]->description}}<br>
+                        
+                        
                         <br>
                         <!--   -------------devolve os cavalos de cada corrida----------------    -->
                         <h3>Horses in this race: </h3>

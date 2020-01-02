@@ -48,12 +48,15 @@
                     
                     Date: {{date('d-m-Y', strtotime($tournaments->date))}}<br>
                     Time: {{date('H:i:s', strtotime($tournaments->date))}}<br>
-                    Description: {{$tournaments->description}}<br>
+                    Location: {{$tournaments->location}}<br>
                     @if($winner->count() > 0)
                         @if($winner[0]->count() > 2)
                             Winners: {{$winner[0]->horse_name}} and {{$winner[0]->jockey_name}} <br>
                         @endif
                     @endif
+                    <br>
+                    Description: {{$tournaments->description}}<br>
+                    
                     <br>
                     <h3>Races in this tournament:</h3>
                     <ul>

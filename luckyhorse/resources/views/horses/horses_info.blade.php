@@ -39,7 +39,7 @@
                         Gender: {{$horses->gender}}<br>
                         Number of Races: {{$horses->num_races}}<br>
                         Number of Victories: {{$horses->num_victories}}<br>              
-                        Win Rate: {{($horses->num_victories/$horses->num_races)*100}}%<br><br>
+                        Win Rate: {{round(($horses->num_victories/$horses->num_races)*100,2)}}%<br><br>
 
                         @auth
                             @if(Auth::user()->role=='admin')
