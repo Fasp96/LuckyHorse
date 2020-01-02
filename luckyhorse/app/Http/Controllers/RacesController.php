@@ -24,39 +24,38 @@ class RacesController extends Controller
         $races_per_page = 2;
         $races_number = Race::count();
         $pages_total = ceil($races_number/$races_per_page);
+
+        $races_q = Race::orderByDesc('date')->take($races_per_page)
+            ->leftJoin('tournaments','races.tournament_id','=','tournaments.id')
+            ->select('races.id','races.name','races.date','races.description','races.location', 'races.file_path',
+            'races.tournament_id as tournament_id',
+            'tournaments.name as tournament_name');
         
         if($page_number == 1){
-            $races = Race::orderByDesc('date')->take($races_per_page)
-                ->leftJoin('tournaments','races.tournament_id','=','tournaments.id')
-                ->select('races.id','races.name','races.date','races.description','races.location', 'races.file_path',
-                'races.tournament_id as tournament_id',
-                'tournaments.name as tournament_name')->get();
+            $races = $races_q->get();
         }else{
-            $races = Race::orderByDesc('date')
-                ->skip(($page_number-1)*$races_per_page)
+            $races = $races_q->skip(($page_number-1)*$races_per_page)
                 ->take($races_per_page)->get();
         }
-
-        $tournaments= Tournament::all();
-        $jockeys = Jockey::all();
-        $results = Result::orderBy('time')->get();
-        $horses = Horse::all();
             
         $winners = collect();
         foreach($races as $race){
             $winner = Race::where('races.id','=',$race->id)
                 ->join('results','races.id','=','results.race_id')
                 ->join('horses','results.horse_id','=','horses.id')
-                ->select('horses.name','results.race_id','results.time')
+                ->join('jockeys','results.jockey_id','=','jockeys.id')
+                ->select('horses.name as horse_name',
+                    'jockeys.name as jockey_name',
+                    'results.race_id as race_id',
+                    'results.time as time')
                 ->orderBy('results.time')
                 ->take(1)->get();
+
             $winners->push($winner);
         }
 
         if($races)
-            return view('races.races',
-                compact('races','tournaments','results','horses','jockeys',
-                    'winners','page_number','pages_total','page_name'));
+            return view('races.races',compact('races','winners','page_number','pages_total','page_name'));
         else   
             return redirect('/races');
     }
@@ -65,7 +64,7 @@ class RacesController extends Controller
         //$current_user = Auth::user();
 
         //Get Every Pair win rate and the sum of all win rates
-        $scores = Result::where('race_id', $id)
+        $scores = Result::where('results.race_id', $id)
             ->join('horses','results.horse_id','=','horses.id')
             ->join('jockeys','results.jockey_id','=','jockeys.id')
             ->select('horses.id as horse_id',

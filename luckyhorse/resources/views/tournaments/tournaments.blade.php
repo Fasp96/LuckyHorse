@@ -18,7 +18,6 @@
         margin-left: 2em;
     }
 
-
     .details_button > a {
         color: white;
         float: left;
@@ -53,18 +52,28 @@
                     
                     Date: {{date('d-m-Y', strtotime($tournament->date))}}<br>
                     Time: {{date('H:i:s', strtotime($tournament->date))}}<br>
-                    Location: {{$tournament->location}}<br><br>
+                    Location: {{$tournament->location}}<br>
+
+                    @foreach($winners as $winner)
+                        @if($winner[0]->count() > 2 && $winner[0]->tournament_id==$tournament->id)
+                            Winners: {{$winner[0]->horse_name}} and {{$winner[0]->jockey_name}} <br>
+                        @endif
+                    @endforeach
+
 
                     <br>
                     <div class="details_button">
                         <a href="/tournaments/{{$tournament->id}}">View Details</a>
                     </div>
                     @auth
-                        <div class="details_button bet_button">
-                            <a href="/add_bet_tournament={{$tournament->id}}">Bet</a>
-                        </div>
+                        @foreach($winners as $winner)
+                            @if($winner[0]->count() == 2 && $winner[0]->id==$tournament->id)
+                                <div class="details_button bet_button">
+                                    <a href="/add_bet_tournament={{$tournament->id}}">Bet</a>
+                                </div>
+                            @endif
+                        @endforeach
                     @endauth
-                       
                 </div>
             </div>
         </div>

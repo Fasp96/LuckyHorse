@@ -48,8 +48,6 @@
         border: 1px solid black;
         padding-left: 5px;
         padding-right: 2px;
-        /*text-align: justify;
-        hyphens: auto;*/
     }
 
     /*Last Results Tables*/

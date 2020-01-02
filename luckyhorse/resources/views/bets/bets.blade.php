@@ -13,8 +13,9 @@
     }
 </style>
 
-<h1 align="center">Bets</h1>
-
+@if($tournament_bets->count()>0)
+    <h1 align="center">Tournament Bets</h1>
+@endif
 @foreach($tournament_bets as $tournament_bet) 
 <div class="container">
     <div class="row justify-content-center">
@@ -39,6 +40,9 @@
 <br>
 @endforeach
 
+@if($race_bets->count()>0)
+    <h1 align="center">Race Bets</h1>
+@endif
 @foreach($race_bets as $race_bet) 
 <div class="container">
     <div class="row justify-content-center">
@@ -62,5 +66,6 @@
 <br>
 @endforeach
 
+@include('layouts.pagination')
 
 @endsection
