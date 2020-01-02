@@ -55,25 +55,16 @@
                     Location: {{$tournament->location}}<br>
 
                     @foreach($winners as $winner)
-                        @if($winner[0]->count() > 2 && $winner[0]->tournament_id==$tournament->id)
-                            Winners: {{$winner[0]->horse_name}} and {{$winner[0]->jockey_name}} <br>
+                        @if($winner->count() > 0)
+                            @if($winner[0]->count() > 2 && $winner[0]->tournament_id==$tournament->id)
+                                Winners: {{$winner[0]->horse_name}} and {{$winner[0]->jockey_name}} <br>
+                            @endif
                         @endif
                     @endforeach
-
-
                     <br>
                     <div class="details_button">
                         <a href="/tournaments/{{$tournament->id}}">View Details</a>
                     </div>
-                    @auth
-                        @foreach($winners as $winner)
-                            @if($winner[0]->count() == 2 && $winner[0]->id==$tournament->id)
-                                <div class="details_button bet_button">
-                                    <a href="/add_bet_tournament={{$tournament->id}}">Bet</a>
-                                </div>
-                            @endif
-                        @endforeach
-                    @endauth
                 </div>
             </div>
         </div>

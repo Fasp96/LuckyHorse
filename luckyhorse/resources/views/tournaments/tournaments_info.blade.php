@@ -49,8 +49,10 @@
                     Date: {{date('d-m-Y', strtotime($tournaments->date))}}<br>
                     Time: {{date('H:i:s', strtotime($tournaments->date))}}<br>
                     Description: {{$tournaments->description}}<br>
-                    @if($winner[0]->count() > 2)
-                        Winners: {{$winner[0]->horse_name}} and {{$winner[0]->jockey_name}} <br>
+                    @if($winner->count() > 0)
+                        @if($winner[0]->count() > 2)
+                            Winners: {{$winner[0]->horse_name}} and {{$winner[0]->jockey_name}} <br>
+                        @endif
                     @endif
                     <br>
                     <h3>Races in this tournament:</h3>
@@ -68,8 +70,8 @@
                             <div class="edit_button">
                                 <a href="/edit_tournament={{$tournaments->id}}">Edit</a>
                             </div>
-                        @endif  
-                        @if($winner[0]->count() == 2)
+                        @endif
+                        @if($winner[0]->tournament_id == null && $races->count() > 0)
                             <div class="bet_button edit_button">
                                 <a href="/add_bet_tournament={{$tournaments->id}}">Bet</a>
                             </div>
