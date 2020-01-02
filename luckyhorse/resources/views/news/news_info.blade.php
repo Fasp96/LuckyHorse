@@ -57,7 +57,7 @@
                     <br><br>
                     @if(Auth::user()->role=='admin')
                         <div class="edit_button">
-                        <a href="/news/{{$news->id}}">Edit</a>
+                        <a href="/edit_news={{$news->id}}">Edit</a>
                         </div>
                     @endif
                     <div class="news-date">

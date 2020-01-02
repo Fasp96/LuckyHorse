@@ -77,7 +77,7 @@ class EditRacesController extends Controller
                 $result->save();
             }
 
-            return redirect('/races');
+            return redirect('/races/'. $id);
         }else{
             return redirect('home');
         }       

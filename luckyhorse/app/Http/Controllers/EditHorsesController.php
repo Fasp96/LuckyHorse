@@ -52,7 +52,7 @@ class EditHorsesController extends Controller
             }
             $horse->save();
 
-            return redirect('/horses');
+            return redirect('/horses/' . $id);
         }else{
             return redirect('home');
         } 
