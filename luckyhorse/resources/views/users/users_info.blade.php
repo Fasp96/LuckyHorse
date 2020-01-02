@@ -57,7 +57,7 @@
                     @if(Auth::user()->role=='admin')
                         <div>
                             <div class="edit_button">
-                                <a href="/manage_users/{{$user->id}}">Edit</a>
+                                <a href="/edit_user={{$user->id}}">Edit</a>
                             </div>
                         </div>
                     @endif
