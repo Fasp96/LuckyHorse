@@ -81,7 +81,7 @@
                                     <div class="edit_button">
                                         <a href="/claim={{$race_bet->bet_id}}">Claim Money</a>
                                     </div>
-                                    @endif
+                                @endif
                             @endif
                         @endif
                     @endforeach
