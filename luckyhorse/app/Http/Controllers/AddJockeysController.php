@@ -14,10 +14,9 @@ class AddJockeysController extends Controller
     public function index(){
         $current_user = Auth::user();
         if($current_user){
-             $jockeys = Jockey::all();
-             $horses = Horse::all();
+             $jockeys = Jockey::orderByDesc('created_at')->take(10)->get();
                
-             return view('jockeys.add_jockey',compact('jockeys', 'horses'));
+             return view('jockeys.add_jockey',compact('jockeys'));
         }else{
             return redirect('home');
         }

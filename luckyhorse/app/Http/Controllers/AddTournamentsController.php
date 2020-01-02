@@ -13,7 +13,7 @@ class AddTournamentsController extends Controller
     public function index(){
         $current_user = Auth::user();
         if($current_user){
-            $tournaments = Tournament::all();
+            $tournaments = Tournament::orderByDesc('created_at')->take(10)->get();
 
             return view('tournaments.add_tournament',compact('tournaments'));
         }else{
