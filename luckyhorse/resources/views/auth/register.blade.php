@@ -73,11 +73,9 @@
                             <label for="gender" class="col-md-4 col-form-label text-md-right">{{ __('Gender') }}</label>
 
                             <div class="col-md-6" >
-
-
                                 <input id ="male" type="radio" name="gender" value="male" class="form-control  @error('gender') is-invalid @enderror" display="none" width="none"  > Male<br>
                                 <input id ="female" type="radio" name="gender" value="female"  class="form-control  @error('gender') is-invalid @enderror"> Female<br>
-                                <input id ="other" type="radio" name="gender" value="other" class="form-control  @error('gender') is-invalid @enderror"> Other<br><br>
+                                <input id ="other" type="radio" name="gender" value="Other" class="form-control  @error('gender') is-invalid @enderror"> Other<br><br>
                                 
                                 @error('gender')
                                 <span class="invalid-feedback" role="alert">

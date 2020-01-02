@@ -25,8 +25,9 @@
                         <input id="birth_date" type="date" class="form-control" name="birth_date" onselect="validate_input()" onchange="validate_input()"><br>
                         Gender<br>
                         <div id="gender_radio">
-                        <input id="male" type="radio" name="gender" value="male" onchange="validate_input()"> Male<br>
-                        <input id="female" type="radio" name="gender" value="female" onchange="validate_input()"> Female<br><br>
+                            <input id="male" type="radio" name="gender" value="male" onchange="validate_input()">Male<br>
+                            <input id="female" type="radio" name="gender" value="female" onchange="validate_input()">Female<br>
+                            <input id="other" type="radio" name="gender" value="other" onchange="validate_input()">Other<br><br>
                         </div>
                         Phone Number
                         <input id="phone_number" type="number" class="form-control" name="phone_number" onchange="validate_input()"><br>

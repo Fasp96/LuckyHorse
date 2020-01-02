@@ -72,7 +72,7 @@
                         <img src="{{ $race->file_path}}" alt="race_img" style="width:25%;opacity:0.85;">
                         
                         Date: {{date('d-m-Y', strtotime($race->date))}}<br>
-                        Local: {{$race->location}}<br>
+                        Location: {{$race->location}}<br>
                         @isset($race->tournament_name)
                             Tournament: {{$race->tournament_name}}<br>
                         @endif
