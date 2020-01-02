@@ -50,7 +50,7 @@ class EditJockeysController extends Controller
             }
             $jockey->save();
 
-            return redirect('/jockeys');
+            return redirect('/jockeys/' . $id);
         }else{
             return redirect('home');
         } 

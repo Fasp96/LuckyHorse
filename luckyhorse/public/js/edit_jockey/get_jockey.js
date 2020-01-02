@@ -2,8 +2,8 @@ function initPage(){
     get_jockey();
 }
 
-function get_race(){
-    var id_jocket = document.getElementById("id_jockey");
+function get_jockey(){
+    var id_jockey = document.getElementById("id_jockey");
     var id = id_jockey.value;
     $.get("http://localhost:8000/api/edit_jockey=" + id, function(data){
         console.log(data);

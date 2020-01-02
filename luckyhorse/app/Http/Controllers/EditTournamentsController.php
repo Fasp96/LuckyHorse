@@ -73,7 +73,7 @@ class EditTournamentsController extends Controller
                 }
             }
 
-            return redirect('/tournaments');
+            return redirect('/tournaments/'. $id);
         }else{
             return redirect('home');
         }       
