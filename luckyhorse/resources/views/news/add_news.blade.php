@@ -42,6 +42,7 @@
                         News Photo <br><br>
                         <input id="news_photo" type="file" name="news_photo" accept="image/*" onchange="validate_input()"><br>
                         <br>
+                        <div id="form_end"></div>
                     </form>
                     <button id="add_news_btn" class="btn btn-primary">Add News</button>
 
