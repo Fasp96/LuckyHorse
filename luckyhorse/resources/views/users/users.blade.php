@@ -26,16 +26,9 @@
                                 </div>
                             </td>
                         </tr>
-                        <tr></tr>
-                        <tr></tr>
-                        <tr></tr>
-                        <tr></tr>
-                        <tr></tr>
-                        <tr></tr>
-                        <tr></tr>
-                        <tr></tr>
                         @endforeach
                     </table>
+                    <br><br>
 
                     @include('layouts.pagination')
 
