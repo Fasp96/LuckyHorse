@@ -94,12 +94,11 @@ class BetsController extends Controller
                 $new_balance = ($bet->value) * ((1-$win_prob)+1);
 
                 //update balance
-
                 $balance = $current_user->balance + ($new_balance);
                 $current_user->balance = $balance;
                 $current_user->save();
 
-                //$bet->delete();
+                $bet->delete();
 
                 return view('bets.bet_claim',compact('bet','new_balance'));
             }else{
