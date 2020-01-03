@@ -71,4 +71,4 @@ function add_tournaments(date, race_time){
 }
 
 //página carregou
-$(document).ready(initPage);
+//$(document).ready(initPage);
