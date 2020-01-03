@@ -60,7 +60,7 @@ function validate_input(clicked = false){
 
     //this condition is just to allow to verify if there are empty fields, only if the use has filled the last field or clicked the submit button
     if(contents[contents.length-1] != '' || clicked == true){
-        for(var i = 0; i < contents.length - 1; i++){
+        for(var i = 0; i < contents.length; i++){
             not_empty.push(validate_empty(contents[i],elements[i]));
         }
     }
@@ -169,7 +169,7 @@ function validate_balance(content, element){
 }
 
 function validate_iban(content, element){
-    if(!content.match(/^([a-zA-Z]{2}[0-9]{23})$/) && content != ''){
+    if(!content.match(/*/^([a-zA-Z]{2}[0-9]{23})$/*//^([0-9]{9})$/) && content != ''){
         $(element).css("background","#ebdf5e");
         $(element).after("<p style=\"color:#c2b100\">* Please insert a valid IBAN number</p>");
         return false;

@@ -69,8 +69,16 @@ class RacesController extends Controller
             ->orderBy('time')->get();
         $win_total = 0;
         foreach($scores as $score){
-            $wr_horse = $score->horse_wins/$score->horse_num_races;
-            $wr_jockey = $score->jockey_wins/$score->jockey_num_races;
+            if($score->horse_num_races == 0)
+                $wr_horse = 0;
+            else
+                $wr_horse = $score->horse_wins/$score->horse_num_races;
+            
+            if($score->jockey_num_races == 0)
+                $wr_jockey;    
+            else
+                $wr_jockey = $score->jockey_wins/$score->jockey_num_races;
+
             $wr_both = (($wr_jockey)+($wr_horse))/2;
             $score_position = $scores->search(function ($value, $key) use($score) {
                 return $value->horse_id == $score->horse_id ;

@@ -40,4 +40,4 @@ function removeMessages(){
 }
 
 //página carregou
-$(document).ready(initPage);
+//$(document).ready(initPage);
