@@ -11,18 +11,18 @@ class AddHorsesController extends Controller
 {
     public function index(){
         $current_user = Auth::user();
-        if($current_user){
+        if($current_user && $current_user->role  == "admin"){
              $horses = Horse::orderByDesc('created_at')->take(10)->get();
              return view('horses.add_horse',compact('horses'));
         }else{
-            return redirect('home');
+            return redirect('/login');
         }
     }
 
     public function add(Request $request){
         
-        $user = Auth::user();
-        if($user){
+        $current_user = Auth::user();
+        if($current_user && $current_user->role  == "admin"){
             $horse = new Horse;
             $horse->name = $request->name;
             $horse->breed = $request->breed;
@@ -52,7 +52,7 @@ class AddHorsesController extends Controller
 
             return redirect('/add_horses');
         }else{
-            return redirect('home');
+            return redirect('/login');
         } 
     }
 }

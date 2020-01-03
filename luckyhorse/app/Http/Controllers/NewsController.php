@@ -10,7 +10,6 @@ use Auth;
 class NewsController extends Controller
 {
     public function index($page_number=1){
-        //$current_user = Auth::user();
         $page_name = "news";
         $news_per_page = 4;
         $news_number = News::count();
@@ -26,11 +25,10 @@ class NewsController extends Controller
             return view('news.news',
                 compact('news','page_number','pages_total', 'page_name'));
         else   
-            return redirect('/news');
+            return redirect('/');
     }
 
     public function getNews($id){
-        //$current_user = Auth::user();
         $news = News::find($id);
         $page_number = 1;
         $pages_total = 1;

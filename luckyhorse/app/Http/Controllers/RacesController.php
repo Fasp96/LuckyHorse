@@ -17,9 +17,7 @@ use Arr;
 
 class RacesController extends Controller
 {
-    //
     public function index($page_number=1){
-        //$current_user = Auth::user();
         $page_name = "races";
         $races_per_page = 2;
         $races_number = Race::count();
@@ -57,13 +55,11 @@ class RacesController extends Controller
         if($races)
             return view('races.races',compact('races','winners','page_number','pages_total','page_name'));
         else   
-            return redirect('/races');
+            return redirect('/');
     }
 
     public function getRace($id){
-        //$current_user = Auth::user();
-
-        //Get Every Pair win rate and the sum of all win rates
+        //Get every pair win rate and the sum of all win rates
         $scores = Result::where('results.race_id', $id)
             ->join('horses','results.horse_id','=','horses.id')
             ->join('jockeys','results.jockey_id','=','jockeys.id')

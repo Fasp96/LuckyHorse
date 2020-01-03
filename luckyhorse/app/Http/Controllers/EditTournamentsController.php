@@ -12,39 +12,45 @@ class EditTournamentsController extends Controller
     //
     public function editTournament($id){
         $current_user = Auth::user();
-        if($current_user){
+        if($current_user && $current_user->role  == "admin"){
             $tournament = Tournament::find($id);
             if($tournament){
                 return view('tournaments.edit_tournament',compact('id'));
             }else{
-                return redirect('/');
+                return redirect('/tournaments');
             }
+        }else{
+            return redirect('/login');
         }
     }
 
     public function getTournament($id){
-        $user = Auth::user();
-        if($user){
+        $current_user = Auth::user();
+        if($current_user && $current_user->role  == "admin"){
             $tournament = Tournament::find($id);
             $races = Race::where('tournament_id', '=', $id)->get();
             return [$tournament, $races];
+        }else{
+            return redirect('/login');
         }
     }
 
     public function getRaces($id){
-        $user = Auth::user();
-        if($user){
+        $current_user = Auth::user();
+        if($current_user && $current_user->role  == "admin"){
             //gets the races that don't have a tournament associated with
             $races = Race::whereNull('tournament_id')
                         ->orWhere('tournament_id', '=', $id)
                         ->get();
             return $races;
-        }
+        }else{
+            return redirect('/login');
+        }   
     }
 
     public function updateTournament(Request $request, $id){
-        $user = Auth::user();
-        if($user){
+        $current_user = Auth::user();
+        if($current_user && $current_user->role  == "admin"){
 
             $tournament = Tournament::find($id);
             if($tournament){
@@ -78,10 +84,10 @@ class EditTournamentsController extends Controller
 
                 return redirect('/tournaments/'. $id);
             }else{
-                return redirect('/');
+                return redirect('/tournaments');
             }
         }else{
-            return redirect('home');
+            return redirect('/login');
         }       
     }
 }

@@ -9,32 +9,35 @@ use Auth;
 
 class EditNewsController extends Controller
 {
-    //
     public function editNews($id){
         $current_user = Auth::user();
-        if($current_user){
+        if($current_user && $current_user->role  == "admin"){
             $news = News::find($id);
             if($news){
                 return view('news.edit_news',compact('id'));
             }else{
-                return redirect('/');
+                return redirect('/news');
             }
-        }
+        }else{
+            return redirect('/login');
+        } 
     }
 
     public function getNews($id){
-        $user = Auth::user();
-        if($user){
+        $current_user = Auth::user();
+        if($current_user && $current_user->role  == "admin"){
             $news = News::find($id);
 
             return $news;
-        }
+        }else{
+            return redirect('/login');
+        } 
     }
 
     public function updateNews(Request $request, $id){
         
         $user = Auth::user();
-        if($user){
+        if($user && $current_user->role  == "admin"){
             $news = News::find($id);
             if($news){
                 $news->title = $request->title;
@@ -53,10 +56,10 @@ class EditNewsController extends Controller
 
                 return redirect('/news/' . $id);
             }else{
-                return redirect('/');
+                return redirect('/news');
             }
         }else{
-            return redirect('home');
+            return redirect('/login');
         } 
     }
 }
