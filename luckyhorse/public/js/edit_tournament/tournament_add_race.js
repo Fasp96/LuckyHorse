@@ -3,7 +3,7 @@ function initPage(){
 }
 
 //function that creates a field to add race to a tournament depending on the initial date and finish date 
-/*function add_race_field(initial_date, initial_time){
+function add_race_field(initial_date, initial_time){
     //gets the initial and finish date value
     initial_date = initial_date.value;
 
@@ -22,7 +22,7 @@ function initPage(){
         if(data == ""){
             
             //clears everything inside the div
-            //document.getElementById("race_fields").innerHTML = "";
+            document.getElementById("race_fields").innerHTML = "";
 
             //adds a 'p' element saying no races to add 
             document.getElementById("race_fields").appendChild(document.createElement("br"));
@@ -36,7 +36,7 @@ function initPage(){
         else if(initial_date != ""){
             
             //clears everything inside the div
-            //document.getElementById("race_fields").innerHTML = "";
+            document.getElementById("race_fields").innerHTML = "";
 
             //variable initalize at false and changes to true if there are races that can be added
             var has_races = false;
@@ -72,7 +72,7 @@ function initPage(){
             if(has_races == false){
                 
                 //adds a 'p' element saying no races to add after that initial date
-                //document.getElementById("race_fields").appendChild(document.createElement("br"));
+                document.getElementById("race_fields").appendChild(document.createElement("br"));
                 var p = document.createElement("P");
                 var t = document.createTextNode("No races to add after " + initial_date);
                 p.appendChild(t);
@@ -173,6 +173,6 @@ function initPage(){
         }
     });
 }
-*/
+
 //página carregou
 $(document).ready(initPage);
