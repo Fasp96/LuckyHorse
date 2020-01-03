@@ -2,11 +2,11 @@
 
 @section('content')
 
-<script src="{{asset('js/edit_race/race_validator.js')}}" defer></script>
-<script src="{{asset('js/edit_race/race_add_jockey_horse.js')}}" defer></script>
 <script src="{{asset('js/edit_race/race_add_tournament.js')}}" defer></script>
-<script src="{{asset('js/location_googleAPI/location_api.js')}}" defer></script>
 <script src="{{asset('js/edit_race/get_race.js')}}" defer></script>
+
+<script src="{{asset('js/edit_race/race_validator.js')}}" defer></script>
+<script src="{{asset('js/location_googleAPI/location_api.js')}}" defer></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAmwtm8ckX1GoVVRHlXggCJMuw_80xiJgA&libraries=geometry,places"></script>
 
 
@@ -58,5 +58,9 @@
     </div>
 </div>
 
+
+
+<script src="{{asset('js/edit_race/race_add_jockey_horse.js')}}" defer></script>
+<script src="{{asset('js/edit_race/get_horse_jockey.js')}}" defer></script>
 
 @endsection
