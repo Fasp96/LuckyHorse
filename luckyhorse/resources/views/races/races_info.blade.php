@@ -1,22 +1,6 @@
 @extends('layouts.head_footer')
 
 @section('content')
-<style>
-    
-    table, td {
-        border: 2px solid black;
-        border-collapse: collapse;
-        background-color: grey;
-        color: white;
-    }
-
-    th{
-        color: white;
-        border: 2px solid black;
-        border-collapse: collapse;
-        background-color: orange;
-    }
-</style>
 
 <div class="container">
     <div class="row justify-content-center">
@@ -56,7 +40,7 @@
 
                         <!-- -------------------  devolve os resultados de cada corrida -------------------------- -->
                         <h3>Results: </h3>
-                        <table style="width:60%">
+                        <table id="race_results_table" style="width:60%">
                             <tr>
                                 <th>Win Prob</th>
                                 <th>Horse</th>

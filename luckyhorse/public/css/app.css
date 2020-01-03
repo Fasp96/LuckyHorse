@@ -1,5 +1,24 @@
 @import url(https://fonts.googleapis.com/css?family=Nunito);@charset "UTF-8";
 
+.details_button > a,
+.edit_button > a {
+  color: white;
+  float: left;
+  padding: 4px 8px;
+  text-decoration: none;
+  -webkit-transition: background-color 0.3s;
+  transition: background-color 0.3s;
+  border: 1px solid #333;
+  border-radius: 11px;
+  margin: 0 1px;
+  background-color: #333;
+}
+
+.details_button a:hover,
+.edit_button a:hover {
+  background-color: #fa8b1b;
+}
+
 /*!
  * Bootstrap v4.3.1 (https://getbootstrap.com/)
  * Copyright 2011-2019 The Bootstrap Authors
@@ -13,7 +32,7 @@
   --purple: #9561e2;
   --pink: #f66d9b;
   --red: #e3342f;
-  --orange: #f6993f;
+  --orange: #fa8b1b;
   --yellow: #ffed4a;
   --green: #38c172;
   --teal: #4dc0b5;
@@ -11171,7 +11190,7 @@ body {
 }
 
 #nav_bar > ul > li:hover {
-  background-color: #f6993f;
+  background-color: #fa8b1b;
 }
 
 #logo {
@@ -11325,7 +11344,7 @@ td {
 .news_img div {
   position: absolute;
   bottom: 0px;
-  background-color: rgba(0, 0, 0, 0.432);
+  background-color: black;
   color: white;
   font-size: 1.8em;
   width: 100%;
@@ -11335,7 +11354,7 @@ h1,
 h4 {
   font-weight: bold;
   text-align: center;
-  color: green;
+  color: #38c172;
 }
 
 .center {
@@ -11497,45 +11516,28 @@ h4 {
   padding: 5px;
 }
 
-.edit_button > a {
-  color: white;
-  float: left;
-  padding: 4px 8px;
-  text-decoration: none;
-  -webkit-transition: background-color 0.3s;
-  transition: background-color 0.3s;
-  border: 1px solid #333;
-  border-radius: 11px;
-  margin: 0 1px;
-  background-color: #333;
-}
-
-.edit_button a:hover {
-  background-color: #fa8b1b;
-}
-
 .list_image {
   float: right;
 }
 
-.details_button > a {
-  color: white;
-  float: left;
-  padding: 4px 8px;
-  text-decoration: none;
-  -webkit-transition: background-color 0.3s;
-  transition: background-color 0.3s;
-  border: 1px solid #333;
-  border-radius: 11px;
-  margin: 0 1px;
-  background-color: #333;
-}
-
-.details_button a:hover {
-  background-color: #fa8b1b;
-}
-
 .bet_button {
   float: right;
+}
+
+#race_results_table table,
+td {
+  border: 2px solid black;
+  border-collapse: collapse;
+  background-color: grey;
+  color: white;
+  padding-left: 5px;
+}
+
+#race_results_table th {
+  color: white;
+  border: 2px solid black;
+  border-collapse: collapse;
+  background-color: #fa8b1b;
+  padding-left: 5px;
 }
 
