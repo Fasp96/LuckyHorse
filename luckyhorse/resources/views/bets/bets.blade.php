@@ -49,7 +49,7 @@
                     Horse Name: {{$race_bet->horse_name}}<br>
                     Jockey Name: {{$race_bet->jockey_name}}<br>
                     
-                    Value: {{$race_bet->value}}<br> 
+                    Value: {{$race_bet->value}}€<br> 
                     
                     @foreach($winners as $win)
                         @if($win[0]->race_id == $race_bet->race_id)

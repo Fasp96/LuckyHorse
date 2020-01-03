@@ -99,4 +99,4 @@ Route::post('/edit_user={id}', 'EditUserController@updateUser');
 Route::get('/edit_results={id}', 'EditResultsController@editResult');
 Route::post('/edit_results={id}', 'EditResultsController@updateResult');
 
-Route::post('/claim={id}', 'BetsController@claim_bet');
+Route::get('/claim={id}', 'BetsController@claim_bet');
