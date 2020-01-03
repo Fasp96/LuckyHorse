@@ -2,53 +2,6 @@
 
 @section('content')
 
-<style>
-    h1{
-        font-weight:bold; 
-        text-align: center;
-    }
-    .option_button {
-        width: 50%;
-    }
-    .option_button > a {
-        color: white;
-        float: left;
-        padding: 4px 8px;
-        text-decoration: none;
-        transition: background-color .3s;
-        border: 1px solid #333;
-        margin: 0 1px;
-        background-color: #333;
-    }
-    .option_button a:hover {
-        background-color: #fa8b1b;
-    }
-
-    .center{
-        text-align: center;
-    }
-    .choice{
-        text-align: center;
-        display: inline-block;
-    }
-    .choice > a {
-        color: white;
-        float: left;
-        padding-top: 8px;
-        width: 40em;
-        text-decoration: none;
-        transition: background-color .3s;
-        border: 1px solid #333;
-        border-radius: 11px;
-        margin: 2px 1px;
-        background-color: #333;
-        font-size: 0.9em;
-    }
-    .choice a:hover {
-        background-color: #fa8b1b;
-    }
-</style>
-
 <h1>Options</h1>
 <div class="center">
     <div class="choice">

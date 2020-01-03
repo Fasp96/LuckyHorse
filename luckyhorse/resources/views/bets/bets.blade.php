@@ -47,7 +47,7 @@
                     Horse Name: {{$tournament_bet->horse_name}}<br>
                     Jockey Name: {{$tournament_bet->jockey_name}}<br>
 
-                    Value: {{$tournament_bet->value}}<br>                
+                    Value: {{$tournament_bet->value}}€<br>                
 
                        
                 </div>
