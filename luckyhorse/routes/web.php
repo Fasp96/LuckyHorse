@@ -100,4 +100,3 @@ Route::get('/edit_results={id}', 'EditResultsController@editResult');
 Route::post('/edit_results={id}', 'EditResultsController@updateResult');
 
 Route::get('/claim={id}', 'BetsController@claim_bet');
-Route::post('/claim={id}', 'BetsController@claim_bet');

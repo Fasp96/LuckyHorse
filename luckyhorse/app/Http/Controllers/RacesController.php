@@ -75,7 +75,7 @@ class RacesController extends Controller
                 $wr_horse = $score->horse_wins/$score->horse_num_races;
             
             if($score->jockey_num_races == 0)
-                $wr_jockey;    
+                $wr_jockey = 0;
             else
                 $wr_jockey = $score->jockey_wins/$score->jockey_num_races;
 
