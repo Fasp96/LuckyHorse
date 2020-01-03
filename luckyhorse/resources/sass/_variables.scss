@@ -13,7 +13,7 @@ $purple: #9561e2;
 $pink: #f66d9b;
 $red: #e3342f;
 $yellow: #ffed4a;
-$green: #38c172;
+$green: #188e4a;
 $teal: #4dc0b5;
 $cyan: #6cb2eb;
 $grey: grey;
@@ -38,4 +38,6 @@ $pagination_grey: #939393;
 }
 %button_hover {
     background-color: $orange;
+    color: $white;
+    text-decoration: none;
 }
