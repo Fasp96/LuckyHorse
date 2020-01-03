@@ -35,10 +35,13 @@ class UsersController extends Controller
 
     public function getUser($id){
         $current_user = Auth::user();
-        if($current_user && $current_user->role  == "admin"){
+        if($current_user){
             $user = User::find($id);
-               
-            return view('users.users_info',compact('user'));
+            if($user && $current_user->id == $user->id){
+                return view('users.users_info',compact('user'));
+            }else{
+                return redirect('/');
+            }
         }else{
             return redirect('/login');
         }

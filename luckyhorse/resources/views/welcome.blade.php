@@ -2,119 +2,6 @@
 
 @section('content')
 
-<style>
-    h1{
-        padding-left: 2px;
-        margin-top: 25px;
-        margin-left: 10px;
-        margin-right: 32%;
-        background-color: #333;
-        border: 1px solid grey;
-        color: white;
-    }
-    a{
-        color: white;
-    }
-
-    /*Float Tables*/
-    #float_tables{
-        float:right;
-        color: white;
-        width: 30%;
-    }
-    #float_tables [class="float_table"]{
-        margin: 10px;
-        border-bottom: 1px solid black;
-    }
-    #float_tables [class="tab_title"]{
-        background-color: #fa8b1b;
-        border: 1px solid black;
-        padding-left: 5px;
-        padding-right: 2px;
-        font-weight: bold;
-    }
-    #float_tables [class="tab_content"]{
-        max-height: 190px;
-        overflow: auto;
-    }
-    #float_tables [class="title"]{
-        background-color: #333;
-        border: 1px solid black;
-        padding-left: 5px;
-        padding-right: 2px;
-    }
-    #float_tables [class="info"]{
-        background-color: grey;
-        border: 1px solid black;
-        padding-left: 5px;
-        padding-right: 2px;
-    }
-
-    /*Last Results Tables*/
-    #last_results_tables{
-        display: flex;
-        justify-content: space-evenly;
-        color: white;
-    }
-    #last_results_tables [class="result_table"]{
-        padding: 1px;
-    }
-    #last_results_tables [class="tab_title"]{
-        background-color: #fa8b1b;
-        border: 1px solid black;
-    }
-    #last_results_tables [class="tab_tags"]{
-        background-color: #333;
-        border: 1px solid black;
-        font-weight: bold;
-        padding: 5px;
-    }
-    #last_results_tables [class="tab_result"]{
-        background-color: grey;
-        border: 1px solid black;
-    }
-    #last_results_tables [class="tab_position"]{
-        background-color: grey;
-        font-weight: bold;
-    }
-    caption {
-        caption-side: top;
-        color: white;
-        text-align: center;
-        padding: 0px;
-        font-weight: bold;
-    }
-    table {
-        text-align: center;
-    }
-    td{
-        padding: 3px;
-    }
-
-    /*News*/
-    .news_container{
-        margin-right: 32%;
-    }
-    .news_img {
-        margin: 10px;
-        margin-right: 0px;
-        position: relative;
-        height: 300px;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-    }
-
-    .news_img div {
-        position: absolute;
-        bottom: 0px;
-        background-color: rgba(0, 0, 0, 0.432);
-        color: white;
-        font-size: 1.8em;
-        width: 100%;
-    }
-
-</style>
 <!--Last Results Tables-->
 <div id="last_results_tables">
     @foreach($table_infos as $table_info)
@@ -198,7 +85,7 @@
         </div>
     </div>
 </div>
-<h1>Last News</h1>
+<h1 class="last_news_title">Last News</h1>
 <div class="News">
     @foreach($news as $new)
         <div class="news_container">

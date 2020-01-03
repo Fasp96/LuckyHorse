@@ -2,48 +2,19 @@
 
 @section('content')
 <style>
-    img {
-    float: right;
-    }
-
+    
     table, td {
         border: 2px solid black;
         border-collapse: collapse;
-        background-color: #FFE4C4;
-}
+        background-color: grey;
+        color: white;
+    }
 
     th{
         color: white;
         border: 2px solid black;
         border-collapse: collapse;
-        background-color: grey;
-    }
-
-    h4{
-        color: green;
-        font-weight:bold;
-    }
-
-    h2{
-        color: #333;
-        font-weight:bold; 
-    }
-    .edit_button > a {
-        color: white;
-        float: left;
-        padding: 4px 8px;
-        text-decoration: none;
-        transition: background-color .3s;
-        border: 1px solid #333;
-        border-radius: 11px;
-        margin: 0 1px;
-        background-color: #333;
-    }
-    .edit_button a:hover {
-        background-color: #fa8b1b;
-    }
-    .bet_button{
-        float: right;
+        background-color: orange;
     }
 </style>
 
@@ -54,7 +25,7 @@
                 <div class="card-header"> <h2>{{$results[0]->name}}</h2></div>
                 <div id="body-card">
                     <div class="card-body">
-                        <img src="{{ $results[0]->file_path}}" alt="race_img" style="width:50%;opacity:0.85;">
+                        <img class="list_image" src="{{ $results[0]->file_path}}" alt="race_img" style="width:50%;opacity:0.85;">
                         
                         Date: {{date('d-m-Y', strtotime($results[0]->date))}}<br>
                         Time: {{date('H:i:s', strtotime($results[0]->date))}}<br>
@@ -114,7 +85,7 @@
                                     @auth
                                         @if(Auth::user()->role=='admin')
                                             <td>
-                                                <div class="edit_button">
+                                                <div class="details_button">
                                                     <a href="/edit_results={{$result->id}}">Edit Result</a>
                                                 </div>
                                             </td>
@@ -133,12 +104,12 @@
                         <div>
                             @auth
                                 @if(Auth::user()->role=='admin')
-                                    <div class="edit_button">
+                                    <div class="details_button">
                                         <a href="/edit_race={{$results[0]->race_id}}">Edit Race</a>
                                     </div>
                                 @endif  
                                 @if(!isset($winner->time))
-                                    <div class="edit_button bet_button">
+                                    <div class="details_button bet_button">
                                         <a href="/add_bet_race={{$results[0]->race_id}}">Bet</a>
                                     </div>
                                 @endif
