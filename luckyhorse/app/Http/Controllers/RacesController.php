@@ -17,9 +17,7 @@ use Arr;
 
 class RacesController extends Controller
 {
-    //
     public function index($page_number=1){
-        //$current_user = Auth::user();
         $page_name = "races";
         $races_per_page = 2;
         $races_number = Race::count();
@@ -57,13 +55,11 @@ class RacesController extends Controller
         if($races)
             return view('races.races',compact('races','winners','page_number','pages_total','page_name'));
         else   
-            return redirect('/races');
+            return redirect('/');
     }
 
     public function getRace($id){
-        //$current_user = Auth::user();
-
-        //Get Every Pair win rate and the sum of all win rates
+        //Get every pair win rate and the sum of all win rates
         $scores = Result::where('results.race_id', $id)
             ->join('horses','results.horse_id','=','horses.id')
             ->join('jockeys','results.jockey_id','=','jockeys.id')
@@ -73,8 +69,16 @@ class RacesController extends Controller
             ->orderBy('time')->get();
         $win_total = 0;
         foreach($scores as $score){
-            $wr_horse = $score->horse_wins/$score->horse_num_races;
-            $wr_jockey = $score->jockey_wins/$score->jockey_num_races;
+            if($score->horse_num_races == 0)
+                $wr_horse = 0;
+            else
+                $wr_horse = $score->horse_wins/$score->horse_num_races;
+            
+            if($score->jockey_num_races == 0)
+                $wr_jockey;    
+            else
+                $wr_jockey = $score->jockey_wins/$score->jockey_num_races;
+
             $wr_both = (($wr_jockey)+($wr_horse))/2;
             $score_position = $scores->search(function ($value, $key) use($score) {
                 return $value->horse_id == $score->horse_id ;

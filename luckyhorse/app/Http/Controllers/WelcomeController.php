@@ -17,7 +17,6 @@ use DB;
 class WelcomeController extends Controller
 {
     public function index(){
-        //$current_user = Auth::user();
         //Float Tables
         $races = Race::where('date', '>', DB::raw('CURDATE()'))->orderByDesc('date')->get();
         $tournaments = Tournament::where('date', '>', DB::raw('CURDATE()'))->orderByDesc('date')->get();

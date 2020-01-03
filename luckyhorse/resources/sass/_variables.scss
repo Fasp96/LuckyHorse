@@ -12,7 +12,6 @@ $indigo: #6574cd;
 $purple: #9561e2;
 $pink: #f66d9b;
 $red: #e3342f;
-$orange: #f6993f;
 $yellow: #ffed4a;
 $green: #38c172;
 $teal: #4dc0b5;
@@ -22,5 +21,21 @@ $black: black;
 $white: white;
 $dark_grey: #333;
 $background_color: #eed5b1;
+$orange: #fa8b1b;
+$pagination_grey: #939393;
 
-$orange1: #fa8b1b;
+//Button Variables
+%button_a {
+    color: $white;
+    float: left;
+    padding: 4px 8px;
+    text-decoration: none;
+    transition: background-color .3s;
+    border: 1px solid $dark_grey;
+    border-radius: 11px;
+    margin: 0 1px;
+    background-color: $dark_grey;
+}
+%button_hover {
+    background-color: $orange;
+}

@@ -1,31 +1,3 @@
-<style>
-  /*Pagination*/
-  .center {
-    text-align: center;
-  }
-  .pagination {
-    display: inline-block;
-  }
-  .pagination a {
-    color: white;
-    float: left;
-    padding: 8px 16px;
-    text-decoration: none;
-    transition: background-color .3s;
-    border: 1px solid #333;
-    margin: 0 1px;
-    background-color: #333;
-  }
-  .pagination a.active {
-    background-color: #fa8b1b;
-    color: white;
-    border: 1px solid #fa8b1b;
-  }
-  .pagination a:hover:not(.active) {
-    background-color: #939393;
-  }
-</style>
-
 <div class="center">
   <div class="pagination">
     @if($page_number==1)

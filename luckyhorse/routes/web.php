@@ -11,40 +11,10 @@
 |
 */
 
-/*
-use App\Race;
-use App\Tournament;
-
-Route::get('/', function () {
-    $races = Race::where('date', '>', DB::raw('CURDATE()'))->orderByDesc('date')->get();
-    $last_races = Race::orderByDesc('date')->take(3)->get();
-    $tournaments = Tournament::where('date', '>', DB::raw('CURDATE()'))->orderByDesc('date')->get();
-    return view('welcome',compact('races','last_races','tournaments'));
-});
-*/
-
-/*
-// Authentication Routes...
-$this->get('login', 'Auth\LoginController@showLoginForm')->name('login');
-$this->post('login', 'Auth\LoginController@login');
-$this->post('logout', 'Auth\LoginController@logout')->name('logout');
-
-// Registration Routes...
-$this->get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
-$this->post('register', 'Auth\RegisterController@register');
-
-// Password Reset Routes...
-$this->get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm');
-$this->post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail');
-$this->get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm');
-$this->post('password/reset', 'Auth\ResetPasswordController@reset');
-*/
-
 Auth::routes();
 
 Route::get('/', 'WelcomeController@index');
-
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', 'WelcomeController@index')->name('home');
 
 Route::get('/manage', 'ManageController@index');
 
@@ -92,7 +62,7 @@ Route::get('/jockeys/{id}', 'JockeysController@getJockey');
 
 Route::get('/bets', 'BetsController@index');
 Route::get('/bets_page={page_number}', 'BetsController@index');
-Route::post('/bets', 'BetsController@claim');
+
 
 Route::get('/add_bet_race={id}', 'AddBetsController@index_bet_race');
 Route::post('/add_bet_race={id}', 'AddBetsController@add_bet_race');
@@ -129,4 +99,4 @@ Route::post('/edit_user={id}', 'EditUserController@updateUser');
 Route::get('/edit_results={id}', 'EditResultsController@editResult');
 Route::post('/edit_results={id}', 'EditResultsController@updateResult');
 
-Route::get('/claim={id}', 'ClaimController@claim');
+Route::post('/claim={id}', 'BetsController@claim_bet');

@@ -2,39 +2,6 @@
 
 @section('content')
 
-<style>
-    h2{
-        font-weight:bold; 
-    }
-
-    .user_table_data > td{
-        padding: 5px;
-    }
-    table{
-        width: 100%;
-    }
-    .edit_button{
-        float: right;
-        padding: 5px;
-    }
-    .edit_button > a {
-        color: white;
-        float: left;
-        padding: 4px 8px;
-        text-decoration: none;
-        transition: background-color .3s;
-        border: 1px solid #333;
-        border-radius: 11px;
-        margin: 0 1px;
-        background-color: #333;
-    }
-    .edit_button a:hover {
-        background-color: #fa8b1b;
-    }
-    
-</style>
-
-
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -50,18 +17,27 @@
                     Phone Number: {{$user->phone_number}}<br>
                     Iban: {{$user->iban}}<br>
                     Date that joined: {{$user->created_at->format('d-m-Y')}}<br><br>
-                    Balance: {{number_format($user->balance, 2, '.', ',')}}<br>
+                    Balance: {{number_format($user->balance, 2, '.', ',')}}€<br><br>
                     
-                </div>
-                @auth
-                    @if(Auth::user()->role=='admin')
-                        <div>
-                            <div class="edit_button">
-                                <a href="/edit_user={{$user->id}}">Edit</a>
+                    <div>
+                        @auth
+                            <div>
+                                <div class="details_button">
+                                    <a href="/edit_user={{$user->id}}">Add Funds</a>
+                                </div>
                             </div>
-                        </div>
-                    @endif
-                @endauth
+                        @endauth
+                        @auth
+                            @if(Auth::user()->role=='admin')
+                                <div>
+                                    <div class="details_button bet_button">
+                                        <a href="/edit_user={{$user->id}}">Edit</a>
+                                    </div>
+                                </div>
+                            @endif
+                        @endauth
+                    </div>  
+                </div>
             </div>
         </div>
     </div>

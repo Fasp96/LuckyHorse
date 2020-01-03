@@ -29,7 +29,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -57,8 +57,7 @@ class RegisterController extends Controller
             'gender' => ['required', 'in:male,female,other'],
             'birth_date' => ['required', 'before:-18 years', 'after:-100 years'],
             'phone_number' => ['required', 'string', 'regex:/^([+]?[1-9]\d*|0)$/', 'size:9', 'unique:users'],
-            'iban' => ['required', 'string', 'size:9', 'unique:users'],
-            //'user_photo' =>['required', 'mimes:jpeg,jpg,png,PNG,JPG,JPEG']
+            'iban' => ['required', 'string', 'size:9', 'unique:users']
         ]);
     }
 

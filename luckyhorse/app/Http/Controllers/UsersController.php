@@ -11,7 +11,7 @@ class UsersController extends Controller
 {
     public function index($page_number=1){
         $current_user = Auth::user();
-        if($current_user){
+        if($current_user && $current_user->role  == "admin"){
             $page_name = "users";
             $users_per_page = 10;
             $users_number = User::count();
@@ -29,7 +29,7 @@ class UsersController extends Controller
             else   
                 return redirect('/');
         }else{
-            return redirect('/');
+            return redirect('/login');
         }
     }
 
@@ -37,11 +37,13 @@ class UsersController extends Controller
         $current_user = Auth::user();
         if($current_user){
             $user = User::find($id);
-
-               
-            return view('users.users_info',compact('user'));
+            if($user && $current_user->id == $user->id){
+                return view('users.users_info',compact('user'));
+            }else{
+                return redirect('/');
+            }
         }else{
-            return redirect('/');
+            return redirect('/login');
         }
     }
 }

@@ -16,7 +16,7 @@ class AddRacesController extends Controller
     //
     public function index(){
         $current_user = Auth::user();
-        if($current_user){
+        if($current_user  && $current_user->role  == "admin"){
              $races = Race::orderByDesc('created_at')->take(10)->get();
              $horses = Horse::all();
              $jockeys = Jockey::all();
@@ -24,13 +24,13 @@ class AddRacesController extends Controller
                
              return view('races.add_race',compact('races', 'horses', 'tournaments', 'jockeys'));
         }else{
-            return redirect('home');
+            return redirect('/login');
         }
     }
 
     public function add(Request $request){
-        $user = Auth::user();
-        if($user){
+        $current_user = Auth::user();
+        if($current_user && $current_user->role  == "admin"){
             $race = new Race;
             $race->name = $request->name;
             $race->date = $request->date . ' ' . $request->race_time;
@@ -70,24 +70,28 @@ class AddRacesController extends Controller
 
             return redirect('/add_races');
         }else{
-            return redirect('home');
+            return redirect('/login');
         }       
     }
 
     public function getJockeysHorses(){
-        $user = Auth::user();
-        if($user){
+        $current_user = Auth::user();
+        if($current_user && $current_user->role  == "admin"){
             $jockeys = Jockey::all();
             $horses = Horse::all();
             return [$horses, $jockeys];
-        }
+        }else{
+            return redirect('/login');
+        } 
     }
 
     public function getTournaments(){
-        $user = Auth::user();
-        if($user){
+        $current_user = Auth::user();
+        if($current_user && $current_user->role  == "admin"){
             $tournaments = Tournament::all();
             return $tournaments;
-        }
+        }else{
+            return redirect('/login');
+        } 
     }
 }

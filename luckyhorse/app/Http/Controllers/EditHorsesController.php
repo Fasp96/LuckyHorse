@@ -11,30 +11,32 @@ class EditHorsesController extends Controller
 {
     public function editHorse($id){
         $current_user = Auth::user();
-        if($current_user){
+        if($current_user && $current_user->role  == "admin"){
             $horse = Horse::find($id);
             if($horse){
                 return view('horses.edit_horse',compact('id'));
             }else{
-                return redirect('/');
+                return redirect('/horses');
             }
-        }
+        }else{
+            return redirect('/login');
+        } 
     }
 
     public function getHorse($id){
-        $user = Auth::user();
-        if($user){
+        $current_user = Auth::user();
+        if($current_user && $current_user->role  == "admin"){
             $horse = Horse::find($id);
 
             return $horse;
-        }
+        }else{
+            return redirect('/login');
+        } 
     }
 
     public function updateHorse(Request $request, $id){
-        
-
-        $user = Auth::user();
-        if($user){
+        $current_user = Auth::user();
+        if($current_user && $current_user->role  == "admin"){
             $horse = Horse::find($id);
             if($horse){
                 $horse->name = $request->name;
@@ -56,10 +58,10 @@ class EditHorsesController extends Controller
 
                 return redirect('/horses/' . $id);
             }else{
-                return redirect('/');
+                return redirect('/horses');
             }
         }else{
-            return redirect('home');
+            return redirect('/login');
         } 
     }
 }

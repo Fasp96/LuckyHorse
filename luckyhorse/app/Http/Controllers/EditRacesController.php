@@ -13,40 +13,44 @@ use Auth;
 
 class EditRacesController extends Controller
 {
-    //
     public function editRace($id){
         $current_user = Auth::user();
-        if($current_user){
+        if($current_user && $current_user->role  == "admin"){
             $race = Race::find($id);
             if($race){
                 return view('races.edit_race',compact('id'));
             }else{
-                return redirect('/');
+                return redirect('/login');
             }
         }
     }
 
     public function getRace($id){
-        $user = Auth::user();
-        if($user){
+        $current_user = Auth::user();
+        if($current_user && $current_user->role  == "admin"){
             $race = Race::find($id);
             $teams = Result::where('race_id', '=', $id)->get();
             
             return [$race, $teams];
-        }
+        }else{
+            return redirect('/login');
+        } 
     }
     
     public function getTournaments(){
-        $user = Auth::user();
-        if($user){
+        $current_user = Auth::user();
+        if($current_user && $current_user->role  == "admin"){
             $tournaments = Tournament::all();
-        return $tournaments;
-        }
+
+            return $tournaments;
+        }else{
+            return redirect('/login');
+        }   
     }
 
     public function updateRace(Request $request, $id){
-        $user = Auth::user();
-        if($user){
+        $current_user = Auth::user();
+        if($current_user && $current_user->role  == "admin"){
             $race = Race::find($id);
             if($race){
                 $race->name = $request->name;
@@ -67,7 +71,6 @@ class EditRacesController extends Controller
 
                 $teams = Result::where('race_id', '=', $id)->delete();
 
-
                 //for the teams fields it fetches the number of fields and creates a new Result
                 for($i = 1; $i <= $request->num_fields; $i++){
                     $result = new Result;
@@ -83,10 +86,10 @@ class EditRacesController extends Controller
 
                 return redirect('/races/'. $id);
             }else{
-                return redirect('/');
+                return redirect('/races');
             }
         }else{
-            return redirect('home');
+            return redirect('/login');
         }       
     }
 }
