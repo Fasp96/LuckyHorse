@@ -2,7 +2,7 @@
 
 @section('content')
 
-<h1 align="center">Tournaments</h1>
+<h1>Tournaments</h1>
 
 @foreach($tournaments as $tournament) 
 <div class="container">
@@ -25,7 +25,7 @@
                         @endif
                     @endforeach
                     <br>
-                    <div class="details_button">
+                    <div class="edit_button">
                         <a href="/tournaments/{{$tournament->id}}">View Details</a>
                     </div>
                 </div>
