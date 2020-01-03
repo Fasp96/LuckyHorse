@@ -9,32 +9,35 @@ use Auth;
 
 class EditJockeysController extends Controller
 {
-    //
     public function editJockey($id){
         $current_user = Auth::user();
-        if($current_user){
+        if($current_user && $current_user->role  == "admin"){
             $jockey = Jockey::find($id);
             if($jockey){
                 return view('jockeys.edit_jockey',compact('id'));
             }else{
-                return redirect('/');
+                return redirect('/jockeys');
             }
-        }
+        }else{
+            return redirect('/login');
+        } 
     }
 
     public function getJockey($id){
-        $user = Auth::user();
-        if($user){
+        $current_user = Auth::user();
+        if($current_user && $current_user->role  == "admin"){
             $jockey = Jockey::find($id);
 
             return $jockey;
-        }
+        }else{
+            return redirect('/login');
+        } 
     }
 
     public function updateJockey(Request $request, $id){
         
-        $user = Auth::user();
-        if($user){
+        $current_user = Auth::user();
+        if($current_user && $current_user->role  == "admin"){
             $jockey = Jockey::find($id);
             if($jockey){
                 $jockey->name = $request->name;
@@ -55,10 +58,10 @@ class EditJockeysController extends Controller
 
                 return redirect('/jockeys/' . $id);
             }else{
-                return redirect('/');
+                return redirect('/jockeys');
             }
         }else{
-            return redirect('home');
+            return redirect('/login');
         } 
     }
 }

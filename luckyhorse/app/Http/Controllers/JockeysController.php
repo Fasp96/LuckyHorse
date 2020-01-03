@@ -10,7 +10,6 @@ use Auth;
 class JockeysController extends Controller
 {
     public function index($page_number = 1){
-        //$current_user = Auth::user();
         $page_name = "jockeys";
         $jockeys_per_page = 3;
         $jockeys_number = Jockey::count();
@@ -27,11 +26,10 @@ class JockeysController extends Controller
             return view('jockeys.jockeys',
                 compact('jockeys','page_number','pages_total','page_name'));
         else   
-            return redirect('/jockeys');
+            return redirect('/');
     }
 
     public function getJockey($id){
-        //$current_user = Auth::user();
         $jockeys = Jockey::find($id);
         $page_number = 1;
         $pages_total = 1;

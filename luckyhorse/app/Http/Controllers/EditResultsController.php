@@ -10,33 +10,35 @@ use Auth;
 class EditResultsController extends Controller
 
 {
-        //
-        public function editResult($id){
-            $current_user = Auth::user();
-            if($current_user){
-    
-                $result = Result::find($id);
-    
-                return view('races.race_results_edit',compact('id','result'));
-            }
-        }
-    
-    
-        public function updateResult(Request $request, $id){
-            
-            $user = Auth::user();
-            if($user){
-                $result = Result::find($id);
+    public function editResult($id){
+        $current_user = Auth::user();
+        if($current_user && $current_user->role  == "admin"){
+            $result = Result::find($id);
+
+            return view('races.race_results_edit',compact('id','result'));
+        }else{
+            return redirect('/login');
+        } 
+    }
+
+
+    public function updateResult(Request $request, $id){
+        
+        $current_user = Auth::user();
+        if($current_user && $current_user->role  == "admin"){
+            $result = Result::find($id);
+            if($result){
                 $result->time = $request->time;
-
-
                 $result->save();
-    
+
                 return redirect('/races/' . $result->race_id);
             }else{
-                return redirect('home');
+                return redirect('/races');
             } 
-        }
+        }else{
+            return redirect('/login');
+        } 
+    }
 }
     
 

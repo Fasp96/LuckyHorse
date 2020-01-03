@@ -10,7 +10,6 @@ use Auth;
 class HorsesController extends Controller
 {
     public function index($page_number=1){
-        //$current_user = Auth::user();
         $page_name = "horses";
         $horses_per_page = 4;
         $horse_number = Horse::count();
@@ -26,11 +25,10 @@ class HorsesController extends Controller
             return view('horses.horses',
                 compact('horses','page_number','pages_total', 'page_name'));
         else   
-            return redirect('/horses');
+            return redirect('/');
     }
 
     public function getHorse($id){
-        //$current_user = Auth::user();
         $horses = Horse::find($id);
         $page_number = 1;
         $pages_total = 1;

@@ -64,60 +64,42 @@ class BetsController extends Controller
             $races = Race::all();
             $winners = collect();
             foreach($races as $race){
-            $winner = Race::where('races.id','=',$race->id)
-                ->join('results','races.id','=','results.race_id')
-                ->join('horses','results.horse_id','=','horses.id')
-                ->join('jockeys','results.jockey_id','=','jockeys.id')
-                ->select('horses.name as horse_name',
-                    'jockeys.name as jockey_name',
-                    'results.race_id as race_id',
-                    'results.time as time')
-                ->orderBy('results.time')
-                ->take(1)->get();
+                $winner = Race::where('races.id','=',$race->id)
+                    ->join('results','races.id','=','results.race_id')
+                    ->join('horses','results.horse_id','=','horses.id')
+                    ->join('jockeys','results.jockey_id','=','jockeys.id')
+                    ->select('horses.name as horse_name',
+                        'jockeys.name as jockey_name',
+                        'results.race_id as race_id',
+                        'results.time as time')
+                    ->orderBy('results.time')
+                    ->take(1)->get();
 
-            $winners->push($winner);
-        }
-
-             return view('bets.bets',compact('race_bets','tournament_bets','winners','page_number','pages_total', 'page_name'));
+                $winners->push($winner);
+            }
+            return view('bets.bets',compact('race_bets','tournament_bets','winners','page_number','pages_total', 'page_name'));
         }else{
-            return redirect('/');
+            return redirect('/login');
         }
     }
 
-    public function claim(){
-        
+    public function claim_bet($id){
+        $current_user = Auth::user();
+        if($current_user){
+            $bet = Bet::find($id);
+            if($bet){
+                $balance = ($current_user->balance) + ($bet->value);
+                $current_user->balance = $balance;
+                $current_user->save();
 
-    }
+                $bet->delete();
 
-
-
-
-
-
-
-
-
-    
-    private function race_winner($race_id){
-        $winning_result_id = Race::where('races.id',$race_id)
-            ->join('results','results.race_id','=','races.id')
-            ->orderByDesc('results.time')
-            ->select('results.id as results_id')
-            ->take(1)->get();
-
-        return $winning_result_id;
-    }
-
-    private function tournament_winner($tournament_id){
-
-        $last_race_id = Tournament::where('tournaments.id',$tournament_id)
-            ->join('races','races.tournament_id','=','races.id')
-            ->orderByDesc('races.date')
-            ->select('races.id as race_id')
-            ->take(1)->get();
-
-        $winning_result_id = race_winner($last_race_id);
-
-        return $winning_result_id;
+                return view('bets.bet_claim',compact('bet'));
+            }else{
+                return redirect('/bets');
+            }
+        }else{
+            return redirect('/login');
+        }
     }
 }

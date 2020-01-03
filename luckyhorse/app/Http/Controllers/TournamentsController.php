@@ -14,10 +14,7 @@ use Auth;
 
 class TournamentsController extends Controller
 {
-    
-
     public function index($page_number=1){
-        //$current_user = Auth::user();
         $page_name = "tournaments";
         $tournaments_per_page = 4;
         $tournaments_number = Tournament::count();
@@ -38,19 +35,17 @@ class TournamentsController extends Controller
 
             $winners->push($winner);
         }
-
         $races = Race::orderByDesc('date')->take($tournaments_per_page)->get();
         
         if($tournaments)
             return view('tournaments.tournaments',
                 compact('tournaments','races','winners','page_number','pages_total','page_name'));   
         else   
-            return redirect('/tournaments');
+            return redirect('/');
         
     }
 
     public function getTournament($id){
-        //$current_user = Auth::user();
         $tournaments = Tournament::find($id);
         $page_number = 1;
         $pages_total = 1;
@@ -61,11 +56,10 @@ class TournamentsController extends Controller
 
             return view('tournaments.tournaments_info',compact('tournaments','races','winner','page_number','pages_total'));
         }else
-            return redirect('/tournament');
+            return redirect('/tournaments');
     }
 
     private function race_winner($last_race,$tournament_id){
-
         if($last_race->count()>0){
             $winner = Race::where('races.id',$last_race[0]->race_id)
                 ->join('results','results.race_id','=','races.id')
@@ -87,13 +81,11 @@ class TournamentsController extends Controller
         }else{
             $winner = Tournament::where('tournaments.id',$tournament_id)->get();
         }
-        
 
         return $winner;
     }
 
     private function tournament_winner($tournament_id){
-
         $last_race = Tournament::where('tournaments.id',$tournament_id)
                 ->join('races','races.tournament_id','=','tournaments.id')
                 ->orderByDesc('races.date')

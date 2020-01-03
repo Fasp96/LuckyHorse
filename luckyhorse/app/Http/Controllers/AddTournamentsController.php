@@ -12,18 +12,18 @@ class AddTournamentsController extends Controller
     //
     public function index(){
         $current_user = Auth::user();
-        if($current_user){
+        if($current_user && $current_user->role  == "admin"){
             $tournaments = Tournament::orderByDesc('created_at')->take(10)->get();
 
             return view('tournaments.add_tournament',compact('tournaments'));
         }else{
-            return redirect('home');
+            return redirect('/login');
         }
     }
 
     public function add(Request $request){
-        $user = Auth::user();
-        if($user){
+        $current_user = Auth::user();
+        if($current_user && $current_user->role  == "admin"){
 
             $tournament = new Tournament;
             $tournament->name = $request->name;
@@ -60,16 +60,18 @@ class AddTournamentsController extends Controller
 
             return redirect('/add_tournaments');
         }else{
-            return redirect('home');
+            return redirect('/login');
         }       
     }
 
     public function getRaces(){
-        $user = Auth::user();
-        if($user){
+        $current_user = Auth::user();
+        if($current_user && $current_user->role  == "admin"){
             //gets the races that don't have a tournament associated with
             $races = Race::whereNull('tournament_id')->get();
             return $races;
-        }
+        }else{
+            return redirect('/login');
+        } 
     }
 }

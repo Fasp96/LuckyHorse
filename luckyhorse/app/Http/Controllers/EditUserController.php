@@ -11,19 +11,21 @@ class EditUserController extends Controller
 {
     public function editUser($id){
         $current_user = Auth::user();
-        if($current_user){
+        if($current_user && $current_user->role  == "admin"){
             $user = User::find($id);
             if($user){
                 return view('users.edit_user',compact('id'));
             }else{
-                return redirect('/');
+                return redirect('/users');
             }
+        }else{
+            return redirect('/login');
         }
     }
 
     public function getUser($id){
         $current_user = Auth::user();
-        if($current_user){
+        if($current_user && $current_user->role  == "admin"){
             $user = User::find($id);
 
             return $user;
@@ -32,7 +34,7 @@ class EditUserController extends Controller
 
     public function updateUser(Request $request, $id){
         $current_user = Auth::user();
-        if($current_user){
+        if($current_user && $current_user->role  == "admin"){
             $user = User::find($id);
             if($user){
                 $user->name = $request->name;
@@ -48,10 +50,10 @@ class EditUserController extends Controller
 
                 return redirect('/users/' . $id);
             }else{
-                return redirect('/');
+                return redirect('/users');
             }
         }else{
-            return redirect('/');
+            return redirect('/login');
         } 
     }
 }

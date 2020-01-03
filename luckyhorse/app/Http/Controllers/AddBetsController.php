@@ -32,10 +32,10 @@ class AddBetsController extends Controller
 
                 return view('bets.add_bet_tournament',compact('tournament','horses','jockeys'));
             }else{
-                return redirect('/');
+                return redirect('/tournaments');
             }
         }else{
-            return redirect('/');
+            return redirect('/login');
         }
     }
 
@@ -57,10 +57,10 @@ class AddBetsController extends Controller
                 
                 return view('bets.add_bet_race',compact('race','horses','jockeys'));
             }else{
-                return redirect('/');
+                return redirect('/races');
             }
         }else{
-            return redirect('/');
+            return redirect('/login');
         }
     }
 
@@ -81,7 +81,7 @@ class AddBetsController extends Controller
 
             return redirect('/bets');;
         }else{
-            return redirect('/');
+            return redirect('/login');
         }
     }
 
@@ -102,7 +102,7 @@ class AddBetsController extends Controller
 
             return redirect('/bets');;
         }else{
-            return redirect('/');
+            return redirect('/login');
         }
     }
 }
