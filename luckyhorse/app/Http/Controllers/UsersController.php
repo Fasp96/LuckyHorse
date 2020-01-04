@@ -40,7 +40,7 @@ class UsersController extends Controller
         //Verifies that the user is logged in
         if($current_user){
             $user = User::find($id);
-            if($user && $current_user->id == $user->id){
+            if($user && ($current_user->id == $user->id || $current_user->role == "admin")){
                 return view('users.users_info',compact('user'));
             }else{
                 return redirect('/');
