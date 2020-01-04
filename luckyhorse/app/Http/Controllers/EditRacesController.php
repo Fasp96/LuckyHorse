@@ -15,41 +15,50 @@ class EditRacesController extends Controller
 {
     public function editRace($id){
         $current_user = Auth::user();
+        //Verifies that the user is an admin
         if($current_user && $current_user->role  == "admin"){
             $race = Race::find($id);
             if($race){
                 return view('races.edit_race',compact('id'));
             }else{
-                return redirect('/login');
+                return redirect('/races');
             }
+        }else{
+            //In case the user isn't an admin, redirect to login page
+            return redirect('/login');
         }
     }
 
     public function getRace($id){
         $current_user = Auth::user();
+        //Verifies that the user is an admin
         if($current_user && $current_user->role  == "admin"){
             $race = Race::find($id);
             $teams = Result::where('race_id', '=', $id)->get();
             
             return [$race, $teams];
         }else{
+            //In case the user isn't an admin, redirect to login page
             return redirect('/login');
         } 
     }
     
     public function getTournaments(){
         $current_user = Auth::user();
+        //Verifies that the user is an admin
         if($current_user && $current_user->role  == "admin"){
             $tournaments = Tournament::all();
 
             return $tournaments;
         }else{
+            //In case the user isn't an admin, redirect to login page
             return redirect('/login');
         }   
     }
 
     public function updateRace(Request $request, $id){
         $current_user = Auth::user();
+        //Verifies that the user is an admin
         if($current_user && $current_user->role  == "admin"){
             $race = Race::find($id);
             if($race){
@@ -89,6 +98,7 @@ class EditRacesController extends Controller
                 return redirect('/races');
             }
         }else{
+            //In case the user isn't an admin, redirect to login page
             return redirect('/login');
         }       
     }

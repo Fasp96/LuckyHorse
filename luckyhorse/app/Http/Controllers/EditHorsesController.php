@@ -11,6 +11,7 @@ class EditHorsesController extends Controller
 {
     public function editHorse($id){
         $current_user = Auth::user();
+        //Verifies that the user is an admin
         if($current_user && $current_user->role  == "admin"){
             $horse = Horse::find($id);
             if($horse){
@@ -19,23 +20,27 @@ class EditHorsesController extends Controller
                 return redirect('/horses');
             }
         }else{
+            //In case the user isn't an admin, redirect to login page
             return redirect('/login');
         } 
     }
 
     public function getHorse($id){
         $current_user = Auth::user();
+        //Verifies that the user is an admin
         if($current_user && $current_user->role  == "admin"){
             $horse = Horse::find($id);
 
             return $horse;
         }else{
+            //In case the user isn't an admin, redirect to login page
             return redirect('/login');
         } 
     }
 
     public function updateHorse(Request $request, $id){
         $current_user = Auth::user();
+        //Verifies that the user is an admin
         if($current_user && $current_user->role  == "admin"){
             $horse = Horse::find($id);
             if($horse){
@@ -61,6 +66,7 @@ class EditHorsesController extends Controller
                 return redirect('/horses');
             }
         }else{
+            //In case the user isn't an admin, redirect to login page
             return redirect('/login');
         } 
     }

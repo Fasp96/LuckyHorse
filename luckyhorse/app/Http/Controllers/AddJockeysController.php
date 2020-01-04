@@ -13,17 +13,20 @@ class AddJockeysController extends Controller
     //
     public function index(){
         $current_user = Auth::user();
+        //Verifies that the user is an admin
         if($current_user && $current_user->role  == "admin"){
              $jockeys = Jockey::orderByDesc('created_at')->take(10)->get();
                
              return view('jockeys.add_jockey',compact('jockeys'));
         }else{
+            //In case the user isn't an admin, redirect to login page
             return redirect('/login');
         }
     }
 
     public function add(Request $request){
         $current_user = Auth::user();
+        //Verifies that the user is an admin
         if($current_user && $current_user->role  == "admin"){
 
             $jockey = new Jockey;
@@ -52,6 +55,7 @@ class AddJockeysController extends Controller
 
             return redirect('/add_jockeys');
         }else{
+            //In case the user isn't an admin, redirect to login page
             return redirect('/login');
         }       
     }

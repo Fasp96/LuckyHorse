@@ -30,10 +30,8 @@ class NewsController extends Controller
 
     public function getNews($id){
         $news = News::find($id);
-        $page_number = 1;
-        $pages_total = 1;
         if($news)
-            return view('news.news_info',compact('news', 'page_number','pages_total'));
+            return view('news.news_info',compact('news'));
         else   
             return redirect('/news');
     }

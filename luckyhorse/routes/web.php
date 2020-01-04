@@ -39,7 +39,7 @@ Route::post('/add_news', 'AddNewsController@add');
 Route::get('/users','UsersController@index');
 Route::get('/users_page={page_number}', 'UsersController@index');
 Route::get('/users/{id}','UsersController@getUser');
-Route::post('/users/{id}','UsersController@addBalace');
+Route::post('/users/{id}','UsersController@addBalance');
 
 Route::get('/news', 'NewsController@index');
 Route::get('/news_page={page_number}', 'NewsController@index');
@@ -63,7 +63,6 @@ Route::get('/jockeys/{id}', 'JockeysController@getJockey');
 
 Route::get('/bets', 'BetsController@index');
 Route::get('/bets_page={page_number}', 'BetsController@index');
-
 
 Route::get('/add_bet_race={id}', 'AddBetsController@index_bet_race');
 Route::post('/add_bet_race={id}', 'AddBetsController@add_bet_race');

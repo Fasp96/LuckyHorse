@@ -12,6 +12,7 @@ class EditTournamentsController extends Controller
     //
     public function editTournament($id){
         $current_user = Auth::user();
+        //Verifies that the user is an admin
         if($current_user && $current_user->role  == "admin"){
             $tournament = Tournament::find($id);
             if($tournament){
@@ -20,23 +21,27 @@ class EditTournamentsController extends Controller
                 return redirect('/tournaments');
             }
         }else{
+            //In case the user isn't an admin, redirect to login page
             return redirect('/login');
         }
     }
 
     public function getTournament($id){
         $current_user = Auth::user();
+        //Verifies that the user is an admin
         if($current_user && $current_user->role  == "admin"){
             $tournament = Tournament::find($id);
             $races = Race::where('tournament_id', '=', $id)->get();
             return [$tournament, $races];
         }else{
+            //In case the user isn't an admin, redirect to login page
             return redirect('/login');
         }
     }
 
     public function getRaces($id){
         $current_user = Auth::user();
+        //Verifies that the user is an admin
         if($current_user && $current_user->role  == "admin"){
             //gets the races that don't have a tournament associated with
             $races = Race::whereNull('tournament_id')
@@ -44,12 +49,14 @@ class EditTournamentsController extends Controller
                         ->get();
             return $races;
         }else{
+            //In case the user isn't an admin, redirect to login page
             return redirect('/login');
         }   
     }
 
     public function updateTournament(Request $request, $id){
         $current_user = Auth::user();
+        //Verifies that the user is an admin
         if($current_user && $current_user->role  == "admin"){
 
             $tournament = Tournament::find($id);
@@ -87,6 +94,7 @@ class EditTournamentsController extends Controller
                 return redirect('/tournaments');
             }
         }else{
+            //In case the user isn't an admin, redirect to login page
             return redirect('/login');
         }       
     }

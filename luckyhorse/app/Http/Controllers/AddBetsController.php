@@ -12,10 +12,10 @@ use Auth;
 
 class AddBetsController extends Controller
 {
-    //Returns the view for the user to bet on a tournament
+    //Returns the view to bet on a tournament
     public function index_bet_tournament($id){
         $current_user = Auth::user();
-        //Verifies that user is logged in
+        //Verifies that the user is logged in
         if($current_user){
             $tournament = Tournament::find($id);
             if($tournament){
@@ -41,10 +41,10 @@ class AddBetsController extends Controller
         }
     }
 
-    //Returns the view for the user to bet on a race
+    //Returns the view to bet on a race
     public function index_bet_race($id){
         $current_user = Auth::user();
-        //Verifies that user is logged in
+        //Verifies that the user is logged in
         if($current_user){
             $race = Race::find($id);
             if($race){
@@ -72,7 +72,7 @@ class AddBetsController extends Controller
     //Creates a tournaments bet and redirect to the bets page
     public function add_bet_tournament(Request $request){
         $current_user = Auth::user();
-        //Verifies that user is logged in
+        //Verifies that the user is logged in
         if($current_user){
             //Create new bet with the parameters from the request
             $bet = new Bet;
@@ -100,7 +100,7 @@ class AddBetsController extends Controller
     //Creates a race bet and redirect to the bets page
     public function add_bet_race(Request $request){
         $current_user = Auth::user();
-        //Verifies that user is logged in
+        //Verifies that the user is logged in
         if($current_user){
             //Create new bet with the parameters from the request
             $bet = new Bet;

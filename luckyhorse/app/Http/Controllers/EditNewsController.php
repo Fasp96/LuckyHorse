@@ -11,6 +11,7 @@ class EditNewsController extends Controller
 {
     public function editNews($id){
         $current_user = Auth::user();
+        //Verifies that the user is an admin
         if($current_user && $current_user->role  == "admin"){
             $news = News::find($id);
             if($news){
@@ -19,17 +20,20 @@ class EditNewsController extends Controller
                 return redirect('/news');
             }
         }else{
+            //In case the user isn't an admin, redirect to login page
             return redirect('/login');
         } 
     }
 
     public function getNews($id){
         $current_user = Auth::user();
+        //Verifies that the user is an admin
         if($current_user && $current_user->role  == "admin"){
             $news = News::find($id);
 
             return $news;
         }else{
+            //In case the user isn't an admin, redirect to login page
             return redirect('/login');
         } 
     }
@@ -37,6 +41,7 @@ class EditNewsController extends Controller
     public function updateNews(Request $request, $id){
         
         $user = Auth::user();
+        //Verifies that the user is an admin
         if($user && $current_user->role  == "admin"){
             $news = News::find($id);
             if($news){
@@ -59,6 +64,7 @@ class EditNewsController extends Controller
                 return redirect('/news');
             }
         }else{
+            //In case the user isn't an admin, redirect to login page
             return redirect('/login');
         } 
     }

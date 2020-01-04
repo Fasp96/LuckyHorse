@@ -12,16 +12,19 @@ class AddNewsController extends Controller
     //
     public function index(){
         $current_user = Auth::user();
+        //Verifies that the user is an admin
         if($current_user && $current_user->role == "admin"){
              $news = News::orderByDesc('created_at')->take(10)->get();
              return view('news.add_news',compact('news'));
         }else{
+            //In case the user isn't an admin, redirect to login page
             return redirect('/login');
         }
     }
 
     public function add(Request $request){
         $current_user = Auth::user();
+        //Verifies that the user is an admin
         if($current_user && $current_user->role  == "admin"){
 
             $news = new News;
@@ -48,6 +51,7 @@ class AddNewsController extends Controller
 
             return redirect('/add_news');
         }else{
+            //In case the user isn't an admin, redirect to login page
             return redirect('/login');
         }       
     }

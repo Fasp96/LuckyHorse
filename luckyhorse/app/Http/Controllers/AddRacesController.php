@@ -16,6 +16,7 @@ class AddRacesController extends Controller
     //
     public function index(){
         $current_user = Auth::user();
+        //Verifies that the user is an admin
         if($current_user  && $current_user->role  == "admin"){
              $races = Race::orderByDesc('created_at')->take(10)->get();
              $horses = Horse::all();
@@ -24,12 +25,14 @@ class AddRacesController extends Controller
                
              return view('races.add_race',compact('races', 'horses', 'tournaments', 'jockeys'));
         }else{
+            //In case the user isn't an admin, redirect to login page
             return redirect('/login');
         }
     }
 
     public function add(Request $request){
         $current_user = Auth::user();
+        //Verifies that the user is an admin
         if($current_user && $current_user->role  == "admin"){
             $race = new Race;
             $race->name = $request->name;
@@ -70,27 +73,32 @@ class AddRacesController extends Controller
 
             return redirect('/add_races');
         }else{
+            //In case the user isn't an admin, redirect to login page
             return redirect('/login');
         }       
     }
 
     public function getJockeysHorses(){
         $current_user = Auth::user();
+        //Verifies that the user is an admin
         if($current_user && $current_user->role  == "admin"){
             $jockeys = Jockey::all();
             $horses = Horse::all();
             return [$horses, $jockeys];
         }else{
+            //In case the user isn't an admin, redirect to login page
             return redirect('/login');
         } 
     }
 
     public function getTournaments(){
         $current_user = Auth::user();
+        //Verifies that the user is an admin
         if($current_user && $current_user->role  == "admin"){
             $tournaments = Tournament::all();
             return $tournaments;
         }else{
+            //In case the user isn't an admin, redirect to login page
             return redirect('/login');
         } 
     }
