@@ -32,7 +32,6 @@ class TournamentsController extends Controller
         //Get all tournaments winners
         foreach($tournaments as $tournament){
             $winner = $this->tournament_winner($tournament->id);
-
             $winners->push($winner);
         }
         $races = Race::orderByDesc('date')->take($tournaments_per_page)->get();
@@ -42,19 +41,16 @@ class TournamentsController extends Controller
                 compact('tournaments','races','winners','page_number','pages_total','page_name'));   
         else   
             return redirect('/');
-        
     }
 
     public function getTournament($id){
         $tournaments = Tournament::find($id);
-        $page_number = 1;
-        $pages_total = 1;
 
         if($tournaments){
             $races = Race::where('races.tournament_id',$tournaments->id)->get();
             $winner = $this->tournament_winner($tournaments->id);
 
-            return view('tournaments.tournaments_info',compact('tournaments','races','winner','page_number','pages_total'));
+            return view('tournaments.tournaments_info',compact('tournaments','races','winner'));
         }else
             return redirect('/tournaments');
     }
@@ -81,7 +77,6 @@ class TournamentsController extends Controller
         }else{
             $winner = Tournament::where('tournaments.id',$tournament_id)->get();
         }
-
         return $winner;
     }
 

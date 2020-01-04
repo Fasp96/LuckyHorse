@@ -11,6 +11,7 @@ class EditJockeysController extends Controller
 {
     public function editJockey($id){
         $current_user = Auth::user();
+        //Verifies that the user is an admin
         if($current_user && $current_user->role  == "admin"){
             $jockey = Jockey::find($id);
             if($jockey){
@@ -19,17 +20,20 @@ class EditJockeysController extends Controller
                 return redirect('/jockeys');
             }
         }else{
+            //In case the user isn't an admin, redirect to login page
             return redirect('/login');
         } 
     }
 
     public function getJockey($id){
         $current_user = Auth::user();
+        //Verifies that the user is an admin
         if($current_user && $current_user->role  == "admin"){
             $jockey = Jockey::find($id);
 
             return $jockey;
         }else{
+            //In case the user isn't an admin, redirect to login page
             return redirect('/login');
         } 
     }

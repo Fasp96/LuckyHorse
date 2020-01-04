@@ -31,10 +31,8 @@ class JockeysController extends Controller
 
     public function getJockey($id){
         $jockeys = Jockey::find($id);
-        $page_number = 1;
-        $pages_total = 1;
         if($jockeys)
-            return view('jockeys.jockeys_info',compact('jockeys','page_number','pages_total'));
+            return view('jockeys.jockeys_info',compact('jockeys'));
         else
             return redirect('/jockeys');
     }

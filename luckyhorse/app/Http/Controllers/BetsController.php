@@ -17,6 +17,7 @@ class BetsController extends Controller
 {
     public function index($page_number = 1){
         $current_user = Auth::user();
+        //Verifies that the user is logged in
         if($current_user){
             $page_name = "bets";
             $bets_per_page = 4; //Sum of race and tournament bets (Always Odd number!)
@@ -81,12 +82,14 @@ class BetsController extends Controller
             }
             return view('bets.bets',compact('race_bets','tournament_bets','winners','page_number','pages_total', 'page_name'));
         }else{
+            //In case the user isn't logged in, redirect to login page
             return redirect('/login');
         }
     }
 
     public function claim_bet($id){
         $current_user = Auth::user();
+        //Verifies that the user is logged in
         if($current_user){
             $bet = Bet::find($id);
             if($bet){
@@ -106,6 +109,7 @@ class BetsController extends Controller
                 return redirect('/bets');
             }
         }else{
+            //In case the user isn't logged in, redirect to login page
             return redirect('/login');
         }
     }

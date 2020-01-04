@@ -113,12 +113,6 @@
     <div class="ad_container">
         <img class="ad_img" src="/img/ad/olay_ad.jpg" alt="ad">
     </div>
-    <div class="ad_container">
-        <img class="ad_img" src="/img/ad/flash_sales_ad.png" alt="ad">
-    </div>
-    <div class="ad_container">
-        <img class="ad_img" src="/img/ad/snicker_ad.png" alt="ad">
-    </div>
 </div>
 <h1 class="last_news_title">Last News</h1>
 <div class="News">

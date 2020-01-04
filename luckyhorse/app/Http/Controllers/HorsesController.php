@@ -30,10 +30,8 @@ class HorsesController extends Controller
 
     public function getHorse($id){
         $horses = Horse::find($id);
-        $page_number = 1;
-        $pages_total = 1;
         if($horses)
-            return view('horses.horses_info',compact('horses','page_number','pages_total'));
+            return view('horses.horses_info',compact('horses'));
         else
             return redirect('/horses');
     }

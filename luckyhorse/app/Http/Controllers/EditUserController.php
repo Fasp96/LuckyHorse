@@ -11,6 +11,7 @@ class EditUserController extends Controller
 {
     public function editUser($id){
         $current_user = Auth::user();
+        //Verifies that the user is an admin
         if($current_user && $current_user->role  == "admin"){
             $user = User::find($id);
             if($user){
@@ -19,21 +20,27 @@ class EditUserController extends Controller
                 return redirect('/users');
             }
         }else{
+            //In case the user isn't an admin, redirect to login page
             return redirect('/login');
         }
     }
 
     public function getUser($id){
         $current_user = Auth::user();
+        //Verifies that the user is an admin
         if($current_user && $current_user->role  == "admin"){
             $user = User::find($id);
 
             return $user;
+        }else{
+            //In case the user isn't an admin, redirect to login page
+            return redirect('/login');
         }
     }
 
     public function updateUser(Request $request, $id){
         $current_user = Auth::user();
+        //Verifies that the user is an admin
         if($current_user && $current_user->role  == "admin"){
             $user = User::find($id);
             if($user){
@@ -53,6 +60,7 @@ class EditUserController extends Controller
                 return redirect('/users');
             }
         }else{
+            //In case the user isn't an admin, redirect to login page
             return redirect('/login');
         } 
     }

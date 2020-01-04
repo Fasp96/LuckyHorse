@@ -11,6 +11,7 @@ class UsersController extends Controller
 {
     public function index($page_number=1){
         $current_user = Auth::user();
+        //Verifies that the user is an admin
         if($current_user && $current_user->role  == "admin"){
             $page_name = "users";
             $users_per_page = 10;
@@ -29,12 +30,14 @@ class UsersController extends Controller
             else   
                 return redirect('/');
         }else{
+            //In case the user isn't an admin, redirect to login page
             return redirect('/login');
         }
     }
 
     public function getUser($id){
         $current_user = Auth::user();
+        //Verifies that the user is logged in
         if($current_user){
             $user = User::find($id);
             if($user && $current_user->id == $user->id){
@@ -43,12 +46,14 @@ class UsersController extends Controller
                 return redirect('/');
             }
         }else{
+            //In case the user isn't logged in, redirect to login page
             return redirect('/login');
         }
     }
 
-    public function addBalace(Request $request, $id){        
+    public function addBalance(Request $request, $id){        
         $current_user = Auth::user();
+        //Verifies that the user is logged in
         if($current_user){
             $user = User::find($id);
             if($user && $current_user->id == $user->id){
@@ -61,6 +66,7 @@ class UsersController extends Controller
                     return redirect('/users/' . $id);
                 }
         }else{
+            //In case the user isn't logged in, redirect to login page
             return redirect('/login');
         }
     }
