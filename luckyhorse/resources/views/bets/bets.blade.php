@@ -1,14 +1,16 @@
 @extends('layouts.head_footer')
 
 @section('content')
-
+<!-- if there aren't tournament bets or race bets -->
 @if($tournament_bets->count() == 0 && $race_bets->count() == 0)
     <h1 align="center">No Bets Currently</h1><br>
 @endif
 
+<!-- if there are tournament bets -->
 @if($tournament_bets->count()>0)
     <h1 align="center">Tournament Bets</h1>
 @endif
+<!-- foreach tournament will show the information in a container -->
 @foreach($tournament_bets as $tournament_bet) 
 <div class="container">
     <div class="row justify-content-center">
@@ -23,9 +25,13 @@
                     Jockey Name: {{$tournament_bet->jockey_name}}<br>
 
                     Value: {{$tournament_bet->value}}€<br>
+                    <!-- checks all the tournaments that have-->
                     @foreach($winners_tournament_bets as $win)
+                        <!-- if the win tournament_id is equal the tournament_id in the bet -->  
                         @if($win->tournament_id == $tournament_bet->tournament_id)
+                            <!-- if time as already been set -->
                             @if($win->time !=null)
+                                <!-- checks if -->
                                 @if($win->jockey_id == $tournament_bet->jockey_id&& $win->horse_id == $tournament_bet->horse_id)
                                     <div class="edit_button">
                                         <a href="/claim={{$tournament_bet->bet_id}}">Claim Money</a>
