@@ -3,6 +3,7 @@
 @section('content')
 
 <h1>Options</h1>
+<!-- DataBase manage options for the admin  -->
 <div class="center">
     <div class="choice">
         <a href="{{ url('/add_horses') }}"><h3>Add Horse</h3></a>
@@ -33,7 +34,5 @@
         <a href="{{ url('/users') }}"><h3>Manage Users</h3></a>
     </div>
 </div>
-
-
 
 @endsection

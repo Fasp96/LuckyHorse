@@ -2,7 +2,7 @@
 
 @section('content')
 
-<!--Last Results Tables-->
+<!--Last Results Tables (3 tables) -->
 <div id="last_results_tables">
     @foreach($table_infos as $table_info)
         <table class="result_table">
