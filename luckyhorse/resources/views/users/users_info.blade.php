@@ -2,8 +2,8 @@
 
 @section('content')
 
-
-
+<script src="https://www.paypal.com/sdk/js?client-id=AVCnONY8yaX6hpJx3QIib8Y3XNgHtKPBMaXfJWuRIvUN6NqlzIXtfL2h5KDeZvGSAvgKwf24BSPOyMqb&currency=EUR"></script>
+<script src="{{asset('js/payment_paypalAPI/payment_api.js')}}" defer></script>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -24,8 +24,33 @@
                     <div>
                         @auth
                             <div>
+                                <input id="id" type="hidden" value="{{$user->id}}">
                                 <div class="details_button">
-                                    <a href="/edit_user={{$user->id}}">Add Funds</a>
+                                    <form id="add_balance_form" method="post" action="">
+                                        <input type="hidden" name="_token" value="{{csrf_token()}}">
+                                        Value
+                                        <input id="add_balance" type="number" class="form-control" name="add_balance"><br>
+                                    </form>
+                                    <div id="paypal-button-container" ></div>
+                                    <script>
+                                        /*paypal.Buttons({
+                                            createOrder: function(data, actions) {
+                                                // This function sets up the details of the transaction, including the amount and line item details.
+                                                return actions.order.create({
+                                                    purchase_units: [{
+                                                    amount: {
+                                                        value: document.getElementById("add_balance").value
+                                                    }
+                                                    }]
+                                                });
+                                                },
+                                                onApprove: function(data, actions) {
+                                                    $("#add_balance_form").submit();
+                                                }
+                                            }).render('#paypal-button-container');
+                                            //This function displays Smart Payment Buttons on your web page.
+                                            }*/
+                                    </script>
                                 </div>
                             </div>
                         @endauth

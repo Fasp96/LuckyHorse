@@ -49,4 +49,31 @@
     </div>
 </div>
 <script src="{{asset('js/edit_tournament/tournament_add_race.js')}}" defer></script>
+<!--
+<script>
+    // Reload Page Function //
+    // get the time parameter //
+        let parameter = new URLSearchParams(window.location.search);
+          let time = parameter.get("time");
+          console.log(time)//1
+          let timeId;
+          if (time == 1) {
+    // reload the page after 0 ms //
+           timeId = setTimeout(() => {
+            window.location.reload();//
+           }, 500);
+   // change the time parameter to 0 //
+           let currentUrl = new URL(window.location.href);
+           let param = new URLSearchParams(currentUrl.search);
+           param.set("time", 0);
+   // replace the time parameter in url to 0; now it is 0 not 1 //
+           window.history.replaceState({}, "", `${currentUrl.pathname}?${param}`);
+        // cancel the setTimeout function after 0 ms //
+           let currentTime = Date.now();
+           if (Date.now() - currentTime > 0) {
+            clearTimeout(timeId);
+           }
+          }
+    </script>
+-->
 @endsection
