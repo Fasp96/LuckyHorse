@@ -27,8 +27,8 @@
                                 <div class="details_button">
                                     <form id="add_balance_form" method="post" action="">
                                         <input type="hidden" name="_token" value="{{csrf_token()}}">
-                                        Value
-                                        <input id="add_balance" type="number" class="form-control" name="add_balance"><br>
+                                        Add funds
+                                        <input id="add_balance" type="number" class="form-control" value="5" name="add_balance"><br>
                                     </form>
                                     <div id="paypal-button-container" ></div>
                                 </div>
