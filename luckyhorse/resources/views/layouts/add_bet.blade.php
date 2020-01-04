@@ -18,17 +18,12 @@
 
                         @yield('bet_type')
 
-                        Horse
-                        <select id="horse" name="horse" class="form-control">
-                            @foreach($horses as $horse)
-                                <option value="{{$horse->horse_id}}">{{$horse->horse_name}}</option>
-                            @endforeach
-                        </select>
-                        <br>
-                        Jockey
-                        <select id="jockey" name="jockey" class="form-control">
-                            @foreach($jockeys as $jockey)
-                                <option value="{{$jockey->jockey_id}}">{{$jockey->jockey_name}}</option>
+                        Winning Pair
+                        <select id="pair" name="pair" class="form-control">
+                            @foreach($results as $result)
+                                <option value="{{$result->horse_id}}_{{$result->jockey_id}}">
+                                    {{$result->horse_name}} - {{$result->jockey_name}}
+                                </option>
                             @endforeach
                         </select>
                         <br>

@@ -38,7 +38,8 @@ class BetsController extends Controller
                 'races.date as date',
                 'horses.name as horse_name',
                 'jockeys.name as jockey_name',
-                'bets.value as value');
+                'bets.value as value')
+                ->orderByDesc('bets.created_at');
 
             $tournament_bets_q= Bet::where('bets.user_id',$current_user->id)
             ->join('tournaments','tournaments.id','=','bets.tournament_id')
