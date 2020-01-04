@@ -15,23 +15,10 @@ class EditUserController extends Controller
         if($current_user && $current_user->role  == "admin"){
             $user = User::find($id);
             if($user){
-                return view('users.edit_user',compact('id'));
+                return view('users.edit_user',compact('user'));
             }else{
                 return redirect('/users');
             }
-        }else{
-            //In case the user isn't an admin, redirect to login page
-            return redirect('/login');
-        }
-    }
-
-    public function getUser($id){
-        $current_user = Auth::user();
-        //Verifies that the user is an admin
-        if($current_user && $current_user->role  == "admin"){
-            $user = User::find($id);
-
-            return $user;
         }else{
             //In case the user isn't an admin, redirect to login page
             return redirect('/login');
