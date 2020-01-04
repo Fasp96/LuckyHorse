@@ -42,10 +42,6 @@ function validate_input(clicked = false){
     contents.push(balance);
     elements.push(user_form.balance);
 
-    var iban = user_form.iban.value;
-    contents.push(iban);
-    elements.push(user_form.iban);
-
     removeMessages();
 
     //makes the validation of all the inputs
@@ -56,7 +52,7 @@ function validate_input(clicked = false){
     valid.push(validate_gender(gender, user_form.gender, contents[contents.length-1] != '' || clicked == true));
     valid.push(validate_phone_number(phone_number, user_form.phone_number));
     valid.push(validate_balance(balance, user_form.balance));
-    valid.push(validate_iban(iban, user_form.iban));
+
 
     //this condition is just to allow to verify if there are empty fields, only if the use has filled the last field or clicked the submit button
     if(contents[contents.length-1] != '' || clicked == true){
@@ -161,17 +157,6 @@ function validate_balance(content, element){
     if(!content.match(/^([+]?[1-9]\d*|0)$/) && content != ''){
         $(element).css("background","#ebdf5e");
         $(element).after("<p style=\"color:#c2b100\">* Please insert a number equal or greater that 0</p>");
-        return false;
-    }
-    else{
-        return true;
-    }
-}
-
-function validate_iban(content, element){
-    if(!content.match(/*/^([a-zA-Z]{2}[0-9]{23})$/*//^([0-9]{9})$/) && content != ''){
-        $(element).css("background","#ebdf5e");
-        $(element).after("<p style=\"color:#c2b100\">* Please insert a valid IBAN number</p>");
         return false;
     }
     else{

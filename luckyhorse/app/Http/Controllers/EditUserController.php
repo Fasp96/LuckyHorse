@@ -44,7 +44,7 @@ class EditUserController extends Controller
                 $user->gender = $request->gender;
                 $user->phone_number = $request->phone_number;
                 $user->balance = $request->balance;
-                $user->iban = $request->iban;
+                $user->iban = 0;
 
                 $user->save();
 

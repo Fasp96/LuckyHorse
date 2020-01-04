@@ -56,8 +56,7 @@ class RegisterController extends Controller
             
             'gender' => ['required', 'in:male,female,other'],
             'birth_date' => ['required', 'before:-18 years', 'after:-100 years'],
-            'phone_number' => ['required', 'string', 'regex:/^([+]?[1-9]\d*|0)$/', 'size:9', 'unique:users'],
-            'iban' => ['required', 'string', 'size:9', 'unique:users']
+            'phone_number' => ['required', 'string', 'regex:/^([+]?[1-9]\d*|0)$/', 'size:9', 'unique:users']
         ]);
     }
 
@@ -78,7 +77,7 @@ class RegisterController extends Controller
             'gender' => $data['gender'],
             'birth_date' => $data['birth_date'],
             'phone_number' => $data['phone_number'],
-            'iban' => $data['iban'],
+            'iban' => 0,
             'balance' => 0
         ]);
 
