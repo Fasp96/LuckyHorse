@@ -2,14 +2,15 @@
 
 @section('content')
 
+<!-- JS file to validate all fields -->
 <script src="{{asset('js/add_jockey/jockey_validator.js')}}" defer></script>
 
+<!-- List the last 10 jockeys added -->
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">Jockeys</div>
-
                 <div class="card-body">
                     <ul>
                         @foreach($jockeys as $jockey) 
@@ -21,17 +22,16 @@
         </div>
     </div>
 </div>
-
 <br><br>
+<!-- Container of the form to add a jockey -->
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">Add New Jockey</div>
                 <div class="card-body">
-                    
+                    <!-- Form to add a jockey -->
                     <form id ="jockey_form" method ="post" action="" enctype="multipart/form-data">
-                        
                         <input type="hidden" id ="token" name="_token" value="{{csrf_token()}}">
                         Name
                         <input id="name" type="text" class="form-control" name="name" onchange="validate_input()"><br>
@@ -50,10 +50,10 @@
                         Jockey Photo <br><br>
                         <input id="jockey_photo" type="file" name="jockey_photo" accept="image/*" onchange="validate_input()"><br>
                         <br>
+                        <!-- Placeholder for the button after everything is checked -->
                         <div id="form_end"></div>
                     </form>
                     <button id="add_jockey_btn" class="btn btn-primary">Add Jockey</button>
-
                 </div>
             </div>
         </div>

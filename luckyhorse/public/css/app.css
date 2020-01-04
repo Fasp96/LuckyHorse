@@ -11356,6 +11356,17 @@ td {
   width: 100%;
 }
 
+/*Ads*/
+
+.ad_container {
+  width: 100%;
+  padding: 10px;
+}
+
+.ad_img {
+  width: 100%;
+}
+
 h1,
 h4 {
   font-weight: bold;

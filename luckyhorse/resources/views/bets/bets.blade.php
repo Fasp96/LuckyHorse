@@ -1,12 +1,12 @@
 @extends('layouts.head_footer')
 
 @section('content')
-<!-- if there aren't tournament bets or race bets -->
+<!--checks if there aren't tournament bets or race bets -->
 @if($tournament_bets->count() == 0 && $race_bets->count() == 0)
     <h1 align="center">No Bets Currently</h1><br>
 @endif
 
-<!-- if there are tournament bets -->
+<!--checks if there are tournament bets -->
 @if($tournament_bets->count()>0)
     <h1 align="center">Tournament Bets</h1>
 @endif
@@ -19,19 +19,20 @@
                 <div class="card-header"> <h2>Bet ID: {{$tournament_bet->bet_id}}</h2></div>
                 <div class="card-body">
 
+                    <!-- Tournament Information -->
                     Tournament Name: {{$tournament_bet->tournament_name}}<br>
                     Date: {{date('d-m-Y', strtotime($tournament_bet->date))}}<br>
                     Horse Name: {{$tournament_bet->horse_name}}<br>
                     Jockey Name: {{$tournament_bet->jockey_name}}<br>
-
                     Value: {{$tournament_bet->value}}€<br>
-                    <!-- checks all the tournaments that have-->
+
+                    <!-- checks all the tournaments winners from this page -->
                     @foreach($winners_tournament_bets as $win)
-                        <!-- if the win tournament_id is equal the tournament_id in the bet -->  
+                        <!-- checks to see if this tournament has a winner -->  
                         @if($win->tournament_id == $tournament_bet->tournament_id)
-                            <!-- if time as already been set -->
+                            <!-- checks if the supposed winner has finished the race -->
                             @if($win->time !=null)
-                                <!-- checks if -->
+                                <!-- checks if the user beted on the winning horse/jockey-->
                                 @if($win->jockey_id == $tournament_bet->jockey_id&& $win->horse_id == $tournament_bet->horse_id)
                                     <div class="edit_button">
                                         <a href="/claim={{$tournament_bet->bet_id}}">Claim Money</a>
@@ -48,9 +49,11 @@
 <br>
 @endforeach
 
+<!--checks if there are race bets -->
 @if($race_bets->count()>0)
     <h1 align="center">Race Bets</h1>
 @endif
+<!-- foreach race will show the information in a container -->
 @foreach($race_bets as $race_bet) 
 <div class="container">
     <div class="row justify-content-center">
@@ -59,16 +62,20 @@
                 <div class="card-header"> <h2>Bet ID: {{$race_bet->bet_id}}</h2></div>
                 <div class="card-body">
 
+                    <!-- Race Information -->
                     Race Name: {{$race_bet->race_name}}<br>
                     Date: {{date('d-m-Y', strtotime($race_bet->date))}}<br>
                     Horse Name: {{$race_bet->horse_name}}<br>
                     Jockey Name: {{$race_bet->jockey_name}}<br>
-                    
                     Value: {{$race_bet->value}}€<br> 
                     
+                    <!-- checks all the races winners from this page -->
                     @foreach($winners_race_bets as $win)
+                        <!-- checks to see if this race has a winner -->  
                         @if($win->race_id == $race_bet->race_id)
+                            <!-- checks if the supposed winner has finished the race -->
                             @if($win->time !=null)
+                                <!-- checks if the user beted on the winning horse/jockey-->
                                 @if($win->jockey_id == $race_bet->jockey_id && $win->horse_id == $race_bet->horse_id)
                                     <div class="edit_button">
                                         <a href="/claim={{$race_bet->bet_id}}">Claim Money</a>
@@ -77,7 +84,6 @@
                             @endif
                         @endif
                     @endforeach
-                       
                 </div>
             </div>
         </div>

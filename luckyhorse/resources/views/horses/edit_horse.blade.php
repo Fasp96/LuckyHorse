@@ -2,8 +2,10 @@
 
 @section('content')
 
+<!-- JS file to validate all fields -->
 <script src="{{asset('js/edit_horse/horse_validator.js')}}" defer></script>
 
+<!-- Container of the form to edit a horse -->
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -12,6 +14,7 @@
                 <div class="card-body">
                     <input id="id_horse" type="hidden" value="{{$horse->id}}">
 
+                    <!-- Form filled with the corresponding values to edit a horse -->
                     <form id="horse_form" method ="post" action="" enctype="multipart/form-data" >
                         <input type="hidden" id='token' name="_token" value="{{csrf_token()}} ">
                         Name
@@ -36,6 +39,7 @@
                         Horse Photo <br><br>
                         <input id="horse_photo" type="file" name="horse_photo" accept="image/*" onchange="validate_input()"><br>
                         <br>
+                        <!-- Placeholder for the button after everything is checked -->
                         <div id="form_end"></div>
                     </form>
                     <button id="update_horse_btn" class="btn btn-primary">Update Horse</button>
