@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Horse extends Model
 {
-    //
     public function results(){
         return $this->hasMany('App\Result');
     }
