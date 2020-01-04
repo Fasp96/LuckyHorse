@@ -174,5 +174,5 @@ function add_race_field(initial_date, initial_time){
     });
 }
 
-//página carregou
+//Page loaded
 $(document).ready(initPage);

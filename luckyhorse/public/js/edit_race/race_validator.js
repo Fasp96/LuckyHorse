@@ -212,5 +212,5 @@ function validate_fields_not_equals(num_fields){
 }
 
 
-//página carregou
+//Page loaded
 $(document).ready(initPage);
