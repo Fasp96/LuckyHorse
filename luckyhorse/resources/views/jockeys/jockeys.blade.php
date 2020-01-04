@@ -2,7 +2,7 @@
 
 @section('content')
 
-<h1 align="center">Jockeys</h1>
+<h1>Jockeys</h1>
 @foreach($jockeys as $jockey) 
 <div class="container">
     <div class="row justify-content-center">

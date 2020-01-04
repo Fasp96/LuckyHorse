@@ -11,6 +11,7 @@ use App\Tournament;
 use App\Jockey;
 use App\Result;
 use Auth;
+use Arr;
 
 class BetsController extends Controller
 {
@@ -88,18 +89,61 @@ class BetsController extends Controller
         if($current_user){
             $bet = Bet::find($id);
             if($bet){
-                $balance = ($current_user->balance) + ($bet->value);
+                $win_prob = $this->get_wr($bet);
+                        
+                $new_balance = ($bet->value) * ((1-$win_prob)+1);
+
+                //update balance
+                $balance = $current_user->balance + ($new_balance);
                 $current_user->balance = $balance;
                 $current_user->save();
 
                 $bet->delete();
 
-                return view('bets.bet_claim',compact('bet'));
+                return view('bets.bet_claim',compact('bet','new_balance'));
             }else{
                 return redirect('/bets');
             }
         }else{
             return redirect('/login');
+        }
+    }
+
+    public function get_wr($bet){
+        //Get every pair win rate and the sum of all win rates
+        $scores = Result::where('results.race_id', $bet->race_id)
+        ->join('horses','results.horse_id','=','horses.id')
+        ->join('jockeys','results.jockey_id','=','jockeys.id')
+        ->select('horses.id as horse_id',
+            'horses.num_victories as horse_wins','horses.num_races as horse_num_races',
+            'jockeys.num_victories as jockey_wins','jockeys.num_races as jockey_num_races')
+        ->orderBy('time')->get();
+
+        $win_total = 0;
+        foreach($scores as $score){
+            if($score->horse_num_races == 0)
+                $wr_horse = 0;
+            else
+                $wr_horse = $score->horse_wins/$score->horse_num_races;
+                
+            if($score->jockey_num_races == 0)
+                $wr_jockey;    
+            else
+                $wr_jockey = $score->jockey_wins/$score->jockey_num_races;
+
+            $wr_both = (($wr_jockey)+($wr_horse))/2;
+            $score_position = $scores->search(function ($value, $key) use($score) {
+                return $value->horse_id == $score->horse_id ;
+            });
+            Arr::add($scores[$score_position], 'wr', $wr_both);
+            $win_total += $wr_both;
+        }
+
+        //probabilidade de ganhar
+        foreach($scores as $score){
+            if($score->horse_id==$bet->horse_id){
+                return $win_prob = round(($score->wr/$win_total),2);
+            }
         }
     }
 }

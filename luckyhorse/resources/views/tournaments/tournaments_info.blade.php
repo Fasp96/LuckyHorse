@@ -2,41 +2,6 @@
 
 @section('content')
 
-
-@section('content')
-
-<style>
-    img{
-        float:right;
-    }
-    h2{
-        color:#333;
-        font-weight:bold;
-    }
-    h5{
-        margin-left: 2em;
-    }
-
-    .edit_button > a {
-        color: white;
-        float: left;
-        padding: 4px 8px;
-        text-decoration: none;
-        transition: background-color .3s;
-        border: 1px solid #333;
-        border-radius: 11px;
-        margin: 0 1px;
-        background-color: #333;
-    }
-    .edit_button a:hover {
-        background-color: #fa8b1b;
-    }
-    .bet_button{
-        float: right;
-    }
-</style>
-
-
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -44,7 +9,7 @@
                 <!-- <div class="card-header">Tournaments</div> -->
                 <div class="card-header"><h2>{{$tournaments->name}}</h2></div>
                 <div class="card-body">
-                    <img src="{{ $tournaments->file_path}}" alt="tournament_img" style="width:50%;opacity:0.85;">
+                    <img class="list_image" src="{{ $tournaments->file_path}}" alt="tournament_img" style="width:50%;opacity:0.85;">
                     
                     Date: {{date('d-m-Y', strtotime($tournaments->date))}}<br>
                     Time: {{date('H:i:s', strtotime($tournaments->date))}}<br>
