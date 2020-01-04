@@ -23,6 +23,7 @@ class AddBetsController extends Controller
                     ->select('horses.id as horse_id',
                         'horses.name as horse_name')
                     ->distinct('horse_id')->get();
+
                 $jockeys = Race::where('races.tournament_id',$tournament->id)
                     ->join('results', 'results.race_id','=','races.id')
                     ->join('jockeys','jockeys.id','=','results.jockey_id')
@@ -49,6 +50,7 @@ class AddBetsController extends Controller
                     ->select('results.race_id as race_id',
                         'horses.id as horse_id',
                         'horses.name as horse_name')->get();
+                        
                 $jockeys = Result::where('results.race_id',$race->id)
                 ->join('jockeys','jockeys.id','=','results.jockey_id')
                 ->select('results.race_id as race_id',
