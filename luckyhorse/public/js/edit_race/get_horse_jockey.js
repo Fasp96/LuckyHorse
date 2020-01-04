@@ -2,6 +2,7 @@ function initPage(){
     get_horse_jockey();
 }
 
+//fetches after the fields are already loaded the tournament_id and the teams
 function get_horse_jockey(){
     var id_race = document.getElementById("id_race");
     var id = id_race.value;
@@ -17,5 +18,5 @@ function get_horse_jockey(){
     });
 }
 
-//página carregou
+//Page loaded
 $(document).ready(initPage);

@@ -2,6 +2,7 @@ function initPage(){
     get_horse();
 }
 
+//fetches horse information and adds to the edit horse form
 function get_horse(){
     var id_horse = document.getElementById("id_horse");
     var id = id_horse.value;
@@ -16,5 +17,5 @@ function get_horse(){
     });
 }
 
-//página carregou
+//Page loaded
 $(document).ready(initPage);

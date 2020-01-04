@@ -70,5 +70,5 @@ function add_tournaments(date, race_time){
     });
 }
 
-//página carregou
+//Page loaded
 $(document).ready(initPage);
