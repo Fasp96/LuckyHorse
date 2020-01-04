@@ -40,20 +40,30 @@ class AddJockeysController extends Controller
             
             //Photo file path treatment so it can be saved without problems
             $photo = $request->file('jockey_photo');
+            //saves photo will name-orginial photo name
             $fileName = $request->name . '-' .$photo->getClientOriginalName();
+            //path to folder to save 
             $path = 'img/jockey_photo/';
+            //saves photo in that folder
             $file = $photo->move($path, $fileName);
 
+            //apends all filepath to photo img/jokey-photo...
             $file_path = $path . $fileName;
+            //adds the file path to the parameter
             $jockey->file_path = '/' . $file_path;
+            //saves new jockey
             $jockey->save();
 
             //fetches the id of the new jockey, adds to the photo name and updates the file_path atribute
             $id = $jockey->id;
+            //creates a new file path but appends the id in the photo name
             $new_file_path = $path . $id . '-' . $fileName;
             
+            // renames the photo
             rename($file_path, $new_file_path);
+            //updates the file_path
             $jockey->file_path = '/' . $new_file_path;
+            //saves it
             $jockey->save();
 
             return redirect('/add_jockeys');
