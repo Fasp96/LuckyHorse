@@ -50,7 +50,6 @@ class AddHorsesController extends Controller
             $file_path =  $path . $fileName;
             //adds the file path to the parameter
             $horse->file_path = '/' . $file_path;
-            //saves new horse
             $horse->save();
 
             //fetches the id of the new horse, adds to the photo name and updates the file_path atribute
@@ -62,7 +61,6 @@ class AddHorsesController extends Controller
             rename($file_path, $new_file_path);
             //updates the file_path
             $horse->file_path = '/' . $new_file_path;
-            //saves it
             $horse->save();
 
             return redirect('/add_horses');

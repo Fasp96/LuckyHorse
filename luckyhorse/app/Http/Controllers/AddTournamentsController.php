@@ -49,7 +49,6 @@ class AddTournamentsController extends Controller
             $file_path = $path . $fileName;
             //adds the file path to the parameter
             $tournament->file_path = '/' . $file_path;
-            //saves new tournament
             $tournament->save();
 
             //fetches the id of the new tournament, adds to the photo name and updates the file_path atribute
@@ -61,7 +60,6 @@ class AddTournamentsController extends Controller
             rename($file_path, $new_file_path);
             //updates the file_path
             $tournament->file_path = '/' . $new_file_path;
-            //saves it
             $tournament->save();
 
             //if isset races

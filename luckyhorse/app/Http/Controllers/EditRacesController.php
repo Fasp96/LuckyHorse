@@ -13,14 +13,17 @@ use Auth;
 
 class EditRacesController extends Controller
 {
+    //Returns the view to edit a race
     public function editRace($id){
         $current_user = Auth::user();
         //Verifies that the user is an admin
         if($current_user && $current_user->role  == "admin"){
             $race = Race::find($id);
+            //Verifies that the race exists
             if($race){
                 return view('races.edit_race',compact('id'));
             }else{
+                //In case the race doesn't exist, redirect to races list page
                 return redirect('/races');
             }
         }else{
@@ -29,6 +32,7 @@ class EditRacesController extends Controller
         }
     }
 
+    //Get race and corresponding results
     public function getRace($id){
         $current_user = Auth::user();
         //Verifies that the user is an admin
@@ -43,6 +47,7 @@ class EditRacesController extends Controller
         } 
     }
     
+    //Get all tournaments
     public function getTournaments(){
         $current_user = Auth::user();
         //Verifies that the user is an admin
@@ -56,18 +61,22 @@ class EditRacesController extends Controller
         }   
     }
 
+    //Update race with the new values
     public function updateRace(Request $request, $id){
         $current_user = Auth::user();
         //Verifies that the user is an admin
         if($current_user && $current_user->role  == "admin"){
             $race = Race::find($id);
+            //Verifies that the race exists
             if($race){
+                //Update race
                 $race->name = $request->name;
                 $race->date = $request->date . ' ' . $request->race_time;
                 $race->description = $request->description;
                 $race->location = $request->location;
                 $race->tournament_id = $request->add_tournament;            
 
+                //Update race photo file path
                 if($request->file('race_photo') != null){
                     $photo = $request->file('race_photo');
                     $fileName = $id . '-' . $request->name . '-' .$photo->getClientOriginalName();
@@ -78,8 +87,8 @@ class EditRacesController extends Controller
                 }
                 $race->save();
 
+                //Delete previous results and create new ones
                 $teams = Result::where('race_id', '=', $id)->delete();
-
                 //for the teams fields it fetches the number of fields and creates a new Result
                 for($i = 1; $i <= $request->num_fields; $i++){
                     $result = new Result;
@@ -95,6 +104,7 @@ class EditRacesController extends Controller
 
                 return redirect('/races/'. $id);
             }else{
+                //In case the race doesn't exist, redirect to races list page
                 return redirect('/races');
             }
         }else{
