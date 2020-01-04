@@ -10,11 +10,12 @@ use Auth;
 
 class AddJockeysController extends Controller
 {
-    //
+    //Returns the view to add a jockey
     public function index(){
         $current_user = Auth::user();
         //Verifies that the user is an admin
         if($current_user && $current_user->role  == "admin"){
+            //Search for the last 10 jockeys added
              $jockeys = Jockey::orderByDesc('created_at')->take(10)->get();
                
              return view('jockeys.add_jockey',compact('jockeys'));
@@ -24,11 +25,12 @@ class AddJockeysController extends Controller
         }
     }
 
+    //Creates a jockey and redirect to the jockeys page
     public function add(Request $request){
         $current_user = Auth::user();
         //Verifies that the user is an admin
         if($current_user && $current_user->role  == "admin"){
-
+            //Create new jockey with the parameters from the request
             $jockey = new Jockey;
             $jockey->name = $request->name;
             $jockey->birth_date = $request->birth_date;
@@ -36,6 +38,7 @@ class AddJockeysController extends Controller
             $jockey->num_races = $request->num_races;
             $jockey->num_victories = $request->num_victories;
             
+            //Photo file path treatment so it can be saved without problems
             $photo = $request->file('jockey_photo');
             $fileName = $request->name . '-' .$photo->getClientOriginalName();
             $path = 'img/jockey_photo/';

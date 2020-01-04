@@ -9,7 +9,7 @@ use Auth;
 
 class AddHorsesController extends Controller
 {
-    //Returns the view for the user to bet on a tournament
+    //Returns the view to add a horse
     public function index(){
         $current_user = Auth::user();
         //Verifies that the user is an admin

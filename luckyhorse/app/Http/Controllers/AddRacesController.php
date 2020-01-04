@@ -13,11 +13,12 @@ use Auth;
 
 class AddRacesController extends Controller
 {
-    //
+    //Returns the view to add a race
     public function index(){
         $current_user = Auth::user();
         //Verifies that the user is an admin
         if($current_user  && $current_user->role  == "admin"){
+            //Search for the last 10 races added
              $races = Race::orderByDesc('created_at')->take(10)->get();
              $horses = Horse::all();
              $jockeys = Jockey::all();
@@ -30,16 +31,19 @@ class AddRacesController extends Controller
         }
     }
 
+    //Creates a race and redirect to the races page
     public function add(Request $request){
         $current_user = Auth::user();
         //Verifies that the user is an admin
         if($current_user && $current_user->role  == "admin"){
+            //Create new race with the parameters from the request
             $race = new Race;
             $race->name = $request->name;
             $race->date = $request->date . ' ' . $request->race_time;
             $race->description = $request->description;
             $race->location = $request->location;
             
+            //Photo file path treatment so it can be saved without problems
             $photo = $request->file('race_photo');
             $fileName = $request->name . '-' .$photo->getClientOriginalName();
             $path = 'img/race_photo/';
@@ -78,12 +82,14 @@ class AddRacesController extends Controller
         }       
     }
 
+    //Get all jockeys and horses
     public function getJockeysHorses(){
         $current_user = Auth::user();
         //Verifies that the user is an admin
         if($current_user && $current_user->role  == "admin"){
             $jockeys = Jockey::all();
             $horses = Horse::all();
+
             return [$horses, $jockeys];
         }else{
             //In case the user isn't an admin, redirect to login page
@@ -91,11 +97,13 @@ class AddRacesController extends Controller
         } 
     }
 
+    //Get all tournaments
     public function getTournaments(){
         $current_user = Auth::user();
         //Verifies that the user is an admin
         if($current_user && $current_user->role  == "admin"){
             $tournaments = Tournament::all();
+            
             return $tournaments;
         }else{
             //In case the user isn't an admin, redirect to login page
