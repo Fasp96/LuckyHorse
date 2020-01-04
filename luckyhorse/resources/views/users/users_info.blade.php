@@ -2,8 +2,11 @@
 
 @section('content')
 
+<!-- JS files to use api to add funds -->
 <script src="https://www.paypal.com/sdk/js?client-id=AVCnONY8yaX6hpJx3QIib8Y3XNgHtKPBMaXfJWuRIvUN6NqlzIXtfL2h5KDeZvGSAvgKwf24BSPOyMqb&currency=EUR"></script>
 <script src="{{asset('js/payment_paypalAPI/payment_api.js')}}" defer></script>
+
+<!-- Container of all the horse information -->
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -11,6 +14,7 @@
             <div class="card-header"> <h2>ID: {{$user->id}}</h2></div>
                 <div class="card-body">
 
+                    <!-- Horse Information -->
                     Name: {{$user->name}}<br>
                     Role: {{$user->role}}<br>
                     Email: {{$user->email}}<br>
@@ -21,6 +25,7 @@
                     Balance: {{number_format($user->balance, 2, '.', ',')}}€<br><br>
 
                     <div>
+                        <!-- If the user logged in he can add funds using paypal -->
                         @auth
                             <div>
                                 <input id="id" type="hidden" value="{{$user->id}}">
@@ -35,6 +40,7 @@
                             </div>
                         @endauth
                         @auth
+                            <!-- If the user logged in is an admin he can edit the information -->
                             @if(Auth::user()->role=='admin')
                                 <div>
                                     <div class="details_button bet_button">

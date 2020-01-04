@@ -39,7 +39,7 @@
                         Horse Photo <br><br>
                         <input id="horse_photo" type="file" name="horse_photo" accept="image/*" onchange="validate_input()"><br>
                         <br>
-                        <!-- Placeholder for the button after everything is checked -->
+                        <!-- Placeholder for the button after everything is validated -->
                         <div id="form_end"></div>
                     </form>
                     <button id="update_horse_btn" class="btn btn-primary">Update Horse</button>
@@ -49,6 +49,5 @@
         </div>
     </div>
 </div>
-
 
 @endsection

@@ -51,7 +51,6 @@ class AddJockeysController extends Controller
             $file_path = $path . $fileName;
             //adds the file path to the parameter
             $jockey->file_path = '/' . $file_path;
-            //saves new jockey
             $jockey->save();
 
             //fetches the id of the new jockey, adds to the photo name and updates the file_path atribute
@@ -63,7 +62,6 @@ class AddJockeysController extends Controller
             rename($file_path, $new_file_path);
             //updates the file_path
             $jockey->file_path = '/' . $new_file_path;
-            //saves it
             $jockey->save();
 
             return redirect('/add_jockeys');

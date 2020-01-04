@@ -61,9 +61,9 @@
                 {{date('d-m-Y', strtotime($race->date))}}<br>
             </div>
             <div class="info">
-                <a href="/races/{{$race->id}}">{{$race->name}}
+                <a href="/races/{{$race->id}}">{{$race->name}}</a>
                 - {{date('H:i:s', strtotime($race->date))}}
-                - {{$race->location}}</a><br>
+                - {{$race->location}}<br>
             </div>
         @endforeach
         </div>

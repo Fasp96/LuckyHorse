@@ -18,7 +18,7 @@ class AddRacesController extends Controller
         $current_user = Auth::user();
         //Verifies that the user is an admin
         if($current_user  && $current_user->role  == "admin"){
-            //Search for the last 10 races added
+            //Search for the last 10 races added plus horses/jockeys/tournaments
              $races = Race::orderByDesc('created_at')->take(10)->get();
              $horses = Horse::all();
              $jockeys = Jockey::all();
@@ -57,7 +57,6 @@ class AddRacesController extends Controller
             $file_path = $path . $fileName;
             //adds the file path to the parameter
             $race->file_path = '/' . $file_path;
-            //saves new race
             $race->save();
 
             //fetches the id of the new race, adds to the photo name and updates the file_path atribute
@@ -69,13 +68,12 @@ class AddRacesController extends Controller
             rename($file_path, $new_file_path);
             //updates the file_path
             $race->file_path = '/' . $new_file_path;
-            //saves it
             $race->save();
 
             //for the teams fields it fetches the number of fields and creates a new Result
             for($i = 1; $i <= $request->num_fields; $i++){
                 $result = new Result;
-                //fecthes the race id
+                //fetches the race id
                 $result->race_id = $race->id;
                 //fetches the id of each horse and jockey that form a team
                 $horse = "horse_" . $i;

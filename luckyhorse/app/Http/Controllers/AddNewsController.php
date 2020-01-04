@@ -48,7 +48,6 @@ class AddNewsController extends Controller
             $file_path = $path . $fileName;
             //adds the file path to the parameter
             $news->file_path = '/' . $file_path;
-            //saves new news
             $news->save();
 
             //fetches the id of the new news, adds to the photo name and updates the file_path atribute
@@ -60,7 +59,6 @@ class AddNewsController extends Controller
             rename($file_path, $new_file_path);
             //updates the file_path
             $news->file_path = '/' . $new_file_path;
-            //saves it
             $news->save();
 
             return redirect('/add_news');

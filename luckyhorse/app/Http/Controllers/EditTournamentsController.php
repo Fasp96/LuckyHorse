@@ -9,15 +9,17 @@ use Auth;
 
 class EditTournamentsController extends Controller
 {
-    //
+    //Returns the view to edit a tournament
     public function editTournament($id){
         $current_user = Auth::user();
         //Verifies that the user is an admin
         if($current_user && $current_user->role  == "admin"){
             $tournament = Tournament::find($id);
+            //Verifies that the tournament exists
             if($tournament){
                 return view('tournaments.edit_tournament',compact('id'));
             }else{
+                //In case the tournament doesn't exist, redirect to tournaments list page
                 return redirect('/tournaments');
             }
         }else{
@@ -26,12 +28,14 @@ class EditTournamentsController extends Controller
         }
     }
 
+    //Get race and corresponding races
     public function getTournament($id){
         $current_user = Auth::user();
         //Verifies that the user is an admin
         if($current_user && $current_user->role  == "admin"){
             $tournament = Tournament::find($id);
             $races = Race::where('tournament_id', '=', $id)->get();
+
             return [$tournament, $races];
         }else{
             //In case the user isn't an admin, redirect to login page
@@ -39,11 +43,12 @@ class EditTournamentsController extends Controller
         }
     }
 
+    //Get all races except the ones that have a tournament that isn't this one
     public function getRaces($id){
         $current_user = Auth::user();
         //Verifies that the user is an admin
         if($current_user && $current_user->role  == "admin"){
-            //gets the races that don't have a tournament associated with
+            //gets the races that don't have a tournament associated with except this one
             $races = Race::whereNull('tournament_id')
                         ->orWhere('tournament_id', '=', $id)
                         ->get();
@@ -54,18 +59,21 @@ class EditTournamentsController extends Controller
         }   
     }
 
+    //Update tournament with the new values
     public function updateTournament(Request $request, $id){
         $current_user = Auth::user();
         //Verifies that the user is an admin
         if($current_user && $current_user->role  == "admin"){
-
             $tournament = Tournament::find($id);
+            //Verifies that the tournament exists
             if($tournament){
+                //Update tournament
                 $tournament->name = $request->name;
                 $tournament->date = $request->initial_date . ' ' . $request->initial_time;
                 $tournament->description = $request->description;
                 $tournament->location = $request->location;
                 
+                //Update tournament photo file path
                 if($request->file('tournament_photo') != null){
                     $photo = $request->file('tournament_photo');
                     $fileName = $id . '-' . $request->name . '-' .$photo->getClientOriginalName();
@@ -76,13 +84,12 @@ class EditTournamentsController extends Controller
                 }
                 $tournament->save();
 
+                //Remove all races from the tournament
                 $races = Race::where('tournament_id', '=', $id);
                 $races->update(['tournament_id' => NULL]);
-                
-                //if isset races
-                if(isset($request->races)){
 
-                    //for each race it will update the value of the atribute tournament_id with the id of the tournament
+                if(isset($request->races)){
+                    //for each race it will associated it with the tournament
                     for($i = 0; $i < sizeof($request->races); $i++){
                         $race = Race::where('id', '=', $request->races[$i]);
                         $race->update(['tournament_id' => $id]);
@@ -91,6 +98,7 @@ class EditTournamentsController extends Controller
 
                 return redirect('/tournaments/'. $id);
             }else{
+                //In case the tournament doesn't exist, redirect to tournaments list page
                 return redirect('/tournaments');
             }
         }else{
