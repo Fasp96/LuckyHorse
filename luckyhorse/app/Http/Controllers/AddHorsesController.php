@@ -39,21 +39,30 @@ class AddHorsesController extends Controller
 
             //Photo file path treatment so it can be saved without problems
             $photo = $request->file('horse_photo');
+            //saves photo will name-orginial photo name
             $fileName = $request->name . '-' .$photo->getClientOriginalName();
+            //path to folder to save 
             $path = 'img/horse_photo/';
+            //saves photo in that folder
             $file = $photo->move($path, $fileName);
 
-            $file_path = $path . $fileName;
+            //apends all filepath to photo img/horse-photo...
+            $file_path =  $path . $fileName;
+            //adds the file path to the parameter
             $horse->file_path = '/' . $file_path;
-            
+            //saves new horse
             $horse->save();
 
             //fetches the id of the new horse, adds to the photo name and updates the file_path atribute
             $id = $horse->id;
+            //creates a new file path but appends the id in the photo name
             $new_file_path = $path . $id . '-' . $fileName;
             
+            // renames the photo
             rename($file_path, $new_file_path);
+            //updates the file_path
             $horse->file_path = '/' . $new_file_path;
+            //saves it
             $horse->save();
 
             return redirect('/add_horses');
