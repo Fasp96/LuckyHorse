@@ -30,9 +30,9 @@
                         Value
                         <input id="bet_value" type="number" class="form-control" name="bet_value" onchange="validate_input()"><br>
                         <br>
+                        <div id="form_end"></div>
                     </form>
                     <button id="add_bet_btn" class="btn btn-primary" disabled>Bet</button>
-
                 </div>
             </div>
         </div>
