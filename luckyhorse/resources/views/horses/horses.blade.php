@@ -29,7 +29,6 @@
     </div>
 </div>
 <br>
-
 @endforeach
 
 <!-- Layout to permit pagination -->
