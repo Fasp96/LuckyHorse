@@ -33,8 +33,6 @@
                         <input id="phone_number" type="number" class="form-control" name="phone_number" onchange="validate_input()"><br>
                         Balance
                         <input id="balance" type="number" class="form-control" name="balance" onchange="validate_input()"><br>
-                        Iban
-                        <input id="iban" type="text" class="form-control" name="iban" onchange="validate_input()"><br>
                         <br>
                         <div id="form_end"></div>
                     </form>

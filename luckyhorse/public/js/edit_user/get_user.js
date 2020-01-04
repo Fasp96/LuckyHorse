@@ -13,7 +13,7 @@ function get_user(){
         document.getElementById(data['gender']).checked = true;
         document.getElementById('phone_number').value = data['phone_number'];
         document.getElementById('balance').value = data['balance'];
-        document.getElementById('iban').value = data['iban'];
+
     });
 }
 

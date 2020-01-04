@@ -113,34 +113,6 @@
                             </div>
                         </div>
 
-                        <div class="form-group row">
-                            <label for="iban" class="col-md-4 col-form-label text-md-right">{{ __('IBAN') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="iban" type="number" class="form-control @error('iban') is-invalid @enderror" name="iban" value="{{ old('iban') }}" required autocomplete="iban" autofocus>
-
-                                @error('iban')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-                        <!--
-                        <div class="form-group row">
-                            <label for="user_photo" class="col-md-4 col-form-label text-md-right">{{ __('User Photo') }}</label>
-
-                            <div class="col-md-6">
-                                <input id ="user_photo" type="file" class="form-control @error('user_photo') is-invalid @enderror" name="user_photo" value="{{ old('user_photo') }}"  required autocomplete="user_photo" autofocus accept="image/*"><br>
-                            
-                                @error('user_photo')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-                        -->
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
