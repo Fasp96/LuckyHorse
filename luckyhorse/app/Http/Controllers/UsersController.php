@@ -46,4 +46,22 @@ class UsersController extends Controller
             return redirect('/login');
         }
     }
+
+    public function addBalace(Request $request, $id){        
+        $current_user = Auth::user();
+        if($current_user){
+            $user = User::find($id);
+            if($user && $current_user->id == $user->id){
+                if($user){
+                    $user->balance = $user->balance + $request->add_balance;
+                    $user->save();
+                    return view('users.users_info',compact('user'));
+                }
+            }else{
+                    return redirect('/users/' . $id);
+                }
+        }else{
+            return redirect('/login');
+        }
+    }
 }
