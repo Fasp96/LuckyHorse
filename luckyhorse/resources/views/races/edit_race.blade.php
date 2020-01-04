@@ -14,7 +14,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Edit Race {{$id}}</div>
+                <div class="card-header">Race ID: {{$id}}</div>
                 <div class="card-body">
                     <input id="id_race" type="hidden" value="{{$id}}">
                     

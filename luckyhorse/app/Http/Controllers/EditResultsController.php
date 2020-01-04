@@ -31,7 +31,22 @@ class EditResultsController extends Controller
                 $result->time = $request->time;
                 $result->save();
 
-                return redirect('/races/' . $result->race_id);
+                $horse = $result->horse;
+                $jockey = $result->jockey;
+                if($horse && $jockey){
+                    if($request->winner == 'winner'){
+                        $horse->num_victories += 1;
+                        $jockey->num_victories += 1;
+                    }
+                    $horse->num_races += 1;
+                    $jockey->num_races += 1;
+                    $horse->save();
+                    $jockey->save();
+
+                    return redirect('/races/' . $result->race_id);
+                }else{
+                    return redirect('/races');
+                }
             }else{
                 return redirect('/races');
             } 

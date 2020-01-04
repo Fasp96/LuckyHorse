@@ -9,7 +9,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Edit Jockey {{$id}}</div>
+                <div class="card-header">Jockey ID: {{$id}}</div>
                 <div class="card-body">
                     <input id="id_jockey" type="hidden" value="{{$id}}">
 

@@ -12,7 +12,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Edit Tournament {{$id}}</div>
+                <div class="card-header">Tournament ID: {{$id}}</div>
                 <div class="card-body">                    
                     <input id="id_tournament" value="{{$id}}" type="hidden">
                     
