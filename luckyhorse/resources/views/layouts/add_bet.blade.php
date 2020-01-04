@@ -17,27 +17,22 @@
                         <input type="hidden" id='user_balance' name="user_balance" value="{{Auth::user()->balance}} ">
 
                         @yield('bet_type')
-                        
-                        Horse
-                        <select id="horse" name="horse" class="form-control">
-                            @foreach($horses as $horse)
-                                <option value="{{$horse->horse_id}}">{{$horse->horse_name}}</option>
-                            @endforeach
-                        </select>
-                        <br>
-                        Jockey
-                        <select id="jockey" name="jockey" class="form-control">
-                            @foreach($jockeys as $jockey)
-                                <option value="{{$jockey->jockey_id}}">{{$jockey->jockey_name}}</option>
+
+                        Winning Pair
+                        <select id="pair" name="pair" class="form-control">
+                            @foreach($results as $result)
+                                <option value="{{$result->horse_id}}_{{$result->jockey_id}}">
+                                    {{$result->horse_name}} - {{$result->jockey_name}}
+                                </option>
                             @endforeach
                         </select>
                         <br>
                         Value
                         <input id="bet_value" type="number" class="form-control" name="bet_value" onchange="validate_input()"><br>
                         <br>
+                        <div id="form_end"></div>
                     </form>
                     <button id="add_bet_btn" class="btn btn-primary" disabled>Bet</button>
-
                 </div>
             </div>
         </div>

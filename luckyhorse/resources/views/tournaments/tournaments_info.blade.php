@@ -33,19 +33,20 @@
                         No races for this tournament <br>
                     @endif
                     </ul>  
-                    @auth
-                        @if(Auth::user()->role=='admin')
-                            <div class="edit_button">
-                                <a href="/edit_tournament={{$tournaments->id}}">Edit</a>
-                            </div>
-                        @endif
-                        @if($winner[0]->tournament_id == null && $races->count() > 0)
-                            <div class="bet_button edit_button">
-                                <a href="/add_bet_tournament={{$tournaments->id}}">Bet</a>
-                            </div>
-                        @endif
-                    @endauth
-
+                    <div>
+                        @auth
+                            @if(Auth::user()->role=='admin')
+                                <div class="details_button">
+                                    <a href="/edit_tournament={{$tournaments->id}}">Edit</a>
+                                </div>
+                            @endif
+                            @if($winner[0]->tournament_id == null && $races->count() > 0)
+                                <div class="details_button bet_button">
+                                    <a href="/add_bet_tournament={{$tournaments->id}}">Bet</a>
+                                </div>
+                            @endif
+                        @endauth
+                    </div>
                 </div>
             </div>
         </div>

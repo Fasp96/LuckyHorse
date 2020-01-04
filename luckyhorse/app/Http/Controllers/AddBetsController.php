@@ -17,21 +17,17 @@ class AddBetsController extends Controller
         if($current_user){
             $tournament = Tournament::find($id);
             if($tournament){
-                $horses = Race::where('races.tournament_id',$tournament->id)
-                    ->join('results', 'results.race_id','=','races.id')
-                    ->join('horses','horses.id','=','results.horse_id')
-                    ->select('horses.id as horse_id',
-                        'horses.name as horse_name')
-                    ->distinct('horse_id')->get();
-
-                $jockeys = Race::where('races.tournament_id',$tournament->id)
+                $results = Race::where('races.tournament_id',$tournament->id)
                     ->join('results', 'results.race_id','=','races.id')
                     ->join('jockeys','jockeys.id','=','results.jockey_id')
-                    ->select('jockeys.id as jockey_id',
+                    ->join('horses','horses.id','=','results.horse_id')
+                    ->select('horses.id as horse_id',
+                        'horses.name as horse_name',
+                        'jockeys.id as jockey_id',
                         'jockeys.name as jockey_name')
-                    ->distinct('jockey_id')->get();
+                    ->distinct('horse_id', 'jockey_id')->get();
 
-                return view('bets.add_bet_tournament',compact('tournament','horses','jockeys'));
+                return view('bets.add_bet_tournament',compact('tournament','results'));
             }else{
                 return redirect('/tournaments');
             }
@@ -45,19 +41,16 @@ class AddBetsController extends Controller
         if($current_user){
             $race = Race::find($id);
             if($race){
-                $horses = Result::where('results.race_id',$race->id)
+                $results = Result::where('results.race_id',$race->id)
                     ->join('horses','horses.id','=','results.horse_id')
+                    ->join('jockeys','jockeys.id','=','results.jockey_id')
                     ->select('results.race_id as race_id',
+                        'jockeys.id as jockey_id',
+                        'jockeys.name as jockey_name',
                         'horses.id as horse_id',
                         'horses.name as horse_name')->get();
-                        
-                $jockeys = Result::where('results.race_id',$race->id)
-                ->join('jockeys','jockeys.id','=','results.jockey_id')
-                ->select('results.race_id as race_id',
-                    'jockeys.id as jockey_id',
-                    'jockeys.name as jockey_name')->get();
                 
-                return view('bets.add_bet_race',compact('race','horses','jockeys'));
+                return view('bets.add_bet_race',compact('race','results'));
             }else{
                 return redirect('/races');
             }
@@ -73,8 +66,9 @@ class AddBetsController extends Controller
             $bet->user_id = $current_user->id;
             $bet->race_id = null;
             $bet->tournament_id = $request->id;
-            $bet->horse_id = $request->horse;
-            $bet->jockey_id = $request->jockey;
+            $pair = $request->pair;
+            $bet->horse_id = substr($pair, 0, strpos($pair,"_"));
+            $bet->jockey_id = substr($pair, strpos($pair,"_")+1,strlen($pair)-1);
             $bet->value = $request->bet_value;
             $bet->save();
 
@@ -92,10 +86,11 @@ class AddBetsController extends Controller
         if($current_user){
             $bet = new Bet;
             $bet->user_id = $current_user->id;
-            $bet->tournament_id = null;
             $bet->race_id = $request->id;
-            $bet->horse_id = $request->horse;
-            $bet->jockey_id = $request->jockey;
+            $bet->tournament_id = null;
+            $pair = $request->pair;
+            $bet->horse_id = substr($pair, 0, strpos($pair,"_"));
+            $bet->jockey_id = substr($pair, strpos($pair,"_")+1,strlen($pair)-1);
             $bet->value = $request->bet_value;
             $bet->save();
 

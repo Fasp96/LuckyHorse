@@ -26,13 +26,12 @@ function validate_input(clicked = false){
     contents.push(date);
     elements.push(bet_form.date);
 
-    var horse = bet_form.horse.value;
+    var pair = bet_form.pair.value;
+    var horse = pair.substring(0,pair.lastIndexOf('_'));
+    var jockey = pair.substring(pair.lastIndexOf('_')+1);
     contents.push(horse);
-    elements.push(bet_form.horse);
-
-    var jockey = bet_form.jockey.value;
     contents.push(jockey);
-    elements.push(bet_form.jockey);
+    elements.push(bet_form.pair);
 
     var bet_value = bet_form.bet_value.value;
     contents.push(bet_value);
@@ -43,7 +42,7 @@ function validate_input(clicked = false){
     //makes the validation of all the inputs
     valid.push(validate_value(bet_value,bet_form.bet_value));
 
-    //this condition is just to allow to verify if there are empty fields, only if the use has filled the last field or clicked the submit button 
+    //this condition is just to allow to verify if there are empty fields, only if the user has filled the last field or clicked the submit button 
     if(contents[contents.length-1] != '' || clicked == true){
         for(var i = 0; i < contents.length; i++){
             not_empty.push(validate_empty(contents[i],elements[i]));
