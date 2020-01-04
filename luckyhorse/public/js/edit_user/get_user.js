@@ -2,6 +2,7 @@ function initPage(){
     get_user();
 }
 
+//fetches information about the user and puts in the edit user form
 function get_user(){
     var id_user = document.getElementById("id_user");
     var id = id_user.value;
@@ -17,5 +18,5 @@ function get_user(){
     });
 }
 
-//página carregou
+//Page loaded
 $(document).ready(initPage);

@@ -128,5 +128,5 @@ function removeMessages(){
     $("#tournament_form").children().filter('p').remove();
 }
 
-//página carregou
+//Page loaded
 $(document).ready(initPage);
