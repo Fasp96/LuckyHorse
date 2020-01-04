@@ -37,20 +37,30 @@ class AddNewsController extends Controller
             
             //Photo file path treatment so it can be saved without problems
             $photo = $request->file('news_photo');
+            //saves photo will name-orginial photo name
             $fileName = $request->name . '-' .$photo->getClientOriginalName();
+            //path to folder to save 
             $path = 'img/news_photo/';
+            //saves photo in that folder
             $file = $photo->move($path, $fileName);
 
+            //apends all filepath to photo img/news-photo...
             $file_path = $path . $fileName;
+            //adds the file path to the parameter
             $news->file_path = '/' . $file_path;
+            //saves new news
             $news->save();
 
             //fetches the id of the new news, adds to the photo name and updates the file_path atribute
             $id = $news->id;
+            //creates a new file path but appends the id in the photo name
             $new_file_path = $path . $id . '-' . $fileName;
             
+            // renames the photo
             rename($file_path, $new_file_path);
+            //updates the file_path
             $news->file_path = '/' . $new_file_path;
+            //saves it
             $news->save();
 
             return redirect('/add_news');

@@ -42,24 +42,34 @@ class AddRacesController extends Controller
             $race->date = $request->date . ' ' . $request->race_time;
             $race->description = $request->description;
             $race->location = $request->location;
+            $race->tournament_id = $request->add_tournament;
             
             //Photo file path treatment so it can be saved without problems
             $photo = $request->file('race_photo');
+             //saves photo will name-orginial photo name
             $fileName = $request->name . '-' .$photo->getClientOriginalName();
+            //path to folder to save 
             $path = 'img/race_photo/';
+            //saves photo in that folder
             $file = $photo->move($path, $fileName);
-
+            
+            //apends all filepath to photo img/race-photo...
             $file_path = $path . $fileName;
+            //adds the file path to the parameter
             $race->file_path = '/' . $file_path;
-            $race->tournament_id = $request->add_tournament;
+            //saves new race
             $race->save();
 
             //fetches the id of the new race, adds to the photo name and updates the file_path atribute
             $id = $race->id;
+            //creates a new file path but appends the id in the photo name
             $new_file_path = $path . $id . '-' . $fileName;
             
+            // renames the photo
             rename($file_path, $new_file_path);
+            //updates the file_path
             $race->file_path = '/' . $new_file_path;
+            //saves it
             $race->save();
 
             //for the teams fields it fetches the number of fields and creates a new Result
