@@ -80,6 +80,7 @@ class BetsController extends Controller
                 $tournament_bets = $tournament_bets_q2->get();
             }
 
+            //Get all the correspoding winners from the race bets in this page
             $winners_race_bets = $race_bets_q2->join('results','races.id','=','results.race_id')
             ->select('races.id as race_id', 
                 'results.horse_id as horse_id',
@@ -88,6 +89,7 @@ class BetsController extends Controller
                 ->orderBy('results.time')
                 ->take(1)->get();
                 
+            //Get all the correspoding winners from the tournament bets in this page
             $winners_tournament_bets = $tournament_bets_q2
             ->join('races','races.tournament_id','=','tournaments.id')
             ->join('results','races.id','=','results.race_id')
@@ -98,32 +100,37 @@ class BetsController extends Controller
             ->orderBy('results.time')
             ->take(1)->get();
 
-            return view('bets.bets',compact('race_bets','tournament_bets','winners_race_bets','winners_tournament_bets','page_number','pages_total', 'page_name'));
+            return view('bets.bets',compact('race_bets','tournament_bets','winners_race_bets','winners_tournament_bets',
+                'page_number','pages_total', 'page_name'));
         }else{
             //In case the user isn't logged in, redirect to login page
             return redirect('/login');
         }
     }
 
+    //Gives the money from the bet to the user
     public function claim_bet($id){
         $current_user = Auth::user();
         //Verifies that the user is logged in
         if($current_user){
             $bet = Bet::find($id);
             if($bet){
+                //Get the win rate from the bet
                 $win_prob = $this->get_wr($bet);
-                        
+                //Get money to earn, by multiplying bet value with the corresponding win rate
                 $new_balance = ($bet->value) * ((1-$win_prob)+1);
 
-                //update balance
+                //update user balance
                 $balance = $current_user->balance + ($new_balance);
                 $current_user->balance = $balance;
                 $current_user->save();
 
+                //Remove bet to prevent further claims
                 $bet->delete();
 
                 return view('bets.bet_claim',compact('bet','new_balance'));
             }else{
+                //In case corresponding bet doesn't exist, redirect to bets list page
                 return redirect('/bets');
             }
         }else{
@@ -132,8 +139,9 @@ class BetsController extends Controller
         }
     }
 
+    //Return win rate from bet after calculating it
     public function get_wr($bet){
-        //Get every pair win rate and the sum of all win rates
+        //Search for all horses/jockeys stats related to the bet
         $scores = Result::where('results.race_id', $bet->race_id)
         ->join('horses','results.horse_id','=','horses.id')
         ->join('jockeys','results.jockey_id','=','jockeys.id')
@@ -142,27 +150,33 @@ class BetsController extends Controller
             'jockeys.num_victories as jockey_wins','jockeys.num_races as jockey_num_races')
         ->orderBy('time')->get();
 
+        
+        //Get every pair win rate and the sum of all win rates
         $win_total = 0;
         foreach($scores as $score){
+            //Get horse win rate
             if($score->horse_num_races == 0)
                 $wr_horse = 0;
             else
                 $wr_horse = $score->horse_wins/$score->horse_num_races;
-                
+            //Get jockey win rate
             if($score->jockey_num_races == 0)
                 $wr_jockey;    
             else
                 $wr_jockey = $score->jockey_wins/$score->jockey_num_races;
 
+            //Calculate pair average win rate
             $wr_both = (($wr_jockey)+($wr_horse))/2;
             $score_position = $scores->search(function ($value, $key) use($score) {
                 return $value->horse_id == $score->horse_id ;
             });
+            //Add win rate to its corresponding result
             Arr::add($scores[$score_position], 'wr', $wr_both);
+            //Add pair win rate to total win rate
             $win_total += $wr_both;
         }
 
-        //Probability to win
+        //Pair probability to win the race
         foreach($scores as $score){
             if($score->horse_id==$bet->horse_id){
                 return $win_prob = round(($score->wr/$win_total),2);

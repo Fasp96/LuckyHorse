@@ -15,7 +15,7 @@ class EditNewsController extends Controller
         if($current_user && $current_user->role  == "admin"){
             $news = News::find($id);
             if($news){
-                return view('news.edit_news',compact('id'));
+                return view('news.edit_news',compact('news'));
             }else{
                 return redirect('/news');
             }
@@ -25,24 +25,10 @@ class EditNewsController extends Controller
         } 
     }
 
-    public function getNews($id){
+    public function updateNews(Request $request, $id){
         $current_user = Auth::user();
         //Verifies that the user is an admin
         if($current_user && $current_user->role  == "admin"){
-            $news = News::find($id);
-
-            return $news;
-        }else{
-            //In case the user isn't an admin, redirect to login page
-            return redirect('/login');
-        } 
-    }
-
-    public function updateNews(Request $request, $id){
-        
-        $user = Auth::user();
-        //Verifies that the user is an admin
-        if($user && $current_user->role  == "admin"){
             $news = News::find($id);
             if($news){
                 $news->title = $request->title;

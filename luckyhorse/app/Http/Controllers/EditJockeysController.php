@@ -15,23 +15,10 @@ class EditJockeysController extends Controller
         if($current_user && $current_user->role  == "admin"){
             $jockey = Jockey::find($id);
             if($jockey){
-                return view('jockeys.edit_jockey',compact('id'));
+                return view('jockeys.edit_jockey',compact('jockey'));
             }else{
                 return redirect('/jockeys');
             }
-        }else{
-            //In case the user isn't an admin, redirect to login page
-            return redirect('/login');
-        } 
-    }
-
-    public function getJockey($id){
-        $current_user = Auth::user();
-        //Verifies that the user is an admin
-        if($current_user && $current_user->role  == "admin"){
-            $jockey = Jockey::find($id);
-
-            return $jockey;
         }else{
             //In case the user isn't an admin, redirect to login page
             return redirect('/login');
