@@ -9,11 +9,12 @@ use Auth;
 
 class AddTournamentsController extends Controller
 {
-    //
+    //Returns the view to add a jockey
     public function index(){
         $current_user = Auth::user();
         //Verifies that the user is an admin
         if($current_user && $current_user->role  == "admin"){
+            //Search for the last 10 jockeys added
             $tournaments = Tournament::orderByDesc('created_at')->take(10)->get();
 
             return view('tournaments.add_tournament',compact('tournaments'));
@@ -23,17 +24,19 @@ class AddTournamentsController extends Controller
         }
     }
 
+    //Creates a jockey and redirect to the jockeys page
     public function add(Request $request){
         $current_user = Auth::user();
         //Verifies that the user is an admin
         if($current_user && $current_user->role  == "admin"){
-
+            //Create new news with the parameters from the request
             $tournament = new Tournament;
             $tournament->name = $request->name;
             $tournament->date = $request->initial_date . ' ' . $request->initial_time;
             $tournament->description = $request->description;
             $tournament->location = $request->location;
             
+            //Photo file path treatment so it can be saved without problems
             $photo = $request->file('tournament_photo');
             $fileName = $request->name . '-' .$photo->getClientOriginalName();
             $path = 'img/tournament_photo/';
@@ -68,12 +71,14 @@ class AddTournamentsController extends Controller
         }       
     }
 
+    //Get all races that don't aren't from a tournament
     public function getRaces(){
         $current_user = Auth::user();
         //Verifies that the user is an admin
         if($current_user && $current_user->role  == "admin"){
-            //gets the races that don't have a tournament associated with
+            //gets the races that don't have a tournament associated with it
             $races = Race::whereNull('tournament_id')->get();
+
             return $races;
         }else{
             //In case the user isn't an admin, redirect to login page

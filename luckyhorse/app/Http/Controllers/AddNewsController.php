@@ -9,12 +9,14 @@ use Auth;
 
 class AddNewsController extends Controller
 {
-    //
+    //Returns the view to add a news
     public function index(){
         $current_user = Auth::user();
         //Verifies that the user is an admin
         if($current_user && $current_user->role == "admin"){
+            //Search for the last 10 news added
              $news = News::orderByDesc('created_at')->take(10)->get();
+
              return view('news.add_news',compact('news'));
         }else{
             //In case the user isn't an admin, redirect to login page
@@ -22,16 +24,18 @@ class AddNewsController extends Controller
         }
     }
 
+    //Creates a news and redirect to the news page
     public function add(Request $request){
         $current_user = Auth::user();
         //Verifies that the user is an admin
         if($current_user && $current_user->role  == "admin"){
-
+            //Create new news with the parameters from the request
             $news = new News;
             $news->title = $request->title;
             $news->minute_info = $request->abstract;
             $news->description = $request->description;
             
+            //Photo file path treatment so it can be saved without problems
             $photo = $request->file('news_photo');
             $fileName = $request->name . '-' .$photo->getClientOriginalName();
             $path = 'img/news_photo/';

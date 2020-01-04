@@ -15,20 +15,25 @@ use Arr;
 
 class BetsController extends Controller
 {
+    //Returns the view to list all bets
     public function index($page_number = 1){
         $current_user = Auth::user();
         //Verifies that the user is logged in
         if($current_user){
+            //Pagination variables definition
             $page_name = "bets";
-            $bets_per_page = 4; //Sum of race and tournament bets (Always Odd number!)
-            //$bets_number = Bet::count();
+            $bets_per_page = 4; //Sum of race and tournament bets per page(Always Odd number!)´
+            //Fetch all race bets from the user
             $race_bets_number = Bet::whereNotNull('race_id')
                 ->where('user_id',$current_user->id)->count();
+            //Fetch all race bets from the user
             $tournament_bets_number = Bet::whereNotNull('tournament_id')
                 ->where('user_id',$current_user->id)->count();
+            //Find the correct number of pages needed for all the bets
             $bets_number = max($race_bets_number, $tournament_bets_number);
             $pages_total = ceil($bets_number/($bets_per_page/2));
 
+            //Race bets query to get all the information needed
             $race_bets_q= Bet::where('bets.user_id',$current_user->id)
                 ->join('races','races.id','=','bets.race_id')
                 ->join('horses','bets.horse_id','=','horses.id')
@@ -39,48 +44,61 @@ class BetsController extends Controller
                 'races.date as date',
                 'horses.name as horse_name',
                 'jockeys.name as jockey_name',
+                'horses.id as horse_id',
+                'jockeys.id as jockey_id',
                 'bets.value as value')
                 ->orderByDesc('bets.created_at');
 
+            //Tournament bets query to get all the information needed
             $tournament_bets_q= Bet::where('bets.user_id',$current_user->id)
             ->join('tournaments','tournaments.id','=','bets.tournament_id')
             ->join('horses','bets.horse_id','=','horses.id')
             ->join('jockeys','bets.jockey_id','=','jockeys.id')
             ->select('bets.id as bet_id',
-            'tournaments.name as tournament_name',
-            'tournaments.date as date',
-            'horses.name as horse_name',
-            'jockeys.name as jockey_name',
-            'bets.value as value')
-            ->orderByDesc('bets.created_at');
+                'tournaments.name as tournament_name',
+                'tournaments.id as tournament_id',
+                'tournaments.date as date',
+                'horses.name as horse_name',
+                'jockeys.name as jockey_name',
+                'horses.id as horse_id',
+                'jockeys.id as jockey_id',
+                'bets.value as value')
+                ->orderByDesc('bets.created_at');
 
+            //Depending on the page the user wants, select the corresponding bets of that page
             if($page_number == 1){
-                $race_bets = $race_bets_q->take($bets_per_page/2)->get();
-                $tournament_bets = $tournament_bets_q->take($bets_per_page/2)->get();
+                $race_bets_q2 = $race_bets_q->take($bets_per_page/2);
+                $race_bets = $race_bets_q2->get();
+                $tournament_bets_q2 = $tournament_bets_q->take($bets_per_page/2);
+                $tournament_bets = $tournament_bets_q2->get();
             }else{
-                $race_bets = $race_bets_q->skip(($page_number-1)*$bets_per_page/2)
-                ->take($bets_per_page/2)->get();
-                $tournament_bets = $tournament_bets_q->skip(($page_number-1)*$bets_per_page/2)
-                ->take($bets_per_page/2)->get();
+                $race_bets_q2 = $race_bets_q->skip(($page_number-1)*$bets_per_page/2)
+                ->take($bets_per_page/2);
+                $race_bets = $race_bets_q2->get();
+                $tournament_bets_q2 = $tournament_bets_q->skip(($page_number-1)*$bets_per_page/2)
+                ->take($bets_per_page/2);
+                $tournament_bets = $tournament_bets_q2->get();
             }
 
-            $races = Race::all();
-            $winners = collect();
-            foreach($races as $race){
-                $winner = Race::where('races.id','=',$race->id)
-                    ->join('results','races.id','=','results.race_id')
-                    ->join('horses','results.horse_id','=','horses.id')
-                    ->join('jockeys','results.jockey_id','=','jockeys.id')
-                    ->select('horses.name as horse_name',
-                        'jockeys.name as jockey_name',
-                        'results.race_id as race_id',
-                        'results.time as time')
-                    ->orderBy('results.time')
-                    ->take(1)->get();
+            $winners_race_bets = $race_bets_q2->join('results','races.id','=','results.race_id')
+            ->select('races.id as race_id', 
+                'results.horse_id as horse_id',
+                'results.jockey_id as jockey_id',
+                'results.time as time')
+                ->orderBy('results.time')
+                ->take(1)->get();
+                
+            $winners_tournament_bets = $tournament_bets_q2
+            ->join('races','races.tournament_id','=','tournaments.id')
+            ->join('results','races.id','=','results.race_id')
+            ->select('tournaments.id as tournament_id', 
+                'results.horse_id as horse_id',
+                'results.jockey_id as jockey_id',
+                'results.time as time')
+            ->orderBy('results.time')
+            ->take(1)->get();
 
-                $winners->push($winner);
-            }
-            return view('bets.bets',compact('race_bets','tournament_bets','winners','page_number','pages_total', 'page_name'));
+            return view('bets.bets',compact('race_bets','tournament_bets','winners_race_bets','winners_tournament_bets','page_number','pages_total', 'page_name'));
         }else{
             //In case the user isn't logged in, redirect to login page
             return redirect('/login');
@@ -144,7 +162,7 @@ class BetsController extends Controller
             $win_total += $wr_both;
         }
 
-        //probabilidade de ganhar
+        //Probability to win
         foreach($scores as $score){
             if($score->horse_id==$bet->horse_id){
                 return $win_prob = round(($score->wr/$win_total),2);

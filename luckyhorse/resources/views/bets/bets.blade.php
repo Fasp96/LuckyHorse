@@ -22,9 +22,18 @@
                     Horse Name: {{$tournament_bet->horse_name}}<br>
                     Jockey Name: {{$tournament_bet->jockey_name}}<br>
 
-                    Value: {{$tournament_bet->value}}€<br>                
-
-                       
+                    Value: {{$tournament_bet->value}}€<br>
+                    @foreach($winners_tournament_bets as $win)
+                        @if($win->tournament_id == $tournament_bet->tournament_id)
+                            @if($win->time !=null)
+                                @if($win->jockey_id == $tournament_bet->jockey_id&& $win->horse_id == $tournament_bet->horse_id)
+                                    <div class="edit_button">
+                                        <a href="/claim={{$tournament_bet->bet_id}}">Claim Money</a>
+                                    </div>
+                                @endif
+                            @endif
+                        @endif
+                    @endforeach
                 </div>
             </div>
         </div>
@@ -51,10 +60,10 @@
                     
                     Value: {{$race_bet->value}}€<br> 
                     
-                    @foreach($winners as $win)
-                        @if($win[0]->race_id == $race_bet->race_id)
-                            @if($win[0]->time !=null)
-                                @if($win[0]->jockey_name == $race_bet->jockey_name && $win[0]->horse_name == $race_bet->horse_name)
+                    @foreach($winners_race_bets as $win)
+                        @if($win->race_id == $race_bet->race_id)
+                            @if($win->time !=null)
+                                @if($win->jockey_id == $race_bet->jockey_id && $win->horse_id == $race_bet->horse_id)
                                     <div class="edit_button">
                                         <a href="/claim={{$race_bet->bet_id}}">Claim Money</a>
                                     </div>
