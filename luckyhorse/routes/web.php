@@ -39,6 +39,7 @@ Route::post('/add_news', 'AddNewsController@add');
 Route::get('/users','UsersController@index');
 Route::get('/users_page={page_number}', 'UsersController@index');
 Route::get('/users/{id}','UsersController@getUser');
+Route::post('/users/{id}','UsersController@addBalace');
 
 Route::get('/news', 'NewsController@index');
 Route::get('/news_page={page_number}', 'NewsController@index');

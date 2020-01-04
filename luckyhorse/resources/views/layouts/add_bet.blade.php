@@ -3,7 +3,7 @@
 @section('content')
 
 <script src="{{asset('js/add_bet/bet_validator.js')}}" defer></script>
-
+<script src="https://www.paypal.com/sdk/js?client-id=AYgioRC5pVnlpZLDWjr6waGMrCtN4Qqlygn63Lr7DkgiKKage3MsYYyBmPSuwAsO6_YW6gKXZtyy9nLh&currency=EUR"> // Required. Replace SB_CLIENT_ID with your sandbox client ID. </script>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -30,7 +30,6 @@
                         Value
                         <input id="bet_value" type="number" class="form-control" name="bet_value" onchange="validate_input()"><br>
                         <br>
-                        <div id="form_end"></div>
                     </form>
                     <button id="add_bet_btn" class="btn btn-primary" disabled>Bet</button>
 
