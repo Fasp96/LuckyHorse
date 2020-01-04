@@ -2,6 +2,16 @@
 
 @section('content')
 
+<style>
+    .ad_container{
+        width: 100%;
+        padding: 10px;
+    }
+    .ad_img{
+        width: 100%;
+    }
+</style>
+
 <!--Last Results Tables-->
 <div id="last_results_tables">
     @foreach($table_infos as $table_info)
@@ -83,6 +93,31 @@
             </div>
         @endforeach
         </div>
+    </div>
+    <br>
+    <div class="ad_container">
+        <img class="ad_img" src="/img/ad/snicker_ad.png" alt="ad">
+    </div>
+    <div class="ad_container">
+        <img class="ad_img" src="/img/ad/olay_ad.jpg" alt="ad">
+    </div>
+    <div class="ad_container">
+        <img class="ad_img" src="/img/ad/flash_sales_ad.png" alt="ad">
+    </div>
+    <div class="ad_container">
+        <img class="ad_img" src="/img/ad/evadav_ad.png" alt="ad">
+    </div>
+    <div class="ad_container">
+        <img class="ad_img" src="/img/ad/snicker_ad.png" alt="ad">
+    </div>
+    <div class="ad_container">
+        <img class="ad_img" src="/img/ad/olay_ad.jpg" alt="ad">
+    </div>
+    <div class="ad_container">
+        <img class="ad_img" src="/img/ad/flash_sales_ad.png" alt="ad">
+    </div>
+    <div class="ad_container">
+        <img class="ad_img" src="/img/ad/snicker_ad.png" alt="ad">
     </div>
 </div>
 <h1 class="last_news_title">Last News</h1>
