@@ -43,13 +43,19 @@ class EditJockeysController extends Controller
                 $jockey->num_races = $request->num_races;
                 $jockey->num_victories = $request->num_victories;
 
-                //Update jockey photo file path
+                //Update jockey photo file path if is not null
                 if($request->file('jockey_photo') != null){
+                    //gets file
                     $photo = $request->file('jockey_photo');
+                    //saves photo will id-name-orginial photo name
                     $fileName = $id . '-' . $request->name . '-' .$photo->getClientOriginalName();
+                    //path to folder to save 
                     $path = 'img/jockeys_photo/';
+                    //saves photo in that folder
                     $file = $photo->move($path, $fileName);
+                    //apends all filepath to photo img/jockey-photo...
                     $file_path = $path . $fileName;
+                    //adds the file path to the parameter
                     $jockey->file_path = '/' . $file_path;
                 }
                 $jockey->save();

@@ -41,13 +41,19 @@ class EditNewsController extends Controller
                 $news->minute_info = $request->abstract;
                 $news->description = $request->description;
 
-                //Update news photo file path
+                //Update news photo file path if is not null
                 if($request->file('news_photo') != null){
+                    //gets file
                     $photo = $request->file('news_photo');
+                    //path to folder to save 
                     $fileName = $id . '-' . $request->name . '-' .$photo->getClientOriginalName();
+                    //saves photo will id-name-orginial photo name
                     $path = 'img/news_photo/';
+                    //saves photo in that folder
                     $file = $photo->move($path, $fileName);
+                    //apends all filepath to photo img/news-photo...
                     $file_path = $path . $fileName;
+                    //adds the file path to the parameter
                     $news->file_path = '/' . $file_path;
                 }
                 $news->save();

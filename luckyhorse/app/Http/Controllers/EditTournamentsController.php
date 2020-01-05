@@ -73,13 +73,19 @@ class EditTournamentsController extends Controller
                 $tournament->description = $request->description;
                 $tournament->location = $request->location;
                 
-                //Update tournament photo file path
+                //Update tournament photo file path if is not null
                 if($request->file('tournament_photo') != null){
+                    //gets file
                     $photo = $request->file('tournament_photo');
+                    //saves photo will id-name-orginial photo name
                     $fileName = $id . '-' . $request->name . '-' .$photo->getClientOriginalName();
+                    //path to folder to save 
                     $path = 'img/tournament_photo/';
+                    //saves photo in that folder
                     $file = $photo->move($path, $fileName);
+                    //apends all filepath to photo img/toournament-photo...
                     $file_path = $path . $fileName;
+                    //adds the file path to the parameter
                     $tournament->file_path = '/' . $file_path;
                 }
                 $tournament->save();
