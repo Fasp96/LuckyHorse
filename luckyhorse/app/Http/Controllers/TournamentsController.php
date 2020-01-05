@@ -18,7 +18,7 @@ class TournamentsController extends Controller
     public function index($page_number=1){
         //Pagination variables definition
         $page_name = "tournaments";
-        $tournaments_per_page = 4;
+        $tournaments_per_page = 5;
         //Fetch all tournaments
         $tournaments_number = Tournament::count();
         //Find the correct number of pages needed for all the tournaments

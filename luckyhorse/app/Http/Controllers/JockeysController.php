@@ -13,7 +13,7 @@ class JockeysController extends Controller
     public function index($page_number = 1){
         //Pagination variables definition
         $page_name = "jockeys";
-        $jockeys_per_page = 3;
+        $jockeys_per_page = 5;
         //Fetch all jockeys
         $jockeys_number = Jockey::count();
         //Find the correct number of pages needed for all the jockeys

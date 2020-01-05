@@ -16,7 +16,7 @@ class RacesController extends Controller
     public function index($page_number=1){
         //Pagination variables definition
         $page_name = "races";
-        $races_per_page = 2;
+        $races_per_page = 5;
         //Fetch all races
         $races_number = Race::count();
         //Find the correct number of pages needed for all the races

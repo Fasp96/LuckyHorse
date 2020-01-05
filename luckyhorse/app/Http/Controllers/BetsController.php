@@ -55,6 +55,7 @@ class BetsController extends Controller
             ->join('horses','bets.horse_id','=','horses.id')
             ->join('jockeys','bets.jockey_id','=','jockeys.id')
             ->select('bets.id as bet_id',
+                'bets.race_id as race_id',
                 'tournaments.name as tournament_name',
                 'tournaments.id as tournament_id',
                 'tournaments.date as date',
@@ -81,24 +82,32 @@ class BetsController extends Controller
             }
 
             //Get all the correspoding winners from the race bets in this page
-            $winners_race_bets = $race_bets_q2->join('results','races.id','=','results.race_id')
-            ->select('races.id as race_id', 
-                'results.horse_id as horse_id',
-                'results.jockey_id as jockey_id',
-                'results.time as time')
-                ->orderBy('results.time')
-                ->take(1)->get();
-                
+            $winners_race_bets = collect();
+            foreach($race_bets as $race_bet){
+                $winner_race_bets = Result::where('results.race_id','=',$race_bet->race_id)
+                ->select('results.race_id as race_id', 
+                    'results.horse_id as horse_id',
+                    'results.jockey_id as jockey_id',
+                    'results.time as time')
+                    ->orderBy('results.time')
+                    ->take(1)->get();
+
+                $winners_race_bets->push($winner_race_bets);
+            }
+
             //Get all the correspoding winners from the tournament bets in this page
-            $winners_tournament_bets = $tournament_bets_q2
-            ->join('races','races.tournament_id','=','tournaments.id')
-            ->join('results','races.id','=','results.race_id')
-            ->select('tournaments.id as tournament_id', 
-                'results.horse_id as horse_id',
-                'results.jockey_id as jockey_id',
-                'results.time as time')
-            ->orderBy('results.time')
-            ->take(1)->get();
+            $winners_tournament_bets = collect();
+            foreach($tournament_bets as $tournament_bet){
+                $winner_tournament_bets = Result::where('results.race_id','=',$tournament_bet->race_id)
+                ->select('results.race_id as race_id', 
+                    'results.horse_id as horse_id',
+                    'results.jockey_id as jockey_id',
+                    'results.time as time')
+                    ->orderBy('results.time')
+                    ->take(1)->get();
+
+                $winners_tournament_bets->push($winner_tournament_bets);
+            }
 
             return view('bets.bets',compact('race_bets','tournament_bets','winners_race_bets','winners_tournament_bets',
                 'page_number','pages_total', 'page_name'));
@@ -167,6 +176,7 @@ class BetsController extends Controller
 
             //Calculate pair average win rate
             $wr_both = (($wr_jockey)+($wr_horse))/2;
+            //Find where to add the win rate
             $score_position = $scores->search(function ($value, $key) use($score) {
                 return $value->horse_id == $score->horse_id ;
             });
