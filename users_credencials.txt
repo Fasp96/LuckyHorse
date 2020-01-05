@@ -1,0 +1,14 @@
+-------------------users-------------------------
+email: manuel@exemplo.com
+pass:  12341234
+
+email: joao_@exemplo.com
+pass:  123123123
+ 
+-------------------admin-------------------------
+email: andre_t3lo@hotmail.com
+pass:  123456789
+
+-------------------paypal------------------------
+email: sb-478xtc824994@personal.example.com
+pass: ACR20202020
