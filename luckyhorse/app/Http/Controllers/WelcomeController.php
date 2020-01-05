@@ -16,12 +16,13 @@ use DB;
 
 class WelcomeController extends Controller
 {
+    //Returns main page view
     public function index(){
-        //Float Tables
+        //Get all information needed for the Float Tables
         $races = Race::where('date', '>', DB::raw('CURDATE()'))->orderByDesc('date')->get();
         $tournaments = Tournament::where('date', '>', DB::raw('CURDATE()'))->orderByDesc('date')->get();
 
-        //Last Result Tables
+        //Get all information needed for the Last Result Tables
         $last_races = Race::where('date', '<', DB::raw('CURDATE()'))->orderByDesc('date')->take(3)->get();
         $table_infos = collect();
         foreach($last_races as $race){
@@ -41,8 +42,7 @@ class WelcomeController extends Controller
 
             $table_infos->push($table_info);
         }
-
-        //News
+        //Get all information needed for the News
         $news = News::orderByDesc('created_at')->take(10)->get();
 
         return view('welcome',compact('races','tournaments','last_races','table_infos','news'));

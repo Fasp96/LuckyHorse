@@ -8,6 +8,7 @@ use Auth;
 
 class ManageController extends Controller
 {
+    //Returns the view with all the database management options for the admin
     public function index($page_number=1){
         $current_user = Auth::user();
         //Verifies that the user is an admin
