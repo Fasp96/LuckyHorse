@@ -15,7 +15,7 @@ class EditUserController extends Controller
         //Verifies that the user is an admin
         if($current_user && $current_user->role  == "admin"){
             $user = User::find($id);
-            //Verifies that the tournament user
+            //Verifies that the user exists
             if($user){
                 return view('users.edit_user',compact('user'));
             }else{
