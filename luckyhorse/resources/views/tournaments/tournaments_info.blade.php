@@ -16,9 +16,8 @@
                     Time: {{date('H:i:s', strtotime($tournaments->date))}}<br>
                     Location: {{$tournaments->location}}<br>
                     <!-- Shows the tournament's winner if there is one -->
-                    dd($winner);
                     @if($winner->count() > 0)
-                        @if($winner[0]->count() > 2)
+                        @if($winner[0]->count() != 7)
                             Winners: {{$winner[0]->horse_name}} and {{$winner[0]->jockey_name}} <br>
                         @endif
                     @endif

@@ -25,7 +25,6 @@
                     Horse Name: {{$tournament_bet->horse_name}}<br>
                     Jockey Name: {{$tournament_bet->jockey_name}}<br>
                     Value: {{$tournament_bet->value}}€<br>
-
                     
                     <!-- checks all the tournaments winners from this page -->
                     @foreach($winners_tournament_bets as $win)
@@ -69,7 +68,6 @@
                     Horse Name: {{$race_bet->horse_name}}<br>
                     Jockey Name: {{$race_bet->jockey_name}}<br>
                     Value: {{$race_bet->value}}€<br> 
-                    
                     
                     <!-- checks all the races winners from this page -->
                     @foreach($winners_race_bets as $win)
