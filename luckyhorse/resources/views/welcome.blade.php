@@ -74,7 +74,7 @@
             Last Minute News
         </div>
         <div class="tab_content">
-        @foreach($news as $new)
+        @foreach($minute_news as $new)
             <div class="title">
                 {{$new->created_at->format('d-m-Y')}}<br>
             </div>
