@@ -76,13 +76,19 @@ class EditRacesController extends Controller
                 $race->location = $request->location;
                 $race->tournament_id = $request->add_tournament;            
 
-                //Update race photo file path
+                //Update race photo file path if is not null
                 if($request->file('race_photo') != null){
+                    //gets file
                     $photo = $request->file('race_photo');
+                    //saves photo will id-name-orginial photo name
                     $fileName = $id . '-' . $request->name . '-' .$photo->getClientOriginalName();
+                    //path to folder to save 
                     $path = 'img/race_photo/';
+                    //saves photo in that folder
                     $file = $photo->move($path, $fileName);
+                    //apends all filepath to photo img/race-photo...
                     $file_path = $path . $fileName;
+                    //adds the file path to the parameter
                     $race->file_path = '/' . $file_path;
                 }
                 $race->save();
