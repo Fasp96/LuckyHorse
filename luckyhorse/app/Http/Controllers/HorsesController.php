@@ -13,7 +13,7 @@ class HorsesController extends Controller
     public function index($page_number=1){
         //Pagination variables definition
         $page_name = "horses";
-        $horses_per_page = 4;
+        $horses_per_page = 5;
         //Fetch all horses
         $horse_number = Horse::count();
         //Find the correct number of pages needed for all the horses

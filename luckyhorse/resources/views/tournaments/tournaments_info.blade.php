@@ -17,7 +17,7 @@
                     Location: {{$tournaments->location}}<br>
                     <!-- Shows the tournament's winner if there is one -->
                     @if($winner->count() > 0)
-                        @if($winner[0]->count() > 2)
+                        @if($winner[0]->count() != 7)
                             Winners: {{$winner[0]->horse_name}} and {{$winner[0]->jockey_name}} <br>
                         @endif
                     @endif

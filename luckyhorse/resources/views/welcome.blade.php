@@ -20,7 +20,7 @@
             @foreach($table_info as $result)
                 <tr class="tab_result">
                     <td class="tab_position">{{$count}}</td>
-                    <td><a href="/horses/{{$result->race_id}}">{{$result->horse_name}}</a></td>
+                    <td><a href="/horses/{{$result->horse_id}}">{{$result->horse_name}}</a></td>
                     <td><a href="/jockeys/{{$result->jockey_id}}">{{$result->jockey_name}}</a></td>
                     <td>{{$result->time}}</td>
                     <?php $count++ ?>

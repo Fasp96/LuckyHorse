@@ -25,15 +25,15 @@
                     Horse Name: {{$tournament_bet->horse_name}}<br>
                     Jockey Name: {{$tournament_bet->jockey_name}}<br>
                     Value: {{$tournament_bet->value}}€<br>
-
+                    
                     <!-- checks all the tournaments winners from this page -->
                     @foreach($winners_tournament_bets as $win)
                         <!-- checks to see if this tournament has a winner -->  
-                        @if($win->tournament_id == $tournament_bet->tournament_id)
+                        @if($win->count() > 0 && $win[0]->tournament_id == $tournament_bet->tournament_id)
                             <!-- checks if the supposed winner has finished the race -->
-                            @if($win->time !=null)
+                            @if($win[0]->time !=null)
                                 <!-- checks if the user beted on the winning horse/jockey-->
-                                @if($win->jockey_id == $tournament_bet->jockey_id&& $win->horse_id == $tournament_bet->horse_id)
+                                @if($win[0]->jockey_id == $tournament_bet->jockey_id&& $win[0]->horse_id == $tournament_bet->horse_id)
                                     <div class="edit_button">
                                         <a href="/claim={{$tournament_bet->bet_id}}">Claim Money</a>
                                     </div>
@@ -72,12 +72,12 @@
                     <!-- checks all the races winners from this page -->
                     @foreach($winners_race_bets as $win)
                         <!-- checks to see if this race has a winner -->  
-                        @if($win->race_id == $race_bet->race_id)
+                        @if($win->count() > 0 && $win[0]->race_id == $race_bet->race_id)
                             <!-- checks if the supposed winner has finished the race -->
-                            @if($win->time !=null)
+                            @if($win[0]->time !=null)
                                 <!-- checks if the user beted on the winning horse/jockey-->
-                                @if($win->jockey_id == $race_bet->jockey_id && $win->horse_id == $race_bet->horse_id)
-                                    <div class="edit_button">
+                                @if($win[0]->jockey_id == $race_bet->jockey_id && $win[0]->horse_id == $race_bet->horse_id)
+                                    <div class="modify_button">
                                         <a href="/claim={{$race_bet->bet_id}}">Claim Money</a>
                                     </div>
                                 @endif

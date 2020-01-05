@@ -18,7 +18,7 @@ class TournamentsController extends Controller
     public function index($page_number=1){
         //Pagination variables definition
         $page_name = "tournaments";
-        $tournaments_per_page = 4;
+        $tournaments_per_page = 5;
         //Fetch all tournaments
         $tournaments_number = Tournament::count();
         //Find the correct number of pages needed for all the tournaments
@@ -75,15 +75,15 @@ class TournamentsController extends Controller
                 ->join('horses','results.horse_id','=','horses.id')
                 ->join('jockeys','results.jockey_id','=','jockeys.id')
                 ->join('tournaments','races.tournament_id','=','tournaments.id')
-                ->orderByDesc('results.time')
+                ->orderBy('results.time')
                 ->whereTime('results.time','>=','00:00:01')
                 ->whereNotNull('results.time')
                 ->select('races.id as race_id',
                     'tournaments.id as tournament_id',
                     'horses.name as horse_name',
                     'jockeys.name as jockey_name')
-                ->take(1)->get();
-
+                ->get();
+            
             //In case no winner is found, return dummy winner
             if($winner->count() == 0){
                 $winner = Tournament::where('tournaments.id',$tournament_id)->get();

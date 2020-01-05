@@ -35,7 +35,7 @@
                         </div>
                         <!-- If the user is logged in and the race hasn't started, he can bet -->
                         @auth
-                            @if($race->date < date("Y-m-d h:i:ss"))
+                            @if($race->date > date("Y-m-d h:i:ss"))
                                 <div>
                                     <div class="details_button bet_button">
                                         <a href="/add_bet_race={{$race->id}}">Bet</a>
