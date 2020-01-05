@@ -44,13 +44,19 @@ class EditHorsesController extends Controller
                 $horse->num_races = $request->num_races;
                 $horse->num_victories = $request->num_victories;
 
-                //Update horse photo file path
+                //Update horse photo file path if is not null
                 if($request->file('horse_photo') != null){
+                    //gets file
                     $photo = $request->file('horse_photo');
+                    //saves photo will id-name-orginial photo name
                     $fileName = $id . '-' . $request->name . '-' .$photo->getClientOriginalName();
+                    //path to folder to save 
                     $path = 'img/horse_photo/';
+                    //saves photo in that folder
                     $file = $photo->move($path, $fileName);
+                    //apends all filepath to photo img/horse-photo...
                     $file_path = $path . $fileName;
+                    //adds the file path to the parameter
                     $horse->file_path = '/' . $file_path;
                 }
                 $horse->save();
